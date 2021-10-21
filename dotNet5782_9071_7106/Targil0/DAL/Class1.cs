@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleUI
+namespace DAL
 {
     public class Class1
     {
