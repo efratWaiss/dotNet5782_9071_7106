@@ -14,6 +14,15 @@ namespace IDAL
             {
                 return "id:" + Id + " Model:" + Model + " MaxWeight:" + MaxWeight + " Battery:" + Battery;
             }
+            public Drone(int id, string Model, WeightCategories MaxWeight, DroneStatuses Status, double Battery)
+            {
+                this.Id = id;
+                this.Model = Model;
+                this.MaxWeight = MaxWeight;
+                this.Status = Status;
+                this.Battery = Battery;
+
+            }
         }
     }
 }

@@ -11,6 +11,11 @@ namespace IDAL
             {
                 return "Droneld:"+ Droneld + " Stationld:" + Stationld;
             }
+            public DroneCharge(int Droneld, int Stationld)
+            {
+                this.Droneld = Droneld;
+                this.Stationld = Stationld;
+            }
         }
     }
 }
