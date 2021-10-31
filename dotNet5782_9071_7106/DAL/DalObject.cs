@@ -30,13 +30,14 @@ using IDAL.DO;
                 DataSource.parcels.Add(p);
                 return Parcel.endParcel;
             }
-            public void printStation(int id)
+            public Station printStation(int id)
             {
                 for(int i=0;i< 5&&DataSource.stations!=null;i++)
                 {
                     if (DataSource.stations[i].Id == id)
-                        DataSource.stations[i].ToString();
+                       return DataSource.stations[i];
                 }
+            return nulll;
             }
 
             public void printDrone(int id)

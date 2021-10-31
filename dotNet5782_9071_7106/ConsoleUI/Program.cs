@@ -28,7 +28,7 @@ namespace ConsoleUI
                         dd.addStation(s);
                         Console.WriteLine("very goood");
                         break;
-                    /*case "2":
+                    case "2":
                         Console.WriteLine("enter id,  Model, , MaxWeight, Status,Battery");
                         Id = int.Parse(Console.ReadLine());
                         string Model = Console.ReadLine();
@@ -37,7 +37,7 @@ namespace ConsoleUI
                         double Battery= double.Parse( Console.ReadLine());
                         Drone d=new Drone(Id, Model, MaxWeight,Status, Battery);
                         dd.addDrone(d);
-                        break;*/
+                        break;
                     case "3":
                         Console.WriteLine("enter id,  Name, , Phone, Longitude, Latitude");
                         Id = int.Parse(Console.ReadLine());
@@ -49,7 +49,7 @@ namespace ConsoleUI
                         dd.addCustomer(c);
                         break;
 
-                  /* case "4":
+                    case "4":
                         Console.WriteLine("enter id,  SenderId,  TargetId, Weight, priority,Requested,scheduled,PickedUp,Delivered,DroneId");
                         Id = int.Parse(Console.ReadLine());
                         int SenderId = int.Parse(Console.ReadLine());
@@ -65,7 +65,7 @@ namespace ConsoleUI
                            scheduled, PickedUp, Delivered,DroneId);
                         dd.addParcel(p);
                         break;
-                    */
+                   
                 }
             }
         static void update()
@@ -83,7 +83,7 @@ namespace ConsoleUI
                     int id = int.Parse(Console.ReadLine());
                     //    Station s = new Station(id);
                     //  s.printStation();
-                    dd.printStation(id);
+                    Console.Write( dd.printStation(id).ToString());
                     break;
                  case "2":
                     Console.WriteLine("enter id");
