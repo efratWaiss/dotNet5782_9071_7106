@@ -11,16 +11,14 @@ namespace IDAL
     {
         internal class DataSource
         {
-            internal static List<Drone>  drones=new List<Drone>(10);
-            internal static List<Station>  stations=new List<Station>(5) ;
-            internal static List<Customer>  customers=new List<Customer>(100) ;
-            internal static List<Parcel>  parcels=new List<Parcel>(1000) ;
-           internal class Config 
-            {
-                
+            internal static List<Drone>  drones=new List<Drone>();
+            internal static List<Station>  stations=new List<Station>() ;
+            internal static List<Customer>  customers=new List<Customer>() ;
+            internal static List<Parcel>  parcels=new List<Parcel>() ;
+            internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
 
-            }
-            
+
+
             internal static void Initialize()
             {
                 Drone d1=new Drone(1,"xyz122",WeightCategories.Easy,DroneStatuses.Shipping,50.3);

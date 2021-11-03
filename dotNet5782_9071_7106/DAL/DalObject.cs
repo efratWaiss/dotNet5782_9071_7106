@@ -11,7 +11,6 @@ using IDAL.DO;
             public DalObject()
             {
                 DataSource.Initialize();
-
             }
             public void addStation(Station s)
             {
@@ -32,65 +31,111 @@ using IDAL.DO;
             }
             public Station printStation(int id)
             {
-                for(int i=0;i< 5&&DataSource.stations!=null;i++)
+                for(int i=0;i< DataSource.stations.Count;i++)
                 {
                     if (DataSource.stations[i].Id == id)
                        return DataSource.stations[i];
                 }
-            return nulll;
+           return  default (Station);
             }
 
-            public void printDrone(int id)
+            public Drone printDrone(int id)
             {
-                for (int i = 0; i < 10 && DataSource.drones != null; i++)
+                for (int i = 0; i < DataSource.drones.Count; i++)
                 {
                     if (DataSource.drones[i].Id == id)
-                        DataSource.drones[i].ToString();
+                       return DataSource.drones[i];
                 }
-            }
-            public void printCustomer(int id)
+            return default(Drone);
+        }
+            public Customer printCustomer(int id)
             {
-                for (int i = 0; i < 100 && DataSource.customers != null; i++)
+                for (int i = 0; i<DataSource.customers.Count; i++)
                 {
                     if (DataSource.customers[i].Id == id)
-                        DataSource.customers[i].ToString();
+                      return  DataSource.customers[i];
                 }
-            }
-            public void printParcel(int id)
+            return default(Customer);
+        }
+            public Parcel printParcel(int id)
             {
-                for (int i = 0; i < 1000 && DataSource.parcels != null; i++)
+                for (int i = 0; i <DataSource.parcels.Count; i++)
                 {
                     if (DataSource.parcels[i].Id == id)
-                        DataSource.parcels[i].ToString();
+                       return DataSource.parcels[i];
                 }
-            }
-            public void viewStation()
-            {
-                for(int i = 0; i < 5 && DataSource.stations != null; i++)
-                {
-                    Console.WriteLine(" Name: "+ DataSource.stations[i].Name);
-                }       
-            }
-            public void viewDrone()
-            {
-                for (int i = 0; i < 10 && DataSource.drones != null; i++)
-                {
-                    Console.WriteLine(" Id: " + DataSource.drones[i].Id);
-                }
-            }
-            public void viewCustomer(){
-               for(int i = 0; i< 100 && DataSource.customers != null; i++)
-                {
-                    Console.WriteLine(" Name: " + DataSource.customers[i].Name);
-                }
-             }
-            public void viewParcel()
-            {
-                for (int i = 0; i < 1000 && DataSource.parcels != null; i++)
-                {
-                    Console.WriteLine(" Id: " + DataSource.parcels[i].Id);
-                }
-            }
-
+            return default(Parcel);
         }
+            public List<Station> viewStation()
+            {
+            return DataSource.stations;
+            }
+            public List<Drone> viewDrone()
+            {
+            return DataSource.drones;
+        }
+            public List<Customer> viewCustomer(){
+            return DataSource.customers;
+        }
+            public List<Parcel> viewParcel()
+            {
+            return DataSource.parcels;
+        }
+         public void updateParcelToDrone(int idDrone,int idParcel)//what the problem
+         {
+           for (int i=0;i<DataSource.parcels.Count; i++)
+           {
+             if (DataSource.parcels[i].Id == idParcel) 
+             {
+                    var theParcel = DataSource.parcels[i];
+                    theParcel.DroneId = idDrone;
+             }
+           }
+         }
+     public void pickedUpD(int idDrone, DateTime d)
+     {
+         for (int i = 0; i <DataSource.parcels.Count; i++)
+         {
+             if (DataSource.parcels[i].DroneId == idDrone)
+             {
+                    var w = DataSource.parcels[i];
+                    w.PickedUp = DateTime.Now;
+             }
+         }
+     }
+     public void targetId(int idCustomer, int idParcel)
+     {
+         for (int i = 0; i < 1000 && DataSource.parcels != null; i++)
+         {
+             if (DataSource.parcels[i].Id== idParcel)
+             {
+                    var theParcel = DataSource.parcels[i];
+                    theParcel.TargetId = idCustomer;
+             }
+         }
+     }
+        public void sendDroneToStation(int idDrone,int idStation, DroneStatuses DroneStatues)
+        {
+            for (int i = 0; i < DataSource.drones.Count; i++)
+            {
+                if (DataSource.drones[i].Id == idDrone)
+                {
+                    var theDrone = DataSource.drones[i];
+                    theDrone.Status= DroneStatues;
+                    DroneCharge a = new DroneCharge(idDrone,idStation);
+                    DataSource.DroneCharges.Add(a);
+                }
+            }
+        }
+        public void freeDrone(int idDrone)
+        {
+            for (int i = 0; i < DataSource.DroneCharges.Count; i++)
+            {
+                if (DataSource.DroneCharges[i].Droneld == idDrone)
+                {
+                    DataSource.DroneCharges.Remove(DataSource.DroneCharges[i]);
+                }
+                }
+            }
     }
+}
