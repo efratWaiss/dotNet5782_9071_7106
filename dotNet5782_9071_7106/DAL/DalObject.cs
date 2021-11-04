@@ -89,6 +89,7 @@ using IDAL.DO;
              {
                     var theParcel = DataSource.parcels[i];
                     theParcel.DroneId = idDrone;
+                    DataSource.parcels[i] = theParcel;
              }
            }
          }
@@ -100,7 +101,8 @@ using IDAL.DO;
              {
                     var w = DataSource.parcels[i];
                     w.PickedUp = DateTime.Now;
-             }
+                    DataSource.parcels[i] = w;
+                }
          }
      }
      public void targetId(int idCustomer, int idParcel)
@@ -111,6 +113,7 @@ using IDAL.DO;
              {
                     var theParcel = DataSource.parcels[i];
                     theParcel.TargetId = idCustomer;
+                    DataSource.parcels[i] = theParcel;
              }
          }
      }
@@ -122,6 +125,7 @@ using IDAL.DO;
                 {
                     var theDrone = DataSource.drones[i];
                     theDrone.Status= DroneStatues;
+                    DataSource.drones[i] = theDrone;
                     DroneCharge a = new DroneCharge(idDrone,idStation);
                     DataSource.DroneCharges.Add(a);
                 }
