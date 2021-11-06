@@ -15,23 +15,23 @@ namespace ConsoleUI
         {
             Console.WriteLine("ENTER YOUR CHOISE:/n 1-station /n 2-to drone /n 3-customer /n 4-parcel /n");
             string choise = Console.ReadLine();
-              /*switch (choise)
+              switch (choise)
               {
                   case "1":
 
                       Console.WriteLine("enter id");
                       int Id = int.Parse(Console.ReadLine());
-                      Console.WriteLine("enter Name")
+                    Console.WriteLine("enter Name");
                       string Name = Console.ReadLine();
-                      Console.WriteLine("enter Longitude")
+                    Console.WriteLine("enter Longitude");
                       double Longitude = double.Parse(Console.ReadLine());
-                      Console.WriteLine("enter Latitude")
+                    Console.WriteLine("enter Latitude");
                       double Latitude = double.Parse(Console.ReadLine());
-                      Console.WriteLine("enter ChargeSlot")
+                    Console.WriteLine("enter ChargeSlot");
                       int ChargeSlot= int.Parse(Console.ReadLine());
                       Station s=new Station(Id, Name, Longitude, Latitude, ChargeSlot);
                       dd.addStation(s);
-                    //Console.WriteLine("very good");
+                    Console.WriteLine("very good");
                       break;
                   case "2":
                       Console.WriteLine("enter Id");
@@ -40,35 +40,37 @@ namespace ConsoleUI
                       string Model = Console.ReadLine();
                       Console.WriteLine("enter MaxWeight: 1-Easy /n 2-Intermediate /n 3-Liver");
                       string choiseMaxWeight = Console.ReadLine();
+                      WeightCategories MaxWeight = WeightCategories.Easy;
                       switch (choiseMaxWeight)
                       {
                         case "1":
-                            WeightCategories MaxWeight=WeightCategories.Easy;
+                             MaxWeight=WeightCategories.Easy;
                             break;
                         case "2":
-                            WeightCategories MaxWeight=WeightCategories.Intermediate;
+                             MaxWeight=WeightCategories.Intermediate;
                             break;
                         case "3":
-                            WeightCategories MaxWeight=WeightCategories.Liver;
+                             MaxWeight=WeightCategories.Liver;
                             break;
                       }
                     Console.WriteLine("enter Status: 1-Vacant /n 2-Maintenance /n 3-Shipping");
                     string choiseDroneStatuses = Console.ReadLine();
+                    DroneStatuses Status1 = DroneStatuses.Vacant;
                     switch (choiseDroneStatuses)
                       {
                         case "1":
-                            DroneStatuses Status = DroneStatuses.Vacant;
+                            Status1 = DroneStatuses.Vacant;
                             break;
                         case "2":
-                            DroneStatuses Status = DroneStatuses.Maintenance;
+                            Status1 = DroneStatuses.Maintenance;
                             break;
                         case "3":
-                            DroneStatuses Status = DroneStatuses.Shipping;
+                            Status1 = DroneStatuses.Shipping;
                             break;
                       }
                       Console.WriteLine("enter Battery");
                       double Battery= double.Parse( Console.ReadLine());
-                      Drone d=new Drone(Id, Model, MaxWeight,Status, Battery);
+                      Drone d=new Drone(Id, Model, MaxWeight,Status1, Battery);
                       dd.addDrone(d);
                       break;
                   case "3":
@@ -95,30 +97,32 @@ namespace ConsoleUI
                       int TargetId = int.Parse(Console.ReadLine());
                       Console.WriteLine("enter weight: 1-Easy /n 2-Intermediate /n 3-Liver");
                       string choiseWeight = Console.ReadLine();
-                      switch (choiseWeight)
+                    WeightCategories Weight = WeightCategories.Easy;
+                    switch (choiseWeight)
                       {
                         case "1":
-                            WeightCategories Weight=WeightCategories.Easy;
+                            Weight=WeightCategories.Easy;
                             break;
                         case "2":
-                            WeightCategories Weight=WeightCategories.Intermediate;
+                            Weight=WeightCategories.Intermediate;
                             break;
                         case "3":
-                            WeightCategories Weight=WeightCategories.Liver;
+                            Weight=WeightCategories.Liver;
                             break;
                       }
                       Console.WriteLine("enter priority: 1-Regular /n 2-Fast /n 3-Emergency");
                       string choisePriority = Console.ReadLine();
-                      switch (choisePriority)
+                    Priorities priority = Priorities.Regular;
+                    switch (choisePriority)
                       {
                         case "1":
-                            Priorities priority = Priorities.Regular;
+                            priority = Priorities.Regular;
                             break;
                         case "2":
-                            Priorities priority = Priorities.Fast;
+                            priority = Priorities.Fast;
                             break;
                         case "3":
-                            Priorities priority = Priorities.Emergency;
+                            priority = Priorities.Emergency;
                             break;
                       }
                       Console.WriteLine("enter Requested");
@@ -136,7 +140,7 @@ namespace ConsoleUI
                       dd.addParcel(p);
                       break;
 
-              }*/
+              }
         }
         static void update()
         {
@@ -145,52 +149,59 @@ namespace ConsoleUI
             switch (choise)
             {
                 case "1":
-                    {
-                        Console.WriteLine("enter idDrone & idParcel/n");
-                        int idDrone = int.Parse(Console.ReadLine());
-                        int idParcel = int.Parse(Console.ReadLine());
-                        dd.updateParcelToDrone(idDrone,idParcel);
-                   }
+                    
+                        Console.WriteLine("enter idDrone");
+                        int idDrone1 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("enter idParcel");
+                        int idParcel1 = int.Parse(Console.ReadLine());
+                        dd.updateParcelToDrone(idDrone1, idParcel1);
+                    
                     break;
                 case "2":
-                        Console.WriteLine("enter idDrone");    
-                        int idDrone = int.Parse(Console.ReadLine());
-                        Console.WriteLine("enter DateTime");
-                        DateTime pickUpDate=DateTime.Parse(Console.ReadLine());
-                        dd.pickedUpD(idDrone,pickUpDate);
+                    
+                    Console.WriteLine("enter idDrone");
+                    int idDrone = int.Parse(Console.ReadLine());
+                    Console.WriteLine("enter DateTime");
+                    DateTime pickUpDate = DateTime.Parse(Console.ReadLine());
+                    dd.pickedUpD(idDrone, pickUpDate);
+                    
                     break;
                 case "3":
-                        Console.WriteLine("enter idCustomer");    
-                        int idCustomer = int.Parse(Console.ReadLine());
-                        Console.WriteLine("enter idParcel");
-                        int idParcel = int.Parse(Console.ReadLine());
-                        dd.targetId(idCustomer,idParcel);
+                    Console.WriteLine("enter idCustomer");
+                    int idCustomer = int.Parse(Console.ReadLine());
+                    Console.WriteLine("enter idParcel");
+                    int idParcel = int.Parse(Console.ReadLine());
+                    dd.targetId(idCustomer, idParcel);
                     break;
                 case "4":
-                        Console.WriteLine("enter idDrone");    
-                        int idDrone = int.Parse(Console.ReadLine());
-                        Console.WriteLine("enter idStation");
-                        int idStation = int.Parse(Console.ReadLine());
-                        Console.WriteLine("enter DroneStatuses: 1-Vacant /n 2-Maintenance /n 3-Shipping");
-                        string choiseDroneStatuses = Console.ReadLine();
-                        switch (choiseDroneStatuses)
-                        {
-                         case "1":
-                            DroneStatuses s = DroneStatuses.Vacant;
+                    Console.WriteLine("enter idDrone");
+                    idDrone1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("enter idStation");
+                    int idStation = int.Parse(Console.ReadLine());
+                    Console.WriteLine("enter DroneStatuses: 1-Vacant /n 2-Maintenance /n 3-Shipping");
+                    string choiseDroneStatuses = Console.ReadLine();
+                    DroneStatuses s = DroneStatuses.Vacant;
+                    switch (choiseDroneStatuses)
+                     {
+                        case "1":
+                            s = DroneStatuses.Vacant;
                             break;
-                         case "2":
-                            DroneStatuses s = DroneStatuses.Maintenance;
+                        case "2":
+                            s = DroneStatuses.Maintenance;
                             break;
-                         case "3":
-                            DroneStatuses s = DroneStatuses.Shipping;
+                        case "3":
+                            s = DroneStatuses.Shipping;
                             break;
-                        }
-                        dd.sendDroneToStation(idDrone,idStation,s);
-                            break;
+                     }
+                    dd.sendDroneToStation(idDrone1, idStation, s);
+                    break;
+
                 case "5":
-                    Console.WriteLine("enter idDrone");    
-                    int idDrone = int.Parse(Console.ReadLine());
-                    dd.freeDrone(idDrone);
+                    Console.WriteLine("enter idDrone");
+                    int idDrone2 = int.Parse(Console.ReadLine());
+                    dd.freeDrone(idDrone2);
+                    break;
+            
             }
         }
         static void show()
