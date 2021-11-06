@@ -55,6 +55,7 @@ namespace IDAL
                 customers.Add(c8);
                 customers.Add(c9);
                 customers.Add(c10);
+                DateTime t = DateTime.Now;
                 Parcel p1 = new Parcel(1, 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
                 Parcel p2 = new Parcel(2, 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
                 Parcel p3 = new Parcel(3, 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
