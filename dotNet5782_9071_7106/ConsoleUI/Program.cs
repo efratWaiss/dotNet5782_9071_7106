@@ -15,7 +15,7 @@ namespace ConsoleUI
         {
             Console.WriteLine("ENTER YOUR CHOISE:/n 1-station /n 2-to drone /n 3-customer /n 4-parcel /n");
             string choise = Console.ReadLine();
-              switch (choise)
+              /*switch (choise)
               {
                   case "1":
 
@@ -67,7 +67,7 @@ namespace ConsoleUI
                       dd.addParcel(p);
                       break;
 
-              }
+              }*/
         }
         static void update()
         {
