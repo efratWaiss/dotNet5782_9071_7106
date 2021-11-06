@@ -23,9 +23,9 @@ namespace IDAL
             {
                 Drone d1=new Drone(1,"xyz122",WeightCategories.Easy,DroneStatuses.Shipping,50.3);
                 Drone d2=new Drone(2,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
-                Drone d3=new Drone(2,"xyz122",WeightCategories.Intermediate,DroneStatuses.Maintenance,32.1);
-                Drone d4=new Drone(2,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
-                Drone d5=new Drone(2,"xyz122",WeightCategories.Intermediate,DroneStatuses.Shipping,32.1);
+                Drone d3=new Drone(3,"xyz122",WeightCategories.Intermediate,DroneStatuses.Maintenance,32.1);
+                Drone d4=new Drone(4,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
+                Drone d5=new Drone(5,"xyz122",WeightCategories.Intermediate,DroneStatuses.Shipping,32.1);
                 drones.Add(d1); 
                 drones.Add(d2); 
                 drones.Add(d3); 
@@ -35,16 +35,16 @@ namespace IDAL
                 Station s2 = new Station(54, "sfsf", 12.5, 14.6, 7);
                 stations.Add(s1);
                 stations.Add(s2);
-                Customer c1 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c2 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c3 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c4 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
+                Customer c1 = new Customer(325036551, "gfdx", "4545454", 12.3, 145.5);
+                Customer c2 = new Customer(325036552, "gfdx", "4545454", 12.3, 145.5);
+                Customer c3 = new Customer(325036553, "gfdx", "4545454", 12.3, 145.5);
+                Customer c4 = new Customer(325036554, "gfdx", "4545454", 12.3, 145.5);
                 Customer c5 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c6 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c7 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c8 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c9 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
-                Customer c10 = new Customer(325036555, "gfdx", "4545454", 12.3, 145.5);
+                Customer c6 = new Customer(325036556, "gfdx", "4545454", 12.3, 145.5);
+                Customer c7 = new Customer(325036557, "gfdx", "4545454", 12.3, 145.5);
+                Customer c8 = new Customer(325036558, "gfdx", "4545454", 12.3, 145.5);
+                Customer c9 = new Customer(325036559, "gfdx", "4545454", 12.3, 145.5);
+                Customer c10 = new Customer(325036550, "gfdx", "4545454", 12.3, 145.5);
                 customers.Add(c1);
                 customers.Add(c2);
                 customers.Add(c3);
