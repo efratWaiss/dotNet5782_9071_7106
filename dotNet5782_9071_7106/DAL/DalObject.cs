@@ -20,7 +20,7 @@ namespace DalObject
             foreach (var item in DataSource.stations)
             {
                 if (item.Id == s.Id)
-                    throw new idException();
+                    throw new idException("already exist in the system");
             }
             DataSource.stations.Add(s);
         }
@@ -29,7 +29,7 @@ namespace DalObject
             foreach (var item in DataSource.drones)
             {
                 if (item.Id == d.Id)
-                    throw new idException();
+                    throw new idException("already exist in the system");
             }
             DataSource.drones.Add(d);
         }
@@ -129,6 +129,18 @@ namespace DalObject
         }
         public void updateParcelToDrone(int idDrone, int idParcel)//what the problem
         {
+            bool b = true;
+            foreach(var item in DataSource.drones)
+            {
+                if (item.Id != idDrone)
+                    b = false;
+                else
+                    b = true;
+            }
+            if (b == false)
+            {
+                throw new notExistException("this id Drone not exist in the system");
+            }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
                 if (DataSource.parcels[i].Id == idParcel)
@@ -137,6 +149,11 @@ namespace DalObject
                     theParcel.DroneId = idDrone;
                     DataSource.parcels[i] = theParcel;
                 }
+                else
+                {
+                    throw new notExistException("this id parcel not exist in the system");
+                }
+
             }
         }
         public void pickedUpD(int idDrone, DateTime d)

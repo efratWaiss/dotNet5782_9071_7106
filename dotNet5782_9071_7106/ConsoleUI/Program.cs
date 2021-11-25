@@ -214,22 +214,52 @@ namespace ConsoleUI
                 case "1":
                     Console.WriteLine("enter id");
                     int id = int.Parse(Console.ReadLine());
-                    Console.Write(dd.printStation(id));
+                    try
+                    {
+                        Console.Write(dd.printStation(id));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     break;
                 case "2":
                     Console.WriteLine("enter id");
                     id = int.Parse(Console.ReadLine());
-                    Console.Write(dd.printDrone(id));
+                    try
+                    {
+                        Console.Write(dd.printDrone(id));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     break;
                 case "3":
                     Console.WriteLine("enter id");
                     id = int.Parse(Console.ReadLine());
-                    Console.Write(dd.printCustomer(id));
+                    try
+                    {
+                        Console.Write(dd.printCustomer(id));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     break;
                 case "4":
                     Console.WriteLine("enter id");
                     id = int.Parse(Console.ReadLine());
-                    Console.Write(dd.printParcel(id));
+                    try
+                    {
+                        Console.Write(dd.printParcel(id));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     break;
             }
 
