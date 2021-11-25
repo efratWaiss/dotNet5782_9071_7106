@@ -10,7 +10,7 @@ namespace IDAL
             public double Longitude { get; set; }
             public double Latitude { get; set; }
             public int ChargeSlots { get; set; }
-            public Station(int Id, string Name, double Longitude, double Latitude, int ChargeSlots)
+            public Station(int Id, string Name, double Longitude, double Latitude, int ChargeSlots=0)
             {
                 this.Id = Id;
                 this.Name = Name;

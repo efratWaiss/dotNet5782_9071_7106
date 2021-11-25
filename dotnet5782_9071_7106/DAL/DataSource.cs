@@ -3,29 +3,37 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
+using System.Threading.Tasks; 
 namespace IDAL
 {
     namespace DO
     {
         internal class DataSource
         {
-            internal static List<Drone>  drones=new List<Drone>();
-            internal static List<Station>  stations=new List<Station>() ;
-            internal static List<Customer>  customers=new List<Customer>() ;
-            internal static List<Parcel>  parcels=new List<Parcel>() ;
+            internal static List<Drone> drones = new List<Drone>();
+            internal static List<Station> stations = new List<Station>();
+            internal static List<Customer> customers = new List<Customer>();
+            internal static List<Parcel> parcels = new List<Parcel>();
             internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
 
 
+            internal class Config
+            {
+                internal static int parcelId =0;
+                public static double available;
+                public static double lightWeight;
+                public static double MediumWeight;
+                public static double heavyWeight;
+                public static int ChargingRate;
 
+            }
             internal static void Initialize()
             {
-                Drone d1=new Drone(1,"xyz122",WeightCategories.Easy,DroneStatuses.Shipping,50.3);
-                Drone d2=new Drone(2,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
-                Drone d3=new Drone(3,"xyz122",WeightCategories.Intermediate,DroneStatuses.Maintenance,32.1);
-                Drone d4=new Drone(4,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
-                Drone d5=new Drone(5,"xyz122",WeightCategories.Intermediate,DroneStatuses.Shipping,32.1);
+                Drone d1=new Drone(1,"xyz122",WeightCategories.Easy);
+                Drone d2=new Drone(2,"xyz122",WeightCategories.Intermediate);
+                Drone d3=new Drone(3,"xyz122",WeightCategories.Intermediate);
+                Drone d4=new Drone(4,"xyz122",WeightCategories.Intermediate);
+                Drone d5=new Drone(5,"xyz122",WeightCategories.Intermediate);
                 drones.Add(d1); 
                 drones.Add(d2); 
                 drones.Add(d3); 
@@ -56,16 +64,16 @@ namespace IDAL
                 customers.Add(c9);
                 customers.Add(c10);
                 DateTime t = DateTime.Now;
-                Parcel p1 = new Parcel(1, 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p2 = new Parcel(2, 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p3 = new Parcel(3, 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p4 = new Parcel(4, 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p5 = new Parcel(5, 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p6 = new Parcel(6, 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p7 = new Parcel(7, 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p8 = new Parcel(8, 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p9 = new Parcel(9, 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p10 = new Parcel(10, 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p1 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p2 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p3 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p4 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p5 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p6 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p7 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p8 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p9 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p10 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
 
 
 
