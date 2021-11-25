@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,9 @@ using System.Threading.Tasks;
 using IDAL.DO;
    namespace DalObject
     {
-        public class DalObject
+        public class DalObject:IDAL 
         {
+
             public DalObject()
             {
                 DataSource.Initialize();
@@ -66,9 +68,10 @@ using IDAL.DO;
                 }
             return default(Parcel);
         }
-            public List<Station> viewStation()
+            public IEnumerable viewStation()
             {
-            return DataSource.stations;
+                IEnumerable list = DataSource.stations;
+                return list;
             }
             public List<Drone> viewDrone()
             {
@@ -117,14 +120,14 @@ using IDAL.DO;
              }
          }
      }
-        public void sendDroneToStation(int idDrone,int idStation, DroneStatuses DroneStatues)
+        public void sendDroneToStation(int idDrone,int idStation)
         {
             for (int i = 0; i < DataSource.drones.Count; i++)
             {
                 if (DataSource.drones[i].Id == idDrone)
                 {
                     var theDrone = DataSource.drones[i];
-                    theDrone.Status= DroneStatues;
+                    
                     DataSource.drones[i] = theDrone;
                     DroneCharge a = new DroneCharge(idDrone,idStation);
                     DataSource.DroneCharges.Add(a);
@@ -141,5 +144,9 @@ using IDAL.DO;
                 }
                 }
             }
+        public double [] powerConsumpitionByDrone()
+        {
+
+        }
     }
 }

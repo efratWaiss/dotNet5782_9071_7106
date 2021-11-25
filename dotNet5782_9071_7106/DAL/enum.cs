@@ -9,13 +9,13 @@ namespace IDAL
             Intermediate,
             Liver,
         }
-        public enum DroneStatuses
-        {
-            Vacant,
-            Maintenance,
-            Shipping
+        //public enum DroneStatuses
+        //{
+        //    Vacant,
+        //    Maintenance,
+        //    Shipping
            
-        }
+        //}
         public enum Priorities
         {
             Regular,
