@@ -16,10 +16,10 @@ namespace IDAL
             public DateTime PickedUp { get; set; }
             public DateTime Delivered { get; set; }
             public static int endParcel;
-            public Parcel(int Id, int SenderId, int TargetId, WeightCategories Weight, Priorities priority, DateTime Requested,
-                DateTime scheduled, DateTime PickedUp, DateTime Delivered, int DroneId)
+            public Parcel(int SenderId, int TargetId, WeightCategories Weight, Priorities priority, DateTime Requested,
+                DateTime scheduled, DateTime PickedUp, DateTime Delivered, int DroneId=0)
             {
-                this.Id = Id;
+                Id = ++DataSource.Config.parcelId;
                 this.SenderId = SenderId;
                 this.TargetId = TargetId;
                 this.Weight = Weight;
