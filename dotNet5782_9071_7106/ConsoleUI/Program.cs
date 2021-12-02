@@ -168,7 +168,15 @@ namespace ConsoleUI
                     int idDrone1 = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter idParcel");
                     int idParcel1 = int.Parse(Console.ReadLine());
-                    dd.updateParcelToDrone(idDrone1, idParcel1);
+                      try
+                    {
+                         dd.updateParcelToDrone(idDrone1, idParcel1);
+                    }
+
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
 
                     break;
                 case "2":
@@ -177,7 +185,17 @@ namespace ConsoleUI
                     int idDrone = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter DateTime");
                     DateTime pickUpDate = DateTime.Parse(Console.ReadLine());
-                    dd.pickedUpD(idDrone, pickUpDate);
+                      try
+                    {
+                         dd.pickedUpD(idDrone, pickUpDate);
+                    }
+
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    
 
                     break;
                 case "3":
@@ -185,7 +203,16 @@ namespace ConsoleUI
                     int idCustomer = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter idParcel");
                     int idParcel = int.Parse(Console.ReadLine());
-                    dd.targetId(idCustomer, idParcel);
+                       try
+                    {
+                        dd.targetId(idCustomer, idParcel);
+                    }
+
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    
                     break;
                 case "4":
                     Console.WriteLine("enter idDrone");
@@ -272,7 +299,7 @@ namespace ConsoleUI
             {
                 case "1":
                     {
-                        IEnumerable f1 = dd.viewStation();
+                        IEnumerable f1 = dd.viewStation();//לשנות אח''כ
                         foreach (var item in f1)
                         {
                             Console.WriteLine(item);

@@ -15,6 +15,7 @@ namespace DalObject
         {
             DataSource.Initialize();
         }
+
         public void addStation(Station s)
         {
             foreach (var item in DataSource.stations)
@@ -130,6 +131,7 @@ namespace DalObject
         public void updateParcelToDrone(int idDrone, int idParcel)//what the problem
         {
             bool b = true;
+            bool b2=false;
             foreach(var item in DataSource.drones)
             {
                 if (item.Id != idDrone)
@@ -145,16 +147,17 @@ namespace DalObject
             {
                 if (DataSource.parcels[i].Id == idParcel)
                 {
+                    b2=true;
                     var theParcel = DataSource.parcels[i];
                     theParcel.DroneId = idDrone;
                     DataSource.parcels[i] = theParcel;
                 }
-                else
-                {
-                    throw new notExistException("this id parcel not exist in the system");
-                }
-
+                 }
+            if (b2 == false)
+            {
+                throw new notExistException("this id parcel not exist in the system");
             }
+            
         }
         public void pickedUpD(int idDrone, DateTime d)
         {
@@ -166,26 +169,68 @@ namespace DalObject
                     w.PickedUp = DateTime.Now;
                     DataSource.parcels[i] = w;
                 }
-            }
+                else { 
+                throw new notExistException("this id Drone not exist in the system");
+            }}
         }
         public void targetId(int idCustomer, int idParcel)
         {
+            bool c=true;
+            bool c2=false;
+            foreach (var customer in DataSource.customers)
+            {
+                if (customer.Id != idCustomer)
+                {
+                    c=false;
+                }
+                else
+                {
+                    c=true;
+                }
+            }
+            if (c == false)
+            {
+                throw new notExistException("this id customer not exist in the system");
+            }
             for (int i = 0; i < 1000 && DataSource.parcels != null; i++)
             {
                 if (DataSource.parcels[i].Id == idParcel)
                 {
+                    c2=true;
                     var theParcel = DataSource.parcels[i];
                     theParcel.TargetId = idCustomer;
                     DataSource.parcels[i] = theParcel;
                 }
             }
+            if (c2 == false)
+            {
+                 throw new notExistException("this id parcel not exist in the system");
+            }
         }
         public void sendDroneToStation(int idDrone, int idStation)
         {
+            bool s=true;
+            bool s2=false;
+             foreach (var station in DataSource.stations)
+            {
+                if (station.Id != idStation)
+                {
+                    s=false;
+                }
+                else
+                {
+                    s=true;
+                }
+            }
+            if (s == false)
+            {
+                throw new notExistException("this id station not exist in the system");
+            }
             for (int i = 0; i < DataSource.drones.Count; i++)
             {
                 if (DataSource.drones[i].Id == idDrone)
                 {
+                    s2=true;
                     var theDrone = DataSource.drones[i];
 
                     DataSource.drones[i] = theDrone;
@@ -193,15 +238,25 @@ namespace DalObject
                     DataSource.DroneCharges.Add(a);
                 }
             }
+            if (s2 == false)
+            {
+                throw new notExistException("this id drone not exist in the system");
+            }
         }
         public void freeDrone(int idDrone)
         {
+            bool f=false;
             for (int i = 0; i < DataSource.DroneCharges.Count; i++)
             {
                 if (DataSource.DroneCharges[i].Droneld == idDrone)
                 {
+                    f=true;
                     DataSource.DroneCharges.Remove(DataSource.DroneCharges[i]);
                 }
+            }
+            if (f == false)
+            {
+                throw new notExistException("this id drone not exist in the system");
             }
         }
 
