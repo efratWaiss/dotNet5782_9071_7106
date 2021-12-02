@@ -21,11 +21,11 @@ namespace IDAL
 
             internal static void Initialize()
             {
-                Drone d1=new Drone(1,"xyz122",WeightCategories.Easy,DroneStatuses.Shipping,50.3);
-                Drone d2=new Drone(2,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
-                Drone d3=new Drone(3,"xyz122",WeightCategories.Intermediate,DroneStatuses.Maintenance,32.1);
-                Drone d4=new Drone(4,"xyz122",WeightCategories.Intermediate,DroneStatuses.Vacant,32.1);
-                Drone d5=new Drone(5,"xyz122",WeightCategories.Intermediate,DroneStatuses.Shipping,32.1);
+                Drone d1=new Drone(1,"xyz122",WeightCategories.Easy);
+                Drone d2=new Drone(2,"xyz122",WeightCategories.Intermediate);
+                Drone d3=new Drone(3,"xyz122",WeightCategories.Intermediate);
+                Drone d4=new Drone(4,"xyz122",WeightCategories.Intermediate);
+                Drone d5=new Drone(5,"xyz122",WeightCategories.Intermediate);
                 drones.Add(d1); 
                 drones.Add(d2); 
                 drones.Add(d3); 
