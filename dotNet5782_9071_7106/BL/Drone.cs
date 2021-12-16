@@ -10,17 +10,17 @@ namespace IBL.BO
         public int Id { get; set; }
         public string Model { get; set; }
         public WeightCategories MaxWeight { get; set; }
-
+        public DroneStatuses status { get; set; }
         public override string ToString()
         {
             return "id:" + Id + " Model:" + Model + " MaxWeight:" + MaxWeight;
         }
-        public Drone(int id, string Model, WeightCategories MaxWeight)
+        public Drone(int id, string Model, WeightCategories MaxWeight, DroneStatuses status)
         {
             this.Id = id;
             this.Model = Model;
             this.MaxWeight = MaxWeight;
-
+            this.status = status;
         }
     }
 }
