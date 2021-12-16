@@ -11,6 +11,8 @@ namespace IBL.BO
         public string Model { get; set; }
         public WeightCategories MaxWeight { get; set; }
         public DroneStatuses status { get; set; }
+        public ParcelInTransference ParcelInTransference { get; set; }
+        public Location LocationNow { get; set; }
         public override string ToString()
         {
             return "id:" + Id + " Model:" + Model + " MaxWeight:" + MaxWeight;
