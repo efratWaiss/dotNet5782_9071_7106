@@ -5,12 +5,6 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Targil0", "Targil0\Targil0.csproj", "{F9A3EC76-781B-430B-BA6A-E1CE3A1EF198}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95D1CD03-8EE0-454D-9C51-28AF1AB4C486}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		..\README.md = ..\README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{9137A6F4-BD91-4922-896B-3F6D485D740C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\ConsoleUI.csproj", "{F188E8DD-BF3A-4467-B1E8-4A7C8F52A729}"

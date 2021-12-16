@@ -16,7 +16,13 @@ namespace IBL.BO
         public int DroneId { get; set; }
         public DateTime scheduled { get; set; }
         public DateTime PickedUp { get; set; }
-        public DateTime Delivered { get; set; }
+        public DateTime Delivered {
+
+            get {return DateTime.Now;} 
+            set { Delivered = value; }
+            
+            }
+
         public static int endParcel;
         public Parcel(int SenderId, int TargetId, WeightCategories Weight, Priorities priority, DateTime Requested,
             DateTime scheduled, DateTime PickedUp, DateTime Delivered, int DroneId = 0)

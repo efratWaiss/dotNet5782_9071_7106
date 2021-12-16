@@ -10,7 +10,7 @@ namespace IBL
 {
     class BL : IBL
     {
-        IDAL.IDal dal=new DalObject.DalObject();
+        IDAL.IDal dal;
         private readonly List<Drone> dronesList;
         private double available;
         private double lightWeight;
@@ -32,12 +32,16 @@ namespace IBL
             ChargingRate = arr[4];
             Initialize();
             powerConsumpitionByDrone();
+
         }
-        
+
         private void Initialize()
         {
 
-           // var getDrones=dal.
+            var parcels = dal.viewParcels();
+            var Drones = dal.viewDrone();
+            var stations = dal.viewStation();
+            ParcelsNotSend(parcels, Drones);
             throw new NotImplementedException();
         }
 
@@ -121,6 +125,8 @@ namespace IBL
 
         public void updateParcelToDrone(int idDrone, int idParcel)
         {
+
+
             throw new NotImplementedException();
         }
 
@@ -143,16 +149,47 @@ namespace IBL
         {
             throw new NotImplementedException();
         }
-    }
-}
-
-namespace IDAL
-{
-    class IDal
-    {
-        internal double[] GetPowerConsumptionByDrone()
+        public void ParcelsNotSend(IEnumerable<Parcel> parcels, List<Drone> drones, List<Station> stations)
         {
-            throw new NotImplementedException();
+            foreach (var item in parcels)//בודק אם החבילה כבר שויכה לרחפן
+            {
+                if (item.Delivered == DateTime.Now && item.DroneId != 0)
+                {
+                    for (int i = 0; i < drones.Count; i++)
+                    {
+                        if (drones[i].Id == item.DroneId)
+                        {
+                            drones[i].status = DroneStatuses.Shipping;
+                        }
+                    }
+
+
+                }
+                if (item.TargetId <= 0 && item.PickedUp == DateTime.Now)
+                {
+                    for (int i = 0; i < drones.Count; i++)
+                    {
+                        if (drones[i].Id == item.DroneId)
+                        {
+                            //למקם את הרחפן בתחנה הקרובה לשולח
+                        }
+                    }
+                }
+                if (item.PickedUp != DateTime.Now)
+                {
+                    //מיקום הרחפן במיקום השולח
+                }
+            }
+
         }
     }
 }
+//namespace IDAL
+//{
+//    class IDal
+//    {
+//        internal double[] GetPowerConsumptionByDrone()
+//        {
+//            throw new NotImplementedException();
+//        }}}
+
