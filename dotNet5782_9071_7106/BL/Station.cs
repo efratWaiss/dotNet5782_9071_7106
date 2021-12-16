@@ -9,21 +9,21 @@ namespace IBL.BO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
-        public int ChargeSlots { get; set; }
-        public Station(int Id, string Name, double Longitude, double Latitude, int ChargeSlots = 0)
+        public Location Location { get; set; }
+        public int ChargingPositions { get; set; }
+        public List<DroneInCharging> DronesInCharging { get; set; }
+        public Station(int Id, string Name, Location Location, int ChargingPositions, List<DroneInCharging> DronesInCharging)
         {
             this.Id = Id;
             this.Name = Name;
-            this.Longitude = Longitude;
-            this.Latitude = Latitude;
-            this.ChargeSlots = ChargeSlots;
+            this.Location = Location;
+            this.ChargingPositions = ChargingPositions;
+            this.DronesInCharging = DroneInCharging;
         }
 
         public override string ToString()
         {
-            return "id:" + Id + " Name:" + Name + " Longitude:" + Longitude + " Latitude:" + Latitude + " ChargeSlots:" + ChargeSlots;
+            return "id:" + Id + " Name:" + Name + " Location:" + Location + " ChargingPositions:" + ChargingPositions + " DronesInCharging:" + DronesInCharging;
         }
     }
 }
