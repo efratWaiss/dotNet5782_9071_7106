@@ -6,6 +6,12 @@ namespace IBL.BO
 {
     class DroneInParcel
     {
+        public DroneInParcel(global::System.Int32 id, Location locationNow)
+        {
+            Id = id;
+            LocationNow = locationNow;
+        }
+
         public int Id { get; set; }
        
         //מצב סוללה

@@ -6,6 +6,11 @@ namespace IBL.BO
 {
     class DroneInCharging
     {
+        public DroneInCharging(global::System.Int32 id)
+        {
+            Id = id;
+        }
+
         public int Id { get; set; }
 
         //מצב סוללה

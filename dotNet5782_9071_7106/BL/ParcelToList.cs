@@ -21,5 +21,6 @@ namespace IBL.BO
             this.Target = Target;
             this.ParcelStatsus = ParcelStatsus;
         }
+        override T
     }// לא ךשכוח לעשות tostring
 }
