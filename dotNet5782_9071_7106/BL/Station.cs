@@ -5,20 +5,22 @@ using System.Text;
 namespace IBL.BO
 
 {
-    class Station
+    public class Station
     {
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public Location Location { get; set; }
         public int ChargingPositions { get; set; }
         public List<DroneInCharging> DronesInCharging { get; set; }
-        public Station(int Id, string Name, Location Location, int ChargingPositions, List<DroneInCharging> DronesInCharging)
+
+        public Station(int id, string name, Location location, int chargingPositions, List<DroneInCharging> dronesInCharging)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Location = Location;
-            this.ChargingPositions = ChargingPositions;
-            this.DronesInCharging = DroneInCharging;
+            Id = id;
+            Name = name;
+            Location = location;
+            ChargingPositions = chargingPositions;
+            DronesInCharging = dronesInCharging;
         }
 
         public override string ToString()

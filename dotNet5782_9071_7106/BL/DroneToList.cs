@@ -4,13 +4,14 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class DroneToList
+    public class DroneToList
     {
-        public DroneToList(global::System.Int32 id, global::System.String model, WeightCategories maxWeight, DroneStatuses status, Location locationNow, global::System.Int32 parcelDelivered)
+        public DroneToList(int id, string model, WeightCategories maxWeight, double battery, DroneStatuses status, Location locationNow, int parcelDelivered)
         {
             Id = id;
             Model = model;
             MaxWeight = maxWeight;
+            this.battery = battery;
             this.status = status;
             LocationNow = locationNow;
             ParcelDelivered = parcelDelivered;
@@ -19,10 +20,13 @@ namespace IBL.BO
         public int Id { get; set; }
         public string Model { get; set; }
         public WeightCategories MaxWeight { get; set; }
-        //מצב סוללה
+        public double battery { get; set; }
         public DroneStatuses status { get; set; }
         public Location LocationNow { get; set; }
         public int ParcelDelivered { get; set; }
-        //בנאי וto string
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

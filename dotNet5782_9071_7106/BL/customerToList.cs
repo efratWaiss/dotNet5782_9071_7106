@@ -24,6 +24,9 @@ namespace IBL.BO
             this.numberParcelTOCustomer = numberParcelTOCustomer;
         }
 
-        //לא לשכוח להוסיף to strin
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

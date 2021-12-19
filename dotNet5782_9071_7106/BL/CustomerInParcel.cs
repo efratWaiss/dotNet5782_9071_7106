@@ -14,5 +14,9 @@ namespace IBL.BO
             this.name = name;
            
         }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

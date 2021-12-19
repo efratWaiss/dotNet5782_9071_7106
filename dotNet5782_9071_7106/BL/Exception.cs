@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class Exception
+   public class Exception
     {
         [Serializable]
         class idException : System.Exception

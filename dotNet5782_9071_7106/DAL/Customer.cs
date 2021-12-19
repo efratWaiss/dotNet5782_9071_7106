@@ -1,10 +1,13 @@
 ﻿using System;
+
 namespace IDAL
 {
     namespace DO
     {
         public struct Customer
 	{
+            
+
             public int Id { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
@@ -14,15 +17,14 @@ namespace IDAL
             {
                 return "id:" + Id + " Name:" + Name + " Phone:" + Phone + " Longitude:" + Longitude + " Latitude:" + Latitude;
             }
-           public Customer(int Id, string Name, string Phone, double Longitude, double Latitude)
+            public Customer(int id, string name, string phone, double longitude, double latitude)
             {
-                this.Id = Id;
-                this.Name = Name;
-                this.Phone = Phone;
-                this.Longitude = Longitude;
-                this.Latitude = Latitude;
+                Id = id;
+                Name = name;
+                Phone = phone;
+                Longitude = longitude;
+                Latitude = latitude;
             }
-
         }
 }
 }

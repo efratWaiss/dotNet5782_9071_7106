@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using IBL.BO;
 #pragma warning disable IDE0005 // Using directive is unnecessary.
 #pragma warning restore IDE0005 // Using directive is unnecessary.
@@ -10,8 +11,8 @@ namespace IBL
 {
     class BL : IBL
     {
-        IDAL.IDal dal;
-        private readonly List<Drone> dronesList;
+        IDal.IDal dal = new DalObject.DalObject();
+        private readonly List<Drone> DronesList;
         private double available;
         private double lightWeight;
 
@@ -22,9 +23,9 @@ namespace IBL
         public BL()
         {
             dal = new DalObject.DalObject();
-            dronesList = new List<Drone>();
+            DronesList = new List<Drone>();
             double[] arr;
-            arr = dal.GetPowerConsumptionByDrone();
+            arr = dal.powerConsumpitionByDrone();
             available = arr[0];
             lightWeight = arr[1];
             MediumWeight = arr[2];
@@ -38,11 +39,82 @@ namespace IBL
         private void Initialize()
         {
 
-            var parcels = dal.viewParcels();
+            var parcels = dal.viewParcel();
             var Drones = dal.viewDrone();
-            var stations = dal.viewStation();
-            ParcelsNotSend(parcels, Drones);
+            var Customers = dal.viewCustomer();
+            var Station = dal.viewStation().ToList();
+            DroneStatuses st = new DroneStatuses();
+            double battery = new double();
+            Location lo = new Location(454.5, 45.5);
+
+            foreach (var drone in Drones)
+            {
+                foreach (var parcel in parcels)
+                {
+                    if (parcel.DroneId == drone.Id && parcel.Delivered != null)
+                    {
+                        ParcelInTransference p = new ParcelInTransference(parcel.Id, parcel.SenderId, parcel.TargetId, parcel.Weight, parcel.priority, true, null, null, null);
+
+                        var customer = dal.viewCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
+                        st = DroneStatuses.Shipping;
+                        if (parcel.scheduled != null && parcel.PickedUp == null)
+                        {
+                            double min = GetDistanceBetweenTwoLocation(customer.Longitude, customer.Latitude);
+                            double minH = double.MaxValue;
+                            foreach (var station in Station)
+                            {
+                                if (GetDistanceBetweenTwoLocation(station.Latitude, station.Longitude) < min)
+                                {
+                                    min = GetDistanceBetweenTwoLocation(station.Latitude, station.Longitude);
+                                    lo.Latitude = station.Latitude;
+                                    lo.Longitude = station.Longitude;
+                                }
+                            }
+                        }
+                        if (parcel.PickedUp != null)
+                        {
+                            lo.Latitude = customer.Latitude;
+                            lo.Longitude = customer.Longitude;
+                        }
+                        battery = 45.3;///לסדר את הבטרייה 
+                        Drone d = new Drone(drone.Id, drone.Model, drone.MaxWeight, st, battery, p, lo);
+                        DronesList.Add(d);
+                    }
+
+
+                }
+                Random rn = new Random();
+                int rand = rn.Next(1, 3);
+
+                switch (rand)
+                {
+                    case 1:
+                        int rr = rn.Next(1, Station.Count());
+                        lo.Latitude = Station[rr].Latitude;
+                        lo.Longitude = Station[rr].Longitude;
+                        Drone d = new Drone(drone.Id, drone.Model, drone.MaxWeight, DroneStatuses.Maintenance, rn.Next(0, 21), null, lo);
+                        break;
+                    case 2:
+                        foreach (var item in Customers)
+                        {
+
+                        }
+                        d = new Drone(drone.Id, drone.Model, drone.MaxWeight, DroneStatuses.Vacant, battery, null, lo);
+                        break;
+                }
+
+
+
+            }
+
             throw new NotImplementedException();
+        }
+
+
+
+        public double GetDistanceBetweenTwoLocation(Location l1, Location l2)
+        {
+            return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
 
         public double CarryingHeavyWeight { get; }
@@ -142,6 +214,7 @@ namespace IBL
 
         public IEnumerable<Parcel> viewParcel()
         {
+
             throw new NotImplementedException();
         }
 
@@ -149,39 +222,11 @@ namespace IBL
         {
             throw new NotImplementedException();
         }
-        public void ParcelsNotSend(IEnumerable<Parcel> parcels, List<Drone> drones, List<Station> stations)
-        {
-            foreach (var item in parcels)//בודק אם החבילה כבר שויכה לרחפן
-            {
-                if (item.Delivered == DateTime.Now && item.DroneId != 0)
-                {
-                    for (int i = 0; i < drones.Count; i++)
-                    {
-                        if (drones[i].Id == item.DroneId)
-                        {
-                            drones[i].status = DroneStatuses.Shipping;
-                        }
-                    }
+        //public void ParcelsNotSend(IEnumerable<Parcel> parcels, List<Drone> drones, List<Station> stations)
+        //{
 
 
-                }
-                if (item.TargetId <= 0 && item.PickedUp == DateTime.Now)
-                {
-                    for (int i = 0; i < drones.Count; i++)
-                    {
-                        if (drones[i].Id == item.DroneId)
-                        {
-                            //למקם את הרחפן בתחנה הקרובה לשולח
-                        }
-                    }
-                }
-                if (item.PickedUp != DateTime.Now)
-                {
-                    //מיקום הרחפן במיקום השולח
-                }
-            }
-
-        }
+        //}
     }
 }
 //namespace IDAL

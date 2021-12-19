@@ -4,19 +4,23 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class DroneInParcel
+    public class DroneInParcel
     {
-        public DroneInParcel(global::System.Int32 id, Location locationNow)
+        public DroneInParcel(int id, double battery, Location locationNow)
         {
             Id = id;
+            this.battery = battery;
             LocationNow = locationNow;
         }
 
         public int Id { get; set; }
-       
-        //מצב סוללה
+
+        public double battery { get; set; }
         public Location LocationNow { get; set; }
 
-        //להוסיף בנאי ו toString 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

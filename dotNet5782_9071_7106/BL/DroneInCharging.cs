@@ -4,17 +4,21 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class DroneInCharging
+   public class DroneInCharging
     {
-        public DroneInCharging(global::System.Int32 id)
+        public DroneInCharging(int id, double battery)
         {
             Id = id;
+            this.battery = battery;
         }
 
         public int Id { get; set; }
 
-        //מצב סוללה
+        public double battery { get; set; }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
-        //להוסיף בנאי ו toString 
     }
 }

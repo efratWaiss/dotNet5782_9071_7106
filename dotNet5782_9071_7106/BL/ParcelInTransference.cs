@@ -4,9 +4,9 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class ParcelInTransference
+   public class ParcelInTransference
     {
-        public ParcelInTransference(global::System.Int32 id, CustomerInParcel sender, CustomerInParcel target, WeightCategories weight, Priorities priority, global::System.Boolean collectionOrTarget, Location locationCollection, Location locationTarget, global::System.Double transportDistance)
+        public ParcelInTransference(int id, CustomerInParcel sender, CustomerInParcel target, WeightCategories weight, Priorities priority, bool collectionOrTarget, Location locationCollection, Location locationTarget, double transportDistance)
         {
             Id = id;
             Sender = sender;
@@ -28,6 +28,9 @@ namespace IBL.BO
         public Location LocationCollection { get; set; }
         public Location LocationTarget { get; set; }
         public double TransportDistance { get; set; }
-        //בנאי והדפסה
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

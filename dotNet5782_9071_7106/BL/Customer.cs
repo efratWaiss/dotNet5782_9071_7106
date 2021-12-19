@@ -1,15 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace IBL.BO
 
 {
-    public struct Customer
+    public class Customer
     {
+        public Customer(int id, string name, string phone, Location location, List<Parcel> parcelFromCustomer, List<Parcel> parcelToCustomer)
+        {
+            Id = id;
+            Name = name;
+            Phone = phone;
+            Location = location;
+            this.parcelFromCustomer = parcelFromCustomer;
+            this.parcelToCustomer = parcelToCustomer;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        //public double Longitude { get; set; }
-        //public double Latitude { get; set; }
         public Location Location { get; set; }
         public List<Parcel> parcelFromCustomer { get; set; }
         public List<Parcel> parcelToCustomer { get; set; }
@@ -17,15 +26,7 @@ namespace IBL.BO
         {
             return "id:" + Id + " Name:" + Name + " Phone:" + Phone + " Location" + Location + " parcelFromCustomer:" + parcelFromCustomer+ " parcelToCustomer:"+ parcelToCustomer;
         }
-        public Customer(int Id, string Name, string Phone, Location Location, List<Parcel> parcelFromCustomer, List<Parcel> parcelToCustomer)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Phone = Phone;
-            this.Location = Location;
-            this.parcelFromCustomer = parcelFromCustomer;
-            this.parcelToCustomer = parcelToCustomer;
-        }
+       
 
     }
 

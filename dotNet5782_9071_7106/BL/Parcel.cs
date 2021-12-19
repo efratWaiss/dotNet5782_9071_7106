@@ -5,9 +5,9 @@ using System.Text;
 namespace IBL.BO
 
 {
-    class Parcel
+   public class Parcel
     {
-        public int Id { get; set; }
+        public static int Id { get; set; }
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Target { get; set; }
         public WeightCategories Weight { get; set; }
@@ -26,9 +26,9 @@ namespace IBL.BO
 
         //public static int endParcel;
         public Parcel(CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities priority, DateTime ParcelCreationTime,
-           DroneInParcel DroneInParcel = 0, DateTime Affiliation, DateTime PickedUp, DateTime Supply)
+            DateTime Affiliation, DateTime PickedUp, DateTime Supply,DroneInParcel DroneInParcel=0)
         {
-            Id = ++DataSource.Config.parcelId;//איך לשמור את ה id
+            Id = ++Id; 
             this.Sender = Sender;
             this.Target = Target;
             this.Weight = Weight;
@@ -39,10 +39,9 @@ namespace IBL.BO
             this.PickedUp = PickedUp;
             this.Supply = Supply;
         }
-        // לשנות את הto string
         public override string ToString()
         {
-            return "id:" + Id + " SenderId:" + SenderId + " TargetId:" + TargetId + " Weight:" + Weight + " priority:" + priority + " Requested:" + Requested + " DroneId:" + DroneId + " scheduled:" + scheduled + " PickedUp:" + PickedUp + " Delivered:" + Delivered;
+            return base.ToString();
         }
     }
 }

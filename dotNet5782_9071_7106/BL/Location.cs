@@ -4,15 +4,19 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class Location
+   public class Location
     {
-        public Location(global::System.Double longitude, global::System.Double latitude)
+        public Location(double longitude, double latitude)
         {
-            this.longitude = longitude;
-            this.latitude = latitude;
+            this.Longitude = longitude;
+            this.Latitude = latitude;
         }
 
-        double longitude { get; set; }
-        double latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

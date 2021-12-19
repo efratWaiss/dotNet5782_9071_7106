@@ -4,9 +4,9 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class ParcelInCustomer
+    public class ParcelInCustomer
     {
-        public ParcelInCustomer(global::System.Int32 id, WeightCategories weight, Priorities priority, ParcelStatsus parcelStatsus, CustomerInParcel sender, CustomerInParcel target)
+        public ParcelInCustomer(int id, WeightCategories weight, Priorities priority, ParcelStatsus parcelStatsus, CustomerInParcel sender, CustomerInParcel target)
         {
             Id = id;
             Weight = weight;
@@ -22,15 +22,11 @@ namespace IBL.BO
         public ParcelStatsus ParcelStatsus { get; set; }
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Target { get; set; }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
-    public ParcelInCustomer(int Id, CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities priority, ParcelStatsus ParcelStatsus)
-    {
-        this.Id = Id;
-        this.Weight = Weight;
-        this.priority = priority;
-        this.Sender = Sender;
-        this.Target = Target;
-        this.ParcelStatsus = ParcelStatsus;
-    }
-    // לא ךשכוח לעשות tostring
+
+    
 }
