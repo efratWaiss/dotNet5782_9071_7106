@@ -53,19 +53,19 @@ namespace IBL
                 {
                     if (parcel.DroneId == drone.Id && parcel.Delivered != null)
                     {
-                        ParcelInTransference p = new ParcelInTransference(parcel.Id, parcel.SenderId, parcel.TargetId, parcel.Weight, parcel.priority, true, null, null, null);
+                       // ParcelInTransference p = new ParcelInTransference(parcel.Id, parcel.SenderId, parcel.TargetId, parcel.Weight, parcel.priority, true, null, null, null);
 
                         var customer = dal.viewCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
                         st = DroneStatuses.Shipping;
                         if (parcel.scheduled != null && parcel.PickedUp == null)
                         {
-                            double min = GetDistanceBetweenTwoLocation(customer.Longitude, customer.Latitude);
-                            double minH = double.MaxValue;
+                            
+                            double min = double.MaxValue;
                             foreach (var station in Station)
                             {
-                                if (GetDistanceBetweenTwoLocation(station.Latitude, station.Longitude) < min)
+                                if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude),new Location(customer.Latitude,customer.Longitude)) < min)
                                 {
-                                    min = GetDistanceBetweenTwoLocation(station.Latitude, station.Longitude);
+                                    min = GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude));
                                     lo.Latitude = station.Latitude;
                                     lo.Longitude = station.Longitude;
                                 }
@@ -77,7 +77,7 @@ namespace IBL
                             lo.Longitude = customer.Longitude;
                         }
                         battery = 45.3;///לסדר את הבטרייה 
-                        Drone d = new Drone(drone.Id, drone.Model, drone.MaxWeight, st, battery, p, lo);
+                        Drone d = new Drone(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, st, battery, null/*יש לשנות-להכניס parcel*/, lo);
                         DronesList.Add(d);
                     }
 
@@ -92,7 +92,7 @@ namespace IBL
                         int rr = rn.Next(1, Station.Count());
                         lo.Latitude = Station[rr].Latitude;
                         lo.Longitude = Station[rr].Longitude;
-                        Drone d = new Drone(drone.Id, drone.Model, drone.MaxWeight, DroneStatuses.Maintenance, rn.Next(0, 21), null, lo);
+                        Drone d = new Drone(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, DroneStatuses.Maintenance, rn.Next(0, 21), null, lo);
                         break;
                     case 2:
                         foreach (var Customer in Customers)
@@ -115,7 +115,7 @@ namespace IBL
                                 lo.Longitude = Customer.Longitude;//מיקום הרחפן יהיה כמיקום הלקוח שהוגרל
                             }
                         }
-                        d = new Drone(drone.Id, drone.Model, drone.MaxWeight, DroneStatuses.Vacant, battery, null, lo);
+                        d = new Drone(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, DroneStatuses.Vacant, battery, null, lo);
                         break;
                 }
 
