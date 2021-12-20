@@ -214,32 +214,32 @@ namespace DalObject
              foreach (var station in DataSource.stations)
             {
                 if (station.Id != idStation)
-                {
+                {//אם לא מצאת תחנה
                     s=false;
                 }
-                else
+                else//אם מצאת
                 {
                     s=true;
                 }
             }
-            if (s == false)
+            if (s == false)//:אם לא מצאת תחנה, זרוק
             {
                 throw new notExistException("this id station not exist in the system");
-            }
+            }//אחרת
             for (int i = 0; i < DataSource.drones.Count; i++)
-            {
+            {//תעבור על רשימת הרחפנים
                 if (DataSource.drones[i].Id == idDrone)
-                {
+                {//אם תמצא כזה רחפן
                     s2=true;
                     var theDrone = DataSource.drones[i];
-
+                    //תשמור במשתנה זה את הרחפן שמצאת
                     DataSource.drones[i] = theDrone;
-                    DroneCharge a = new DroneCharge(idDrone, idStation);
-                    DataSource.DroneCharges.Add(a);
+                    DroneCharge a = new DroneCharge(idDrone, idStation);//מגדיר משתנה חדש שמקבל את הערכים שקיבלנו כקלט
+                    DataSource.DroneCharges.Add(a);//מוסיף את המשתנה החדש
                 }
             }
             if (s2 == false)
-            {
+            {//:אם לא מצאת רחפן, זרוק
                 throw new notExistException("this id drone not exist in the system");
             }
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class CustomerInParcel
+    public class CustomerInParcel
     {
         public int identity { get; set; }
         public string name { get; set; }

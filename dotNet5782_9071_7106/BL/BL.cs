@@ -12,9 +12,13 @@ namespace IBL
     class BL : IBL
     {
         IDal.IDal dal = new DalObject.DalObject();
-        private readonly List<Drone> DronesList;
+        private readonly List<Drone> DronesList = new();
+        private List<Customer> CustomersList = new();
+        private List<Parcel> ParcelsList = new();
+        private List<Station> StationsList = new();
         private double available;
         private double lightWeight;
+
 
         public double MediumWeight { get; }
 
@@ -34,36 +38,38 @@ namespace IBL
             Initialize();
             powerConsumpitionByDrone();
 
+
+
         }
 
         private void Initialize()
         {
+            var parcelsDal = dal.viewParcel();
+            var DronesDal = dal.viewDrone();
+            var CustomersDal = dal.viewCustomer();
+            var StationsDal = dal.viewStation().ToList();
 
-            var parcels = dal.viewParcel();
-            var Drones = dal.viewDrone();
-            var Customers = dal.viewCustomer();
-            var Station = dal.viewStation().ToList();
             DroneStatuses st = new DroneStatuses();
             double battery = new double();
             Location lo = new Location(454.5, 45.5);
 
-            foreach (var drone in Drones)
+            foreach (var drone in DronesDal)
             {
-                foreach (var parcel in parcels)
+                foreach (var parcel in parcelsDal)
                 {
                     if (parcel.DroneId == drone.Id && parcel.Delivered != null)
                     {
-                       // ParcelInTransference p = new ParcelInTransference(parcel.Id, parcel.SenderId, parcel.TargetId, parcel.Weight, parcel.priority, true, null, null, null);
+                        // ParcelInTransference p = new ParcelInTransference(parcel.Id, parcel.SenderId, parcel.TargetId, parcel.Weight, parcel.priority, true, null, null, null);
 
                         var customer = dal.viewCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
                         st = DroneStatuses.Shipping;
                         if (parcel.scheduled != null && parcel.PickedUp == null)
                         {
-                            
+
                             double min = double.MaxValue;
-                            foreach (var station in Station)
+                            foreach (var station in StationsDal)
                             {
-                                if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude),new Location(customer.Latitude,customer.Longitude)) < min)
+                                if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude)) < min)
                                 {
                                     min = GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude));
                                     lo.Latitude = station.Latitude;
@@ -89,25 +95,25 @@ namespace IBL
                 switch (rand)
                 {
                     case 1:
-                        int rr = rn.Next(1, Station.Count());
-                        lo.Latitude = Station[rr].Latitude;
-                        lo.Longitude = Station[rr].Longitude;
+                        int rr = rn.Next(1, StationsDal.Count());
+                        lo.Latitude = StationsDal[rr].Latitude;
+                        lo.Longitude = StationsDal[rr].Longitude;
                         Drone d = new Drone(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, DroneStatuses.Maintenance, rn.Next(0, 21), null, lo);
                         break;
                     case 2:
-                        foreach (var Customer in Customers)
+                        foreach (var Customer in CustomersDal)
                         {
-                            foreach (var Parcel in parcels)
+                            foreach (var Parcel in parcelsDal)
                             {
                                 if (Customer.Id == Parcel.TargetId)
                                 {
                                     IDs.Add(Customer.Id);//מכניס את הת''ז של הלקוחות שסופקו להם חבילות
                                 }
                             }
-                            
+
                         }
                         rand = rn.Next(1, IDs.Count());
-                        foreach (var Customer in Customers)
+                        foreach (var Customer in CustomersDal)
                         {
                             if (Customer.Id == IDs[rand])
                             {
@@ -138,26 +144,55 @@ namespace IBL
 
         public void addCustomer(Customer c)
         {
-            throw new NotImplementedException();
+            var customer = dal.viewCustomer().FirstOrDefault(x => x.Id == c.Id);
+            if (customer.Id != 0) { // :אם מצאת כבר לקוח כזה, זרוק 
+                throw new NotImplementedException("already exist in the system"); }
+            else
+            {
+                CustomersList.Add(c);
+                // dal להכניס לרשימה מסוג  
+                //dal.addCustomer(new IDAL.DO.Customer(c));
+            }
         }
 
         public void addDrone(Drone d)
         {
-            throw new NotImplementedException();
+            var drone = dal.viewDrone().FirstOrDefault(x => x.Id == d.Id);
+            if (drone.Id != 0)
+            { // :אם מצאת כבר רחפן כזה, זרוק 
+                throw new NotImplementedException("already exist in the system");
+            }
+            else
+            {
+                DronesList.Add(d);
+                // dal להכניס לרשימה מסוג  
+
+            }
         }
 
         public int addParcel(Parcel p)
         {
-            throw new NotImplementedException();
-        }
+            ParcelsList.Add(p);
+            return Parcel.Id; }
 
         public void addStation(Station s)
         {
-            throw new NotImplementedException();
+            var station = dal.viewDrone().FirstOrDefault(x => x.Id == s.Id);
+            if (station.Id != 0)
+            { // :אם מצאת כבר רחפן כזה, זרוק 
+                throw new NotImplementedException("already exist in the system");
+            }
+            else
+            {
+                StationsList.Add(s);
+                // dal להכניס לרשימה מסוג  
+
+            }
         }
 
         public void freeDrone(int idDrone)
         {
+
             throw new NotImplementedException();
         }
 
@@ -178,27 +213,91 @@ namespace IBL
 
         public Customer printCustomer(int id)
         {
-            throw new NotImplementedException();
+            foreach (var customer in CustomersList)
+            {
+                if (customer.Id == id)
+                {
+                    return customer;
+                }
+            }
+
+            throw new NotImplementedException("this id not exist in the system");
         }
+
+    
 
         public Drone printDrone(int id)
         {
-            throw new NotImplementedException();
+            foreach (var drone in DronesList)
+            {
+                if (drone.Id == id)
+                {
+                    return drone;
+                }
+            }
+
+            throw new NotImplementedException("this id not exist in the system");
         }
 
         public Parcel printParcel(int id)
         {
-            throw new NotImplementedException();
+            foreach (var parcel in ParcelsList)
+            {
+                if (parcel.ParcelId == id)
+                {
+                    return parcel;
+                }
+            }
+
+            throw new NotImplementedException("this id not exist in the system");
         }
 
         public Station printStation(int id)
         {
-            throw new NotImplementedException();
+            foreach (var station in StationsList)
+            {
+                if (station.Id == id)
+                {
+                    return station;
+                }
+            }
+            
+            throw new NotImplementedException("this id not exist in the system");
         }
 
         public void sendDroneToStation(int idDrone, int idStation)
         {
-            throw new NotImplementedException();
+            bool check1 = false;
+            bool check2 = false;
+            int index = 0;
+            Drone tempDrone=DronesList[0];//אתחול בערך זמני
+            while (index != DronesList.Count() && check1 == false)
+            {//כל עוד לא מצאת רחפן תואם לקלט וגם לא הגעת לסוף הרשימה
+                if (DronesList[index].Id == idDrone)
+                {//אם מצאת
+                    check1 = true;//תשנה את משתנה "בדיקה1" לאמת, כדי שהלולאה תעצור
+                    tempDrone = DronesList[index];//תשמור במשתנה עזר את הרחפן שמצאת
+                }
+                index++;//תקדם את האינדקס
+            }
+            if (check1 == false)
+            {//:אם הגעת לסוף הרשימה בלי שמצאת רחפן מתאים, זרוק
+                throw new NotImplementedException("this Drone's id not exist in the system");
+            }
+
+            foreach (var station in StationsList)
+            {//מעבר על רשימת התחנות
+                if (station.Id == idStation)
+                {//,אם מצאת תחנה מתאימה לקלט שהתקבל, תשמור במשתנה עזר שמשייך ברשימה את הרחפן לתחנה את הת''ז של הרחפו שהתקבל בקלט,
+                    DroneInCharging temp = new DroneInCharging(idDrone,tempDrone.battery);//ואת הבטריה של הרחפן התואם לקלט שנמצא בסעיף הקודם
+                    station.DronesInCharging.Add(temp);//תכניס לרשימת הרחפנים בתחנה את המשתנה שמקשר לרחפן זה
+                }
+            }
+            if (check2 == false)
+            {
+                throw new NotImplementedException("this Station's id not exist in the system");
+            }
+
         }
 
         public IEnumerable<Station> StationNoCharge()
@@ -220,23 +319,22 @@ namespace IBL
 
         public IEnumerable<Customer> viewCustomer()
         {
-            throw new NotImplementedException();
+            return new List<Customer> (CustomersList);
         }
 
         public IEnumerable<Drone> viewDrone()
         {
-            throw new NotImplementedException();
+            return new List<Drone> (DronesList);
         }
 
         public IEnumerable<Parcel> viewParcel()
         {
-
-            throw new NotImplementedException();
+            return new List<Parcel>(ParcelsList);
         }
 
         public IEnumerable<Station> viewStation()
         {
-            throw new NotImplementedException();
+          return new List<Station> (StationsList);
         }
         //public void ParcelsNotSend(IEnumerable<Parcel> parcels, List<Drone> drones, List<Station> stations)
         //{
