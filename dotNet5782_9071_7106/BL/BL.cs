@@ -85,7 +85,7 @@ namespace IBL
                 }
                 Random rn = new Random();
                 int rand = rn.Next(1, 3);
-
+                List<int> IDs = new List<int>();
                 switch (rand)
                 {
                     case 1:
@@ -95,9 +95,25 @@ namespace IBL
                         Drone d = new Drone(drone.Id, drone.Model, drone.MaxWeight, DroneStatuses.Maintenance, rn.Next(0, 21), null, lo);
                         break;
                     case 2:
-                        foreach (var item in Customers)
+                        foreach (var Customer in Customers)
                         {
-
+                            foreach (var Parcel in parcels)
+                            {
+                                if (Customer.Id == Parcel.TargetId)
+                                {
+                                    IDs.Add(Customer.Id);//מכניס את הת''ז של הלקוחות שסופקו להם חבילות
+                                }
+                            }
+                            
+                        }
+                        rand = rn.Next(1, IDs.Count());
+                        foreach (var Customer in Customers)
+                        {
+                            if (Customer.Id == IDs[rand])
+                            {
+                                lo.Latitude = Customer.Latitude;
+                                lo.Longitude = Customer.Longitude;//מיקום הרחפן יהיה כמיקום הלקוח שהוגרל
+                            }
                         }
                         d = new Drone(drone.Id, drone.Model, drone.MaxWeight, DroneStatuses.Vacant, battery, null, lo);
                         break;
