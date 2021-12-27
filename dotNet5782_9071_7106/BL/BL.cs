@@ -454,7 +454,15 @@ namespace IBL
             List<StationToList> s = new List<StationToList>();
             foreach (var item in stations)
             {
-                s.Add(new StationToList(item.Id, item.Name, item.ChargeSlots, item.ChargeSlots));///לא טוב איך יודעים על עמדות הטעינה?
+                int count = 0;
+                foreach (var item1 in dal.GetDroneCharges())
+                {
+                    if (item1.Stationld == item.Id)
+                    {
+                        count++;
+                    }
+                }
+                s.Add(new StationToList(item.Id, item.Name, item.ChargeSlots-count, count));
             }
             return s;
         }
