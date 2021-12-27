@@ -233,11 +233,6 @@ namespace IBL
 
         }
 
-        public IEnumerable<Parcel> ParcelNoDrone()
-        {
-            throw new NotImplementedException();
-        }
-
         public void pickedUpD(int idDrone, DateTime d)
         {
             throw new NotImplementedException();
@@ -388,10 +383,6 @@ namespace IBL
             }
         }//בעיה
 
-        public IEnumerable<Station> StationNoCharge()
-        {
-            throw new NotImplementedException();
-        }
 
         public void targetId(int idCustomer, int idParcel)
         {
@@ -420,44 +411,126 @@ namespace IBL
 
 
         }
-
-        public IEnumerable<customerToList> viewCustomer()//בעיה
-        {
-            var customers = dal.viewCustomer();
-            List<customerToList> c = new List<customerToList>();
-            foreach (var item in customers)
+        public IEnumerable<ParcelToList> ParcelNoDrone()
+    {
+            var parcels=viewParcel();
+            bool provided=false;
+            List<ParcelToList> newParcelNoDrone=new List<ParcelToList>();
+            foreach (var item in parcels)
+	    {
+                foreach (var item1 in DronesList)
             {
-                c.Add(new customerToList(item.Id, item.Phone, item.))//צריך להביא
+                    if (item1.ParcelDelivered == item.Id)
+                    {
+                        provided=true;
+                    }
+	        }
+                if (provided == false)
+                {
+                    newParcelNoDrone.Add(item);
+                }
+        }
+            return newParcelNoDrone;
+    }
+        public IEnumerable<StationToList> viewStation()
+        {
+            var stations = dal.viewStation();//מראה את כל התחנות
+            List<StationToList> s = new List<StationToList>();
+            foreach (var item in stations)
+            {
+                int count=0;
+                foreach (var item1 in )
+	{
+                    if(item1.LocationNow==item)
+	}
+                s.Add(new StationToList(item.Id,item.Name,item.ChargeSlots,));///לא טוב איך יודעים על עמדות הטעינה?
             }
-            return c;
+            return s;
         }
 
         public IEnumerable<DroneToList> viewDrone()
         {
             return new List<DroneToList>(DronesList);
         }
+         public IEnumerable<customerToList> viewCustomer()
+        {
+            var customers = dal.viewCustomer();
+            List<customerToList> c = new List<customerToList>();
+            int countParcelProvided=0;//חבילות שנשלחו וסופקו
+            int countParcelNotProvided=0;//מונה החבילות שנשלחו ולא סופקו
+            int countGetParcels=0;//חבילות שקיבלתי
+            foreach (var item in customers)
+            {
+                foreach (var item1 in dal.viewParcel())
+	{
+                    if (item1.SenderId == item.Id)//אם החבילה נשלחה, תבדוק הלאה
+                    {
+                        if (!item1.Delivered.Equals(default))//אם החבילה גם סופקה,
+                        //תקדם את מונה החבילות שסופקו ונשלחו
+                        {
+                            countParcelProvided++;
+                        }
+                        else
+                        {//אחרת, קדם את מונה החבילות שנשלחו ולא סופקו
+                            countParcelNotProvided++;
+                        }
+                    }
+                    else if (item1.TargetId == item.Id)
+                    {//אם קיבלתי חבילה
+                        countGetParcels++;
+                    }
+
+	}
+                c.Add(new customerToList(item.Id, item.Name,item.Phone,countParcelProvided,countParcelNotProvided,countGetParcels,countParcelNotProvided+countParcelProvided))//צריך להביא
+            }
+            return c;
+        }
 
         public IEnumerable<ParcelToList> viewParcel()
         {
             var parcels = dal.viewParcel();
+            ParcelStatsus temp;
             List<ParcelToList> p = new List<ParcelToList>();
             foreach (var item in parcels)
             {
-                p.Add(new ParcelToList(item.Id, item.SenderId, item.TargetId, item.Weight, item.priority, item.));
+                if (!item.PickedUp.Equals(default))//נאסף=נאסף
+                {
+                    temp=ParcelStatsus.collected;
+                }
+                else if(!item.Delivered.Equals(default))//נמסר=קשור ל...
+                {
+                    temp=ParcelStatsus.associated;
+                }
+                else if(!item.Requested.Equals(default))//מבוקש=נוצר
+                {
+                    temp=ParcelStatsus.created;
+                }
+                else if(!item.scheduled.Equals(default))//נמסר=קשור ל
+                {
+                    temp=ParcelStatsus.Defined;
+                }
+                else
+                {
+                    temp=ParcelStatsus.provided;
+                }
+                p.Add(new ParcelToList(item.Id,item.SenderId,item.TargetId,(WeightCategories)item.Weight,(Priorities)item.priority,temp));
             }
             return p;
-        }//בעיה
-
-        public IEnumerable<StationToList> viewStation()//בעיה
-        {
-            var stations = dal.viewStation();
-            List<StationToList> s = new List<StationToList>();
-            foreach (var item in stations)
-            {
-                s.Add(new StationToList(item.Id, item.Name, item.ChargeSlots, item.ChargeSlots));///לא טוב איך יודעים על עמדות הטעינה?
-            }
-            return s;
         }
+
+        public IEnumerable<StationToList> stationWithAvailable‏Stands(){
+            List<StationToList> stands=new List<StationToList>();
+            var stations=viewStation();
+                foreach (var item in stations)
+	{
+                    if (item.AvailableChargingPositions != 0)
+                    {
+                        stands.Add(item);
+                    }
+	}
+            return stands;
+            }
+
         public void UpdateNameDrone(int Id, String Model)
         {
             try
