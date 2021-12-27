@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class Location
+    public class Location
     {
         public Location(double longitude, double latitude)
         {
@@ -16,7 +16,7 @@ namespace IBL.BO
         public double Latitude { get; set; }
         public override string ToString()
         {
-            return base.ToString();
+            return "Longitude:" + Longitude + " Latitude:" + Latitude;
         }
     }
 }

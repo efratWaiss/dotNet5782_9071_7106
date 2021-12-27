@@ -12,12 +12,12 @@ namespace IDAL
             public Priorities priority { get; set; }
             public DateTime Requested { get; set; }
             public int DroneId { get; set; }
-            public DateTime scheduled { get; set; }
-            public DateTime PickedUp { get; set; }
-            public DateTime Delivered { get; set; }
+            public DateTime? scheduled { get; set; }
+            public DateTime? PickedUp { get; set; }
+            public DateTime? Delivered { get; set; }
             public static int endParcel;
             public Parcel(int SenderId, int TargetId, WeightCategories Weight, Priorities priority, DateTime Requested,
-                DateTime scheduled, DateTime PickedUp, DateTime Delivered, int DroneId=0)
+               int DroneId = 0)
             {
                 Id = ++DataSource.Config.parcelId;
                 this.SenderId = SenderId;
@@ -25,9 +25,9 @@ namespace IDAL
                 this.Weight = Weight;
                 this.priority = priority;
                 this.Requested = Requested;
-                this.scheduled = scheduled;
-                this.PickedUp = PickedUp;
-                this.Delivered = Delivered;
+                this.scheduled = null;
+                this.PickedUp = null;
+                this.Delivered = null;
                 this.DroneId = DroneId;
             }
 
@@ -38,4 +38,4 @@ namespace IDAL
         }
     }
 }
-    
+

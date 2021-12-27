@@ -4,16 +4,16 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class StationToList
+    public class StationToList
     {
-       
+
 
         public int Id { get; set; }
         public string Name { get; set; }
         public int AvailableChargingPositions { get; set; }
         public int OccupanciesChargingPositions { get; set; }
-       
-         public StationToList(int id, string name, int availableChargingPositions, int occupanciesChargingPositions)
+
+        public StationToList(int id, string name, int availableChargingPositions, int occupanciesChargingPositions)
         {
             Id = id;
             Name = name;
@@ -22,7 +22,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return base.ToString();
+            return "Id:" + Id + " Name:" + Name + " AvailableChargingPositions:" + AvailableChargingPositions + " OccupanciesChargingPositions:" + OccupanciesChargingPositions;
         }
     }
 }

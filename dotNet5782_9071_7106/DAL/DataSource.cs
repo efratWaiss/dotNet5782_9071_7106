@@ -64,16 +64,20 @@ namespace IDAL
                 customers.Add(c9);
                 customers.Add(c10);
                 DateTime t = DateTime.Now;
-                Parcel p1 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p2 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p3 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p4 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p5 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p6 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p7 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Emergency, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p8 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p9 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Fast, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
-                Parcel p10 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, 8);
+                Parcel p1 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p2 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p3 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p4 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p5 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p6 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p7 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p8 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p9 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p10 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p11 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                Parcel p12 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
+                
+               
 
 
 

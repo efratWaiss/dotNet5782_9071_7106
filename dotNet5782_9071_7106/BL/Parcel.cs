@@ -5,14 +5,14 @@ using System.Text;
 namespace IBL.BO
 
 {
-   public class Parcel
+    public class Parcel
     {
         public static int Id { get; set; }
         public int ParcelId { get; set; }
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Target { get; set; }
         public WeightCategories Weight { get; set; }
-        public Priorities priority { get; set; }
+        public Priorities Priority { get; set; }
         public DateTime ParcelCreationTime { get; set; }
         public DroneInParcel DroneInParcel { get; set; }
         public DateTime Affiliation { get; set; }
@@ -20,20 +20,20 @@ namespace IBL.BO
         public DateTime Supply
         {
 
-            get {return DateTime.Now;} 
+            get { return DateTime.Now; }
             set { Supply = value; }
-            
-            }
+
+        }
 
         //public static int endParcel;
         public Parcel(CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities priority, DateTime ParcelCreationTime,
             DateTime Affiliation, DateTime PickedUp, DateTime Supply, DroneInParcel DroneInParcel)
         {
-            ParcelId=++Id; 
+            ParcelId = ++Id;
             this.Sender = Sender;
             this.Target = Target;
             this.Weight = Weight;
-            this.priority = priority;
+            this.Priority = priority;
             this.ParcelCreationTime = ParcelCreationTime;
             this.DroneInParcel = DroneInParcel;
             this.Affiliation = Affiliation;
@@ -42,7 +42,8 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return base.ToString();
+            return "ParcelId:" + ParcelId + " Sender:" + Sender + " Target:" + Target + " Weight:" + Weight + " Priority:" + Priority + " ParcelCreationTime:"
+                + ParcelCreationTime + " DroneInParcel:" + DroneInParcel + " Affiliation:" + Affiliation + " PickedUp:" + PickedUp + " Supply:" + Supply;
         }
     }
 }

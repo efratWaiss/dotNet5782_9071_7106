@@ -6,27 +6,28 @@ namespace IBL.BO
 {
     class customerToList
     {
-        public int identity { get; set; }
-        public string name { get; set; }
-        public string phone { get; set; }
+        public int Identity { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
         public int ParcelSendAndprovided { get; set; }
         public int ParcelSendAndNotprovided { get; set; }
-        public int numberGetParcel { get; set; }
-        public int numberParcelTOCustomer { get; set; }
+        public int NumberGetParcel { get; set; }
+        public int NumberParcelTOCustomer { get; set; }
         public customerToList(int identity, string name, string phone, int ParcelSendAndprovided, int ParcelSendAndNotprovided, int numberGetParcel, int numberParcelTOCustomer)
         {
-            this.identity = identity;
-            this.name = name;
-            this.phone = phone;
+            this.Identity = identity;
+            this.Name = name;
+            this.Phone = phone;
             this.ParcelSendAndprovided = ParcelSendAndprovided;
             this.ParcelSendAndNotprovided = ParcelSendAndNotprovided;
-            this.numberGetParcel = numberGetParcel;
-            this.numberParcelTOCustomer = numberParcelTOCustomer;
+            this.NumberGetParcel = numberGetParcel;
+            this.NumberParcelTOCustomer = numberParcelTOCustomer;
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            return "Identity:"+ Identity+ " Name:"+ Name+ " Phone:"+ Phone+ " ParcelSendAndprovided:"+ ParcelSendAndprovided+ " ParcelSendAndNotprovided:"+ ParcelSendAndNotprovided
+                + " NumberGetParcel:"+ NumberGetParcel+ " NumberParcelTOCustomer:"+ NumberParcelTOCustomer;
         }
     }
 }

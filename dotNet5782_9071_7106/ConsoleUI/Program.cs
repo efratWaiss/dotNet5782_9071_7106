@@ -1,5 +1,5 @@
 ﻿using System;
-using DalObject;
+
 using System.Collections;
 using IDAL.DO;
 namespace ConsoleUI

@@ -11,8 +11,8 @@ namespace IBL.BO
             Id = id;
             Model = model;
             MaxWeight = maxWeight;
-            this.battery = battery;
-            this.status = status;
+            this.Battery = battery;
+            this.Status = status;
             LocationNow = locationNow;
             ParcelDelivered = parcelDelivered;
         }
@@ -20,13 +20,14 @@ namespace IBL.BO
         public int Id { get; set; }
         public string Model { get; set; }
         public WeightCategories MaxWeight { get; set; }
-        public double battery { get; set; }
-        public DroneStatuses status { get; set; }
+        public double Battery { get; set; }
+        public DroneStatuses Status { get; set; }
         public Location LocationNow { get; set; }
         public int ParcelDelivered { get; set; }
         public override string ToString()
         {
-            return base.ToString();
+            return "Id:" + Id + " Model:" + Model + " MaxWeight:" + MaxWeight + " Battery:" + Battery + " Status:" + Status + " LocationNow:" +
+                LocationNow + " ParcelDelivered:" + ParcelDelivered;
         }
     }
 }

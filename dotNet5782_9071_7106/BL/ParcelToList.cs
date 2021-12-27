@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class ParcelToList
+    public class ParcelToList
     {
         public ParcelToList(int id, CustomerInParcel sender, CustomerInParcel target, WeightCategories weight, Priorities priority, ParcelStatsus parcelStatsus)
         {
@@ -12,7 +12,7 @@ namespace IBL.BO
             Sender = sender;
             Target = target;
             Weight = weight;
-            this.priority = priority;
+            this.Priority = priority;
             ParcelStatsus = parcelStatsus;
         }
 
@@ -20,11 +20,11 @@ namespace IBL.BO
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Target { get; set; }
         public WeightCategories Weight { get; set; }
-        public Priorities priority { get; set; }
+        public Priorities Priority { get; set; }
         public ParcelStatsus ParcelStatsus { get; set; }
         public override string ToString()
         {
-            return base.ToString();
+            return "Id:" + Id + " Sender:" + Sender + " Target:" + Target + " Weight:" + Weight + " Priority:" + Priority + " ParcelStatsus:" + ParcelStatsus;
         }
 
     }

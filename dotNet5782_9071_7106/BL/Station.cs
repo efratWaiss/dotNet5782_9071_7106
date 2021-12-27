@@ -14,7 +14,7 @@ namespace IBL.BO
         public int ChargingPositions { get; set; }
         public List<DroneInCharging> DronesInCharging { get; set; }
 
-        public Station(int id, string name, Location location, int chargingPositions, List<DroneInCharging> dronesInCharging)
+        public Station(int id, string name, Location location, int chargingPositions, List<DroneInCharging>? dronesInCharging)
         {
             Id = id;
             Name = name;

@@ -8,7 +8,7 @@ using IDAL.DO;
 
 namespace IDal
 {
-  public  interface IDal
+    public interface IDal
     {
 
         public void addStation(Station s);
@@ -20,6 +20,8 @@ namespace IDal
         public Drone printDrone(int id);
         public Customer printCustomer(int id);
         public Parcel printParcel(int id);
+        public DroneCharge printDroneCharge(int idDrone);
+        public IEnumerable<DroneCharge> GetDroneCharges();
         public IEnumerable<Station> viewStation();
         public IEnumerable<Drone> viewDrone();
         public IEnumerable<Customer> viewCustomer();
@@ -31,6 +33,6 @@ namespace IDal
         public void targetId(int idCustomer, int idParcel);
         public void sendDroneToStation(int idDrone, int idStation);
         public void freeDrone(int idDrone);
-        public double[] powerConsumpitionByDrone(); 
+        public double[] powerConsumpitionByDrone();
     }
 }

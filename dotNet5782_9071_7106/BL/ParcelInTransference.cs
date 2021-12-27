@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class ParcelInTransference
+    public class ParcelInTransference
     {
         public ParcelInTransference(int id, CustomerInParcel sender, CustomerInParcel target, WeightCategories weight, Priorities priority, bool collectionOrTarget, Location locationCollection, Location locationTarget, double transportDistance)
         {
@@ -12,7 +12,7 @@ namespace IBL.BO
             Sender = sender;
             Target = target;
             Weight = weight;
-            this.priority = priority;
+            this.Priority = priority;
             CollectionOrTarget = collectionOrTarget;
             LocationCollection = locationCollection;
             LocationTarget = locationTarget;
@@ -23,14 +23,15 @@ namespace IBL.BO
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Target { get; set; }
         public WeightCategories Weight { get; set; }
-        public Priorities priority { get; set; }
+        public Priorities Priority { get; set; }
         public bool CollectionOrTarget { get; set; }
         public Location LocationCollection { get; set; }
         public Location LocationTarget { get; set; }
         public double TransportDistance { get; set; }
         public override string ToString()
         {
-            return base.ToString();
+            return "Id:" + Id + " Sender:" + Sender + " Target:" + Target + " Weight:" + Weight + " Priority:" + Priority + " CollectionOrTarget:" + CollectionOrTarget
+                + " LocationCollection:" + LocationCollection + " LocationTarget:" + LocationTarget + " TransportDistance:" + TransportDistance;
         }
     }
 }

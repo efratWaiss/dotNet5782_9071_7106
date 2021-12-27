@@ -4,20 +4,19 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class DroneInCharging
+    public class DroneInCharging
     {
         public DroneInCharging(int id, double battery)
         {
             Id = id;
-            this.battery = battery;
+            this.Battery = battery;
         }
-
         public int Id { get; set; }
 
-        public double battery { get; set; }
+        public double Battery { get; set; }
         public override string ToString()
         {
-            return base.ToString();
+            return "Id:" + Id + " Battery:" + Battery;
         }
 
     }

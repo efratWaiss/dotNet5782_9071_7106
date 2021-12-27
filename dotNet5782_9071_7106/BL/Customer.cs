@@ -6,14 +6,14 @@ namespace IBL.BO
 {
     public class Customer
     {
-        public Customer(int id, string name, string phone, Location location, List<Parcel> parcelFromCustomer, List<Parcel> parcelToCustomer)
+        public Customer(int id, string name, string phone, Location location)
         {
             Id = id;
             Name = name;
             Phone = phone;
             Location = location;
-            this.parcelFromCustomer = parcelFromCustomer;
-            this.parcelToCustomer = parcelToCustomer;
+            this.parcelFromCustomer = new();
+            this.parcelToCustomer = new();
         }
 
         public int Id { get; set; }

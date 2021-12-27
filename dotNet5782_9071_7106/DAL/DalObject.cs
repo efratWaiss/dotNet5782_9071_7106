@@ -61,7 +61,15 @@ namespace DalObject
             throw new notExistException("this id not exist in the system");
 
         }
-
+        public DroneCharge printDroneCharge(int idDrone)
+        {
+            for (int i = 0; i < DataSource.DroneCharges.Count; i++)
+            {
+                if (DataSource.DroneCharges[i].Droneld == idDrone)
+                    return DataSource.DroneCharges[i];
+            }
+            throw new notExistException("this id not exist in the system");
+        }
         public Drone printDrone(int id)
         {
             for (int i = 0; i < DataSource.drones.Count; i++)
@@ -128,11 +136,15 @@ namespace DalObject
 
             return ll;
         }
+        public IEnumerable<DroneCharge> GetDroneCharges()
+        {
+            return new List<DroneCharge>(DataSource.DroneCharges);
+        }
         public void updateParcelToDrone(int idDrone, int idParcel)//what the problem
         {
             bool b = true;
-            bool b2=false;
-            foreach(var item in DataSource.drones)
+            bool b2 = false;
+            foreach (var item in DataSource.drones)
             {
                 if (item.Id != idDrone)
                     b = false;
@@ -147,17 +159,17 @@ namespace DalObject
             {
                 if (DataSource.parcels[i].Id == idParcel)
                 {
-                    b2=true;
+                    b2 = true;
                     var theParcel = DataSource.parcels[i];
                     theParcel.DroneId = idDrone;
                     DataSource.parcels[i] = theParcel;
                 }
-                 }
+            }
             if (b2 == false)
             {
                 throw new notExistException("this id parcel not exist in the system");
             }
-            
+
         }
         public void pickedUpD(int idDrone, DateTime d)
         {
@@ -169,23 +181,25 @@ namespace DalObject
                     w.PickedUp = DateTime.Now;
                     DataSource.parcels[i] = w;
                 }
-                else { 
-                throw new notExistException("this id Drone not exist in the system");
-            }}
+                else
+                {
+                    throw new notExistException("this id Drone not exist in the system");
+                }
+            }
         }
         public void targetId(int idCustomer, int idParcel)
         {
-            bool c=true;
-            bool c2=false;
+            bool c = true;
+            bool c2 = false;
             foreach (var customer in DataSource.customers)
             {
                 if (customer.Id != idCustomer)
                 {
-                    c=false;
+                    c = false;
                 }
                 else
                 {
-                    c=true;
+                    c = true;
                 }
             }
             if (c == false)
@@ -196,7 +210,7 @@ namespace DalObject
             {
                 if (DataSource.parcels[i].Id == idParcel)
                 {
-                    c2=true;
+                    c2 = true;
                     var theParcel = DataSource.parcels[i];
                     theParcel.TargetId = idCustomer;
                     DataSource.parcels[i] = theParcel;
@@ -204,22 +218,22 @@ namespace DalObject
             }
             if (c2 == false)
             {
-                 throw new notExistException("this id parcel not exist in the system");
+                throw new notExistException("this id parcel not exist in the system");
             }
         }
         public void sendDroneToStation(int idDrone, int idStation)
         {
-            bool s=true;
-            bool s2=false;
-             foreach (var station in DataSource.stations)
+            bool s = true;
+            bool s2 = false;
+            foreach (var station in DataSource.stations)
             {
                 if (station.Id != idStation)
                 {//אם לא מצאת תחנה
-                    s=false;
+                    s = false;
                 }
                 else//אם מצאת
                 {
-                    s=true;
+                    s = true;
                 }
             }
             if (s == false)//:אם לא מצאת תחנה, זרוק
@@ -230,7 +244,7 @@ namespace DalObject
             {//תעבור על רשימת הרחפנים
                 if (DataSource.drones[i].Id == idDrone)
                 {//אם תמצא כזה רחפן
-                    s2=true;
+                    s2 = true;
                     var theDrone = DataSource.drones[i];
                     //תשמור במשתנה זה את הרחפן שמצאת
                     DataSource.drones[i] = theDrone;
@@ -245,12 +259,12 @@ namespace DalObject
         }
         public void freeDrone(int idDrone)
         {
-            bool f=false;
+            bool f = false;
             for (int i = 0; i < DataSource.DroneCharges.Count; i++)
             {
                 if (DataSource.DroneCharges[i].Droneld == idDrone)
                 {
-                    f=true;
+                    f = true;
                     DataSource.DroneCharges.Remove(DataSource.DroneCharges[i]);
                 }
             }
