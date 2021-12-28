@@ -19,8 +19,8 @@ namespace IBL
         public IEnumerable<DroneToList> viewDrone();
         public IEnumerable<customerToList> viewCustomer();
         public IEnumerable<ParcelToList> viewParcel();
-        public IEnumerable<Parcel> ParcelNoDrone();
-        public IEnumerable<Station> StationNoCharge();
+        public IEnumerable<ParcelToList> ParcelNoDrone()
+        public IEnumerable<StationToList> stationWithAvailable‏Stands();
         public void updateParcelToDrone(int idDrone);
         public void pickedUpD(int idDrone, DateTime d);
         public void targetId(int idCustomer, int idParcel);
