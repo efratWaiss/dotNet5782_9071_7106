@@ -25,7 +25,11 @@ namespace IBL.BO
     }
     public enum ParcelStatsus
     {
-        Defined, associated, collected, provided, created
+        Defined,
+        associated,
+        collected, 
+        provided,
+        created
     }
 }
 

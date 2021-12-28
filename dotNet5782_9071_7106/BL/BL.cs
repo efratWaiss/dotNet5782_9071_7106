@@ -448,7 +448,7 @@ namespace IBL
             return p;
         }//בעיה
 
-        public IEnumerable<StationToList> viewStation()//בעיה
+        public IEnumerable<StationToList> viewStation()
         {
             var stations = dal.viewStation();
             List<StationToList> s = new List<StationToList>();
