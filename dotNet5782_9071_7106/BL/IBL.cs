@@ -22,8 +22,8 @@ namespace IBL
         public IEnumerable<ParcelToList> ParcelNoDrone()
         public IEnumerable<StationToList> stationWithAvailable‏Stands();
         public void updateParcelToDrone(int idDrone);
-        public void pickedUpD(int idDrone, DateTime d);
-        public void targetId(int idCustomer, int idParcel);
+        public void DeliveryOfAParcelByDrone(int idDrone);
+        public void PackageCollectionByDrone(int idDrone);
         public void sendDroneToStation(int idDrone);
         public void freeDrone(int idDrone,double timeInCharging);
         public double[] powerConsumpitionByDrone();
