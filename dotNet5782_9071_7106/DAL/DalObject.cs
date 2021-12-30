@@ -161,7 +161,7 @@ namespace DalObject
                 {
                     b2 = true;
                     var theParcel = DataSource.parcels[i];
-                    theParcel.DroneId = idDrone;
+                    theParcel.DroneId = idDrone;`
                     DataSource.parcels[i] = theParcel;
                 }
             }

@@ -17,10 +17,10 @@ namespace IBL
         public Parcel printParcel(int id);
         public IEnumerable<StationToList> viewStation();
         public IEnumerable<DroneToList> viewDrone();
-        public IEnumerable<customerToList> viewCustomer();
+        public IEnumerable<CustomerToList> viewCustomer();
         public IEnumerable<ParcelToList> viewParcel();
-        public IEnumerable<ParcelToList> ParcelNoDrone()
-        public IEnumerable<StationToList> stationWithAvailable‏Stands();
+        public IEnumerable<ParcelToList> ParcelNoDrone();
+        public IEnumerable<StationToList> stationWithAvailableStands();
         public void updateParcelToDrone(int idDrone);
         public void pickedUpD(int idDrone, DateTime d);
         public void targetId(int idCustomer, int idParcel);

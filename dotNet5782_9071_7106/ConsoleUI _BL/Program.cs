@@ -66,7 +66,7 @@ namespace ConsoleUI__BL
                         bl.addDrone(Id, Model, MaxWeight, idStation);
                     }
 
-                    catch (IBL.BO.Exception e)/// לבדוק!!!
+                    catch (Exception e)/// לבדוק!!!
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -89,7 +89,7 @@ namespace ConsoleUI__BL
                         bl.addCustomer(Id, Name, Phone, Longitude, Latitude);
                     }
 
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -137,7 +137,7 @@ namespace ConsoleUI__BL
                     {
                         bl.addParcel(SenderId, TargetId, Weight, priority);
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -162,7 +162,7 @@ namespace ConsoleUI__BL
                         bl.UpdateNameDrone(idDrone1, Model);
                     }
 
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -181,7 +181,7 @@ namespace ConsoleUI__BL
                         bl.UpdateStationDetails(IdDrone, Name, ChargeSlots);
                     }
 
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -201,7 +201,7 @@ namespace ConsoleUI__BL
                         bl.UpdateCustomerDetails(idCustomer, name, phone);
                     }
 
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -214,7 +214,7 @@ namespace ConsoleUI__BL
                     {
                         bl.sendDroneToStation(idDrone1);
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -230,7 +230,7 @@ namespace ConsoleUI__BL
                     {
                         bl.freeDrone(idDrone2, time);
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -243,7 +243,7 @@ namespace ConsoleUI__BL
                     {
                         bl.updateParcelToDrone(idDrone);
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -264,7 +264,7 @@ namespace ConsoleUI__BL
                     {
                         Console.Write(bl.printStation(id));
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -276,7 +276,7 @@ namespace ConsoleUI__BL
                     {
                         Console.Write(bl.printDrone(id));
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -288,7 +288,7 @@ namespace ConsoleUI__BL
                     {
                         Console.Write(bl.printCustomer(id));
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -301,7 +301,7 @@ namespace ConsoleUI__BL
                     {
                         Console.Write(bl.printParcel(id));
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }

@@ -5,10 +5,10 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class Exception:SystemException
+   public class Exceptions
     {
         [Serializable]
-        class idException : System.Exception
+        class idException : Exception
         {
             public idException() : base() { }
             public idException(string message) : base(message) { }
@@ -20,7 +20,7 @@ namespace IBL.BO
             override public string ToString()
             { return Message; }
         }
-        class notExistException : System.Exception
+        class notExistException :Exception
         {
             public notExistException() : base() { }
             public notExistException(string message) : base(message) { }

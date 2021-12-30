@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IBL.BO
 {
-    class customerToList
+  public  class CustomerToList
     {
         public int Identity { get; set; }
         public string Name { get; set; }
@@ -13,7 +13,7 @@ namespace IBL.BO
         public int ParcelSendAndNotprovided { get; set; }
         public int NumberGetParcel { get; set; }
         public int NumberParcelTOCustomer { get; set; }
-        public customerToList(int identity, string name, string phone, int ParcelSendAndprovided, int ParcelSendAndNotprovided, int numberGetParcel, int numberParcelTOCustomer)
+        public CustomerToList(int identity, string name, string phone, int ParcelSendAndprovided, int ParcelSendAndNotprovided, int numberGetParcel, int numberParcelTOCustomer)
         {
             this.Identity = identity;
             this.Name = name;

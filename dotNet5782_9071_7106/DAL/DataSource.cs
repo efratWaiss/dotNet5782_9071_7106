@@ -77,17 +77,7 @@ namespace IDAL
                 Parcel p11 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
                 Parcel p12 = new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 );
                 
-               
-
-
-
-
-
-
-
-
-
-            }
+                           }
         }
 
     }

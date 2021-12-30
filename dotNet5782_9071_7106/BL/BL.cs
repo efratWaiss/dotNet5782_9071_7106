@@ -133,21 +133,21 @@ namespace IBL
 
         public double CarryingHeavyWeight { get; }
         public double ChargingRate { get; }
-         
+
         public void addCustomer(int Id, String Name, String Phone, double Longitude, double Latitude)
         {
             try
             {
                 dal.addCustomer(new IDAL.DO.Customer(Id, Name, Phone, Longitude, Latitude));
             }
-            catch
+            catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ex;
             }
 
-        }//לבדוק לגבי excption
+        }//TODO: לבדוק לגבי excption
 
-        public void addDrone(int Id, String Model, WeightCategories weight, int IdStation)// exption בעיה
+        public void addDrone(int Id, String Model, WeightCategories weight, int IdStation)//TODO: לבדוק לגבי excption
         {
             try
             {
@@ -160,8 +160,8 @@ namespace IBL
                     dal.addDrone(new IDAL.DO.Drone(Id, Model, (IDAL.DO.WeightCategories)(weight)));
                     DronesList.Add(new DroneToList(Id, Model, weight, battery, DroneStatuses.Maintenance, new Location(Station1.Latitude, Station1.Longitude), IdStation));
                 }
-                catch 
-                { 
+                catch
+                {
                     throw new NotImplementedException();
                 }
             }
@@ -173,7 +173,7 @@ namespace IBL
         }
 
 
-        public int addParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)// exption בעיה
+        public int addParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)//TODO: לבדוק לגבי excption
         {
             try
             {
@@ -189,12 +189,14 @@ namespace IBL
             return Parcel.Id;
         }
 
-        public void addStation(int Id, String Name, Location location, int AvailableChargeSlots)//exption  וגם הוספה blבעיה
+        public void addStation(int Id, String Name, Location location, int AvailableChargeSlots)//TODO: לבדוק לגבי excption
         {
             try
             {
                 var station = dal.printStation(Id);
-                //StationsList.Add(new Station(Id,Name,Location,ChargingPositions, new()));///איך להכניס ךbl
+                List<IDAL.DO.DroneCharge> d = new();
+                dal.GetDroneCharges().ToList().Equals(d);//TODO: האם זה מה שהתכוונו : לאתחל את רשימת הרחפנים בטעינה
+
                 dal.addStation(new IDAL.DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
             }
 
@@ -205,7 +207,7 @@ namespace IBL
 
         }
 
-        public void freeDrone(int idDrone, double timeInCharging)//בעיהה
+        public void freeDrone(int idDrone, double timeInCharging)
         {
 
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
@@ -218,7 +220,7 @@ namespace IBL
                     var station = dal.printStation(drone.ParcelDelivered);
                     station.ChargeSlots += 1;
                     var k = dal.printDroneCharge(drone.Id);
-                    dal.GetDroneCharges().Remove(k);//איך למחוק מרשימה?
+                    dal.GetDroneCharges().ToList().Remove(k);
 
                 }
                 else
@@ -242,8 +244,7 @@ namespace IBL
         {
             throw new NotImplementedException();
         }
-
-        public Customer printCustomer(int id)
+         public Customer printCustomer(int id)
         {
             try
             {
@@ -252,9 +253,27 @@ namespace IBL
                 foreach (var item in dal.viewParcel())
                 {
                     if (item.SenderId == c.Id)
-                        c.parcelToCustomer.Add(new Parcel(c, dal.printCustomer(item.TargetId), (WeightCategories)item.Weight, (Priorities)item.priority));//להוסיף תאריכים?
+                        c.parcelToCustomer.Add(new Parcel(new CustomerInParcel(c.Id, c.Name)
+                            , new CustomerInParcel(dal.printCustomer(item.TargetId).Id, dal.printCustomer(item.TargetId).Name)
+                            , (WeightCategories)item.Weight
+                            , (Priorities)item.priority
+                            , item.Requested
+                            , item.scheduled.Value
+                            , item.PickedUp.Value
+                            , item.Delivered.Value
+                            , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id,
+                            DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)));
                     else if (item.TargetId == c.Id)
-                        c.parcelFromCustomer.Add(new Parcel(dal.printCustomer(item.SenderId), c, (WeightCategories)item.Weight, (Priorities)item.priority));
+                        c.parcelFromCustomer.Add(new Parcel(new CustomerInParcel(dal.printCustomer(item.SenderId).Id, dal.printCustomer(item.SenderId).Name)
+                           , new CustomerInParcel(c.Id, c.Name)
+                           , (WeightCategories)item.Weight
+                           , (Priorities)item.priority
+                           , item.Requested
+                           , item.scheduled.Value
+                           , item.PickedUp.Value
+                           , item.Delivered.Value
+                           , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id,
+                           DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)));
                 }
                 return c;
             }
@@ -263,11 +282,11 @@ namespace IBL
                 throw new NotImplementedException();
             }
 
-        }//בעיה בתאריכים איך למלא?
+        }
 
         public Drone printDrone(int id)
         {
-            //Drone drone1=new();
+
             ParcelInTransference ParcelInTransference;
             var drone = DronesList.FirstOrDefault(x => x.Id == id);
             var parcel = DronesList.FirstOrDefault(x => x.Id == drone.ParcelDelivered);
@@ -305,13 +324,13 @@ namespace IBL
                 if (parcel.DroneId != 0)
                 {
                     var drone = DronesList.FirstOrDefault(x => x.Id == parcel.DroneId);
-                    p = new(dal.printCustomer(parcel.SenderId),dal.printCustomer(parcel.TargetId),(WeightCategories)parcel.Weight,(Priorities)parcel.priority
-                        ,,,parcel.PickedUp,new DroneInParcel(drone.Id,drone.Battery,drone.LocationNow));
+                    p = new(dal.printCustomer(parcel.SenderId), dal.printCustomer(parcel.TargetId), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
+                        ,,, parcel.PickedUp, new DroneInParcel(drone.Id, drone.Battery, drone.LocationNow));
                 }
                 else
                 {
                     p = new(dal.printCustomer(parcel.SenderId), dal.printCustomer(parcel.TargetId), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
-                        ,,, parcel.PickedUp,null) ;
+                        ,,, parcel.PickedUp, null);
                 }
                 return p;
             }
@@ -321,7 +340,7 @@ namespace IBL
             }
 
 
-        }//בעיה בתאריכים איך למלא?
+        }//TODO:בעיה בתאריכים איך למלא?
 
         public Station printStation(int id)
         {
@@ -348,7 +367,7 @@ namespace IBL
 
         }
 
-        public void sendDroneToStation(int idDrone)//בעיה
+        public void sendDroneToStation(int idDrone)//TODO:בעיה
         {
             double min = double.MaxValue;
             double distance = 0;
@@ -381,7 +400,7 @@ namespace IBL
             {
                 throw new NotImplementedException("this Drone's id not exist in the system");
             }
-        }//בעיה
+        }
 
 
         public void targetId(int idCustomer, int idParcel)
@@ -393,6 +412,7 @@ namespace IBL
         {
             try
             {
+                
                 var drone = dal.printDrone(idDrone);
                 var drone1 = DronesList.FirstOrDefault(x => x.Id == idDrone);
                 if (drone1.Status == DroneStatuses.Vacant)
@@ -412,57 +432,59 @@ namespace IBL
 
         }
         public IEnumerable<ParcelToList> ParcelNoDrone()
-    {
-            var parcels=viewParcel();
-            bool provided=false;
-            List<ParcelToList> newParcelNoDrone=new List<ParcelToList>();
+        {
+            var parcels = viewParcel();
+            bool provided = false;
+            List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
             foreach (var item in parcels)
-	    {
-                foreach (var item1 in DronesList)
             {
+                foreach (var item1 in DronesList)
+                {
                     if (item1.ParcelDelivered == item.Id)
                     {
-                        provided=true;
+                        provided = true;
                     }
-	        }
+                }
                 if (provided == false)
                 {
                     newParcelNoDrone.Add(item);
                 }
-        }
+            }
             return newParcelNoDrone;
-    }
+        }
         public IEnumerable<StationToList> viewStation()
         {
-            var stations = dal.viewStation();//מראה את כל התחנות
+            var stations = dal.viewStation();
             List<StationToList> s = new List<StationToList>();
             foreach (var item in stations)
             {
-                int count=0;
-                foreach (var item1 in )
-	{
-                    if(item1.LocationNow==item)
-	}
-                s.Add(new StationToList(item.Id,item.Name,item.ChargeSlots,));///לא טוב איך יודעים על עמדות הטעינה?
+                int count = 0;
+                foreach (var item1 in dal.GetDroneCharges())
+                {
+                    if (item1.Stationld == item.Id)
+                    {
+                        count++;
+                    }
+                }
+                s.Add(new StationToList(item.Id, item.Name, item.ChargeSlots - count, count));
             }
             return s;
         }
-
         public IEnumerable<DroneToList> viewDrone()
         {
             return new List<DroneToList>(DronesList);
         }
-         public IEnumerable<customerToList> viewCustomer()
+        public IEnumerable<CustomerToList> viewCustomer()
         {
             var customers = dal.viewCustomer();
-            List<customerToList> c = new List<customerToList>();
-            int countParcelProvided=0;//חבילות שנשלחו וסופקו
-            int countParcelNotProvided=0;//מונה החבילות שנשלחו ולא סופקו
-            int countGetParcels=0;//חבילות שקיבלתי
+            List<CustomerToList> c = new List<CustomerToList>();
+            int countParcelProvided = 0;//חבילות שנשלחו וסופקו
+            int countParcelNotProvided = 0;//מונה החבילות שנשלחו ולא סופקו
+            int countGetParcels = 0;//חבילות שקיבלתי
             foreach (var item in customers)
             {
                 foreach (var item1 in dal.viewParcel())
-	{
+                {
                     if (item1.SenderId == item.Id)//אם החבילה נשלחה, תבדוק הלאה
                     {
                         if (!item1.Delivered.Equals(default))//אם החבילה גם סופקה,
@@ -480,8 +502,8 @@ namespace IBL
                         countGetParcels++;
                     }
 
-	}
-                c.Add(new customerToList(item.Id, item.Name,item.Phone,countParcelProvided,countParcelNotProvided,countGetParcels,countParcelNotProvided+countParcelProvided))//צריך להביא
+                }
+                c.Add(new CustomerToList(item.Id, item.Name, item.Phone, countParcelProvided, countParcelNotProvided, countGetParcels, countParcelNotProvided + countParcelProvided));//צריך להביא
             }
             return c;
         }
@@ -495,41 +517,42 @@ namespace IBL
             {
                 if (!item.PickedUp.Equals(default))//נאסף=נאסף
                 {
-                    temp=ParcelStatsus.collected;
+                    temp = ParcelStatsus.collected;
                 }
-                else if(!item.Delivered.Equals(default))//נמסר=קשור ל...
+                else if (!item.Delivered.Equals(default))//נמסר=קשור ל...
                 {
-                    temp=ParcelStatsus.associated;
+                    temp = ParcelStatsus.associated;
                 }
-                else if(!item.Requested.Equals(default))//מבוקש=נוצר
+                else if (!item.Requested.Equals(default))//מבוקש=נוצר
                 {
-                    temp=ParcelStatsus.created;
+                    temp = ParcelStatsus.created;
                 }
-                else if(!item.scheduled.Equals(default))//נמסר=קשור ל
+                else if (!item.scheduled.Equals(default))//נמסר=קשור ל
                 {
-                    temp=ParcelStatsus.Defined;
+                    temp = ParcelStatsus.Defined;
                 }
                 else
                 {
-                    temp=ParcelStatsus.provided;
+                    temp = ParcelStatsus.provided;
                 }
-                p.Add(new ParcelToList(item.Id,item.SenderId,item.TargetId,(WeightCategories)item.Weight,(Priorities)item.priority,temp));
+                p.Add(new ParcelToList(item.Id, item.SenderId, item.TargetId, (WeightCategories)item.Weight, (Priorities)item.priority, temp));
             }
             return p;
         }
 
-        public IEnumerable<StationToList> stationWithAvailable‏Stands(){
-            List<StationToList> stands=new List<StationToList>();
-            var stations=viewStation();
-                foreach (var item in stations)
-	{
-                    if (item.AvailableChargingPositions != 0)
-                    {
-                        stands.Add(item);
-                    }
-	}
-            return stands;
+        public IEnumerable<StationToList> stationWithAvailableStands()
+        {
+            List<StationToList> stands = new List<StationToList>();
+            var stations = viewStation();
+            foreach (var item in stations)
+            {
+                if (item.AvailableChargingPositions != 0)
+                {
+                    stands.Add(item);
+                }
             }
+            return stands;
+        }
 
         public void UpdateNameDrone(int Id, String Model)
         {
@@ -593,6 +616,7 @@ namespace IBL
 
 
         //}
+
     }
 }
 //namespace IDAL
