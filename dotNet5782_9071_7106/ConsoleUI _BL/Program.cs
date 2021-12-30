@@ -147,7 +147,7 @@ namespace ConsoleUI__BL
         }
         static void update()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-update name Drone /n 2-Update Station Detail /n 3-drone to  charging /n 4-Send Drone To Station /n 5-free Drone /n 6-update parcel to drone");
+            Console.WriteLine("ENTER YOUR CHOISE:/n 1-update name Drone /n 2-Update Station Detail /n 3-drone to  charging /n 4-Send Drone To Station /n 5-free Drone /n 6-affiliation parcel to drone /n 7-Package Collection By Drone /n 8-DeliveryOfAParcelByDrone)");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -244,6 +244,32 @@ namespace ConsoleUI__BL
                         bl.updateParcelToDrone(idDrone);
                     }
                     catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    break;
+                    case "7":
+                    Console.WriteLine("enter id Drone");
+                    int idDrone = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        bl.PackageCollectionByDrone(idDrone);
+                    }
+                    catch (IBL.BO.Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    break;
+                    case "8":
+                    Console.WriteLine("enter id Drone");
+                    int idDrone = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        bl.DeliveryOfAParcelByDrone(idDrone);
+                    }
+                    catch (IBL.BO.Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
