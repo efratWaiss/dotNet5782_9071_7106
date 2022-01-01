@@ -21,7 +21,7 @@ namespace DalObject
             foreach (var item in DataSource.stations)
             {
                 if (item.Id == s.Id)
-                    throw new idException("already exist in the system");
+                    throw new IdException("already exist in the system");
             }
             DataSource.stations.Add(s);
         }
@@ -30,7 +30,7 @@ namespace DalObject
             foreach (var item in DataSource.drones)
             {
                 if (item.Id == d.Id)
-                    throw new idException("already exist in the system");
+                    throw new IdException("already exist in the system");
             }
             DataSource.drones.Add(d);
         }
@@ -40,7 +40,7 @@ namespace DalObject
             foreach (var item in DataSource.customers)
             {
                 if (item.Id == c.Id)
-                    throw new idException("already exist in the system");
+                    throw new IdException("already exist in the system");
             }
             DataSource.customers.Add(c);
         }
@@ -58,7 +58,7 @@ namespace DalObject
                 if (DataSource.stations[i].Id == id)
                     return DataSource.stations[i];
             }
-            throw new notExistException("this id not exist in the system");
+            throw new NotExistException("this id not exist in the system");
 
         }
         public DroneCharge printDroneCharge(int idDrone)
@@ -68,7 +68,7 @@ namespace DalObject
                 if (DataSource.DroneCharges[i].Droneld == idDrone)
                     return DataSource.DroneCharges[i];
             }
-            throw new notExistException("this id not exist in the system");
+            throw new NotExistException("this id not exist in the system");
         }
         public Drone printDrone(int id)
         {
@@ -77,7 +77,7 @@ namespace DalObject
                 if (DataSource.drones[i].Id == id)
                     return DataSource.drones[i];
             }
-            throw new notExistException("this id not exist in the system");
+            throw new NotExistException("this id not exist in the system");
         }
         public Customer printCustomer(int id)
         {
@@ -86,7 +86,7 @@ namespace DalObject
                 if (DataSource.customers[i].Id == id)
                     return DataSource.customers[i];
             }
-            throw new notExistException("this id not exist in the system");
+            throw new NotExistException("this id not exist in the system");
         }
         public Parcel printParcel(int id)
         {
@@ -95,7 +95,7 @@ namespace DalObject
                 if (DataSource.parcels[i].Id == id)
                     return DataSource.parcels[i];
             }
-            throw new notExistException("this id not exist in the system");
+            throw new NotExistException("this id not exist in the system");
         }
         public IEnumerable<Station> viewStation()
         {
@@ -153,7 +153,7 @@ namespace DalObject
             }
             if (b == false)
             {
-                throw new notExistException("this id Drone not exist in the system");
+                throw new NotExistException("this id Drone not exist in the system");
             }
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
@@ -167,7 +167,7 @@ namespace DalObject
             }
             if (b2 == false)
             {
-                throw new notExistException("this id parcel not exist in the system");
+                throw new NotExistException("this id parcel not exist in the system");
             }
 
         }
@@ -183,7 +183,7 @@ namespace DalObject
                 }
                 else
                 {
-                    throw new notExistException("this id Drone not exist in the system");
+                    throw new NotExistException("this id Drone not exist in the system");
                 }
             }
         }
@@ -204,7 +204,7 @@ namespace DalObject
             }
             if (c == false)
             {
-                throw new notExistException("this id customer not exist in the system");
+                throw new NotExistException("this id customer not exist in the system");
             }
             for (int i = 0; i < 1000 && DataSource.parcels != null; i++)
             {
@@ -218,7 +218,7 @@ namespace DalObject
             }
             if (c2 == false)
             {
-                throw new notExistException("this id parcel not exist in the system");
+                throw new NotExistException("this id parcel not exist in the system");
             }
         }
         public void sendDroneToStation(int idDrone, int idStation)
@@ -238,7 +238,7 @@ namespace DalObject
             }
             if (s == false)//:אם לא מצאת תחנה, זרוק
             {
-                throw new notExistException("this id station not exist in the system");
+                throw new NotExistException("this id station not exist in the system");
             }//אחרת
             for (int i = 0; i < DataSource.drones.Count; i++)
             {//תעבור על רשימת הרחפנים
@@ -254,7 +254,7 @@ namespace DalObject
             }
             if (s2 == false)
             {//:אם לא מצאת רחפן, זרוק
-                throw new notExistException("this id drone not exist in the system");
+                throw new NotExistException("this id drone not exist in the system");
             }
         }
         public void freeDrone(int idDrone)
@@ -270,7 +270,7 @@ namespace DalObject
             }
             if (f == false)
             {
-                throw new notExistException("this id drone not exist in the system");
+                throw new NotExistException("this id drone not exist in the system");
             }
         }
 
@@ -285,6 +285,12 @@ namespace DalObject
             l[4] = DataSource.Config.ChargingRate;
 
             return l;
+        }
+        public void UpdateParcel(Parcel p)
+        {
+
+            int index = viewParcel().ToList().FindIndex(x => x.Id == p.Id);
+            DataSource.parcels[index] = p;
         }
     }
 }

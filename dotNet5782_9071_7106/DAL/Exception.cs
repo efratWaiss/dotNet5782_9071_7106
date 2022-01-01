@@ -12,25 +12,25 @@ namespace IDAL
     namespace DO
     {
         [Serializable]
-        class idException : Exception
+        class IdException : Exception
         {
-            public idException() : base() { }
-            public idException(string message) : base(message) { }
-            public idException(string message, Exception inner)
+            public IdException() : base() { }
+            public IdException(string message) : base(message) { }
+            public IdException(string message, Exception inner)
                         : base(message, inner) { }
-            protected idException(SerializationInfo info, StreamingContext context)
+            protected IdException(SerializationInfo info, StreamingContext context)
                         : base(info, context) { }
 
             override public string ToString()
             { return Message; }
         }
-        class notExistException : Exception
+        class NotExistException : Exception
         {
-            public notExistException() : base() { }
-            public notExistException(string message) : base(message) { }
-            public notExistException(string message, Exception inner)
+            public NotExistException() : base() { }
+            public NotExistException(string message) : base(message) { }
+            public NotExistException(string message, Exception inner)
                         : base(message, inner) { }
-            protected notExistException(SerializationInfo info, StreamingContext context)
+            protected NotExistException(SerializationInfo info, StreamingContext context)
                         : base(info, context) { }
 
             override public string ToString()

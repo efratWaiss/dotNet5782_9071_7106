@@ -33,7 +33,7 @@ namespace ConsoleUI__BL
                         bl.addStation(Id, Name, location, ChargeSlot);
                     }
 
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -251,12 +251,12 @@ namespace ConsoleUI__BL
                     break;
                     case "7":
                     Console.WriteLine("enter id Drone");
-                    int idDrone = int.Parse(Console.ReadLine());
+                    int idDrone3 = int.Parse(Console.ReadLine());
                     try
                     {
-                        bl.PackageCollectionByDrone(idDrone);
+                        bl.PackageCollectionByDrone(idDrone3);
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -264,12 +264,12 @@ namespace ConsoleUI__BL
                     break;
                     case "8":
                     Console.WriteLine("enter id Drone");
-                    int idDrone = int.Parse(Console.ReadLine());
+                    int idDrone4 = int.Parse(Console.ReadLine());
                     try
                     {
-                        bl.DeliveryOfAParcelByDrone(idDrone);
+                        bl.DeliveryOfAParcelByDrone(idDrone4);
                     }
-                    catch (IBL.BO.Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
@@ -390,7 +390,7 @@ namespace ConsoleUI__BL
 
                 case "6":
                     {
-                        IEnumerable f5 = bl.StationNoCharge();
+                        IEnumerable f5 = bl.stationWithAvailableStands();
                         foreach (var item in f5)
                         {
                             Console.WriteLine(item);

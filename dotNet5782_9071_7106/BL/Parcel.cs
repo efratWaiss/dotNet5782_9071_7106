@@ -13,37 +13,37 @@ namespace IBL.BO
         public CustomerInParcel Target { get; set; }
         public WeightCategories Weight { get; set; }
         public Priorities Priority { get; set; }
-        public DateTime ParcelCreationTime { get; set; }
         public DroneInParcel DroneInParcel { get; set; }
-        public DateTime Affiliation { get; set; }
-        public DateTime PickedUp { get; set; }
-        public DateTime Supply
+        public DateTime Requested { get; set; }
+        public int DroneId { get; set; }
+        public DateTime? scheduled { get; set; }
+        public DateTime? PickedUp { get; set; }
+        public DateTime? Delivered
         {
-
             get { return DateTime.Now; }
-            set { Supply = value; }
-
+            set { Delivered = value; }
         }
 
-        //public static int endParcel;
-        public Parcel(CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities priority, DateTime ParcelCreationTime,
-            DateTime Affiliation, DateTime PickedUp, DateTime Supply, DroneInParcel DroneInParcel)
+        public Parcel(CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities Priority, DroneInParcel DroneInParcel, DateTime Requested, int DroneId, DateTime? scheduled,  DateTime? PickedUp, DateTime? Delivered)
         {
-            ParcelId = ++Id;
+            this.ParcelId = Id++;
             this.Sender = Sender;
             this.Target = Target;
             this.Weight = Weight;
-            this.Priority = priority;
-            this.ParcelCreationTime = ParcelCreationTime;
+            this.Priority = Priority;
             this.DroneInParcel = DroneInParcel;
-            this.Affiliation = Affiliation;
+            this.Requested = Requested;
+            this.DroneId = DroneId;
+            this.scheduled = scheduled;
             this.PickedUp = PickedUp;
-            this.Supply = Supply;
+            this.Delivered = Delivered;
         }
+
+
         public override string ToString()
         {
-            return "ParcelId:" + ParcelId + " Sender:" + Sender + " Target:" + Target + " Weight:" + Weight + " Priority:" + Priority + " ParcelCreationTime:"
-                + ParcelCreationTime + " DroneInParcel:" + DroneInParcel + " Affiliation:" + Affiliation + " PickedUp:" + PickedUp + " Supply:" + Supply;
+            return "ParcelId:" + ParcelId + " Sender:" + Sender + " Target:" + Target + " Weight:" + Weight + " Priority:" + Priority + " DroneInParcel:"
+                + DroneInParcel + " Requested:" + Requested + " DroneId:" + DroneId + " scheduled:" + scheduled + " PickedUp:" + PickedUp+ " Delivered:"+ Delivered;
         }
     }
 }

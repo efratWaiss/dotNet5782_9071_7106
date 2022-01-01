@@ -5,32 +5,29 @@ using System.Text;
 
 namespace IBL.BO
 {
-   public class Exceptions
+    [Serializable]
+    class IdException : Exception
     {
-        [Serializable]
-        class idException : Exception
-        {
-            public idException() : base() { }
-            public idException(string message) : base(message) { }
-            public idException(string message, System.Exception inner)
-                        : base(message, inner) { }
-            protected idException(SerializationInfo info, StreamingContext context)
-                        : base(info, context) { }
+        public IdException() : base() { }
+        public IdException(string message) : base(message) { }
+        public IdException(string message, System.Exception inner)
+                    : base(message, inner) { }
+        protected IdException(SerializationInfo info, StreamingContext context)
+                    : base(info, context) { }
 
-            override public string ToString()
-            { return Message; }
-        }
-        class notExistException :Exception
-        {
-            public notExistException() : base() { }
-            public notExistException(string message) : base(message) { }
-            public notExistException(string message, System.Exception inner)
-                        : base(message, inner) { }
-            protected notExistException(SerializationInfo info, StreamingContext context)
-                        : base(info, context) { }
+        override public string ToString()
+        { return Message; }
+    }
+    class NotExistException : Exception
+    {
+        public NotExistException() : base() { }
+        public NotExistException(string message) : base(message) { }
+        public NotExistException(string message, System.Exception inner)
+                    : base(message, inner) { }
+        protected NotExistException(SerializationInfo info, StreamingContext context)
+                    : base(info, context) { }
 
-            override public string ToString()
-            { return Message; }
-        }
+        override public string ToString()
+        { return Message; }
     }
 }
