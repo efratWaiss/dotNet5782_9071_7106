@@ -35,5 +35,6 @@ namespace IDal
         public void freeDrone(int idDrone);
         public double[] powerConsumpitionByDrone();
         public void UpdateParcel(Parcel p);
+        public void removeFromDroneCharges(int idDrone, int idStation);
     }
 }

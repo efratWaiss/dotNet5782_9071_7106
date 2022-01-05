@@ -113,6 +113,7 @@ namespace DalObject
         public IEnumerable<Parcel> viewParcel()
         {
             return new List<Parcel>(DataSource.parcels);
+          
         }
         public IEnumerable<Parcel> ParcelNoDrone()
         {
@@ -140,7 +141,7 @@ namespace DalObject
         {
             return new List<DroneCharge>(DataSource.DroneCharges);
         }
-        public void updateParcelToDrone(int idDrone, int idParcel)//what the problem
+        public void updateParcelToDrone(int idDrone, int idParcel)
         {
             bool b = true;
             bool b2 = false;
@@ -161,7 +162,7 @@ namespace DalObject
                 {
                     b2 = true;
                     var theParcel = DataSource.parcels[i];
-                    theParcel.DroneId = idDrone;`
+                    theParcel.DroneId = idDrone;
                     DataSource.parcels[i] = theParcel;
                 }
             }
@@ -273,7 +274,20 @@ namespace DalObject
                 throw new NotExistException("this id drone not exist in the system");
             }
         }
-
+        public void removeFromDroneCharges(int idDrone,int idStation)
+        {
+            var d=DataSource.drones.FirstOrDefault(x => x.Id == idDrone);
+            var s=DataSource.stations.FirstOrDefault(x => x.Id == idStation);
+            DroneCharge dd = new DroneCharge(idDrone, idStation);
+            if (!d.Equals(default) && !s.Equals(default))
+            {
+                GetDroneCharges().ToList().Remove(dd);
+            }
+            else
+            {
+                throw new NotExistException("this drons'id or Station'id not exist in the system");
+            }
+        }
         public double[] powerConsumpitionByDrone()
         {
 

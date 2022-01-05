@@ -26,6 +26,6 @@ namespace IBL
         public void PackageCollectionByDrone(int idDrone);
         public void sendDroneToStation(int idDrone);
         public void freeDrone(int idDrone,double timeInCharging);
-        public double[] powerConsumpitionByDrone();
+  
     }
 }

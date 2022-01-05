@@ -1,6 +1,7 @@
 ﻿using IBL.BO;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace ConsoleUI__BL
 {
@@ -249,7 +250,7 @@ namespace ConsoleUI__BL
                     }
 
                     break;
-                    case "7":
+                case "7":
                     Console.WriteLine("enter id Drone");
                     int idDrone3 = int.Parse(Console.ReadLine());
                     try
@@ -262,7 +263,7 @@ namespace ConsoleUI__BL
                     }
 
                     break;
-                    case "8":
+                case "8":
                     Console.WriteLine("enter id Drone");
                     int idDrone4 = int.Parse(Console.ReadLine());
                     try
@@ -344,7 +345,7 @@ namespace ConsoleUI__BL
             {
                 case "1":
                     {
-                        IEnumerable f1 = bl.viewStation();//לשנות אח''כ
+                        IEnumerable f1 = bl.viewStation();
                         foreach (var item in f1)
                         {
                             Console.WriteLine(item);
@@ -405,29 +406,31 @@ namespace ConsoleUI__BL
         {
 
             Console.WriteLine("WELCOME TO OUR SYSTEM");
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit /n");
+            Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit");
             string choise = Console.ReadLine();
-            switch (choise)
+            while (!choise.Equals("5"))
             {
-                case "1":
-                    add();
-                    break;
-                case "2":
-                    update();
-                    break;
-                case "3":
-                    getDetails();
-                    break;
-                case "4":
-                    getList();
-                    break;
-                case "5":
-                    Console.WriteLine("good bye");
-                    break;
-
-
+                switch (choise)
+                {
+                    case "1":
+                        add();
+                        break;
+                    case "2":
+                        update();
+                        break;
+                    case "3":
+                        getDetails();
+                        break;
+                    case "4":
+                        getList();
+                        break;
+                   
+                }
+                Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit /n 0-exit");
+                choise = Console.ReadLine();
 
             }
+            Console.WriteLine("good bye");
         }
     }
 }
