@@ -307,7 +307,7 @@ namespace DalObject
         public void UpdateParcel(Parcel p)
         {
 
-            int index = viewParcel().ToList().FindIndex(x => x.Id == p.Id);
+            int index = getParcel().ToList().FindIndex(x => x.Id == p.Id);
             DataSource.parcels[index] = p;
         }
     }
