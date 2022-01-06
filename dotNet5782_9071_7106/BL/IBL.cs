@@ -15,7 +15,7 @@ namespace IBL
         public Drone printDrone(int id);
         public Customer printCustomer(int id);
         public Parcel printParcel(int id);
-        public IEnumerable<StationToList> getStation();
+        public IEnumerable<StationToList> GetListStation();
         public IEnumerable<DroneToList> getDrone();
         public IEnumerable<CustomerToList> getCustomer();
         public IEnumerable<ParcelToList> getParcel();

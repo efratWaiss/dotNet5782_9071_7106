@@ -345,7 +345,7 @@ namespace ConsoleUI__BL
             {
                 case "1":
                     {
-                        IEnumerable f1 = bl.getStation();
+                        IEnumerable f1 = bl.GetListStation();
                         foreach (var item in f1)
                         {
                             Console.WriteLine(item);

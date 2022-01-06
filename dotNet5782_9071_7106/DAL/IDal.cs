@@ -22,7 +22,7 @@ namespace IDal
         public Parcel printParcel(int id);
         public DroneCharge printDroneCharge(int idDrone);
         public IEnumerable<DroneCharge> GetDroneCharges();
-        public IEnumerable<Station> getStation();
+        public IEnumerable<Station> GetListStation();
         public IEnumerable<Drone> getDrone();
         public IEnumerable<Customer> getCustomer();
         public IEnumerable<Parcel> getParcel();

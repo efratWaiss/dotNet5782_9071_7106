@@ -55,7 +55,7 @@ namespace IBL
                         {
 
                             double min = double.MaxValue;
-                            foreach (var station in dal.getStation())
+                            foreach (var station in dal.GetListStation())
                             {
                                 if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude)) < min)
                                 {
@@ -90,9 +90,9 @@ namespace IBL
                         switch (rand)
                         {
                             case 1:
-                                int rr = rn.Next(1, dal.getStation().Count());
-                                lo.Latitude = dal.getStation().ToList()[rr].Latitude;
-                                lo.Longitude = dal.getStation().ToList()[rr].Longitude;
+                                int rr = rn.Next(1, dal.GetListStation().Count());
+                                lo.Latitude = dal.GetListStation().ToList()[rr].Latitude;
+                                lo.Longitude = dal.GetListStation().ToList()[rr].Longitude;
                                 d = new DroneToList(drone.Id
                                     , drone.Model
                                     , (WeightCategories)drone.MaxWeight
@@ -126,7 +126,7 @@ namespace IBL
                                 }
                                 Location stationLocGet = new Location(12.7, 7.9);//איתחול משתנה בהמשך הפונקציה
                                 double min = double.MaxValue;
-                                foreach (var station in dal.getStation())
+                                foreach (var station in dal.GetListStation())
                                 {
                                     if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude)) < min)
                                     {
@@ -392,14 +392,14 @@ namespace IBL
         {
             double min = double.MaxValue;
             double distance = 0;
-            var stationHelp = dal.getStation().FirstOrDefault(x => x.Id == 1);//אתחול
+            var stationHelp = dal.GetListStation().FirstOrDefault(x => x.Id == 1);//אתחול
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
             if (drone != default)
             {
                 double wightDrone = droneWeight(drone.Id);
                 if (drone.Status == DroneStatuses.Vacant)
                 {
-                    foreach (var station in dal.getStation())
+                    foreach (var station in dal.GetListStation())
                     {
                         distance = GetDistanceBetweenTwoLocation(new Location(station.Longitude, station.Latitude), drone.LocationNow);
                         if (distance < min && station.ChargeSlots != 0/*לבדוק*/&& drone.Battery > distance * wightDrone * ChargingRate)
@@ -449,7 +449,7 @@ namespace IBL
                         for (int i = 0; i < dal.getParcel().Count(); i++)
                         {//ממיין את הרשימה מעדיפות גבוהה לנמוכה
                             double min = double.MaxValue;
-                            foreach (var station in dal.getStation())//תחנה קרובה למקבל
+                            foreach (var station in dal.GetListStation())//תחנה קרובה למקבל
                             {
                                 if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), drone1.LocationNow) < min)
                                 {
@@ -640,9 +640,9 @@ namespace IBL
                 throw (e);
             }
         }
-        public IEnumerable<StationToList> getStation()
+        public IEnumerable<StationToList> GetListStation()
         {
-            var stations = dal.getStation();
+            var stations = dal.GetListStation();
             List<StationToList> s = new List<StationToList>();
             foreach (var item in stations)
             {
@@ -742,7 +742,7 @@ namespace IBL
         public IEnumerable<StationToList> stationWithAvailableStands()
         {
             List<StationToList> stands = new List<StationToList>();
-            var stations = getStation();
+            var stations = GetListStation();
             foreach (var item in stations)
             {
                 if (item.AvailableChargingPositions != 0)

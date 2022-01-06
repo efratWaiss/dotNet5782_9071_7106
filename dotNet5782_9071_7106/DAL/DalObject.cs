@@ -101,7 +101,7 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
-        public IEnumerable<Station> getStation()
+        public IEnumerable<Station> GetListStation()
         {
             return new List<Station>(DataSource.stations);
         }
