@@ -381,7 +381,7 @@ namespace IBL
                 }
                 return new Station(stationDal.Id, stationDal.Name, new Location(stationDal.Longitude, stationDal.Latitude), stationDal.ChargeSlots, d); ;
             }
-            catch (IdException e)
+            catch (NotExistException e)
             {
                 throw (e);
 
@@ -551,24 +551,31 @@ namespace IBL
         }
         public IEnumerable<ParcelToList> ParcelNoDrone()
         {
-            var parcels = viewParcel();
-            bool provided = false;
-            List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
-            foreach (var item in parcels)
+            try
             {
-                foreach (var item1 in DronesList)
+                var parcels = viewParcel();
+                bool provided = false;
+                List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
+                foreach (var item in parcels)
                 {
-                    if (item1.ParcelDelivered == item.Id)
+                    foreach (var item1 in DronesList)
                     {
-                        provided = true;
+                        if (item1.ParcelDelivered == item.Id)
+                        {
+                            provided = true;
+                        }
+                    }
+                    if (provided == false)
+                    {
+                        newParcelNoDrone.Add(item);
                     }
                 }
-                if (provided == false)
-                {
-                    newParcelNoDrone.Add(item);
-                }
+                return newParcelNoDrone;
             }
-            return newParcelNoDrone;
+            catch (IdException e)
+            {
+                throw e;
+            }
         }
         public void PackageCollectionByDrone(int idDrone)
         {
@@ -690,46 +697,48 @@ namespace IBL
         }
         public IEnumerable<ParcelToList> viewParcel()
         {
-            var parcels = dal.viewParcel();
-            ParcelStatsus temp;
-            List<ParcelToList> p = new List<ParcelToList>();
-            foreach (var item in parcels)
+            try
             {
-                if (!item.PickedUp.Equals(default))//נאסף=נאסף
+                var parcels = dal.viewParcel();
+                ParcelStatsus temp;
+                List<ParcelToList> p = new List<ParcelToList>();
+                foreach (var item in parcels)
                 {
-                    temp = ParcelStatsus.collected;
-                }
-                else if (!item.Delivered.Equals(default))//נמסר=קשור ל...
-                {
-                    temp = ParcelStatsus.associated;
-                }
-                else if (!item.Requested.Equals(default))//מבוקש=נוצר
-                {
-                    temp = ParcelStatsus.created;
-                }
-                else if (!item.scheduled.Equals(default))//נמסר=קשור ל
-                {
-                    temp = ParcelStatsus.Defined;
-                }
-                else
-                {
-                    temp = ParcelStatsus.provided;
-                }
-                try
-                {
+                    if (!item.PickedUp.Equals(default))//נאסף=נאסף
+                    {
+                        temp = ParcelStatsus.collected;
+                    }
+                    else if (!item.Delivered.Equals(default))//נמסר=קשור ל...
+                    {
+                        temp = ParcelStatsus.associated;
+                    }
+                    else if (!item.Requested.Equals(default))//מבוקש=נוצר
+                    {
+                        temp = ParcelStatsus.created;
+                    }
+                    else if (!item.scheduled.Equals(default))//נמסר=קשור ל
+                    {
+                        temp = ParcelStatsus.Defined;
+                    }
+                    else
+                    {
+                        temp = ParcelStatsus.provided;
+                    }
+
+
                     p.Add(new ParcelToList(item.Id, new CustomerInParcel(dal.printCustomer(item.SenderId).Id, dal.printCustomer(item.SenderId).Name)
                        , new CustomerInParcel(dal.printCustomer(item.TargetId).Id, dal.printCustomer(item.TargetId).Name)
                          , (WeightCategories)item.Weight
                          , (Priorities)item.priority
                          , temp));
                 }
-                catch (IdException e)
-                {
-                    throw e;
-                }
+                return p;
             }
-            return p;
-        }
+            catch (NotExistException e)
+            {
+                throw e;
+            }
+        }//TODO: לא עובד
         public IEnumerable<StationToList> stationWithAvailableStands()
         {
             List<StationToList> stands = new List<StationToList>();

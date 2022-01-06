@@ -345,11 +345,14 @@ namespace ConsoleUI__BL
             {
                 case "1":
                     {
+
                         IEnumerable f1 = bl.viewStation();
                         foreach (var item in f1)
                         {
                             Console.WriteLine(item);
                         }
+
+
                     }
                     break;
                 case "2":
@@ -381,11 +384,20 @@ namespace ConsoleUI__BL
                     break;
                 case "5":
                     {
-                        IEnumerable f5 = bl.ParcelNoDrone();
-                        foreach (var item in f5)
+                        try
                         {
-                            Console.WriteLine(item);
+                            IEnumerable f5 = bl.ParcelNoDrone();
+                            foreach (var item in f5)
+                            {
+                                Console.WriteLine(item);
+                            }
                         }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+
                     }
                     break;
 
@@ -424,7 +436,7 @@ namespace ConsoleUI__BL
                     case "4":
                         getList();
                         break;
-                   
+
                 }
                 Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit /n 0-exit");
                 choise = Console.ReadLine();

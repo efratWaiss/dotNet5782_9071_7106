@@ -81,11 +81,15 @@ namespace DalObject
         }
         public Customer printCustomer(int id)
         {
+            
             for (int i = 0; i < DataSource.customers.Count; i++)
             {
-                if (DataSource.customers[i].Id == id)
+                if (DataSource.customers[i].Id == id) { 
                     return DataSource.customers[i];
+                    
+                }
             }
+            
             throw new NotExistException("this id not exist in the system");
         }
         public Parcel printParcel(int id)

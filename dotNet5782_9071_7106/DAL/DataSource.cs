@@ -39,7 +39,7 @@ namespace IDAL
                 drones.Add(d3); 
                 drones.Add(d4); 
                 drones.Add(d5);
-                Station s1 = new Station(54, "sfsf", 12.5, 14.6, 7);
+                Station s1 = new Station(54, "sfsf", 12.5, 14.6,0);
                 Station s2 = new Station(54, "sfsf", 12.5, 14.6, 7);
                 stations.Add(s1);
                 stations.Add(s2);
