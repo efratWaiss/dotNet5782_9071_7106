@@ -16,20 +16,23 @@ namespace IDAL
             public DateTime? PickedUp { get; set; }
             public DateTime? Delivered { get; set; }
             public static int endParcel;
-            public Parcel(int SenderId, int TargetId, WeightCategories Weight, Priorities priority, DateTime Requested,
-               int DroneId = 0)
+
+            public Parcel(int senderId, int targetId, WeightCategories weight, Priorities priority, DateTime requested, int droneId, DateTime? scheduled, DateTime? pickedUp, DateTime? delivered)
             {
                 Id = ++DataSource.Config.parcelId;
-                this.SenderId = SenderId;
-                this.TargetId = TargetId;
-                this.Weight = Weight;
+                SenderId = senderId;
+                TargetId = targetId;
+                Weight = weight;
                 this.priority = priority;
-                this.Requested = Requested;
-                this.scheduled = null;
-                this.PickedUp = null;
-                this.Delivered = null;
-                this.DroneId = DroneId;
+                Requested = requested;
+                this.scheduled = scheduled;
+                PickedUp = pickedUp;
+                Delivered = delivered;
+                DroneId = droneId;
             }
+
+
+
 
             public override string ToString()
             {

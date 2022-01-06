@@ -55,20 +55,19 @@ namespace IDAL
                 customers.Add (new Customer(325036550, "gfdx", "4545454", 12.3, 145.5));
                 
                 DateTime t = DateTime.Now;
-                parcels.Add(new Parcel( 12, 325036551, WeightCategories.Liver, Priorities.Regular,DateTime.Now,1 ));
-                parcels.Add(new Parcel (12, 325036552, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 325036558, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                
-                           }
+                parcels.Add(new Parcel(325036550, 325036551, WeightCategories.Liver, Priorities.Regular,DateTime.Now,1 ));
+                parcels.Add(new Parcel (325036559, 325036552, WeightCategories.Easy, Priorities.Regular,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036557, 325036558, WeightCategories.Intermediate, Priorities.Fast,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036556, 325036555, WeightCategories.Liver, Priorities.Fast,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036553, 325036550, WeightCategories.Easy, Priorities.Emergency,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036552, 325036559, WeightCategories.Intermediate, Priorities.Emergency,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036554, 325036557, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036555, 325036551, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036553, 325036550, WeightCategories.Easy, Priorities.Emergency,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036559, 325036554, WeightCategories.Easy, Priorities.Emergency,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036552, 325036551, WeightCategories.Liver, Priorities.Fast,DateTime.Now,0 ));
+                parcels.Add(new Parcel(325036556, 325036552, WeightCategories.Intermediate, Priorities.Fast,DateTime.Now,0 ));
+            }
         }
 
     }
