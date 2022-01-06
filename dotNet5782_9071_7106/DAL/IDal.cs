@@ -29,6 +29,8 @@ namespace IDal
         public IEnumerable<Parcel> ParcelNoDrone();
         public IEnumerable<Station> StationNoCharge();
         public void UpdateParcelToDrone(int idDrone, int idParcel);
+        public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots);
+        public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone);
         public void pickedUpD(int idDrone, DateTime d);
         public void targetId(int idCustomer, int idParcel);
         public void SendDroneToStation(int idDrone, int idStation);

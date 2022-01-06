@@ -173,7 +173,7 @@ namespace IBL
         {
             try
             {
-                var drone = dal.GetDrone(Id);
+                
                 Random rn = new Random();
                 double battery = rn.Next(20, 41);
                 try
@@ -199,7 +199,7 @@ namespace IBL
             {
                 var customer1 = dal.GetCustomer(SenderId);
                 var customer2 = dal.GetCustomer(TargetId);
-                dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0,default,default,default));
+                dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0, default, default, default));
             }
             catch (IdException e)
             {
@@ -212,7 +212,7 @@ namespace IBL
         {
             try
             {
-                var station = dal.GetStation(Id);
+                
                 dal.AddStation(new IDAL.DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
             }
 
@@ -279,8 +279,8 @@ namespace IBL
                             , item.Requested
                             , DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id
                             , item.scheduled
-                            , item.PickedUp.Value
-                            , item.Delivered.Value));
+                            , item.PickedUp
+                            , item.Delivered));
                     else if (item.TargetId == c.Id)
                         c.parcelFromCustomer.Add(new Parcel(new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
                            , new CustomerInParcel(c.Id, c.Name)
@@ -289,9 +289,9 @@ namespace IBL
                            , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id, DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)
                            , item.Requested
                            , DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id
-                           , item.scheduled.Value
-                           , item.PickedUp.Value
-                           , item.Delivered.Value));
+                           , item.scheduled
+                           , item.PickedUp
+                           , item.Delivered));
                 }
                 return c;
             }
@@ -736,7 +736,7 @@ namespace IBL
             }
             catch (NotExistException e)
             {
-                throw ;
+                throw;
             }
         }//TODO: לא עובד
         public IEnumerable<StationToList> StationWithAvailableStands()
@@ -771,15 +771,16 @@ namespace IBL
         {
             try
             {
-                var Station = dal.GetStation(IdStation);
-                if (!NameStation.Equals(default))
+                
+                if (!NameStation.Equals(default)&&!ChargeSlots.Equals(default))
                 {
-                    Station.Name = NameStation;
+                     dal.UpdateStationDetails(IdStation, NameStation, ChargeSlots);
                 }
-                if (!ChargeSlots.Equals(default))
+                else
                 {
-                    Station.ChargeSlots = (int)ChargeSlots;
+                    throw new Exception("you didnt put good values");
                 }
+                
 
             }
             catch (IdException e)

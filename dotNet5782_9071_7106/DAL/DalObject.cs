@@ -81,15 +81,16 @@ namespace DalObject
         }
         public Customer GetCustomer(int id)
         {
-            
+
             for (int i = 0; i < DataSource.customers.Count; i++)
             {
-                if (DataSource.customers[i].Id == id) { 
+                if (DataSource.customers[i].Id == id)
+                {
                     return DataSource.customers[i];
-                    
+
                 }
             }
-            
+
             throw new NotExistException("this id not exist in the system");
         }
         public Parcel GetParcel(int id)
@@ -117,7 +118,7 @@ namespace DalObject
         public IEnumerable<Parcel> GetListParcel()
         {
             return new List<Parcel>(DataSource.parcels);
-          
+
         }
         public IEnumerable<Parcel> ParcelNoDrone()
         {
@@ -278,10 +279,10 @@ namespace DalObject
                 throw new NotExistException("this id drone not exist in the system");
             }
         }
-        public void removeFromDroneCharges(int idDrone,int idStation)
+        public void removeFromDroneCharges(int idDrone, int idStation)
         {
-            var d=DataSource.drones.FirstOrDefault(x => x.Id == idDrone);
-            var s=DataSource.stations.FirstOrDefault(x => x.Id == idStation);
+            var d = DataSource.drones.FirstOrDefault(x => x.Id == idDrone);
+            var s = DataSource.stations.FirstOrDefault(x => x.Id == idStation);
             DroneCharge dd = new DroneCharge(idDrone, idStation);
             if (!d.Equals(default) && !s.Equals(default))
             {
@@ -310,5 +311,45 @@ namespace DalObject
             int index = GetListParcel().ToList().FindIndex(x => x.Id == p.Id);
             DataSource.parcels[index] = p;
         }
+        public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots)
+        {
+            try
+            {
+                Station sHelp = GetStation(IdStation);
+                sHelp.Name = NameStation;
+                sHelp.ChargeSlots = (int)ChargeSlots;
+                for (int i = 0; i < DataSource.stations.ToList().Count; i++)
+                {
+                    if (DataSource.stations.ToList()[i].Id == IdStation)//TODO: איך ךשנות ברשימה האמיתית
+                        DataSource.stations.ToList()[i] = sHelp;
+                }
+            }
+            catch (IdException e)
+            {
+                throw e;
+            }
+
+
+        }
+        public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone)
+        {
+            try
+            {
+                Customer cHelp = GetCustomer(IdCustomer);
+                cHelp.Name = Name;
+                cHelp.Phone = Phone;
+                for (int i = 0; i < DataSource.customers.ToList().Count; i++)
+                {
+                    if (DataSource.customers.ToList()[i].Id == IdCustomer)//TODO: איך ךשנות ברשימה האמיתית
+                        DataSource.customers.ToList()[i] = cHelp;
+                }
+            }
+            catch (IdException e)
+            {
+                throw e;
+            }
+
+
+        }//TODO:
     }
 }

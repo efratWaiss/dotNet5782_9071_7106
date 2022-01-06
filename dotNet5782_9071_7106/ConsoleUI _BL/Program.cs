@@ -148,7 +148,7 @@ namespace ConsoleUI__BL
         }
         static void update()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:\n 1-update name Drone \n 2-Update Station Detail \n 3-drone to  charging \n 4-Send Drone To Station \n 5-free Drone \n 6-affiliation parcel to drone \n 7-Package Collection By Drone \n 8-DeliveryOfAParcelByDrone)");
+            Console.WriteLine("ENTER YOUR CHOISE:\n 1-update name Drone \n 2-Update Station Detail \n 3-Update customer Detail \n 4-Send Drone To Station \n 5-free Drone \n 6-affiliation parcel to drone \n 7-Package Collection By Drone \n 8-Delivery Of A Parcel By Drone");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -339,7 +339,7 @@ namespace ConsoleUI__BL
         }
         static void getList()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:\n 1-station \n 2-to drone \n 3-customer \n 4-parcel \n 5-parcel without drone/ 6-station without charge");
+            Console.WriteLine("ENTER YOUR CHOISE:\n 1-station \n 2-to drone \n 3-customer \n 4-parcel \n 5-parcel without drone \n 6-station without charge");
             string choise = Console.ReadLine();
             switch (choise)
             {
