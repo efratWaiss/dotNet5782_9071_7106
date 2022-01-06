@@ -32,7 +32,7 @@ namespace ConsoleUI
                     Station s = new Station(Id, Name, Longitude, Latitude, ChargeSlot);
                     try
                     {
-                        dd.addStation(s);
+                        dd.AddStation(s);
                     }
 
                     catch (Exception e)
@@ -68,7 +68,7 @@ namespace ConsoleUI
                     Drone d = new Drone(Id, Model, MaxWeight);
                     try
                     {
-                        dd.addDrone(d);
+                        dd.AddDrone(d);
                     }
 
                     catch (Exception e)
@@ -92,7 +92,7 @@ namespace ConsoleUI
                     Customer c = new Customer(Id, Name, Phone, Longitude, Latitude);
                     try
                     {
-                        dd.addCustomer(c);
+                        dd.AddCustomer(c);
                     }
 
                     catch (Exception e)
@@ -151,14 +151,14 @@ namespace ConsoleUI
                     int DroneId = int.Parse(Console.ReadLine());
                     Parcel p = new Parcel(SenderId, TargetId, Weight, priority, Requested,
                        scheduled, PickedUp, Delivered, DroneId);
-                    dd.addParcel(p);
+                    dd.AddParcel(p);
                     break;
 
             }
         }
         static void update()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-stationToDrone /n 2-pickParcelToDrone /n 3-parcelToCustomer /n 4-SendDroneToStation /n 5-freeDrone");
+            Console.WriteLine("ENTER YOUR CHOISE:/n 1-stationToDrone /n 2-pickParcelToDrone /n 3-parcelToCustomer /n 4-SendDroneToStation /n 5-FreeDrone");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -170,7 +170,7 @@ namespace ConsoleUI
                     int idParcel1 = int.Parse(Console.ReadLine());
                       try
                     {
-                         dd.updateParcelToDrone(idDrone1, idParcel1);
+                         dd.UpdateParcelToDrone(idDrone1, idParcel1);
                     }
 
                     catch (Exception e)
@@ -221,13 +221,13 @@ namespace ConsoleUI
                     int idStation = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter DroneStatuses: 1-Vacant /n 2-Maintenance /n 3-Shipping");
                     string choiseDroneStatuses = Console.ReadLine();
-                    dd.sendDroneToStation(idDrone1, idStation);
+                    dd.SendDroneToStation(idDrone1, idStation);
                     break;
 
                 case "5":
                     Console.WriteLine("enter idDrone");
                     int idDrone2 = int.Parse(Console.ReadLine());
-                    dd.freeDrone(idDrone2);
+                    dd.FreeDrone(idDrone2);
                     break;
 
             }
@@ -243,7 +243,7 @@ namespace ConsoleUI
                     int id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(dd.printStation(id));
+                        Console.Write(dd.GetStation(id));
                     }
                     catch (Exception e)
                     {
@@ -255,7 +255,7 @@ namespace ConsoleUI
                     id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(dd.printDrone(id));
+                        Console.Write(dd.GetDrone(id));
                     }
                     catch (Exception e)
                     {
@@ -267,7 +267,7 @@ namespace ConsoleUI
                     id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(dd.printCustomer(id));
+                        Console.Write(dd.GetCustomer(id));
                     }
                     catch (Exception e)
                     {
@@ -280,7 +280,7 @@ namespace ConsoleUI
                     id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(dd.printParcel(id));
+                        Console.Write(dd.GetParcel(id));
                     }
                     catch (Exception e)
                     {
@@ -308,7 +308,7 @@ namespace ConsoleUI
                     break;
                 case "2":
                     {
-                        IEnumerable f2 = dd.getDrone();
+                        IEnumerable f2 = dd.GetListDrone();
                         foreach (var item in f2)
                         {
                             Console.WriteLine(item);

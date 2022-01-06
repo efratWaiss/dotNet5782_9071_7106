@@ -16,7 +16,7 @@ namespace DalObject
             DataSource.Initialize();
         }
 
-        public void addStation(Station s)
+        public void AddStation(Station s)
         {
             foreach (var item in DataSource.stations)
             {
@@ -25,7 +25,7 @@ namespace DalObject
             }
             DataSource.stations.Add(s);
         }
-        public void addDrone(Drone d)
+        public void AddDrone(Drone d)
         {
             foreach (var item in DataSource.drones)
             {
@@ -35,7 +35,7 @@ namespace DalObject
             DataSource.drones.Add(d);
         }
 
-        public void addCustomer(Customer c)
+        public void AddCustomer(Customer c)
         {
             foreach (var item in DataSource.customers)
             {
@@ -46,12 +46,12 @@ namespace DalObject
         }
 
 
-        public int addParcel(Parcel p)
+        public int AddParcel(Parcel p)
         {
             DataSource.parcels.Add(p);
             return Parcel.endParcel;
         }
-        public Station printStation(int id)
+        public Station GetStation(int id)
         {
             for (int i = 0; i < DataSource.stations.Count; i++)
             {
@@ -61,7 +61,7 @@ namespace DalObject
             throw new NotExistException("this id not exist in the system");
 
         }
-        public DroneCharge printDroneCharge(int idDrone)
+        public DroneCharge GetDroneCharge(int idDrone)
         {
             for (int i = 0; i < DataSource.DroneCharges.Count; i++)
             {
@@ -70,7 +70,7 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
-        public Drone printDrone(int id)
+        public Drone GetDrone(int id)
         {
             for (int i = 0; i < DataSource.drones.Count; i++)
             {
@@ -79,7 +79,7 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
-        public Customer printCustomer(int id)
+        public Customer GetCustomer(int id)
         {
             
             for (int i = 0; i < DataSource.customers.Count; i++)
@@ -92,7 +92,7 @@ namespace DalObject
             
             throw new NotExistException("this id not exist in the system");
         }
-        public Parcel printParcel(int id)
+        public Parcel GetParcel(int id)
         {
             for (int i = 0; i < DataSource.parcels.Count; i++)
             {
@@ -105,7 +105,7 @@ namespace DalObject
         {
             return new List<Station>(DataSource.stations);
         }
-        public IEnumerable<Drone> getDrone()
+        public IEnumerable<Drone> GetListDrone()
         {
 
             return new List<Drone>(DataSource.drones);
@@ -141,11 +141,11 @@ namespace DalObject
 
             return ll;
         }
-        public IEnumerable<DroneCharge> GetDroneCharges()
+        public IEnumerable<DroneCharge> GetListDroneCharges()
         {
             return new List<DroneCharge>(DataSource.DroneCharges);
         }
-        public void updateParcelToDrone(int idDrone, int idParcel)
+        public void UpdateParcelToDrone(int idDrone, int idParcel)
         {
             bool b = true;
             bool b2 = false;
@@ -226,7 +226,7 @@ namespace DalObject
                 throw new NotExistException("this id parcel not exist in the system");
             }
         }
-        public void sendDroneToStation(int idDrone, int idStation)
+        public void SendDroneToStation(int idDrone, int idStation)
         {
             bool s = true;
             bool s2 = false;
@@ -262,7 +262,7 @@ namespace DalObject
                 throw new NotExistException("this id drone not exist in the system");
             }
         }
-        public void freeDrone(int idDrone)
+        public void FreeDrone(int idDrone)
         {
             bool f = false;
             for (int i = 0; i < DataSource.DroneCharges.Count; i++)
@@ -285,7 +285,7 @@ namespace DalObject
             DroneCharge dd = new DroneCharge(idDrone, idStation);
             if (!d.Equals(default) && !s.Equals(default))
             {
-                GetDroneCharges().ToList().Remove(dd);
+                GetListDroneCharges().ToList().Remove(dd);
             }
             else
             {

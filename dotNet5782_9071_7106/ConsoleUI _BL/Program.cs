@@ -31,7 +31,7 @@ namespace ConsoleUI__BL
 
                     try
                     {
-                        bl.addStation(Id, Name, location, ChargeSlot);
+                        bl.AddStation(Id, Name, location, ChargeSlot);
                     }
 
                     catch (Exception e)
@@ -64,7 +64,7 @@ namespace ConsoleUI__BL
                     int idStation = int.Parse(Console.ReadLine());
                     try
                     {
-                        bl.addDrone(Id, Model, MaxWeight, idStation);
+                        bl.AddDrone(Id, Model, MaxWeight, idStation);
                     }
 
                     catch (Exception e)/// לבדוק!!!
@@ -87,7 +87,7 @@ namespace ConsoleUI__BL
                     Latitude = double.Parse(Console.ReadLine());
                     try
                     {
-                        bl.addCustomer(Id, Name, Phone, Longitude, Latitude);
+                        bl.AddCustomer(Id, Name, Phone, Longitude, Latitude);
                     }
 
                     catch (Exception e)
@@ -136,7 +136,7 @@ namespace ConsoleUI__BL
                     }
                     try
                     {
-                        bl.addParcel(SenderId, TargetId, Weight, priority);
+                        bl.AddParcel(SenderId, TargetId, Weight, priority);
                     }
                     catch (Exception e)
                     {
@@ -213,7 +213,7 @@ namespace ConsoleUI__BL
                     idDrone1 = int.Parse(Console.ReadLine());
                     try
                     {
-                        bl.sendDroneToStation(idDrone1);
+                        bl.SendDroneToStation(idDrone1);
                     }
                     catch (Exception e)
                     {
@@ -229,7 +229,7 @@ namespace ConsoleUI__BL
                     double time = double.Parse(Console.ReadLine());
                     try
                     {
-                        bl.freeDrone(idDrone2, time);
+                        bl.FreeDrone(idDrone2, time);
                     }
                     catch (Exception e)
                     {
@@ -242,7 +242,7 @@ namespace ConsoleUI__BL
                     int idDrone = int.Parse(Console.ReadLine());
                     try
                     {
-                        bl.updateParcelToDrone(idDrone);
+                        bl.UpdateParcelToDrone(idDrone);
                     }
                     catch (Exception e)
                     {
@@ -289,7 +289,7 @@ namespace ConsoleUI__BL
                     int id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(bl.printStation(id));
+                        Console.Write(bl.GetStation(id));
                     }
                     catch (Exception e)
                     {
@@ -301,7 +301,7 @@ namespace ConsoleUI__BL
                     id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(bl.printDrone(id));
+                        Console.Write(bl.GetDrone(id));
                     }
                     catch (Exception e)
                     {
@@ -313,7 +313,7 @@ namespace ConsoleUI__BL
                     id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(bl.printCustomer(id));
+                        Console.Write(bl.GetCustomer(id));
                     }
                     catch (Exception e)
                     {
@@ -326,7 +326,7 @@ namespace ConsoleUI__BL
                     id = int.Parse(Console.ReadLine());
                     try
                     {
-                        Console.Write(bl.printParcel(id));
+                        Console.Write(bl.GetParcel(id));
                     }
                     catch (Exception e)
                     {
@@ -356,7 +356,7 @@ namespace ConsoleUI__BL
                     break;
                 case "2":
                     {
-                        IEnumerable f2 = bl.getDrone();
+                        IEnumerable f2 = bl.GetListDrone();
                         foreach (var item in f2)
                         {
                             Console.WriteLine(item);
