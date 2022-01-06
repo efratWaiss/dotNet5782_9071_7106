@@ -299,7 +299,7 @@ namespace ConsoleUI
             {
                 case "1":
                     {
-                        IEnumerable f1 = dd.viewStation();//לשנות אח''כ
+                        IEnumerable f1 = dd.getStation();//לשנות אח''כ
                         foreach (var item in f1)
                         {
                             Console.WriteLine(item);
@@ -308,7 +308,7 @@ namespace ConsoleUI
                     break;
                 case "2":
                     {
-                        IEnumerable f2 = dd.viewDrone();
+                        IEnumerable f2 = dd.getDrone();
                         foreach (var item in f2)
                         {
                             Console.WriteLine(item);
@@ -317,7 +317,7 @@ namespace ConsoleUI
                     break;
                 case "3":
                     {
-                        IEnumerable f3 = dd.viewCustomer();
+                        IEnumerable f3 = dd.getCustomer();
                         foreach (var item in f3)
                         {
                             Console.WriteLine(item);
@@ -326,7 +326,7 @@ namespace ConsoleUI
                     break;
                 case "4":
                     {
-                        IEnumerable f4 = dd.viewParcel();
+                        IEnumerable f4 = dd.getParcel();
                         foreach (var item in f4)
                         {
                             Console.WriteLine(item);

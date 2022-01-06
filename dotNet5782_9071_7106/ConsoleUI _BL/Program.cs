@@ -437,7 +437,7 @@ namespace ConsoleUI__BL
                         break;
 
                 }
-                Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit /n 0-exit");
+                Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit ");
                 choise = Console.ReadLine();
 
             }
