@@ -11,28 +11,28 @@ namespace IDal
     public interface IDal
     {
 
-        public void addStation(Station s);
-        public void addDrone(Drone d);
-        public void addCustomer(Customer c);
+        public void AddStation(Station s);
+        public void AddDrone(Drone d);
+        public void AddCustomer(Customer c);
 
-        public int addParcel(Parcel p);
-        public Station printStation(int id);
-        public Drone printDrone(int id);
-        public Customer printCustomer(int id);
-        public Parcel printParcel(int id);
-        public DroneCharge printDroneCharge(int idDrone);
-        public IEnumerable<DroneCharge> GetDroneCharges();
-        public IEnumerable<Station> getStation();
-        public IEnumerable<Drone> getDrone();
+        public int AddParcel(Parcel p);
+        public Station GetStation(int id);
+        public Drone GetDrone(int id);
+        public Customer GetCustomer(int id);
+        public Parcel GetParcel(int id);
+        public DroneCharge GetDroneCharge(int idDrone);
+        public IEnumerable<DroneCharge> GetListDroneCharges();
+        public IEnumerable<Station> GetListStation();
+        public IEnumerable<Drone> GetListDrone();
         public IEnumerable<Customer> getCustomer();
         public IEnumerable<Parcel> getParcel();
         public IEnumerable<Parcel> ParcelNoDrone();
         public IEnumerable<Station> StationNoCharge();
-        public void updateParcelToDrone(int idDrone, int idParcel);
+        public void UpdateParcelToDrone(int idDrone, int idParcel);
         public void pickedUpD(int idDrone, DateTime d);
         public void targetId(int idCustomer, int idParcel);
-        public void sendDroneToStation(int idDrone, int idStation);
-        public void freeDrone(int idDrone);
+        public void SendDroneToStation(int idDrone, int idStation);
+        public void FreeDrone(int idDrone);
         public double[] powerConsumpitionByDrone();
         public void UpdateParcel(Parcel p);
         public void removeFromDroneCharges(int idDrone, int idStation);

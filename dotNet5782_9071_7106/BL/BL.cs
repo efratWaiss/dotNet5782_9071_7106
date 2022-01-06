@@ -42,7 +42,7 @@ namespace IBL
             double battery = new double();
             Location lo = new Location(454.5, 45.5);
 
-            foreach (var drone in dal.getDrone())
+            foreach (var drone in dal.GetListDrone())
             {
                 foreach (var parcel in dal.getParcel())
                 {
@@ -55,7 +55,7 @@ namespace IBL
                         {
 
                             double min = double.MaxValue;
-                            foreach (var station in dal.getStation())
+                            foreach (var station in dal.GetListStation())
                             {
                                 if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude)) < min)
                                 {
@@ -72,9 +72,9 @@ namespace IBL
                         }
 
                         double tempLocation =
-                                GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(parcel.SenderId).Longitude, dal.printCustomer(parcel.SenderId).Latitude), DronesList.FirstOrDefault(x => x.Id == drone.Id).LocationNow)//מרחק בין מיקום רחפן לשולח
-                                + GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(parcel.SenderId).Longitude, dal.printCustomer(parcel.SenderId).Latitude), new Location(dal.printCustomer(parcel.TargetId).Longitude, dal.printCustomer(parcel.TargetId).Latitude))//מרחק בין שולח למקבל
-                              + GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(parcel.TargetId).Longitude, dal.printCustomer(parcel.TargetId).Latitude), new Location(lo.Longitude, lo.Latitude));
+                                GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.SenderId).Longitude, dal.GetCustomer(parcel.SenderId).Latitude), DronesList.FirstOrDefault(x => x.Id == drone.Id).LocationNow)//מרחק בין מיקום רחפן לשולח
+                                + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.SenderId).Longitude, dal.GetCustomer(parcel.SenderId).Latitude), new Location(dal.GetCustomer(parcel.TargetId).Longitude, dal.GetCustomer(parcel.TargetId).Latitude))//מרחק בין שולח למקבל
+                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.TargetId).Longitude, dal.GetCustomer(parcel.TargetId).Latitude), new Location(lo.Longitude, lo.Latitude));
                         Random rn1 = new Random();
                         battery = rn1.Next((int)(tempLocation * ChargingRate * available), 100);
                         d = new DroneToList(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, battery, st, lo, parcel.Id);
@@ -90,9 +90,9 @@ namespace IBL
                         switch (rand)
                         {
                             case 1:
-                                int rr = rn.Next(1, dal.getStation().Count());
-                                lo.Latitude = dal.getStation().ToList()[rr].Latitude;
-                                lo.Longitude = dal.getStation().ToList()[rr].Longitude;
+                                int rr = rn.Next(1, dal.GetListStation().Count());
+                                lo.Latitude = dal.GetListStation().ToList()[rr].Latitude;
+                                lo.Longitude = dal.GetListStation().ToList()[rr].Longitude;
                                 d = new DroneToList(drone.Id
                                     , drone.Model
                                     , (WeightCategories)drone.MaxWeight
@@ -126,7 +126,7 @@ namespace IBL
                                 }
                                 Location stationLocGet = new Location(12.7, 7.9);//איתחול משתנה בהמשך הפונקציה
                                 double min = double.MaxValue;
-                                foreach (var station in dal.getStation())
+                                foreach (var station in dal.GetListStation())
                                 {
                                     if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude)) < min)
                                     {
@@ -157,11 +157,11 @@ namespace IBL
         {
             return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
-        public void addCustomer(int Id, String Name, String Phone, double Longitude, double Latitude)
+        public void AddCustomer(int Id, String Name, String Phone, double Longitude, double Latitude)
         {
             try
             {
-                dal.addCustomer(new IDAL.DO.Customer(Id, Name, Phone, Longitude, Latitude));
+                dal.AddCustomer(new IDAL.DO.Customer(Id, Name, Phone, Longitude, Latitude));
             }
             catch (IdException ex)
             {
@@ -169,17 +169,17 @@ namespace IBL
             }
 
         }
-        public void addDrone(int Id, String Model, WeightCategories weight, int IdStation)
+        public void AddDrone(int Id, String Model, WeightCategories weight, int IdStation)
         {
             try
             {
-                var drone = dal.printDrone(Id);
+                var drone = dal.GetDrone(Id);
                 Random rn = new Random();
                 double battery = rn.Next(20, 41);
                 try
                 {
-                    var Station1 = dal.printStation(IdStation);
-                    dal.addDrone(new IDAL.DO.Drone(Id, Model, (IDAL.DO.WeightCategories)(weight)));
+                    var Station1 = dal.GetStation(IdStation);
+                    dal.AddDrone(new IDAL.DO.Drone(Id, Model, (IDAL.DO.WeightCategories)(weight)));
                     DronesList.Add(new DroneToList(Id, Model, weight, battery, DroneStatuses.Maintenance, new Location(Station1.Latitude, Station1.Longitude), -1));
                 }
                 catch (IdException e)
@@ -193,13 +193,13 @@ namespace IBL
             }
 
         }
-        public int addParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)
+        public int AddParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)
         {
             try
             {
-                var customer1 = dal.printCustomer(SenderId);
-                var customer2 = dal.printCustomer(TargetId);
-                dal.addParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0));
+                var customer1 = dal.GetCustomer(SenderId);
+                var customer2 = dal.GetCustomer(TargetId);
+                dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0));
             }
             catch (IdException e)
             {
@@ -208,12 +208,12 @@ namespace IBL
 
             return Parcel.Id;
         }
-        public void addStation(int Id, String Name, Location location, int AvailableChargeSlots)
+        public void AddStation(int Id, String Name, Location location, int AvailableChargeSlots)
         {
             try
             {
-                var station = dal.printStation(Id);
-                dal.addStation(new IDAL.DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
+                var station = dal.GetStation(Id);
+                dal.AddStation(new IDAL.DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
             }
 
             catch (IdException e)
@@ -222,7 +222,7 @@ namespace IBL
             }
 
         }
-        public void freeDrone(int idDrone, double timeInCharging)
+        public void FreeDrone(int idDrone, double timeInCharging)
         {
             IDAL.DO.Station station;
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
@@ -234,7 +234,7 @@ namespace IBL
                     drone.Status = DroneStatuses.Vacant;
                     try
                     {
-                        station = dal.printStation(drone.ParcelDelivered);
+                        station = dal.GetStation(drone.ParcelDelivered);
                         station.ChargeSlots += 1;
                     }
                     catch
@@ -262,17 +262,17 @@ namespace IBL
             }
 
         }
-        public Customer printCustomer(int id)
+        public Customer GetCustomer(int id)
         {
             try
             {
-                var customer = dal.printCustomer(id);
+                var customer = dal.GetCustomer(id);
                 Customer c = new Customer(customer.Id, customer.Name, customer.Phone, new Location(customer.Longitude, customer.Latitude));
                 foreach (var item in dal.getParcel())
                 {
                     if (item.SenderId == c.Id)
                         c.parcelToCustomer.Add(new Parcel(new CustomerInParcel(c.Id, c.Name)
-                            , new CustomerInParcel(dal.printCustomer(item.TargetId).Id, dal.printCustomer(item.TargetId).Name)
+                            , new CustomerInParcel(dal.GetCustomer(item.TargetId).Id, dal.GetCustomer(item.TargetId).Name)
                             , (WeightCategories)item.Weight
                             , (Priorities)item.priority
                             , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id, DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)
@@ -282,7 +282,7 @@ namespace IBL
                             , item.PickedUp.Value
                             , item.Delivered.Value));
                     else if (item.TargetId == c.Id)
-                        c.parcelFromCustomer.Add(new Parcel(new CustomerInParcel(dal.printCustomer(item.SenderId).Id, dal.printCustomer(item.SenderId).Name)
+                        c.parcelFromCustomer.Add(new Parcel(new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
                            , new CustomerInParcel(c.Id, c.Name)
                            , (WeightCategories)item.Weight
                            , (Priorities)item.priority
@@ -301,7 +301,7 @@ namespace IBL
             }
 
         }
-        public Drone printDrone(int id)
+        public Drone GetDrone(int id)
         {
 
             ParcelInTransference ParcelInTransference;
@@ -313,12 +313,12 @@ namespace IBL
                 {
                     try
                     {
-                        var p = dal.printParcel(drone.ParcelDelivered);
-                        ParcelInTransference = new(p.Id, new CustomerInParcel(p.SenderId, dal.printCustomer(p.SenderId).Name), new CustomerInParcel(p.TargetId, dal.printCustomer(p.TargetId).Name), (WeightCategories)p.Weight, (Priorities)p.priority, true,
-                           new Location(dal.printCustomer(p.SenderId).Longitude, dal.printCustomer(p.SenderId).Latitude),
-                           new Location(dal.printCustomer(p.TargetId).Longitude, dal.printCustomer(p.TargetId).Latitude)
-                           , GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p.SenderId).Longitude, dal.printCustomer(p.SenderId).Latitude),
-                           new Location(dal.printCustomer(p.TargetId).Longitude, dal.printCustomer(p.TargetId).Latitude)));
+                        var p = dal.GetParcel(drone.ParcelDelivered);
+                        ParcelInTransference = new(p.Id, new CustomerInParcel(p.SenderId, dal.GetCustomer(p.SenderId).Name), new CustomerInParcel(p.TargetId, dal.GetCustomer(p.TargetId).Name), (WeightCategories)p.Weight, (Priorities)p.priority, true,
+                           new Location(dal.GetCustomer(p.SenderId).Longitude, dal.GetCustomer(p.SenderId).Latitude),
+                           new Location(dal.GetCustomer(p.TargetId).Longitude, dal.GetCustomer(p.TargetId).Latitude)
+                           , GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p.SenderId).Longitude, dal.GetCustomer(p.SenderId).Latitude),
+                           new Location(dal.GetCustomer(p.TargetId).Longitude, dal.GetCustomer(p.TargetId).Latitude)));
                     }
                     catch (IdException e)
                     {
@@ -338,22 +338,22 @@ namespace IBL
             }
 
         }
-        public Parcel printParcel(int id)
+        public Parcel GetParcel(int id)
         {
             Parcel p = default;
             try
             {
-                var parcel = dal.printParcel(id);
+                var parcel = dal.GetParcel(id);
                 if (parcel.DroneId != 0)
                 {
                     var drone = DronesList.FirstOrDefault(x => x.Id == parcel.DroneId);
-                    p = new Parcel(new CustomerInParcel(dal.printCustomer(parcel.SenderId).Id, dal.printCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.printCustomer(parcel.TargetId).Id, dal.printCustomer(parcel.TargetId).Name), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
+                    p = new Parcel(new CustomerInParcel(dal.GetCustomer(parcel.SenderId).Id, dal.GetCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.GetCustomer(parcel.TargetId).Id, dal.GetCustomer(parcel.TargetId).Name), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
                      , new DroneInParcel(drone.Id, drone.Battery, drone.LocationNow), parcel.Requested, parcel.DroneId, parcel.scheduled
                     , parcel.PickedUp, parcel.Delivered);
                 }
                 else
                 {
-                    p = new Parcel(new CustomerInParcel(dal.printCustomer(parcel.SenderId).Id, dal.printCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.printCustomer(parcel.TargetId).Id, dal.printCustomer(parcel.TargetId).Name), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
+                    p = new Parcel(new CustomerInParcel(dal.GetCustomer(parcel.SenderId).Id, dal.GetCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.GetCustomer(parcel.TargetId).Id, dal.GetCustomer(parcel.TargetId).Name), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
                      , null, parcel.Requested, parcel.DroneId, parcel.scheduled, parcel.PickedUp, parcel.Delivered);
                 }
                 return p;
@@ -364,14 +364,14 @@ namespace IBL
             }
 
         }
-        public Station printStation(int id)
+        public Station GetStation(int id)
         {
             List<DroneInCharging> d = new();
             try
             {
-                var stationDal = dal.printStation(id);
+                var stationDal = dal.GetStation(id);
 
-                foreach (var item in dal.GetDroneCharges())
+                foreach (var item in dal.GetListDroneCharges())
                 {
                     if (item.Stationld == stationDal.Id)
                     {
@@ -388,18 +388,18 @@ namespace IBL
             }
 
         }
-        public void sendDroneToStation(int idDrone)
+        public void SendDroneToStation(int idDrone)
         {
             double min = double.MaxValue;
             double distance = 0;
-            var stationHelp = dal.getStation().FirstOrDefault(x => x.Id == 1);//אתחול
+            var stationHelp = dal.GetListStation().FirstOrDefault(x => x.Id == 1);//אתחול
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
             if (drone != default)
             {
                 double wightDrone = droneWeight(drone.Id);
                 if (drone.Status == DroneStatuses.Vacant)
                 {
-                    foreach (var station in dal.getStation())
+                    foreach (var station in dal.GetListStation())
                     {
                         distance = GetDistanceBetweenTwoLocation(new Location(station.Longitude, station.Latitude), drone.LocationNow);
                         if (distance < min && station.ChargeSlots != 0/*לבדוק*/&& drone.Battery > distance * wightDrone * ChargingRate)
@@ -411,7 +411,7 @@ namespace IBL
                     drone.LocationNow = new Location(stationHelp.Longitude, stationHelp.Latitude);
                     drone.Status = DroneStatuses.Maintenance;
                     stationHelp.ChargeSlots -= 1;//TODO:לבדוק את התחנות הפנויות
-                    dal.GetDroneCharges().ToList().Add(new IDAL.DO.DroneCharge(drone.Id, stationHelp.Id));
+                    dal.GetListDroneCharges().ToList().Add(new IDAL.DO.DroneCharge(drone.Id, stationHelp.Id));
                 }
                 else
                 {
@@ -423,7 +423,7 @@ namespace IBL
                 throw new NotImplementedException("this Drone's id not exist in the system");
             }
         }
-        public void updateParcelToDrone(int idDrone)
+        public void UpdateParcelToDrone(int idDrone)
         {
             try
             {
@@ -449,7 +449,7 @@ namespace IBL
                         for (int i = 0; i < dal.getParcel().Count(); i++)
                         {//ממיין את הרשימה מעדיפות גבוהה לנמוכה
                             double min = double.MaxValue;
-                            foreach (var station in dal.getStation())//תחנה קרובה למקבל
+                            foreach (var station in dal.GetListStation())//תחנה קרובה למקבל
                             {
                                 if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), drone1.LocationNow) < min)
                                 {
@@ -460,9 +460,9 @@ namespace IBL
                             }
 
                             tempLocation =
-                                GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p[i].SenderId).Longitude, dal.printCustomer(p[i].SenderId).Latitude), drone1.LocationNow)
-                                + GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p[i].TargetId).Longitude, dal.printCustomer(p[i].TargetId).Latitude), drone1.LocationNow)
-                              + GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p[i].TargetId).Longitude, dal.printCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));
+                                GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].SenderId).Longitude, dal.GetCustomer(p[i].SenderId).Latitude), drone1.LocationNow)
+                                + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), drone1.LocationNow)
+                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));
 
                             //tempLocation שומר את כל הדרך שעל הרחפן לעבור, כדי להעביר חבילה מלקוח למקבל ולהגיע לתחנה הקרובה לטעינה (כדי לבדוק אם יש לו מספיק בטריה
                             if (tempLocation <= drone1.Battery * ChargingRate * droneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
@@ -521,7 +521,7 @@ namespace IBL
                         for (int i = 0; i < index; i++)
                         {
                             tempLocation = GetDistanceBetweenTwoLocation(
-                                new Location(dal.printCustomer(p[i].SenderId).Longitude, dal.printCustomer(p[i].SenderId).Latitude)
+                                new Location(dal.GetCustomer(p[i].SenderId).Longitude, dal.GetCustomer(p[i].SenderId).Latitude)
                                 , drone1.LocationNow);
                             if (minLocation > tempLocation)
                             {
@@ -582,17 +582,17 @@ namespace IBL
             try
             {
                 var pacelsL = dal.getParcel().ToList();
-                var drone = dal.printDrone(idDrone);
-                DroneToList getDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                var itemParcel = dal.printParcel(getDrone.ParcelDelivered);
+                var drone = dal.GetDrone(idDrone);
+                DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+                var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
                 for (int i = 0; i < dal.getParcel().Count(); i++)
                 {
 
                     if (pacelsL[i].DroneId == idDrone && pacelsL[i].PickedUp.Equals(default))
                     {
-                        getDrone.Battery = getDrone.Battery - (GetDistanceBetweenTwoLocation(getDrone.LocationNow,
-                             new Location(dal.printCustomer(pacelsL[i].SenderId).Longitude, dal.printCustomer(pacelsL[i].TargetId).Latitude))) * ChargingRate * droneWeight(pacelsL[i].DroneId);
-                        getDrone.LocationNow = new Location(dal.printCustomer(pacelsL[i].SenderId).Longitude, dal.printCustomer(pacelsL[i].TargetId).Latitude);
+                        GetListDrone.Battery = GetListDrone.Battery - (GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
+                             new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude))) * ChargingRate * droneWeight(pacelsL[i].DroneId);
+                        GetListDrone.LocationNow = new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude);
                         itemParcel.PickedUp = DateTime.Now;
                         dal.UpdateParcel(itemParcel);
                     }
@@ -614,17 +614,17 @@ namespace IBL
             {
 
                 var parcels = dal.getParcel().ToList();
-                var drone = dal.printDrone(idDrone);
-                DroneToList getDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                var itemParcel = dal.printParcel(getDrone.ParcelDelivered);
+                var drone = dal.GetDrone(idDrone);
+                DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+                var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
                 for (int i = 0; i < dal.getParcel().Count(); i++)
                 {
                     if (parcels[i].DroneId == idDrone && !parcels[i].PickedUp.Equals(default) && parcels[i].Delivered.Equals(default))
                     {
-                        getDrone.Battery = getDrone.Battery - (GetDistanceBetweenTwoLocation(getDrone.LocationNow,
-                             new Location(dal.printCustomer(parcels[i].TargetId).Longitude, dal.printCustomer(parcels[i].TargetId).Latitude))) * ChargingRate;
-                        getDrone.LocationNow = new Location(dal.printCustomer(parcels[i].SenderId).Longitude, dal.printCustomer(parcels[i].SenderId).Latitude);
-                        getDrone.Status = DroneStatuses.Vacant;
+                        GetListDrone.Battery = GetListDrone.Battery - (GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
+                             new Location(dal.GetCustomer(parcels[i].TargetId).Longitude, dal.GetCustomer(parcels[i].TargetId).Latitude))) * ChargingRate;
+                        GetListDrone.LocationNow = new Location(dal.GetCustomer(parcels[i].SenderId).Longitude, dal.GetCustomer(parcels[i].SenderId).Latitude);
+                        GetListDrone.Status = DroneStatuses.Vacant;
                         itemParcel.Delivered = DateTime.Now;
                         dal.UpdateParcel(itemParcel);
                     }
@@ -640,14 +640,14 @@ namespace IBL
                 throw (e);
             }
         }
-        public IEnumerable<StationToList> getStation()
+        public IEnumerable<StationToList> GetListStation()
         {
-            var stations = dal.getStation();
+            var stations = dal.GetListStation();
             List<StationToList> s = new List<StationToList>();
             foreach (var item in stations)
             {
                 int count = 0;
-                foreach (var item1 in dal.GetDroneCharges())
+                foreach (var item1 in dal.GetListDroneCharges())
                 {
                     if (item1.Stationld == item.Id)
                     {
@@ -658,7 +658,7 @@ namespace IBL
             }
             return s;
         }
-        public IEnumerable<DroneToList> getDrone()
+        public IEnumerable<DroneToList> GetListDrone()
         {
             return new List<DroneToList>(DronesList);
         }
@@ -726,8 +726,8 @@ namespace IBL
                     }
 
 
-                    p.Add(new ParcelToList(item.Id, new CustomerInParcel(dal.printCustomer(item.SenderId).Id, dal.printCustomer(item.SenderId).Name)
-                       , new CustomerInParcel(dal.printCustomer(item.TargetId).Id, dal.printCustomer(item.TargetId).Name)
+                    p.Add(new ParcelToList(item.Id, new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
+                       , new CustomerInParcel(dal.GetCustomer(item.TargetId).Id, dal.GetCustomer(item.TargetId).Name)
                          , (WeightCategories)item.Weight
                          , (Priorities)item.priority
                          , temp));
@@ -742,7 +742,7 @@ namespace IBL
         public IEnumerable<StationToList> stationWithAvailableStands()
         {
             List<StationToList> stands = new List<StationToList>();
-            var stations = getStation();
+            var stations = GetListStation();
             foreach (var item in stations)
             {
                 if (item.AvailableChargingPositions != 0)
@@ -756,7 +756,7 @@ namespace IBL
         {
             try
             {
-                var Drone = dal.printDrone(Id);
+                var Drone = dal.GetDrone(Id);
                 Drone.Model = Model;
                 var Drone1 = DronesList.FirstOrDefault(x => x.Id == Id);
                 Drone1.Model = Model;
@@ -771,7 +771,7 @@ namespace IBL
         {
             try
             {
-                var Station = dal.printStation(IdStation);
+                var Station = dal.GetStation(IdStation);
                 if (!NameStation.Equals(default))
                 {
                     Station.Name = NameStation;
@@ -792,7 +792,7 @@ namespace IBL
         {
             try
             {
-                var customer = dal.printCustomer(IdCustomer);
+                var customer = dal.GetCustomer(IdCustomer);
                 if (!Name.Equals(default))
                 {
                     customer.Name = Name;
