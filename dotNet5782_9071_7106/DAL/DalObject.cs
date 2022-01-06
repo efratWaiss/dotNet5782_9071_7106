@@ -97,20 +97,20 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
-        public IEnumerable<Station> viewStation()
+        public IEnumerable<Station> getStation()
         {
             return new List<Station>(DataSource.stations);
         }
-        public IEnumerable<Drone> viewDrone()
+        public IEnumerable<Drone> getDrone()
         {
 
             return new List<Drone>(DataSource.drones);
         }
-        public IEnumerable<Customer> viewCustomer()
+        public IEnumerable<Customer> getCustomer()
         {
             return new List<Customer>(DataSource.customers);
         }
-        public IEnumerable<Parcel> viewParcel()
+        public IEnumerable<Parcel> getParcel()
         {
             return new List<Parcel>(DataSource.parcels);
           
