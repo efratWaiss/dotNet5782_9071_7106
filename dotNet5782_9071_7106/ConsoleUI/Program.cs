@@ -317,7 +317,7 @@ namespace ConsoleUI
                     break;
                 case "3":
                     {
-                        IEnumerable f3 = dd.getCustomer();
+                        IEnumerable f3 = dd.GetListCustomer();
                         foreach (var item in f3)
                         {
                             Console.WriteLine(item);
@@ -326,7 +326,7 @@ namespace ConsoleUI
                     break;
                 case "4":
                     {
-                        IEnumerable f4 = dd.getParcel();
+                        IEnumerable f4 = dd.GetListParcel();
                         foreach (var item in f4)
                         {
                             Console.WriteLine(item);
