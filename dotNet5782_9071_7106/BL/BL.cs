@@ -44,18 +44,18 @@ namespace IBL
 
             foreach (var drone in dal.getDrone())
             {
-                foreach (var parcel in dal.viewParcel())
+                foreach (var parcel in dal.getParcel())
                 {
                     if (parcel.DroneId == drone.Id && parcel.Delivered != null)
                     {
 
-                        var customer = dal.viewCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
+                        var customer = dal.getCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
                         st = DroneStatuses.Shipping;
                         if (parcel.scheduled != null && parcel.PickedUp == null)
                         {
 
                             double min = double.MaxValue;
-                            foreach (var station in dal.viewStation())
+                            foreach (var station in dal.getStation())
                             {
                                 if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude)) < min)
                                 {
@@ -90,9 +90,9 @@ namespace IBL
                         switch (rand)
                         {
                             case 1:
-                                int rr = rn.Next(1, dal.viewStation().Count());
-                                lo.Latitude = dal.viewStation().ToList()[rr].Latitude;
-                                lo.Longitude = dal.viewStation().ToList()[rr].Longitude;
+                                int rr = rn.Next(1, dal.getStation().Count());
+                                lo.Latitude = dal.getStation().ToList()[rr].Latitude;
+                                lo.Longitude = dal.getStation().ToList()[rr].Longitude;
                                 d = new DroneToList(drone.Id
                                     , drone.Model
                                     , (WeightCategories)drone.MaxWeight
@@ -103,9 +103,9 @@ namespace IBL
                                 DronesList.Add(d);
                                 break;
                             case 2:
-                                foreach (var Customer in dal.viewCustomer())
+                                foreach (var Customer in dal.getCustomer())
                                 {
-                                    foreach (var Parcel in dal.viewParcel())
+                                    foreach (var Parcel in dal.getParcel())
                                     {
                                         if (Customer.Id == Parcel.TargetId)
                                         {
@@ -116,7 +116,7 @@ namespace IBL
                                 }
                                 int p = IDs.Count();
                                 rand = rn.Next(1, p);
-                                foreach (var Customer in dal.viewCustomer())
+                                foreach (var Customer in dal.getCustomer())
                                 {
                                     if (Customer.Id == IDs[rand])
                                     {
@@ -126,7 +126,7 @@ namespace IBL
                                 }
                                 Location stationLocGet = new Location(12.7, 7.9);//איתחול משתנה בהמשך הפונקציה
                                 double min = double.MaxValue;
-                                foreach (var station in dal.viewStation())
+                                foreach (var station in dal.getStation())
                                 {
                                     if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude)) < min)
                                     {
@@ -553,7 +553,7 @@ namespace IBL
         {
             try
             {
-                var parcels = viewParcel();
+                var parcels = getParcel();
                 bool provided = false;
                 List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
                 foreach (var item in parcels)
@@ -699,7 +699,7 @@ namespace IBL
         {
             try
             {
-                var parcels = dal.viewParcel();
+                var parcels = dal.getParcel();
                 ParcelStatsus temp;
                 List<ParcelToList> p = new List<ParcelToList>();
                 foreach (var item in parcels)
