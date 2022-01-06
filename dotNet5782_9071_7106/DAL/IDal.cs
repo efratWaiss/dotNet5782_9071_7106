@@ -24,8 +24,8 @@ namespace IDal
         public IEnumerable<DroneCharge> GetListDroneCharges();
         public IEnumerable<Station> GetListStation();
         public IEnumerable<Drone> GetListDrone();
-        public IEnumerable<Customer> getCustomer();
-        public IEnumerable<Parcel> getParcel();
+        public IEnumerable<Customer> GetListCustomer();
+        public IEnumerable<Parcel> GetListParcel();
         public IEnumerable<Parcel> ParcelNoDrone();
         public IEnumerable<Station> StationNoCharge();
         public void UpdateParcelToDrone(int idDrone, int idParcel);

@@ -365,7 +365,7 @@ namespace ConsoleUI__BL
                     break;
                 case "3":
                     {
-                        IEnumerable f3 = bl.getCustomer();
+                        IEnumerable f3 = bl.GetListCustomer();
                         foreach (var item in f3)
                         {
                             Console.WriteLine(item);
@@ -374,7 +374,7 @@ namespace ConsoleUI__BL
                     break;
                 case "4":
                     {
-                        IEnumerable f4 = bl.getParcel();
+                        IEnumerable f4 = bl.GetListParcel();
                         foreach (var item in f4)
                         {
                             Console.WriteLine(item);
@@ -402,7 +402,7 @@ namespace ConsoleUI__BL
 
                 case "6":
                     {
-                        IEnumerable f5 = bl.stationWithAvailableStands();
+                        IEnumerable f5 = bl.StationWithAvailableStands();
                         foreach (var item in f5)
                         {
                             Console.WriteLine(item);

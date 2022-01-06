@@ -44,12 +44,12 @@ namespace IBL
 
             foreach (var drone in dal.GetListDrone())
             {
-                foreach (var parcel in dal.getParcel())
+                foreach (var parcel in dal.GetListParcel())
                 {
                     if (parcel.DroneId == drone.Id && parcel.Delivered != null)
                     {
 
-                        var customer = dal.getCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
+                        var customer = dal.GetListCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);
                         st = DroneStatuses.Shipping;
                         if (parcel.scheduled != null && parcel.PickedUp == null)
                         {
@@ -103,9 +103,9 @@ namespace IBL
                                 DronesList.Add(d);
                                 break;
                             case 2:
-                                foreach (var Customer in dal.getCustomer())
+                                foreach (var Customer in dal.GetListCustomer())
                                 {
-                                    foreach (var Parcel in dal.getParcel())
+                                    foreach (var Parcel in dal.GetListParcel())
                                     {
                                         if (Customer.Id == Parcel.TargetId)
                                         {
@@ -116,7 +116,7 @@ namespace IBL
                                 }
                                 int p = IDs.Count();
                                 rand = rn.Next(1, p);
-                                foreach (var Customer in dal.getCustomer())
+                                foreach (var Customer in dal.GetListCustomer())
                                 {
                                     if (Customer.Id == IDs[rand])
                                     {
@@ -268,7 +268,7 @@ namespace IBL
             {
                 var customer = dal.GetCustomer(id);
                 Customer c = new Customer(customer.Id, customer.Name, customer.Phone, new Location(customer.Longitude, customer.Latitude));
-                foreach (var item in dal.getParcel())
+                foreach (var item in dal.GetListParcel())
                 {
                     if (item.SenderId == c.Id)
                         c.parcelToCustomer.Add(new Parcel(new CustomerInParcel(c.Id, c.Name)
@@ -433,10 +433,10 @@ namespace IBL
                 int start = 0;
                 IDAL.DO.Parcel temp;
                 IDAL.DO.Parcel parcelChoise = default;
-                int end = dal.getParcel().Count();
+                int end = dal.GetListParcel().Count();
                 double minLocation = 99999;
                 double tempLocation = 0;
-                var p = dal.getParcel().ToList();
+                var p = dal.GetListParcel().ToList();
                 List<Parcel> parcels = new List<Parcel>();
                 List<Parcel> tempParcels = new List<Parcel>();
 
@@ -446,7 +446,7 @@ namespace IBL
                     if (drone1.Status == DroneStatuses.Vacant)//האם הרחפן פנוי 
                     {
 
-                        for (int i = 0; i < dal.getParcel().Count(); i++)
+                        for (int i = 0; i < dal.GetListParcel().Count(); i++)
                         {//ממיין את הרשימה מעדיפות גבוהה לנמוכה
                             double min = double.MaxValue;
                             foreach (var station in dal.GetListStation())//תחנה קרובה למקבל
@@ -553,7 +553,7 @@ namespace IBL
         {
             try
             {
-                var parcels = getParcel();
+                var parcels = GetListParcel();
                 bool provided = false;
                 List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
                 foreach (var item in parcels)
@@ -581,11 +581,11 @@ namespace IBL
         {
             try
             {
-                var pacelsL = dal.getParcel().ToList();
+                var pacelsL = dal.GetListParcel().ToList();
                 var drone = dal.GetDrone(idDrone);
                 DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
                 var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
-                for (int i = 0; i < dal.getParcel().Count(); i++)
+                for (int i = 0; i < dal.GetListParcel().Count(); i++)
                 {
 
                     if (pacelsL[i].DroneId == idDrone && pacelsL[i].PickedUp.Equals(default))
@@ -613,11 +613,11 @@ namespace IBL
             try
             {
 
-                var parcels = dal.getParcel().ToList();
+                var parcels = dal.GetListParcel().ToList();
                 var drone = dal.GetDrone(idDrone);
                 DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
                 var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
-                for (int i = 0; i < dal.getParcel().Count(); i++)
+                for (int i = 0; i < dal.GetListParcel().Count(); i++)
                 {
                     if (parcels[i].DroneId == idDrone && !parcels[i].PickedUp.Equals(default) && parcels[i].Delivered.Equals(default))
                     {
@@ -662,16 +662,16 @@ namespace IBL
         {
             return new List<DroneToList>(DronesList);
         }
-        public IEnumerable<CustomerToList> getCustomer()
+        public IEnumerable<CustomerToList> GetListCustomer()
         {
-            var customers = dal.getCustomer();
+            var customers = dal.GetListCustomer();
             List<CustomerToList> c = new List<CustomerToList>();
             int countParcelProvided = 0;//חבילות שנשלחו וסופקו
             int countParcelNotProvided = 0;//מונה החבילות שנשלחו ולא סופקו
-            int countGetParcels = 0;//חבילות שקיבלתי
+            int countGetListParcels = 0;//חבילות שקיבלתי
             foreach (var item in customers)
             {
-                foreach (var item1 in dal.getParcel())
+                foreach (var item1 in dal.GetListParcel())
                 {
                     if (item1.SenderId == item.Id)//אם החבילה נשלחה, תבדוק הלאה
                     {
@@ -687,19 +687,19 @@ namespace IBL
                     }
                     else if (item1.TargetId == item.Id)
                     {//אם קיבלתי חבילה
-                        countGetParcels++;
+                        countGetListParcels++;
                     }
 
                 }
-                c.Add(new CustomerToList(item.Id, item.Name, item.Phone, countParcelProvided, countParcelNotProvided, countGetParcels, countParcelNotProvided + countParcelProvided));//צריך להביא
+                c.Add(new CustomerToList(item.Id, item.Name, item.Phone, countParcelProvided, countParcelNotProvided, countGetListParcels, countParcelNotProvided + countParcelProvided));//צריך להביא
             }
             return c;
         }
-        public IEnumerable<ParcelToList> getParcel()
+        public IEnumerable<ParcelToList> GetListParcel()
         {
             try
             {
-                var parcels = dal.getParcel();
+                var parcels = dal.GetListParcel();
                 ParcelStatsus temp;
                 List<ParcelToList> p = new List<ParcelToList>();
                 foreach (var item in parcels)
@@ -739,7 +739,7 @@ namespace IBL
                 throw e;
             }
         }//TODO: לא עובד
-        public IEnumerable<StationToList> stationWithAvailableStands()
+        public IEnumerable<StationToList> StationWithAvailableStands()
         {
             List<StationToList> stands = new List<StationToList>();
             var stations = GetListStation();

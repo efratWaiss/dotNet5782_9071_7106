@@ -110,11 +110,11 @@ namespace DalObject
 
             return new List<Drone>(DataSource.drones);
         }
-        public IEnumerable<Customer> getCustomer()
+        public IEnumerable<Customer> GetListCustomer()
         {
             return new List<Customer>(DataSource.customers);
         }
-        public IEnumerable<Parcel> getParcel()
+        public IEnumerable<Parcel> GetListParcel()
         {
             return new List<Parcel>(DataSource.parcels);
           
@@ -307,7 +307,7 @@ namespace DalObject
         public void UpdateParcel(Parcel p)
         {
 
-            int index = getParcel().ToList().FindIndex(x => x.Id == p.Id);
+            int index = GetListParcel().ToList().FindIndex(x => x.Id == p.Id);
             DataSource.parcels[index] = p;
         }
     }
