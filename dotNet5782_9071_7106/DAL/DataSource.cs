@@ -57,7 +57,7 @@ namespace IDAL
                 DateTime t = DateTime.Now;
                 parcels.Add(new Parcel( 12, 325036551, WeightCategories.Liver, Priorities.Regular,DateTime.Now,1 ));
                 parcels.Add(new Parcel (12, 325036552, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
-                parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
+                parcels.Add(new Parcel( 12, 325036558, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
                 parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
                 parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));
                 parcels.Add(new Parcel( 12, 5, WeightCategories.Liver, Priorities.Regular,DateTime.Now,0 ));

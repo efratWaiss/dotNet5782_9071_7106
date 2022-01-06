@@ -12,7 +12,7 @@ namespace IBL
 {
     public class BL : IBL
     {
-        IDal.IDal dal/* = new DalObject.DalObject()*/;
+        IDal.IDal dal;
         public List<DroneToList> DronesList = new();
 
         private double available;//רחפן ריק
@@ -148,6 +148,7 @@ namespace IBL
                                 break;
                         }
                     }
+                    break;
                 }
             }
 
@@ -156,7 +157,6 @@ namespace IBL
         {
             return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
-        public double CarryingHeavyWeight { get; }
         public void addCustomer(int Id, String Name, String Phone, double Longitude, double Latitude)
         {
             try
@@ -262,7 +262,6 @@ namespace IBL
             }
 
         }
-
         public Customer printCustomer(int id)
         {
             try
@@ -312,12 +311,19 @@ namespace IBL
             {
                 if (drone.Status == DroneStatuses.Shipping)
                 {
-                    var p = dal.printParcel(drone.ParcelDelivered);
-                    ParcelInTransference = new(p.Id, new CustomerInParcel(p.SenderId, dal.printCustomer(p.SenderId).Name), new CustomerInParcel(p.TargetId, dal.printCustomer(p.TargetId).Name), (WeightCategories)p.Weight, (Priorities)p.priority, true,
-                       new Location(dal.printCustomer(p.SenderId).Longitude, dal.printCustomer(p.SenderId).Latitude),
-                       new Location(dal.printCustomer(p.TargetId).Longitude, dal.printCustomer(p.TargetId).Latitude)
-                       , GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p.SenderId).Longitude, dal.printCustomer(p.SenderId).Latitude),
-                       new Location(dal.printCustomer(p.TargetId).Longitude, dal.printCustomer(p.TargetId).Latitude)));
+                    try
+                    {
+                        var p = dal.printParcel(drone.ParcelDelivered);
+                        ParcelInTransference = new(p.Id, new CustomerInParcel(p.SenderId, dal.printCustomer(p.SenderId).Name), new CustomerInParcel(p.TargetId, dal.printCustomer(p.TargetId).Name), (WeightCategories)p.Weight, (Priorities)p.priority, true,
+                           new Location(dal.printCustomer(p.SenderId).Longitude, dal.printCustomer(p.SenderId).Latitude),
+                           new Location(dal.printCustomer(p.TargetId).Longitude, dal.printCustomer(p.TargetId).Latitude)
+                           , GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p.SenderId).Longitude, dal.printCustomer(p.SenderId).Latitude),
+                           new Location(dal.printCustomer(p.TargetId).Longitude, dal.printCustomer(p.TargetId).Latitude)));
+                    }
+                    catch (IdException e)
+                    {
+                        throw e;
+                    }
                 }
                 else
                 {
@@ -423,7 +429,6 @@ namespace IBL
             {
                 double Latitude = 0;
                 double Longitude = 0;
-                IDAL.DO.Station stationTemp;
                 int index = 0;
                 int start = 0;
                 IDAL.DO.Parcel temp;
@@ -460,7 +465,7 @@ namespace IBL
                               + GetDistanceBetweenTwoLocation(new Location(dal.printCustomer(p[i].TargetId).Longitude, dal.printCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));
 
                             //tempLocation שומר את כל הדרך שעל הרחפן לעבור, כדי להעביר חבילה מלקוח למקבל ולהגיע לתחנה הקרובה לטעינה (כדי לבדוק אם יש לו מספיק בטריה
-                            if (tempLocation <= drone1.Battery * ChargingRate)//בודק האם קיימת מספיק בטריה להמשך הדרך
+                            if (tempLocation <= drone1.Battery * ChargingRate * droneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
                             {
                                 if ((drone1.MaxWeight == WeightCategories.Intermediate && (WeightCategories)p[i].Weight != WeightCategories.Liver) || (drone1.MaxWeight == WeightCategories.Easy && (WeightCategories)p[i].Weight == WeightCategories.Easy))
                                 {
@@ -710,11 +715,18 @@ namespace IBL
                 {
                     temp = ParcelStatsus.provided;
                 }
-                p.Add(new ParcelToList(item.Id, new CustomerInParcel(dal.printCustomer(item.SenderId).Id, dal.printCustomer(item.SenderId).Name)
-                   , new CustomerInParcel(dal.printCustomer(item.TargetId).Id, dal.printCustomer(item.TargetId).Name)
-                     , (WeightCategories)item.Weight
-                     , (Priorities)item.priority
-                     , temp));
+                try
+                {
+                    p.Add(new ParcelToList(item.Id, new CustomerInParcel(dal.printCustomer(item.SenderId).Id, dal.printCustomer(item.SenderId).Name)
+                       , new CustomerInParcel(dal.printCustomer(item.TargetId).Id, dal.printCustomer(item.TargetId).Name)
+                         , (WeightCategories)item.Weight
+                         , (Priorities)item.priority
+                         , temp));
+                }
+                catch (IdException e)
+                {
+                    throw e;
+                }
             }
             return p;
         }
