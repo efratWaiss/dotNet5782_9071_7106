@@ -736,7 +736,7 @@ namespace IBL
             }
             catch (NotExistException e)
             {
-                throw e;
+                throw ;
             }
         }//TODO: לא עובד
         public IEnumerable<StationToList> StationWithAvailableStands()
