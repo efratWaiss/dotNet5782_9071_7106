@@ -199,7 +199,7 @@ namespace IBL
             {
                 var customer1 = dal.GetCustomer(SenderId);
                 var customer2 = dal.GetCustomer(TargetId);
-                dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0));
+                dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0,default,default,default));
             }
             catch (IdException e)
             {

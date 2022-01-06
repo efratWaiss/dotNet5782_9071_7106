@@ -149,8 +149,8 @@ namespace ConsoleUI
                     DateTime Delivered = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("enter DroneId");//הדברים לא מסודרים ע''פ הסדר שבהנחיות
                     int DroneId = int.Parse(Console.ReadLine());
-                    Parcel p = new Parcel(SenderId, TargetId, Weight, priority, Requested,
-                       scheduled, PickedUp, Delivered, DroneId);
+                    Parcel p = new Parcel(SenderId, TargetId, Weight, priority, Requested, DroneId,
+                       scheduled, PickedUp, Delivered);
                     dd.AddParcel(p);
                     break;
 

@@ -18,7 +18,7 @@ namespace IBL.BO
         public int DroneId { get; set; }
         public DateTime? scheduled { get; set; }
         public DateTime? PickedUp { get; set; }
-        public DateTime? Delivered
+        public DateTime? Delivered//TODO:
         {
             get { return DateTime.Now; }
             set { Delivered = value; }
