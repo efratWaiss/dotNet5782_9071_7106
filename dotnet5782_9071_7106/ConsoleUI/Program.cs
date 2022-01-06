@@ -13,7 +13,7 @@ namespace ConsoleUI
 
         static void add()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-station /n 2-to drone /n 3-customer /n 4-parcel /n");
+            Console.WriteLine("ENTER YOUR CHOISE:\n 1-station \n 2-to drone \n 3-customer \n 4-parcel \n");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -46,7 +46,7 @@ namespace ConsoleUI
                     Id = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter Model");
                     string Model = Console.ReadLine();
-                    Console.WriteLine("enter MaxWeight: 1-Easy /n 2-Intermediate /n 3-Liver");
+                    Console.WriteLine("enter MaxWeight: 1-Easy \n 2-Intermediate \n 3-Liver");
                     string choiseMaxWeight = Console.ReadLine();
                     WeightCategories MaxWeight = WeightCategories.Easy;
                     switch (choiseMaxWeight)
@@ -61,7 +61,7 @@ namespace ConsoleUI
                             MaxWeight = WeightCategories.Liver;
                             break;
                     }
-                    Console.WriteLine("enter Status: 1-Vacant /n 2-Maintenance /n 3-Shipping");
+                    Console.WriteLine("enter Status: 1-Vacant \n 2-Maintenance \n 3-Shipping");
                     string choiseDroneStatuses = Console.ReadLine();
                     Console.WriteLine("enter Battery");
                     double Battery = double.Parse(Console.ReadLine());
@@ -109,7 +109,7 @@ namespace ConsoleUI
                     int SenderId = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter TargetId");
                     int TargetId = int.Parse(Console.ReadLine());
-                    Console.WriteLine("enter weight: 1-Easy /n 2-Intermediate /n 3-Liver");
+                    Console.WriteLine("enter weight: 1-Easy \n 2-Intermediate \n 3-Liver");
                     string choiseWeight = Console.ReadLine();
                     WeightCategories Weight = WeightCategories.Easy;
                     switch (choiseWeight)
@@ -124,7 +124,7 @@ namespace ConsoleUI
                             Weight = WeightCategories.Liver;
                             break;
                     }
-                    Console.WriteLine("enter priority: 1-Regular /n 2-Fast /n 3-Emergency");
+                    Console.WriteLine("enter priority: 1-Regular \n 2-Fast \n 3-Emergency");
                     string choisePriority = Console.ReadLine();
                     Priorities priority = Priorities.Regular;
                     switch (choisePriority)
@@ -158,7 +158,7 @@ namespace ConsoleUI
         }
         static void update()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-stationToDrone /n 2-pickParcelToDrone /n 3-parcelToCustomer /n 4-SendDroneToStation /n 5-FreeDrone");
+            Console.WriteLine("ENTER YOUR CHOISE:\n 1-stationToDrone \n 2-pickParcelToDrone \n 3-parcelToCustomer \n 4-SendDroneToStation \n 5-FreeDrone");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -219,7 +219,7 @@ namespace ConsoleUI
                     idDrone1 = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter idStation");
                     int idStation = int.Parse(Console.ReadLine());
-                    Console.WriteLine("enter DroneStatuses: 1-Vacant /n 2-Maintenance /n 3-Shipping");
+                    Console.WriteLine("enter DroneStatuses: 1-Vacant \n 2-Maintenance \n 3-Shipping");
                     string choiseDroneStatuses = Console.ReadLine();
                     dd.SendDroneToStation(idDrone1, idStation);
                     break;
@@ -234,7 +234,7 @@ namespace ConsoleUI
         }
         static void show()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-station /n 2-to drone /n 3-customer /n 4-parcel /n");
+            Console.WriteLine("ENTER YOUR CHOISE:\n 1-station \n 2-to drone \n 3-customer \n 4-parcel \n");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -293,7 +293,7 @@ namespace ConsoleUI
         }
         static void showList()
         {
-            Console.WriteLine("ENTER YOUR CHOISE:/n 1-station /n 2-to drone /n 3-customer /n 4-parcel /n 5-parcel without drone/ 6-station without charge");
+            Console.WriteLine("ENTER YOUR CHOISE:\n 1-station \n 2-to drone \n 3-customer \n 4-parcel \n 5-parcel without drone/ 6-station without charge");
             string choise = Console.ReadLine();
             switch (choise)
             {
@@ -359,7 +359,7 @@ namespace ConsoleUI
             {
 
                 Console.WriteLine("WELCOME TO OUR SYSTEM");
-                Console.WriteLine("ENTER YOUR CHOISE:/n 1-TO ADD /n 2-to update /n 3-to show /n 4-to show list /n 5-exit /n");
+                Console.WriteLine("ENTER YOUR CHOISE:\n 1-TO ADD \n 2-to update \n 3-to show \n 4-to show list \n 5-exit \n");
                 string choise = Console.ReadLine();
                 switch (choise)
                 {
