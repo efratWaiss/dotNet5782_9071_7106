@@ -318,10 +318,10 @@ namespace DalObject
                 Station sHelp = GetStation(IdStation);
                 sHelp.Name = NameStation;
                 sHelp.ChargeSlots = (int)ChargeSlots;
-                for (int i = 0; i < DataSource.stations.ToList().Count; i++)
+                for (int i = 0; i < DataSource.stations.Count; i++)
                 {
-                    if (DataSource.stations.ToList()[i].Id == IdStation)//TODO: איך ךשנות ברשימה האמיתית
-                        DataSource.stations.ToList()[i] = sHelp;
+                    if (DataSource.stations[i].Id == IdStation)//TODO: איך ךשנות ברשימה האמיתית
+                        DataSource.stations[i] = sHelp;
                 }
             }
             catch (IdException e)
@@ -338,10 +338,10 @@ namespace DalObject
                 Customer cHelp = GetCustomer(IdCustomer);
                 cHelp.Name = Name;
                 cHelp.Phone = Phone;
-                for (int i = 0; i < DataSource.customers.ToList().Count; i++)
+                for (int i = 0; i < DataSource.customers.Count; i++)
                 {
-                    if (DataSource.customers.ToList()[i].Id == IdCustomer)//TODO: איך ךשנות ברשימה האמיתית
-                        DataSource.customers.ToList()[i] = cHelp;
+                    if (DataSource.customers[i].Id == IdCustomer)//TODO: איך ךשנות ברשימה האמיתית
+                        DataSource.customers[i] = cHelp;
                 }
             }
             catch (IdException e)

@@ -98,8 +98,6 @@ namespace ConsoleUI__BL
                     break;
 
                 case "4":
-                    Console.WriteLine("enter id");
-                    Id = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter SenderId");
                     int SenderId = int.Parse(Console.ReadLine());
                     Console.WriteLine("enter TargetId");

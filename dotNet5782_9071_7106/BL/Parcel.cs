@@ -7,7 +7,7 @@ namespace IBL.BO
 {
     public class Parcel
     {
-        public static int Id { get; set; }
+        //public static int Id { get; set; }
         public int ParcelId { get; set; }
         public CustomerInParcel Sender { get; set; }
         public CustomerInParcel Target { get; set; }
@@ -24,9 +24,9 @@ namespace IBL.BO
         //    set { Delivered = value; }
         //}
 
-        public Parcel(CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities Priority, DroneInParcel DroneInParcel, DateTime Requested, int DroneId, DateTime? scheduled,  DateTime? PickedUp, DateTime? Delivered)
+        public Parcel(int ID,CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities Priority, DroneInParcel DroneInParcel, DateTime Requested, int DroneId, DateTime? scheduled,  DateTime? PickedUp, DateTime? Delivered)
         {
-            this.ParcelId = Id++;
+            this.ParcelId = ID;
             this.Sender = Sender;
             this.Target = Target;
             this.Weight = Weight;

@@ -24,7 +24,7 @@ namespace IBL.BO
         public List<Parcel> parcelToCustomer { get; set; }
         public override string ToString()
         {
-            return "id:" + Id + " Name:" + Name + " Phone:" + Phone + " Location" + Location + " parcelFromCustomer:" + parcelFromCustomer+ " parcelToCustomer:"+ parcelToCustomer;
+            return "id:" + Id + " Name:" + Name + " Phone:" + Phone + " Location" + Location + " parcelFromCustomer:" + string.Join("," ,parcelFromCustomer)+ " parcelToCustomer:"+ string.Join(",", parcelToCustomer,"\n");
         }
        
 

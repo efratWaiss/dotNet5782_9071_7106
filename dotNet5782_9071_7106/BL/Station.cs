@@ -25,7 +25,7 @@ namespace IBL.BO
 
         public override string ToString()
         {
-            return "id:" + Id + " Name:" + Name + " Location:" + Location + " ChargingPositions:" + ChargingPositions + " DronesInCharging:" + DronesInCharging;
+            return "id:" + Id + " Name:" + Name + " Location:" + Location + " ChargingPositions:" + ChargingPositions + " DronesInCharging:" + string.Join(",", DronesInCharging,"\n");
         }
     }
 }
