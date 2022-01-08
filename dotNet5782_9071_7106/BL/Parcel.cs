@@ -14,7 +14,7 @@ namespace IBL.BO
         public WeightCategories Weight { get; set; }
         public Priorities Priority { get; set; }
         public DroneInParcel DroneInParcel { get; set; }
-        public DateTime Requested { get; set; }
+        public DateTime? Requested { get; set; }
         public int DroneId { get; set; }
         public DateTime? scheduled { get; set; }
         public DateTime? PickedUp { get; set; }
@@ -24,7 +24,7 @@ namespace IBL.BO
         //    set { Delivered = value; }
         //}
 
-        public Parcel(int ID,CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities Priority, DroneInParcel DroneInParcel, DateTime Requested, int DroneId, DateTime? scheduled,  DateTime? PickedUp, DateTime? Delivered)
+        public Parcel(int ID,CustomerInParcel Sender, CustomerInParcel Target, WeightCategories Weight, Priorities Priority, DroneInParcel DroneInParcel, DateTime? Requested, int DroneId, DateTime? scheduled,  DateTime? PickedUp, DateTime? Delivered)
         {
             this.ParcelId = ID;
             this.Sender = Sender;
