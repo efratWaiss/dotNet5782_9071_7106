@@ -351,5 +351,9 @@ namespace DalObject
 
 
         }//TODO:
+        //IEnumerable<Drone> GetListDrone(Func<Drone,bool> condition)
+        //    {
+        //    return DataSource.drones.Where(condition);
+        //    }
     }
 }

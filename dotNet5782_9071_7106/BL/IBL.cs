@@ -26,6 +26,9 @@ namespace IBL
         public void PackageCollectionByDrone(int idDrone);
         public void SendDroneToStation(int idDrone);
         public void FreeDrone(int idDrone,double timeInCharging);
-  
+        public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus);
+        public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight);
+
+
     }
 }

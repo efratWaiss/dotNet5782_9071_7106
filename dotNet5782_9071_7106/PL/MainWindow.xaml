@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="640" Width="800">
+    <Grid >
         <Button Content="open drones list"
                 Height="40"
-                Click="Button_Click" Margin="350,197,325,197"/>
+                Click="Button_Click" Margin="315,192,360,202"/>
 
 
     </Grid>

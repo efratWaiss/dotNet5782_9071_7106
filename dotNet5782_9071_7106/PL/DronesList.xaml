@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DronesList" Height="450" Width="800">
-    <Grid>
-        
+        Title="DronesList" Height="640" Width="800">
+    <Grid x:Name="MainGrid" Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox Name="StatusSelector"
+HorizontalAlignment= "Stretch"
+VerticalAlignment="Stretch"
+Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" 
+                      />
+            <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch"
+VerticalAlignment="Stretch"
+Grid.Column="2" SelectionChanged="weightSelector_SelectionChanged"/>
+            <Label  Grid.Column="0" Height="70" VerticalAlignment="Bottom"/>
+        </Grid>
+        <ListView Grid.Row="1" x:Name="DronesListView" SelectionChanged="DronesListView_SelectionChanged"/>
     </Grid>
 </Window>

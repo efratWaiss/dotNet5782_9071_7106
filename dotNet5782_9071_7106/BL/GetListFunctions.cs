@@ -108,5 +108,15 @@ namespace IBL
                 throw;
             }
         }
+        public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus)
+        {
+            return DronesList.Where(d => d.Status == stasus);
+        }
+       public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight)
+        {
+            return DronesList.Where(d => d.MaxWeight == weight);
+        }
     }
+
 }
+
