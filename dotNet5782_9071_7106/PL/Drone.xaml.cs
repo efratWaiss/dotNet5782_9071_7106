@@ -1,4 +1,5 @@
-﻿using IBL.BO;
+﻿
+using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,13 +70,13 @@ namespace PL
             //{
             //    if (Convert.ToInt32(Id.Text) > 0)
             //    {
-                    bLTemp.AddDrone(Convert.ToInt32(IdA.Text),
-               Convert.ToString(ModelA.Text),
-                   (IBL.BO.WeightCategories)weightSelectorA.SelectedItem,
-                   Convert.ToInt32(IdStationA.SelectedItem));
-            
-                    MessageBox.Show("The drone was successfully added");
-                    this.Close();
+            bLTemp.AddDrone(Convert.ToInt32(IdA.Text),
+       Convert.ToString(ModelA.Text),
+           (IBL.BO.WeightCategories)weightSelectorA.SelectedItem,
+           Convert.ToInt32(IdStationA.SelectedItem));
+
+            MessageBox.Show("The drone was successfully added");
+            this.Close();
             //    }
             //    else
             //    {
@@ -92,52 +93,52 @@ namespace PL
             //    MessageBox.Show("The drone's ID is Invalid");
             //    IdA.Text = null;
             //}
-                }
+        }
 
-            private void Button_Click_1(object sender, RoutedEventArgs e)
-            {
-                GridAdd.Visibility = Visibility.Collapsed;
-                this.Close();
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            GridAdd.Visibility = Visibility.Collapsed;
+            this.Close();
 
-            }
+        }
 
-            private void Button_Click_2(object sender, RoutedEventArgs e)
-            {
-                GridUpdate.Visibility = Visibility.Visible;
-                this.Close();
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            GridUpdate.Visibility = Visibility.Visible;
+            this.Close();
 
-            }
+        }
 
-            private void Button_Click_3(object sender, RoutedEventArgs e)
-            {
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
 
-                bLTemp.UpdateNameDrone(Convert.ToInt32(Id.Text), Convert.ToString(Model.Text));
+            bLTemp.UpdateNameDrone(Convert.ToInt32(Id.Text), Convert.ToString(Model.Text));
 
-            }
+        }
 
-            private void Button_Click_4(object sender, RoutedEventArgs e)
-            {
-                bLTemp.SendDroneToStation(Convert.ToInt32(Id.Text));
-            }
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            bLTemp.SendDroneToStation(Convert.ToInt32(Id.Text));
+        }
 
-            private void FreeDrone_Click(object sender, RoutedEventArgs e)
-            {
-                /* bLTemp.FreeDrone(Convert.ToInt32(Id.Text),)*///TODO: ךהכניס זמן טעינה בתחנה
-            }
+        private void FreeDrone_Click(object sender, RoutedEventArgs e)
+        {
+            /* bLTemp.FreeDrone(Convert.ToInt32(Id.Text),)*///TODO: ךהכניס זמן טעינה בתחנה
+        }
 
-            private void SendDroneToShipping_Click(object sender, RoutedEventArgs e)
-            {
-                bLTemp.UpdateParcelToDrone(Convert.ToInt32(Id.Text));
-            }
+        private void SendDroneToShipping_Click(object sender, RoutedEventArgs e)
+        {
+            bLTemp.UpdateParcelToDrone(Convert.ToInt32(Id.Text));
+        }
 
-            private void CollectionParcelByDrone_Click(object sender, RoutedEventArgs e)
-            {
-                bLTemp.PackageCollectionByDrone(Convert.ToInt32(Id.Text));
-            }
+        private void CollectionParcelByDrone_Click(object sender, RoutedEventArgs e)
+        {
+            bLTemp.PackageCollectionByDrone(Convert.ToInt32(Id.Text));
+        }
 
-            private void SupplyParcel_Click(object sender, RoutedEventArgs e)
-            {
-                bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
-            }
+        private void SupplyParcel_Click(object sender, RoutedEventArgs e)
+        {
+            bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
         }
     }
+}

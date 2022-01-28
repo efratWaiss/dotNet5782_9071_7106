@@ -8,7 +8,7 @@
         Title="Drone" Height="450" Width="800">
 
     <Grid>
-        
+
         <Grid x:Name="GridUpdate" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
