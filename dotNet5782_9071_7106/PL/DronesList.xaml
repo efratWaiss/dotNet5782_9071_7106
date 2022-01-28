@@ -25,7 +25,9 @@ VerticalAlignment="Stretch" Width="auto">
             <Label Content="Filter drones by weight" Grid.Column="2" Height="70" VerticalAlignment="Bottom"/>
             <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" SelectionChanged="weightSelector_SelectionChanged"/>
             <Button Content="View all drones" Grid.Column="4" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Height="40" Width="98" Click="Button_Click_2"/>
-        </Grid>        <ListView x:Name="AllDrone" Grid.Row="1" MouseDoubleClick="AllDrone_MouseDoubleClick" />
+        </Grid>
+        <ListView x:Name="AllDrone" Grid.Row="1" MouseDoubleClick="AllDrone_MouseDoubleClick" />
+
         <ListView Grid.Row="1" x:Name="DronesListViewBy" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick"  />
 
 
