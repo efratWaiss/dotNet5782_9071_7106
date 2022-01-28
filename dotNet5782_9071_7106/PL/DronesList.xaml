@@ -18,17 +18,20 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="StatusSelector"
-HorizontalAlignment= "Stretch"
-VerticalAlignment="Stretch"
-Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" 
-                      />
-            <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch"
-VerticalAlignment="Stretch"
-Grid.Column="2" SelectionChanged="weightSelector_SelectionChanged"/>
-            <Label  Grid.Column="0" Height="70" VerticalAlignment="Bottom"/>
-        </Grid>
-        <ListView Grid.Row="1" x:Name="DronesListView" SelectionChanged="DronesListView_SelectionChanged"/>
+            <Label Content="Filter drones by status" Grid.Column="0" Height="70" VerticalAlignment="Bottom"/>
+            <ComboBox Name="StatusSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" />
+            <Label Content="Filter drones by weight" Grid.Column="2" Height="70" VerticalAlignment="Bottom"/>
+            <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" SelectionChanged="weightSelector_SelectionChanged"/>
+            <Button Content="View all drones" Grid.Column="4" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Height="40" Width="98" Click="Button_Click_2"/>
+        </Grid>        <ListView x:Name="AllDrone" Grid.Row="1" MouseDoubleClick="AllDrone_MouseDoubleClick" />
+        <ListView Grid.Row="1" x:Name="DronesListViewBy" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick"  />
+
+
+        <Button Content="Add drone" HorizontalAlignment="Center" Margin="0,176,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" Width="94" RenderTransformOrigin="0.5,2.934" Click="Button_Click"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="353,281,0,0" Grid.Row="1" VerticalAlignment="Top" Height="42" Width="83" Click="Button_Click_1"/>
+
     </Grid>
+
 </Window>

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
     <Grid >
+        <!--<Image Source="123.jpg"/>-->
         <Button Content="open drones list"
                 Height="40"
                 Click="Button_Click" Margin="315,192,360,202"/>

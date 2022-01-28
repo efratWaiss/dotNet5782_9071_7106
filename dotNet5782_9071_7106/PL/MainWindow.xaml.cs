@@ -32,6 +32,7 @@ namespace PL
         {
 
             DronesList DronesList = new DronesList(bl);
+            MessageBox.Show("show the drone list");
             DronesList.Show();
         }
     }

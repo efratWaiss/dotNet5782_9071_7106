@@ -27,11 +27,9 @@ namespace DalObject
         }
         public void AddDrone(Drone d)
         {
-            foreach (var item in DataSource.drones)
-            {
-                if (item.Id == d.Id)
-                    throw new IdException("already exist in the system");
-            }
+            var count = DataSource.drones.Count(x => x.Id == d.Id);
+            if (count != 0)
+                throw new IdException("already exist in the system");
             DataSource.drones.Add(d);
         }
 
