@@ -1,6 +1,5 @@
 ﻿using System;
-namespace IDAL
-{
+
     namespace DO
     {
         public enum WeightCategories
@@ -23,4 +22,3 @@ namespace IDAL
             Emergency
         }
     }
-}

@@ -65,11 +65,13 @@ namespace PL
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             //int g;
             //if (int.TryParse(Id.Text, out g) == true)
             //{
             //    if (Convert.ToInt32(Id.Text) > 0)
             //    {
+
             bLTemp.AddDrone(Convert.ToInt32(IdA.Text),
        Convert.ToString(ModelA.Text),
            (IBL.BO.WeightCategories)weightSelectorA.SelectedItem,
@@ -77,6 +79,7 @@ namespace PL
 
             MessageBox.Show("The drone was successfully added");
             this.Close();
+
             //    }
             //    else
             //    {
@@ -87,14 +90,16 @@ namespace PL
             //    }
 
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("The drone's ID is Invalid");
-            //    IdA.Text = null;
-            //}
-        }
+            {
+                //}
+                //else
+                //{
+                //    MessageBox.Show("The drone's ID is Invalid");
+                //    IdA.Text = null;
+                //}
 
+            }
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             GridAdd.Visibility = Visibility.Collapsed;

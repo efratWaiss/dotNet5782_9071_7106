@@ -4,18 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
+using DO;
+
 
 namespace DalObject
 {
-    public class DalObject : IDal.IDal
+    internal sealed class DalObject : DalApi.IDAL
     {
+        private static DalObject Instance = null;
 
         public DalObject()
         {
             DataSource.Initialize();
-        }
 
+
+        }
+        //internal DalObject Instance
+        //{
+        //    get {
+        //        if (Instance == null)
+        //            Instance = new DalObject();
+        //        return Instance;
+        //    }
+            
+        //}
+    
         public void AddStation(Station s)
         {
             foreach (var item in DataSource.stations)
