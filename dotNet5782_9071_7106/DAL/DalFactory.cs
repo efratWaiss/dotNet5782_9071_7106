@@ -10,7 +10,6 @@ namespace DalApi
     {
         public  static  IDAL GetDAL(String st)
         {
-
             return DalObject.st;
         }
     }

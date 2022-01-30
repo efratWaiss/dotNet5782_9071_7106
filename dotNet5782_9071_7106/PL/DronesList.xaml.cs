@@ -96,6 +96,11 @@ namespace PL
 
             }
         }
+
+        private void AllDrone_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }

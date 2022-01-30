@@ -11,24 +11,15 @@ namespace DalObject
 {
     internal sealed class DalObject : DalApi.IDAL
     {
-        private static DalObject Instance = null;
+       internal static DalObject instance = new DalObject();
+        internal static DalObject Instance { get { return instance; } }
 
-        public DalObject()
+        static DalObject()
         {
             DataSource.Initialize();
-
-
         }
-        //internal DalObject Instance
-        //{
-        //    get {
-        //        if (Instance == null)
-        //            Instance = new DalObject();
-        //        return Instance;
-        //    }
-            
-        //}
-    
+        DalObject() { }
+ 
         public void AddStation(Station s)
         {
             foreach (var item in DataSource.stations)
