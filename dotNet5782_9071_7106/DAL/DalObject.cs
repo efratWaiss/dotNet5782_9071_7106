@@ -8,14 +8,22 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    public class DalObject : IDal.IDal
+   public  class  DalObject : IDal.IDal
     {
-
+        internal DalObject instance = null;
         public DalObject()
         {
             DataSource.Initialize();
         }
-
+        internal DalObject Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new DalObject();
+                return instance;
+            }
+        }
         public void AddStation(Station s)
         {
             foreach (var item in DataSource.stations)
