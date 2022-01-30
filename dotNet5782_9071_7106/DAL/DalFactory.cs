@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DalApi
 {
-    //public static class DalFactory
-    //{
-    //    public static IDal GetDal(String st)
-    //    {
-    //        return st;
-    //    }}
+    public static class DalFactory
+    {
+        public  static  IDAL GetDAL(String st)
+        {
+
+            return DalObject.st;
+        }
     }
-
-
+}

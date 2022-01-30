@@ -95,14 +95,16 @@ namespace PL
             //    }
 
 
-            //}
-            //else
-            //{
-            //    MessageBox.Show("The drone's ID is Invalid");
-            //    IdA.Text = null;
-            //}
-        }
+            {
+                //}
+                //else
+                //{
+                //    MessageBox.Show("The drone's ID is Invalid");
+                //    IdA.Text = null;
+                //}
 
+            }
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try { 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace IBL.BO
+namespace BO
 {
     [Serializable]
     class IdException : Exception

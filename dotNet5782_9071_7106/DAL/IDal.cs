@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DO;
 using IDAL.DO;
 
-namespace IDal
+namespace DalApi
 {
-    public interface IDal
+    public interface IDAL
     {
 
         public void AddStation(Station s);

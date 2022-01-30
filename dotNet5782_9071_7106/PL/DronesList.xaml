@@ -8,27 +8,26 @@
         Title="DronesList" Height="640" Width="800">
     <Grid x:Name="MainGrid" Margin="0,0,0,-6">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="79*"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
-            <Grid.ColumnDefinitions>
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" >
+            <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Filter drones by status" Grid.Column="0" Height="70" VerticalAlignment="Bottom"/>
-            <ComboBox Name="StatusSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" />
-            <Label Content="Filter drones by weight" Grid.Column="2" Height="70" VerticalAlignment="Bottom"/>
-            <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" SelectionChanged="weightSelector_SelectionChanged"/>
-            <Button Content="View all drones" Grid.Column="4" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Height="40" Width="98" Click="Button_Click_2"/>
+            <Label Content="Filter drones by status" Grid.Column="0" Height="70" VerticalAlignment="Bottom" BorderBrush="White"/>
+            <ComboBox Name="StatusSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" BorderBrush="White"/>
+            <Label Content="Filter drones by weight" Grid.Column="2" Height="70" VerticalAlignment="Bottom" BorderBrush="White"/>
+            <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" SelectionChanged="weightSelector_SelectionChanged" BorderBrush="White"/>
+            <Button Content="View all drones" Grid.Column="4" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Height="40" Width="98" Click="Button_Click_2" Background="LightBlue" BorderBrush="White"/>
         </Grid>
-        <ListView x:Name="AllDrone" Grid.Row="1" MouseDoubleClick="AllDrone_MouseDoubleClick" />
+        <ListView x:Name="AllDrone" Grid.Row="1" MouseDoubleClick="AllDrone_MouseDoubleClick" Margin="0,2,0,0" />
 
-        <ListView Grid.Row="1" x:Name="DronesListViewBy" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick"  />
+        <ListView Grid.Row="1" x:Name="DronesListViewBy" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick" Margin="0,2,0,0"  />
 
 
         <Button Content="Add drone" HorizontalAlignment="Center" Margin="0,176,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" Width="94" RenderTransformOrigin="0.5,2.934" Click="Button_Click"/>

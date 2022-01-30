@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
+using DO;
+
 
 namespace DalObject
 {
+    internal sealed class DalObject : DalApi.IDAL
    public  class  DalObject : IDal.IDal
     {
         internal DalObject instance = null;
         public DalObject()
         {
             DataSource.Initialize();
+
+
         }
         internal DalObject Instance
         {

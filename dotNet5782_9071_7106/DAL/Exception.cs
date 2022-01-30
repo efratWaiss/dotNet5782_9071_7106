@@ -7,8 +7,7 @@ using System.Runtime.Serialization;
 
 
 
-namespace IDAL
-{
+
     namespace DO
     {
         [Serializable]
@@ -38,4 +37,4 @@ namespace IDAL
         }
     }
 
-}
+

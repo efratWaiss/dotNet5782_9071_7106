@@ -7,12 +7,12 @@ using IBL.BO;
 #pragma warning restore IDE0005 // Using directive is unnecessary.
 #pragma warning disable IDE0005 // Using directive is unnecessary.
 #pragma warning restore IDE0005 // Using directive is unnecessary.
-namespace IBL
+namespace BlApi
 
 {
     public partial class BL : IBL
     {
-        IDal.IDal dal;
+        IDal.IDAL dal;
         public List<DroneToList> DronesList = new();
 
         private double available;//רחפן ריק
