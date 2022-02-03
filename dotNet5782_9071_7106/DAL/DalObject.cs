@@ -15,8 +15,6 @@ namespace DalObject
         public DalObject()
         {
             DataSource.Initialize();
-
-
         }
         internal DalObject Instance
         {
