@@ -167,10 +167,7 @@ namespace BlApi
                 }
 
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
         }
         public IEnumerable<ParcelToList> ParcelNoDrone()
         {
@@ -195,10 +192,7 @@ namespace BlApi
                 }
                 return newParcelNoDrone;
             }
-            catch (IdException e)
-            {
-                throw e;
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
         }
         public void PackageCollectionByDrone(int idDrone)
         {
@@ -229,10 +223,7 @@ namespace BlApi
                     throw new NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
                 }
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
         }
         public void DeliveryOfAParcelByDrone(int idDrone)
         {
@@ -276,10 +267,7 @@ namespace BlApi
                     throw new NotImplementedException("The package has not been collected or the package has already been delivered or the skimmer is not associated with any package");
                 }
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
         }
         public IEnumerable<StationToList> StationWithAvailableStands()
         {
@@ -303,10 +291,7 @@ namespace BlApi
                 var Drone1 = DronesList.FirstOrDefault(x => x.Id == Id);
                 Drone1.Model = Model;
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
         public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots)
@@ -325,10 +310,7 @@ namespace BlApi
 
 
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
         public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone)
@@ -346,9 +328,9 @@ namespace BlApi
                 }
 
             }
-            catch (IdException e)
+            catch (DO.IdException ex)
             {
-                throw (e);
+                throw new IdException(ex.Message);
             }
         }
         public void FreeDrone(int idDrone, double timeInCharging)
@@ -374,9 +356,9 @@ namespace BlApi
                     {
                         dal.removeFromDroneCharges(idDrone, station.Id);
                     }
-                    catch (IdException e)
+                    catch (DO.IdException ex)
                     {
-                        throw (e);
+                        throw new IdException(ex.Message);
                     }
 
                 }

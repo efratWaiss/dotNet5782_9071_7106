@@ -24,22 +24,13 @@ namespace PL
         public DronesList(IBL.BL bl)
         {
             InitializeComponent();
-            try {
-                bLTemp = bl;
+
+            bLTemp = bl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             AllDrone.Visibility = Visibility.Visible;
             AllDrone.ItemsSource = bLTemp.GetListDrone();
-            }
-           catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-
         }
-
-
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -49,14 +40,11 @@ namespace PL
                 if (StatusSelector.SelectedItem != null)
                     DronesListViewBy.ItemsSource = bLTemp.GetListByStatus((DroneStatuses)StatusSelector.SelectedItem);
             }
-            catch (Exception ex)
+            catch (BO.IdException ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-
         private void weightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -67,7 +55,7 @@ namespace PL
                     DronesListViewBy.ItemsSource = bLTemp.GetListByWeight((WeightCategories)weightSelector.SelectedItem);
 
             }
-            catch (Exception ex)
+            catch (BO.IdException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -78,7 +66,6 @@ namespace PL
             Drone Drone = new Drone(bLTemp);
             MessageBox.Show("add drone");
             Drone.Show();
-
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -107,7 +94,7 @@ namespace PL
                 weightSelector.SelectedItem = null;
                 StatusSelector.SelectedItem = null;
             }
-            catch (Exception ex)
+            catch (BO.IdException ex)
             {
                 MessageBox.Show(ex.Message);
             }

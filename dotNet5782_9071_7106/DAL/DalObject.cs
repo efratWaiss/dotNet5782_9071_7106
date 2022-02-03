@@ -10,8 +10,7 @@ using DO;
 namespace DalObject
 {
     internal sealed class DalObject : DalApi.IDAL
-   public  class  DalObject : IDal.IDal
-    {
+    { 
         internal DalObject instance = null;
         public DalObject()
         {
@@ -323,9 +322,10 @@ namespace DalObject
         }
         public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots)
         {
-            try
-            {
+            
                 Station sHelp = GetStation(IdStation);
+            if (sHelp.Equals(default))
+                throw new IdException("Id Station isnt exist in the system");
                 sHelp.Name = NameStation;
                 sHelp.ChargeSlots = (int)ChargeSlots;
                 for (int i = 0; i < DataSource.stations.Count; i++)
@@ -334,18 +334,15 @@ namespace DalObject
                         DataSource.stations[i] = sHelp;
                 }
             }
-            catch (IdException e)
-            {
-                throw e;
-            }
+            
 
-
-        }
+       
         public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone)
         {
-            try
-            {
+          
                 Customer cHelp = GetCustomer(IdCustomer);
+            if (cHelp.Equals(default))
+                throw new IdException("this customer isnt exist in the system");
                 cHelp.Name = Name;
                 cHelp.Phone = Phone;
                 for (int i = 0; i < DataSource.customers.Count; i++)
@@ -353,11 +350,7 @@ namespace DalObject
                     if (DataSource.customers[i].Id == IdCustomer)//TODO: איך ךשנות ברשימה האמיתית
                         DataSource.customers[i] = cHelp;
                 }
-            }
-            catch (IdException e)
-            {
-                throw e;
-            }
+            
 
 
         }//TODO:

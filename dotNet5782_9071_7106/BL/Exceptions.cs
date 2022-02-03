@@ -6,7 +6,7 @@ using System.Text;
 namespace BO
 {
     [Serializable]
-    class IdException : Exception
+   public class IdException : Exception
     {
         public IdException() : base() { }
         public IdException(string message) : base(message) { }
@@ -18,7 +18,7 @@ namespace BO
         override public string ToString()
         { return Message; }
     }
-    class NotExistException : Exception
+   public class NotExistException : Exception
     {
         public NotExistException() : base() { }
         public NotExistException(string message) : base(message) { }

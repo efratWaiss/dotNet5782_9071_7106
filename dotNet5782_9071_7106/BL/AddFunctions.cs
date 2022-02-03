@@ -1,4 +1,5 @@
 ﻿using DalApi;
+using DO;
 using IBL.BO;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace BlApi
             {
                 dal.AddCustomer(new IDAL.DO.Customer(Id, Name, Phone, Longitude, Latitude));
             }
-            catch (IdException ex)
+            catch (DO.IdException ex)
             {
-                throw (ex);
+               throw new IdException(ex.Message);
             }
 
         }
@@ -35,15 +36,9 @@ namespace BlApi
                     dal.AddDrone(new IDAL.DO.Drone(Id, Model, (IDAL.DO.WeightCategories)(weight)));
                     DronesList.Add(new DroneToList(Id, Model, weight, battery, DroneStatuses.Maintenance, new Location(Station1.Latitude, Station1.Longitude), -1));
                 }
-                catch (IdException e)
-                {
-                    throw e;
-                }
+                catch (DO.IdException ex) { throw new IdException(ex.Message);}
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
         public int AddParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)
@@ -54,10 +49,7 @@ namespace BlApi
                 var customer2 = dal.GetCustomer(TargetId);
                 return dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0, null, null, null));
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message);}
 
 
         }
@@ -69,9 +61,9 @@ namespace BlApi
                 dal.AddStation(new IDAL.DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
             }
 
-            catch (IdException e)
+            catch (DO.IdException ex)
             { // :אם מצאת כבר רחפן כזה, זרוק 
-                throw (e);
+                throw new IdException(ex.Message);
             }
 
         }
