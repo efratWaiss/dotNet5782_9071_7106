@@ -1,4 +1,6 @@
-﻿using IBL.BO;
+﻿using BlApi;
+using BO;
+using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +22,8 @@ namespace PL
     /// </summary>
     public partial class DronesList : Window
     {
-        IBL.BL bLTemp;
-        public DronesList(IBL.BL bl)
+        BL bLTemp;
+        public DronesList(BL bl)
         {
             InitializeComponent();
 
