@@ -9,13 +9,81 @@
     <Grid Background="White">
         <Image Source="drone.jpg" Width="800" Margin="0,-139,0,71"/>
         <Rectangle Fill="#FF01356E" StrokeThickness="2" Margin="0,429,0,179" />
-        <Button x:Name="button" Content="open drones list"
-                Click="Button_Click" Margin="297,517,289,45" BorderBrush="#FF01356E" BorderThickness="7"
-                FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{Binding Cursor, ElementName=button}" >
+        <Button x:Name="buttonDrone" Content="open drones list"
+                Click="Button_ClickDrone" Margin="640,517,15,44" BorderBrush="#FF01356E" BorderThickness="7"
+                FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.764"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
         </Button>
-
+        <Button x:Name="button_Station" Content="station List"
+            Click="Button_ClickStation" Margin="483,520,172,41" BorderBrush="#FF01356E" BorderThickness="7"
+            FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.764"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Customer" Content="Customer List"
+            Click="Button_ClickCustomer" Margin="331,522,324,39" BorderBrush="#FF01356E" BorderThickness="7"
+            FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.764"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Parcel" Content="Parcel List"
+            Click="Button_ClickParcel" Margin="174,525,481,36" BorderBrush="#FF01356E" BorderThickness="7"
+            FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.764"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Copy3" Content="?????"
+            Click="Button_Click" Margin="21,526,634,35" BorderBrush="#FF01356E" BorderThickness="7"
+            FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.764"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+        
     </Grid>
 </Window>

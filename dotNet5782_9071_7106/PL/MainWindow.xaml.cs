@@ -30,12 +30,35 @@ namespace PL
             bl = BlFactory.GetBl("BL");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_ClickDrone(object sender, RoutedEventArgs e)
         {
 
             DronesList DronesList = new DronesList(bl);
             MessageBox.Show("show the drone list");
             DronesList.Show();
+        }
+
+       
+        private void Button_ClickStation(object sender, RoutedEventArgs e)
+        {
+            StationList StationList = new StationList(bl);
+            MessageBox.Show("show the station list");
+            StationList.Show();
+        }
+
+        
+        private void Button_ClickCustomer(object sender, RoutedEventArgs e)
+        {
+            CustomersList CustomersList = new CustomersList(bl);
+            MessageBox.Show("show the Customer list");
+            CustomersList.Show();
+        }
+
+        private void Button_ClickParcel(object sender, RoutedEventArgs e)
+        {
+            ParcelList parcelList = new ParcelList(bl);
+            MessageBox.Show("show the Parcel list");
+            parcelList.Show();  
         }
     }
 }

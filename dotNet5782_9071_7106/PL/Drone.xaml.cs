@@ -1,4 +1,6 @@
 ﻿
+using BlApi;
+using BO;
 using IBL.BO;
 using System;
 using System.Collections.Generic;
@@ -22,18 +24,18 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        IBL.BL bLTemp;
-        public Drone(IBL.BL bl)
+        BL bLTemp;
+        public Drone(BL bl)
         {
             InitializeComponent();
             bLTemp = bl;
             GridAdd.Visibility = Visibility.Visible;
-            weightSelectorA.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
+            weightSelectorA.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
             IdStationA.ItemsSource = bLTemp.GetListStation().Select(x => x.Id);
 
         }
 
-        public Drone(IBL.BL bl, DroneToList d)
+        public Drone(BL bl, DroneToList d)
         {
             InitializeComponent();
             GridUpdate.Visibility = Visibility.Visible;
@@ -45,13 +47,13 @@ namespace PL
             IdStation.Text = d.ParcelDelivered.ToString();
             battery.Text = Convert.ToString(d.Battery);
             location.Text = Convert.ToString(d.LocationNow);
-            if (Convert.ToInt32(battery.Text) != 100 && (IBL.BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
+            if (Convert.ToInt32(battery.Text) != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
             {
                 SendDroneToCharging.Visibility = Visibility.Visible;
                 SendDroneToCharging.Visibility = Visibility.Visible;
 
             }
-            else if ((IBL.BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
+            else if ((BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
             {
                 FreeDrone.Visibility = Visibility.Visible;
             }
@@ -72,7 +74,7 @@ namespace PL
 
                 bLTemp.AddDrone(Convert.ToInt32(IdA.Text),
            Convert.ToString(ModelA.Text),
-               (IBL.BO.WeightCategories)weightSelectorA.SelectedItem,
+               (BO.WeightCategories)weightSelectorA.SelectedItem,
                Convert.ToInt32(IdStationA.SelectedItem));
 
                 MessageBox.Show("The drone was successfully added");

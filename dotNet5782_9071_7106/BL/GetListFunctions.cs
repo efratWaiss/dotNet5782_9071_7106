@@ -1,4 +1,5 @@
-﻿using DO;
+﻿using BO;
+using DO;
 using IBL.BO;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace BlApi
         }
         public IEnumerable<DroneToList> GetListDrone()
         {
-            return new List<DroneToList>(DronesList);
+            return new List<DroneToList>(DronesList);//TODO: droneList
         }
         public IEnumerable<CustomerToList> GetListCustomer()
         {
@@ -98,19 +99,19 @@ namespace BlApi
 
                     p.Add(new ParcelToList(item.Id, new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
                        , new CustomerInParcel(dal.GetCustomer(item.TargetId).Id, dal.GetCustomer(item.TargetId).Name)
-                         , (WeightCategories)item.Weight
-                         , (Priorities)item.priority
+                         , (BO.WeightCategories)item.Weight
+                         , (BO.Priorities)item.priority
                          , temp));
                 }
                 return p;
             }
-            catch (DO.IdException ex) { throw new NotExistException(ex.Message); }
+            catch (DO.IdException ex) { throw new BO.NotExistException(ex.Message); }
         }
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus)
         {
             return DronesList.Where(d => d.Status == stasus);
         }
-       public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight)
+       public IEnumerable<DroneToList> GetListByWeight(BO.WeightCategories weight)
         {
             return DronesList.Where(d => d.MaxWeight == weight);
         }

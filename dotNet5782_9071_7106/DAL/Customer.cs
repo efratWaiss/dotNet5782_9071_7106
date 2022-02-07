@@ -12,7 +12,9 @@
             public string Phone { get; set; }
             public double Longitude { get; set; }
             public double Latitude { get; set; }
-            public override string ToString()
+        public Location Location { get; }
+
+        public override string ToString()
             {
                 return "id:" + Id + " Name:" + Name + " Phone:" + Phone + " Longitude:" + Longitude + " Latitude:" + Latitude;
             }
@@ -24,5 +26,13 @@
                 Longitude = longitude;
                 Latitude = latitude;
             }
+
+        public Customer(int id, string name, string phone, Location location) : this()
+        {
+            Id = id;
+            Name = name;
+            Phone = phone;
+            Location = location;
         }
+    }
 }
