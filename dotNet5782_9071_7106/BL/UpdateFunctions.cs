@@ -1,4 +1,5 @@
 ﻿using BO;
+using DalApi;
 using IBL.BO;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace BlApi
                     drone.Status = DroneStatuses.Maintenance;
                     stationHelp.ChargeSlots -= 1;//TODO:לבדוק את התחנות הפנויות
                     dal.UpdateStationDetails(stationHelp.Id, stationHelp.Name, stationHelp.ChargeSlots);
-                    dal.GetListDroneCharges().ToList().Add(new IDAL.DO.DroneCharge(drone.Id, stationHelp.Id));
+                    dal.GetListDroneCharges().ToList().Add(new DO.DroneCharge(drone.Id, stationHelp.Id));
                 }
                 else
                 {
@@ -54,8 +55,8 @@ namespace BlApi
                 double Longitude = 0;
                 int index = 0;
                 int start = 0;
-                IDAL.DO.Parcel temp;
-                IDAL.DO.Parcel parcelChoise = default;
+                DO.Parcel temp;
+                DO.Parcel parcelChoise = default;
                 int end = dal.GetListParcel().Count();
                 double minLocation = 99999;
                 double tempLocation = 0;
@@ -85,7 +86,7 @@ namespace BlApi
                             tempLocation =
                                 GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].SenderId).Longitude, dal.GetCustomer(p[i].SenderId).Latitude), drone1.LocationNow)
                                 + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), drone1.LocationNow)
-                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));
+                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));//TODO: check
 
                             //tempLocation שומר את כל הדרך שעל הרחפן לעבור, כדי להעביר חבילה מלקוח למקבל ולהגיע לתחנה הקרובה לטעינה (כדי לבדוק אם יש לו מספיק בטריה
                             if (tempLocation <= drone1.Battery * ChargingRate * droneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך

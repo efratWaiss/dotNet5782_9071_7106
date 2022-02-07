@@ -1,4 +1,5 @@
-﻿using DO;
+﻿using BO;
+using DO;
 using IBL.BO;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,16 @@ namespace BlApi
 {
     public partial class BL : IBL
     {
-        public Customer GetCustomer(int id)
+        public BO.Customer GetCustomer(int id)
         {
             try
             {
                 var customer = dal.GetCustomer(id);
-                Customer c = new Customer(customer.Id, customer.Name, customer.Phone, new Location(customer.Longitude, customer.Latitude));
+                BO.Customer c = new BO.Customer(customer.Id, customer.Name, customer.Phone, new Location(customer.Longitude, customer.Latitude));
                 foreach (var item in dal.GetListParcel())
                 {
                     if (item.SenderId == c.Id)
-                        c.parcelToCustomer.Add(new Parcel(item.Id, new CustomerInParcel(c.Id, c.Name)
+                        c.parcelToCustomer.Add(new BO.Parcel(item.Id, new CustomerInParcel(c.Id, c.Name)
                             , new CustomerInParcel(dal.GetCustomer(item.TargetId).Id, dal.GetCustomer(item.TargetId).Name)
                             , (WeightCategories)item.Weight
                             , (Priorities)item.priority

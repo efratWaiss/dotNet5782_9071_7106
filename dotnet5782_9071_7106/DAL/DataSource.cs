@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
     namespace DO
     {
-        internal class DataSource
+        public class DataSource
         {
             internal static List<Drone> drones = new List<Drone>();
             internal static List<Station> stations = new List<Station>();
@@ -16,7 +16,7 @@ using System.Threading.Tasks;
             internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
 
 
-            internal class Config
+            public class Config
             {
                 internal static int parcelId =0;
                 public static double available;

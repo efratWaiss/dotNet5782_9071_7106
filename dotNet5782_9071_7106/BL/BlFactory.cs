@@ -8,9 +8,9 @@ using BL;
 
 namespace BlApi
 {
-    public static class BlFactory
+    public static class BLFactory
     {
-        public static IBL GetBl()
+        public static IBL GetBL()
         {
 
             return new BL();
@@ -18,3 +18,13 @@ namespace BlApi
         }
     }
 }
+//namespace BO
+//{
+//    public static class BlFactory
+//    {
+//        public static IBL GetBl(String st)
+//        {
+//            return BL;
+//        }
+//    }
+//}
