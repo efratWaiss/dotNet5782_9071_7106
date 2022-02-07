@@ -35,6 +35,18 @@ namespace DO
         override public string ToString()
         { return Message; }
     }
+    public class NotFoundThisInstance : Exception
+    {
+        public NotFoundThisInstance() : base() { }
+        public NotFoundThisInstance(string message) : base(message) { }
+        public NotFoundThisInstance(string message, Exception inner)
+                    : base(message, inner) { }
+        protected NotFoundThisInstance(SerializationInfo info, StreamingContext context)
+                    : base(info, context) { }
+
+        override public string ToString()
+        { return Message; }
+    }
 }
 
 

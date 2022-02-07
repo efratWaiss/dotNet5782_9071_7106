@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,12 @@ namespace PL
     public partial class MainWindow : Window
     {
         
-        IBL.BL bl = new();
+        BL bl;
         public MainWindow()
         {
            
             InitializeComponent();
+            bl = BlFactory.GetBl("BL");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
