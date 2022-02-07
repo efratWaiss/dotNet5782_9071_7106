@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,20 +66,22 @@ namespace PL
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
 
-            //int g;
-            //if (int.TryParse(Id.Text, out g) == true)
-            //{
-            //    if (Convert.ToInt32(Id.Text) > 0)
-            //    {
 
-            bLTemp.AddDrone(Convert.ToInt32(IdA.Text),
-       Convert.ToString(ModelA.Text),
-           (IBL.BO.WeightCategories)weightSelectorA.SelectedItem,
-           Convert.ToInt32(IdStationA.SelectedItem));
+                bLTemp.AddDrone(Convert.ToInt32(IdA.Text),
+           Convert.ToString(ModelA.Text),
+               (IBL.BO.WeightCategories)weightSelectorA.SelectedItem,
+               Convert.ToInt32(IdStationA.SelectedItem));
 
-            MessageBox.Show("The drone was successfully added");
-            this.Close();
+                MessageBox.Show("The drone was successfully added");
+                this.Close();
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             //    }
             //    else
@@ -102,6 +105,7 @@ namespace PL
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             GridAdd.Visibility = Visibility.Collapsed;
             this.Close();
 
@@ -116,34 +120,86 @@ namespace PL
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
-            bLTemp.UpdateNameDrone(Convert.ToInt32(Id.Text), Convert.ToString(Model.Text));
-
+            try
+            {
+                bLTemp.UpdateNameDrone(Convert.ToInt32(Id.Text), Convert.ToString(Model.Text));
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            bLTemp.SendDroneToStation(Convert.ToInt32(Id.Text));
+            try
+            {
+                bLTemp.SendDroneToStation(Convert.ToInt32(Id.Text));
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void FreeDrone_Click(object sender, RoutedEventArgs e)
         {
-            /* bLTemp.FreeDrone(Convert.ToInt32(Id.Text),)*///TODO: ךהכניס זמן טעינה בתחנה
+            try
+            {
+                /* bLTemp.FreeDrone(Convert.ToInt32(Id.Text),)*///TODO: ךהכניס זמן טעינה בתחנה
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void SendDroneToShipping_Click(object sender, RoutedEventArgs e)
         {
-            bLTemp.UpdateParcelToDrone(Convert.ToInt32(Id.Text));
+            try
+            {
+                bLTemp.UpdateParcelToDrone(Convert.ToInt32(Id.Text));
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void CollectionParcelByDrone_Click(object sender, RoutedEventArgs e)
         {
-            bLTemp.PackageCollectionByDrone(Convert.ToInt32(Id.Text));
+            try
+            {
+                bLTemp.PackageCollectionByDrone(Convert.ToInt32(Id.Text));
+
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SupplyParcel_Click(object sender, RoutedEventArgs e)
         {
-            bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
+            try
+            {
+                bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void IdA_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Id.Background = Brushes.Transparent;
+            Regex regex = new Regex("[*0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BO;
+using DalApi;
 using IBL.BO;
 
 #pragma warning disable IDE0005 // Using directive is unnecessary.
@@ -11,17 +11,16 @@ using IBL.BO;
 namespace BlApi
 
 {
-    internal sealed partial class BL : IBL
+    sealed partial class BL : IBL
     {
-        internal static BL instance = new BL();
-        internal static BL Instance { get { return instance; } }
+        
+        static readonly BL instance = new BL();
+        static BL() { }
 
-        static BL()
-        {
-        }
-        //BL() { }
+        public static BL Instance { get => instance; }
 
-        IDal.IDAL dal;
+       
+        IDAL dal ;
         public List<DroneToList> DronesList = new();
 
         private double available;//רחפן ריק
@@ -32,7 +31,7 @@ namespace BlApi
 
         public BL()
         {
-            dal = new DalObject.DalObject();
+            //dal = new DalObject.DalObject();
             double[] arr;
             arr = dal.powerConsumpitionByDrone();
             available = arr[0];
@@ -40,6 +39,7 @@ namespace BlApi
             MediumWeight = arr[2];
             heavyWeight = arr[3];
             ChargingRate = arr[4];
+            dal = DalFactory.GetDAL("DalObjetc");
             Initialize();
 
         }

@@ -24,32 +24,41 @@ namespace PL
         public DronesList(IBL.BL bl)
         {
             InitializeComponent();
+
             bLTemp = bl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             AllDrone.Visibility = Visibility.Visible;
             AllDrone.ItemsSource = bLTemp.GetListDrone();
-
-
         }
-
-
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AllDrone.Visibility = Visibility.Collapsed;
-            DronesListViewBy.Visibility = Visibility.Visible;
-            if (StatusSelector.SelectedItem != null)
-                DronesListViewBy.ItemsSource = bLTemp.GetListByStatus((DroneStatuses)StatusSelector.SelectedItem);
+            try
+            {
+                AllDrone.Visibility = Visibility.Collapsed;
+                DronesListViewBy.Visibility = Visibility.Visible;
+                if (StatusSelector.SelectedItem != null)
+                    DronesListViewBy.ItemsSource = bLTemp.GetListByStatus((DroneStatuses)StatusSelector.SelectedItem);
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
-
-
         private void weightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AllDrone.Visibility = Visibility.Collapsed;
-            DronesListViewBy.Visibility = Visibility.Visible;
-            if (weightSelector.SelectedItem != null)
-                DronesListViewBy.ItemsSource = bLTemp.GetListByWeight((WeightCategories)weightSelector.SelectedItem);
+            try
+            {
+                AllDrone.Visibility = Visibility.Collapsed;
+                DronesListViewBy.Visibility = Visibility.Visible;
+                if (weightSelector.SelectedItem != null)
+                    DronesListViewBy.ItemsSource = bLTemp.GetListByWeight((WeightCategories)weightSelector.SelectedItem);
+
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -57,7 +66,6 @@ namespace PL
             Drone Drone = new Drone(bLTemp);
             MessageBox.Show("add drone");
             Drone.Show();
-           
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -72,17 +80,26 @@ namespace PL
                 Drone Drone = new Drone(bLTemp, (DroneToList)DronesListViewBy.SelectedValue);
                 MessageBox.Show("show the drone");
                 Drone.Show();
-               
+
             }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            AllDrone.ItemsSource = bLTemp.GetListDrone();
-            DronesListViewBy.Visibility = Visibility.Collapsed;
-            AllDrone.Visibility = Visibility.Visible;
-            weightSelector.SelectedItem = null;
-            StatusSelector.SelectedItem = null;
+            try
+            {
+                AllDrone.ItemsSource = bLTemp.GetListDrone();
+                DronesListViewBy.Visibility = Visibility.Collapsed;
+                AllDrone.Visibility = Visibility.Visible;
+                weightSelector.SelectedItem = null;
+                StatusSelector.SelectedItem = null;
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
 
         private void AllDrone_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -92,7 +109,7 @@ namespace PL
                 Drone Drone = new Drone(bLTemp, (DroneToList)AllDrone.SelectedValue);
                 MessageBox.Show("show the drone");
                 Drone.Show();
-               
+
 
             }
         }

@@ -1,4 +1,5 @@
-﻿using IBL.BO;
+﻿using DO;
+using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,10 +104,7 @@ namespace BlApi
                 }
                 return p;
             }
-            catch (NotExistException e)
-            {
-                throw;
-            }
+            catch (DO.IdException ex) { throw new NotExistException(ex.Message); }
         }
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus)
         {

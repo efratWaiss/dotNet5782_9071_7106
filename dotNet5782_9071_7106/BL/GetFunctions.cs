@@ -1,4 +1,5 @@
-﻿using IBL.BO;
+﻿using DO;
+using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,10 +43,7 @@ namespace BlApi
                 }
                 return c;
             }
-            catch (IdException e)
-            {
-                throw (e);
-            }
+            catch (DO.IdException ex) { throw new IdException(ex.Message);}
 
         }
         public Drone GetDrone(int id)
@@ -68,9 +66,9 @@ namespace BlApi
                            , GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p.SenderId).Longitude, dal.GetCustomer(p.SenderId).Latitude),
                            new Location(dal.GetCustomer(p.TargetId).Longitude, dal.GetCustomer(p.TargetId).Latitude)));
                     }
-                    catch (IdException e)
+                    catch (DO.IdException ex)
                     {
-                        throw e;
+                        throw new IdException(ex.Message);
                     }
                 }
                 else
@@ -106,9 +104,9 @@ namespace BlApi
                 }
                 return p;
             }
-            catch
+            catch(DO.IdException ex)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(ex.Message);
             }
 
         }
@@ -129,11 +127,7 @@ namespace BlApi
                 }
                 return new Station(stationDal.Id, stationDal.Name, new Location(stationDal.Longitude, stationDal.Latitude), stationDal.ChargeSlots, d); ;
             }
-            catch (NotExistException e)
-            {
-                throw (e);
-
-            }
+            catch (DO.IdException ex) { throw new NotExistException(ex.Message);}
 
         }
     }

@@ -4,22 +4,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DalApi;
 using DO;
-
+using System.Runtime.CompilerServices;
 
 namespace DalObject
 {
-    internal sealed class DalObject : DalApi.IDAL
+    sealed class DalObject : IDAL
     {
-       internal static DalObject instance = new DalObject();
-        internal static DalObject Instance { get { return instance; } }
+        static readonly DalObject instance = new DalObject();
+        static DalObject() { }
 
-        static DalObject()
+        public static DalObject Instance { get => instance; }
+
+        DalObject()
         {
             DataSource.Initialize();
         }
-        DalObject() { }
- 
+        //internal DalObject Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //            instance = new DalObject();
+        //        return instance;
+        //    }
+        //}
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStation(Station s)
         {
             foreach (var item in DataSource.stations)
@@ -29,6 +40,9 @@ namespace DalObject
             }
             DataSource.stations.Add(s);
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDrone(Drone d)
         {
             var count = DataSource.drones.Count(x => x.Id == d.Id);
@@ -37,6 +51,8 @@ namespace DalObject
             DataSource.drones.Add(d);
         }
 
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddCustomer(Customer c)
         {
             foreach (var item in DataSource.customers)
@@ -48,11 +64,15 @@ namespace DalObject
         }
 
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public int AddParcel(Parcel p)
         {
             DataSource.parcels.Add(p);
             return Parcel.endParcel;
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Station GetStation(int id)
         {
             for (int i = 0; i < DataSource.stations.Count; i++)
@@ -63,6 +83,9 @@ namespace DalObject
             throw new NotExistException("this id not exist in the system");
 
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DroneCharge GetDroneCharge(int idDrone)
         {
             for (int i = 0; i < DataSource.DroneCharges.Count; i++)
@@ -72,6 +95,9 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone GetDrone(int id)
         {
             for (int i = 0; i < DataSource.drones.Count; i++)
@@ -81,6 +107,9 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer GetCustomer(int id)
         {
 
@@ -95,6 +124,9 @@ namespace DalObject
 
             throw new NotExistException("this id not exist in the system");
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Parcel GetParcel(int id)
         {
             for (int i = 0; i < DataSource.parcels.Count; i++)
@@ -104,24 +136,39 @@ namespace DalObject
             }
             throw new NotExistException("this id not exist in the system");
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetListStation()
         {
             return new List<Station>(DataSource.stations);
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Drone> GetListDrone()
         {
 
             return new List<Drone>(DataSource.drones);
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Customer> GetListCustomer()
         {
             return new List<Customer>(DataSource.customers);
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetListParcel()
         {
             return new List<Parcel>(DataSource.parcels);
 
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> ParcelNoDrone()
         {
             List<Parcel> ll = new List<Parcel>();
@@ -133,6 +180,9 @@ namespace DalObject
 
             return ll;
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> StationNoCharge()
         {
             List<Station> ll = new List<Station>();
@@ -144,10 +194,16 @@ namespace DalObject
 
             return ll;
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneCharge> GetListDroneCharges()
         {
             return new List<DroneCharge>(DataSource.DroneCharges);
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcelToDrone(int idDrone, int idParcel)
         {
             bool b = true;
@@ -179,6 +235,9 @@ namespace DalObject
             }
 
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void pickedUpD(int idDrone, DateTime d)
         {
             for (int i = 0; i < DataSource.parcels.Count; i++)
@@ -195,6 +254,9 @@ namespace DalObject
                 }
             }
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void targetId(int idCustomer, int idParcel)
         {
             bool c = true;
@@ -229,6 +291,9 @@ namespace DalObject
                 throw new NotExistException("this id parcel not exist in the system");
             }
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendDroneToStation(int idDrone, int idStation)
         {
             bool s = true;
@@ -265,6 +330,9 @@ namespace DalObject
                 throw new NotExistException("this id drone not exist in the system");
             }
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void FreeDrone(int idDrone)
         {
             bool f = false;
@@ -281,6 +349,9 @@ namespace DalObject
                 throw new NotExistException("this id drone not exist in the system");
             }
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void removeFromDroneCharges(int idDrone, int idStation)
         {
             var d = DataSource.drones.FirstOrDefault(x => x.Id == idDrone);
@@ -295,6 +366,9 @@ namespace DalObject
                 throw new NotExistException("this drons'id or Station'id not exist in the system");
             }
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] powerConsumpitionByDrone()
         {
 
@@ -307,49 +381,49 @@ namespace DalObject
 
             return l;
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcel(Parcel p)
         {
 
             int index = GetListParcel().ToList().FindIndex(x => x.Id == p.Id);
             DataSource.parcels[index] = p;
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots)
         {
-            try
-            {
-                Station sHelp = GetStation(IdStation);
-                sHelp.Name = NameStation;
-                sHelp.ChargeSlots = (int)ChargeSlots;
-                for (int i = 0; i < DataSource.stations.Count; i++)
-                {
-                    if (DataSource.stations[i].Id == IdStation)//TODO: איך ךשנות ברשימה האמיתית
-                        DataSource.stations[i] = sHelp;
-                }
-            }
-            catch (IdException e)
-            {
-                throw e;
-            }
 
-
+            Station sHelp = GetStation(IdStation);
+            if (sHelp.Equals(default))
+                throw new IdException("Id Station isnt exist in the system");
+            sHelp.Name = NameStation;
+            sHelp.ChargeSlots = (int)ChargeSlots;
+            for (int i = 0; i < DataSource.stations.Count; i++)
+            {
+                if (DataSource.stations[i].Id == IdStation)//TODO: איך ךשנות ברשימה האמיתית
+                    DataSource.stations[i] = sHelp;
+            }
         }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone)
         {
-            try
+
+            Customer cHelp = GetCustomer(IdCustomer);
+            if (cHelp.Equals(default))
+                throw new IdException("this customer isnt exist in the system");
+            cHelp.Name = Name;
+            cHelp.Phone = Phone;
+            for (int i = 0; i < DataSource.customers.Count; i++)
             {
-                Customer cHelp = GetCustomer(IdCustomer);
-                cHelp.Name = Name;
-                cHelp.Phone = Phone;
-                for (int i = 0; i < DataSource.customers.Count; i++)
-                {
-                    if (DataSource.customers[i].Id == IdCustomer)//TODO: איך ךשנות ברשימה האמיתית
-                        DataSource.customers[i] = cHelp;
-                }
+                if (DataSource.customers[i].Id == IdCustomer)//TODO: איך ךשנות ברשימה האמיתית
+                    DataSource.customers[i] = cHelp;
             }
-            catch (IdException e)
-            {
-                throw e;
-            }
+
 
 
         }//TODO:
