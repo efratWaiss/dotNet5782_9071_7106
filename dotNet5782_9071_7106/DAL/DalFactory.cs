@@ -8,9 +8,10 @@ namespace DalApi
 {
     public static class DalFactory
     {
-        public  static  IDAL GetDAL(String st)
+        public static IDAL GetDAL(string type)
         {
-            return DalObject.st;
+            //string dlType = DO.DataSource.Config
         }
     }
+    
 }

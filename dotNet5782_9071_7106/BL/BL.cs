@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BO;
 using IBL.BO;
 
 #pragma warning disable IDE0005 // Using directive is unnecessary.
@@ -10,8 +11,16 @@ using IBL.BO;
 namespace BlApi
 
 {
-    public partial class BL : IBL
+    internal sealed partial class BL : IBL
     {
+        internal static BL instance = new BL();
+        internal static BL Instance { get { return instance; } }
+
+        static BL()
+        {
+        }
+        //BL() { }
+
         IDal.IDAL dal;
         public List<DroneToList> DronesList = new();
 
