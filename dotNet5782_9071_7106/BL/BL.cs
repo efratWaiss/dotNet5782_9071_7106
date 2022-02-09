@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using BO;
 using DalApi;
-using IBL.BO;
 
 #pragma warning disable IDE0005 // Using directive is unnecessary.
 #pragma warning restore IDE0005 // Using directive is unnecessary.
@@ -33,6 +32,7 @@ namespace BlApi
         public BL()
         {
             //dal = new DalObject.DalObject();
+            dal = DalFactory.GetDAL("DalObject");
             double[] arr;
             arr = dal.powerConsumpitionByDrone();
             available = arr[0];
@@ -40,7 +40,7 @@ namespace BlApi
             MediumWeight = arr[2];
             heavyWeight = arr[3];
             ChargingRate = arr[4];
-            dal = DalFactory.GetDAL("DalObjetc");
+            
             Initialize();
 
         }

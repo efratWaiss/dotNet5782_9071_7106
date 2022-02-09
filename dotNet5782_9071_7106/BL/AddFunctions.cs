@@ -1,7 +1,5 @@
 ﻿using BO;
 using DalApi;
-using DO;
-using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public partial class BL : IBL
+    partial class BL : IBL
     {
         public void AddCustomer(int Id, String Name, String Phone, double Longitude, double Latitude)
         {
             try
             {
-                dal.AddCustomer(new IDAL.DO.Customer(Id, Name, Phone, Longitude, Latitude));
+                dal.AddCustomer(new DO.Customer(Id, Name, Phone, Longitude, Latitude));
             }
             catch (DO.IdException ex)
             {
@@ -24,7 +22,7 @@ namespace BlApi
             }
 
         }
-        public void AddDrone(int Id, String Model, BO.WeightCategories weight, int IdStation)
+        public void AddDrone(int Id, String Model, WeightCategories weight, int IdStation)
         {
             try
             {
@@ -34,7 +32,7 @@ namespace BlApi
                 try
                 {
                     var Station1 = dal.GetStation(IdStation);
-                    dal.AddDrone(new IDAL.DO.Drone(Id, Model, (IDAL.DO.WeightCategories)(weight)));
+                    dal.AddDrone(new DO.Drone(Id, Model, (DO.WeightCategories)(weight)));
                     DronesList.Add(new DroneToList(Id, Model, weight, battery, DroneStatuses.Maintenance, new Location(Station1.Latitude, Station1.Longitude), -1));
                 }
                 catch (DO.IdException ex) { throw new IdException(ex.Message);}
@@ -42,15 +40,15 @@ namespace BlApi
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
-        public int AddParcel(int SenderId, int TargetId, BO.WeightCategories Weight, BO.Priorities Priorities)
+        public int AddParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)
         {
             try
             {
                 var customer1 = dal.GetCustomer(SenderId);
                 var customer2 = dal.GetCustomer(TargetId);
-                return dal.AddParcel(new IDAL.DO.Parcel(SenderId, TargetId, (IDAL.DO.WeightCategories)Weight, (IDAL.DO.Priorities)Priorities, DateTime.Now, 0, null, null, null));
+                return dal.AddParcel(new DO.Parcel(SenderId, TargetId, (DO.WeightCategories)Weight, (DO.Priorities)Priorities, DateTime.Now, 0, null, null, null));
             }
-            catch (DO.IdException ex) { throw new BO.IdException(ex.Message);}
+            catch (DO.IdException ex) { throw new IdException(ex.Message);}
 
 
         }
@@ -59,7 +57,7 @@ namespace BlApi
             try
             {
 
-                dal.AddStation(new IDAL.DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
+                dal.AddStation(new DO.Station(Id, Name, location.Latitude, location.Longitude, AvailableChargeSlots));
             }
 
             catch (DO.IdException ex)

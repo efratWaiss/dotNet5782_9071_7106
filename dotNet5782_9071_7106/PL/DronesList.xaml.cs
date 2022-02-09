@@ -1,6 +1,5 @@
 ﻿using BlApi;
 using BO;
-using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +21,8 @@ namespace PL
     /// </summary>
     public partial class DronesList : Window
     {
-        BL bLTemp;
-        public DronesList(BL bl)
+        IBL bLTemp;
+        public DronesList(IBL bl)
         {
             InitializeComponent();
 
@@ -119,6 +118,13 @@ namespace PL
         private void AllDrone_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_Group(object sender, RoutedEventArgs e)
+        {
+            AllDrone.Visibility = Visibility.Visible;
+            DronesListViewBy.Visibility = Visibility.Collapsed;
+            AllDrone.ItemsSource = bLTemp.GetListDroneByGroup();
         }
     }
 

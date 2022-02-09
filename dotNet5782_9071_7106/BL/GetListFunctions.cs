@@ -1,6 +1,5 @@
 ﻿using BO;
 using DO;
-using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public partial class BL : IBL
+    partial class BL : IBL
     {
         public IEnumerable<StationToList> GetListStation()
         {
@@ -114,6 +113,13 @@ namespace BlApi
        public IEnumerable<DroneToList> GetListByWeight(BO.WeightCategories weight)
         {
             return DronesList.Where(d => d.MaxWeight == weight);
+        }
+        public IEnumerable<IGrouping<DroneStatuses,DroneToList>> GetListDroneByGroup()
+        {
+            var t = from drone in DronesList
+                    group drone by drone.Status into g
+                    select g;
+            return t;
         }
     }
 

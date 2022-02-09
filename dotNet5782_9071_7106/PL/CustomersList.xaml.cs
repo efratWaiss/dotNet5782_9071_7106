@@ -20,8 +20,8 @@ namespace PL
     /// </summary>
     public partial class CustomersList : Window
     {
-        BL blTemp;
-        public CustomersList(BL bl)
+        IBL blTemp;
+        public CustomersList(IBL bl)
         {
             InitializeComponent();
             blTemp = bl;
