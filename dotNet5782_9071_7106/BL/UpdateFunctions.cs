@@ -1,6 +1,5 @@
 ﻿using BO;
 using DalApi;
-using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public partial class BL :IBL
+    partial class BL :IBL
     {
         public void SendDroneToStation(int idDrone)
         {
@@ -336,7 +335,7 @@ namespace BlApi
         }
         public void FreeDrone(int idDrone, double timeInCharging)
         {
-            IDAL.DO.Station station;
+            DO.Station station;
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
             if (drone != default)
             {

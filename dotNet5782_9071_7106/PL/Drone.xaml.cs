@@ -1,7 +1,6 @@
 ﻿
 using BlApi;
 using BO;
-using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +23,8 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        BL bLTemp;
-        public Drone(BL bl)
+        IBL bLTemp;
+        public Drone(IBL bl)
         {
             InitializeComponent();
             bLTemp = bl;
@@ -35,7 +34,7 @@ namespace PL
 
         }
 
-        public Drone(BL bl, DroneToList d)
+        public Drone(IBL bl, DroneToList d)
         {
             InitializeComponent();
             GridUpdate.Visibility = Visibility.Visible;

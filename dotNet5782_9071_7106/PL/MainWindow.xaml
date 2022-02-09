@@ -11,12 +11,12 @@
         <Rectangle Fill="#FF01356E" StrokeThickness="2" Margin="0,429,0,179" />
         <Button x:Name="buttonDrone" Content="open drones list"
                 Click="Button_ClickDrone" Margin="640,517,15,44" BorderBrush="#FF01356E" BorderThickness="7"
-                FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0.5,0.5" >
+                FontSize="22" FontFamily="Segoe UI Variable Text Semibold" FontWeight="Bold" FontStretch="ExtraCondensed" Visibility="Visible" FontStyle="Italic" Style="{Binding Cursor, ElementName=button}" RenderTransformOrigin="0,0" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="-0.764"/>
+                    <RotateTransform Angle="0.529"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Button.RenderTransform>

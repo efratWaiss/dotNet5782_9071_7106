@@ -21,8 +21,8 @@ namespace PL
     /// </summary>
     public partial class StationList : Window
     {
-        BL blTemp;
-        public StationList(BL bl)
+        IBL blTemp;
+        public StationList(IBL bl)
         {
             InitializeComponent();
             blTemp = bl;

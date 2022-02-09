@@ -21,13 +21,13 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-        BL bl;
+
+        IBL bl;
         public MainWindow()
         {
            
             InitializeComponent();
-            bl = BlFactory.GetBl("BL");
+            bl = BLFactory.GetBL();
         }
 
         private void Button_ClickDrone(object sender, RoutedEventArgs e)
@@ -59,6 +59,11 @@ namespace PL
             ParcelList parcelList = new ParcelList(bl);
             MessageBox.Show("show the Parcel list");
             parcelList.Show();  
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using BO;
 using DO;
-using IBL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    public partial class BL : IBL
+    partial class BL : IBL
     {
         public BO.Customer GetCustomer(int id)
         {
@@ -22,8 +21,8 @@ namespace BlApi
                     if (item.SenderId == c.Id)
                         c.parcelToCustomer.Add(new BO.Parcel(item.Id, new CustomerInParcel(c.Id, c.Name)
                             , new CustomerInParcel(dal.GetCustomer(item.TargetId).Id, dal.GetCustomer(item.TargetId).Name)
-                            , (WeightCategories)item.Weight
-                            , (Priorities)item.priority
+                            , (BO.WeightCategories)item.Weight
+                            , (BO.Priorities)item.priority
                             , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id, DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)
                             , item.Requested
                             , DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id
@@ -31,10 +30,10 @@ namespace BlApi
                             , item.PickedUp
                             , item.Delivered));
                     else if (item.TargetId == c.Id)
-                        c.parcelFromCustomer.Add(new Parcel(item.Id, new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
+                        c.parcelFromCustomer.Add(new BO.Parcel(item.Id, new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
                            , new CustomerInParcel(c.Id, c.Name)
-                           , (WeightCategories)item.Weight
-                           , (Priorities)item.priority
+                           , (BO.WeightCategories)item.Weight
+                           , (BO.Priorities)item.priority
                            , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id, DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)
                            , item.Requested
                            , DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id
@@ -44,10 +43,10 @@ namespace BlApi
                 }
                 return c;
             }
-            catch (DO.IdException ex) { throw new IdException(ex.Message);}
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
 
         }
-        public Drone GetDrone(int id)
+        public BO.Drone GetDrone(int id)
         {
 
             ParcelInTransference ParcelInTransference;
@@ -61,7 +60,7 @@ namespace BlApi
                     try
                     {
                         var p = dal.GetParcel(drone.ParcelDelivered);
-                        ParcelInTransference = new(p.Id, new CustomerInParcel(p.SenderId, dal.GetCustomer(p.SenderId).Name), new CustomerInParcel(p.TargetId, dal.GetCustomer(p.TargetId).Name), (WeightCategories)p.Weight, (Priorities)p.priority, true,
+                        ParcelInTransference = new(p.Id, new CustomerInParcel(p.SenderId, dal.GetCustomer(p.SenderId).Name), new CustomerInParcel(p.TargetId, dal.GetCustomer(p.TargetId).Name), (BO.WeightCategories)p.Weight, (BO.Priorities)p.priority, true,
                            new Location(dal.GetCustomer(p.SenderId).Longitude, dal.GetCustomer(p.SenderId).Latitude),
                            new Location(dal.GetCustomer(p.TargetId).Longitude, dal.GetCustomer(p.TargetId).Latitude)
                            , GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p.SenderId).Longitude, dal.GetCustomer(p.SenderId).Latitude),
@@ -69,14 +68,14 @@ namespace BlApi
                     }
                     catch (DO.IdException ex)
                     {
-                        throw new IdException(ex.Message);
+                        throw new BO.IdException(ex.Message);
                     }
                 }
                 else
                 {
                     ParcelInTransference = null;
                 }
-                Drone d = new Drone(drone.Id, drone.Model, drone.MaxWeight, drone.Status, drone.Battery, ParcelInTransference, drone.LocationNow);
+                BO.Drone d = new BO.Drone(drone.Id, drone.Model, drone.MaxWeight, drone.Status, drone.Battery, ParcelInTransference, drone.LocationNow);
                 return d;
             }
             else
@@ -85,33 +84,33 @@ namespace BlApi
             }
 
         }
-        public Parcel GetParcel(int id)
+        public BO.Parcel GetParcel(int id)
         {
-            Parcel p = default;
+            BO.Parcel p = default;
             try
             {
                 var parcel = dal.GetParcel(id);
                 if (parcel.DroneId != 0)
                 {
                     var drone = DronesList.FirstOrDefault(x => x.Id == parcel.DroneId);
-                    p = new Parcel(id, new CustomerInParcel(dal.GetCustomer(parcel.SenderId).Id, dal.GetCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.GetCustomer(parcel.TargetId).Id, dal.GetCustomer(parcel.TargetId).Name), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
+                    p = new BO.Parcel(id, new CustomerInParcel(dal.GetCustomer(parcel.SenderId).Id, dal.GetCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.GetCustomer(parcel.TargetId).Id, dal.GetCustomer(parcel.TargetId).Name), (BO.WeightCategories)parcel.Weight, (BO.Priorities)parcel.priority
                      , new DroneInParcel(drone.Id, drone.Battery, drone.LocationNow), parcel.Requested, parcel.DroneId, parcel.scheduled
                     , parcel.PickedUp, parcel.Delivered);
                 }
                 else
                 {
-                    p = new Parcel(id, new CustomerInParcel(dal.GetCustomer(parcel.SenderId).Id, dal.GetCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.GetCustomer(parcel.TargetId).Id, dal.GetCustomer(parcel.TargetId).Name), (WeightCategories)parcel.Weight, (Priorities)parcel.priority
+                    p = new BO.Parcel(id, new CustomerInParcel(dal.GetCustomer(parcel.SenderId).Id, dal.GetCustomer(parcel.SenderId).Name), new CustomerInParcel(dal.GetCustomer(parcel.TargetId).Id, dal.GetCustomer(parcel.TargetId).Name), (BO.WeightCategories)parcel.Weight, (BO.Priorities)parcel.priority
                      , null, parcel.Requested, parcel.DroneId, parcel.scheduled, parcel.PickedUp, parcel.Delivered);
                 }
                 return p;
             }
-            catch(DO.IdException ex)
+            catch (DO.IdException ex)
             {
                 throw new NotImplementedException(ex.Message);
             }
 
         }
-        public Station GetStation(int id)
+        public BO.Station GetStation(int id)
         {
             List<DroneInCharging> d = new();
             try
@@ -126,9 +125,9 @@ namespace BlApi
                         d.Add(new DroneInCharging(item.Droneld, (DronesList.FirstOrDefault(x => x.Id == item.Droneld)).Battery));
                     }
                 }
-                return new Station(stationDal.Id, stationDal.Name, new Location(stationDal.Longitude, stationDal.Latitude), stationDal.ChargeSlots, d); ;
+                return new BO.Station(stationDal.Id, stationDal.Name, new Location(stationDal.Longitude, stationDal.Latitude), stationDal.ChargeSlots, d); ;
             }
-            catch (DO.IdException ex) { throw new NotExistException(ex.Message);}
+            catch (DO.IdException ex) { throw new BO.NotExistException(ex.Message); }
 
         }
     }

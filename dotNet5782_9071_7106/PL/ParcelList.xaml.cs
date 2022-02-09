@@ -20,8 +20,8 @@ namespace PL
     /// </summary>
     public partial class ParcelList : Window
     {
-        BL blTemp;
-        public ParcelList(BL bl)
+        IBL blTemp;
+        public ParcelList(IBL bl)
         {
             InitializeComponent();
             blTemp = bl;
