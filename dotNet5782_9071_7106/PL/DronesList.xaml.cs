@@ -89,11 +89,13 @@ namespace PL
         {
             try
             {
+               
+                weightSelector.SelectedItem = null;
+                StatusSelector.SelectedItem = null; 
                 AllDrone.ItemsSource = bLTemp.GetListDrone();
                 DronesListViewBy.Visibility = Visibility.Collapsed;
                 AllDrone.Visibility = Visibility.Visible;
-                weightSelector.SelectedItem = null;
-                StatusSelector.SelectedItem = null;
+                
             }
             catch (BO.IdException ex)
             {
@@ -115,15 +117,10 @@ namespace PL
             }
         }
 
-        private void AllDrone_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click_Group(object sender, RoutedEventArgs e)
         {
-            AllDrone.Visibility = Visibility.Visible;
             DronesListViewBy.Visibility = Visibility.Collapsed;
+            AllDrone.Visibility = Visibility.Visible;
             AllDrone.ItemsSource = bLTemp.GetListDroneByGroup();
         }
     }
