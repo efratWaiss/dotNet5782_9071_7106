@@ -22,7 +22,7 @@ namespace BlApi
             }
 
         }
-        public void AddDrone(int Id, String Model, WeightCategories weight, int IdStation)
+        public void AddDrone(int Id, String Model, BO.WeightCategories weight, int IdStation)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace BlApi
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
-        public int AddParcel(int SenderId, int TargetId, WeightCategories Weight, Priorities Priorities)
+        public int AddParcel(int SenderId, int TargetId, BO.WeightCategories Weight, BO.Priorities Priorities)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace BlApi
                 var customer2 = dal.GetCustomer(TargetId);
                 return dal.AddParcel(new DO.Parcel(SenderId, TargetId, (DO.WeightCategories)Weight, (DO.Priorities)Priorities, DateTime.Now, 0, null, null, null));
             }
-            catch (DO.IdException ex) { throw new IdException(ex.Message);}
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message);}
 
 
         }
