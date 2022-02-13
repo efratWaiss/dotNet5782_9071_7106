@@ -7,7 +7,22 @@
         mc:Ignorable="d"
         Title="StationList" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="All_Stations"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions >
+        <ListView x:Name="All_Stations">
+            <Button Content="Add Station" RenderTransformOrigin="1.867,19.998" Click="Button_Click" Height="41"/>
+        </ListView>
 
 
     </Grid>

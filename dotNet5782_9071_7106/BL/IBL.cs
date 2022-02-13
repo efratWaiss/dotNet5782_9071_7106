@@ -27,6 +27,7 @@ namespace BlApi
         public IEnumerable<ParcelToList> ParcelNoDrone();
         public IEnumerable<StationToList> StationWithAvailableStands();
         public void UpdateParcelToDrone(int idDrone);
+        public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone);
         public void UpdateNameDrone(int idDrone, string model);
         public void DeliveryOfAParcelByDrone(int idDrone);
         public void PackageCollectionByDrone(int idDrone);
@@ -35,6 +36,6 @@ namespace BlApi
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus);
         public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight);
         public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup();
-
+        //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup();
     }
 }

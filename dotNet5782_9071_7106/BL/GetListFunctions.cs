@@ -70,29 +70,29 @@ namespace BlApi
             try
             {
                 var parcels = dal.GetListParcel();
-                ParcelStatsus temp;
+                BO.ParcelStatsus temp;
                 List<ParcelToList> p = new List<ParcelToList>();
                 foreach (var item in parcels)
                 {
                     if (!item.PickedUp.Equals(null))//נאסף=נאסף
                     {
-                        temp = ParcelStatsus.collected;
+                        temp = BO.ParcelStatsus.collected;
                     }
                     else if (!item.Delivered.Equals(null))//נמסר=קשור ל...
                     {
-                        temp = ParcelStatsus.associated;
+                        temp = BO.ParcelStatsus.associated;
                     }
                     else if (!item.Requested.Equals(null))//מבוקש=נוצר
                     {
-                        temp = ParcelStatsus.created;
+                        temp = BO.ParcelStatsus.created;
                     }
                     else if (!item.scheduled.Equals(null))//נמסר=קשור ל
                     {
-                        temp = ParcelStatsus.Defined;
+                        temp = BO.ParcelStatsus.Defined;
                     }
                     else
                     {
-                        temp = ParcelStatsus.provided;
+                        temp = BO.ParcelStatsus.provided;
                     }
 
 
@@ -121,6 +121,13 @@ namespace BlApi
                     select g;
             return t;
         }
+        //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup()
+        //{
+        //    var t = from parcel in GetListParcel()
+        //            group parcel by parcel.Sender into g
+        //            select g;
+        //    return t;
+        //}
     }
 
 }

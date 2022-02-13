@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ParcelList" Height="450" Width="800">
+        Title="ParcelList" Height="640" Width="800">
     <Grid>
-        
+        <Grid x:Name="MainGrid" Margin="0,0,0,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" >
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+                <Label Content="Filter parcel by date" Grid.Column="0" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
+                <!--<ComboBox Name="DateSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" BorderBrush="White" Grid.Row="0"/>-->
+                <Label Content="Filter drones by status" Grid.Column="2" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
+                <Label Content="Filter drones by status" Grid.Column="2" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
+                <ComboBox Name="StatusSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" BorderBrush="White" Grid.Row="0" SelectionChanged="StatusSelector_SelectionChanged"/>
+                <Button Content="View all parcel" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Height="77" Width="187" Click="AllDrone_Click" Background="LightBlue" BorderBrush="White" FontSize="14" Grid.Row="2"/>
+            </Grid>
+            <Button Content="Add parcel" HorizontalAlignment="Left"  Margin="24,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" RenderTransformOrigin="0.5,2.934" BorderThickness="4" BorderBrush="#FF01356E" Click="Button_ClickAddParcel" />
+            <Button Content="Close" HorizontalAlignment="Left" Margin="201,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" Click="Button_ClickClose" BorderBrush="#FF01356E" BorderThickness="4"/>
+            <Button Content="Group List" HorizontalAlignment="Left" Margin="400,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" Click="Button_Click_Group" BorderBrush="#FF01356E" BorderThickness="4" />
+            <DataGrid x:Name="AllParcel" Grid.Row="1"   Margin="0,2,0,0" IsReadOnly="true" MouseDoubleClick="AllDrone_MouseDoubleClick"/>
+            <ItemsControl x:Name="GroupingParcel" Grid.Row="1" Visibility="Collapsed" Margin="0,2,0,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate >
+                        <Expander Header="{Binding Key}">
+                            <DataGrid ItemsSource="{Binding}" />
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <!--<DataGrid x:Name="DronesListViewBy"  Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick" Margin="0,2,0,0"  />-->
+        </Grid>
     </Grid>
 </Window>

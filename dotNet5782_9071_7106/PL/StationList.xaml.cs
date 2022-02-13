@@ -28,6 +28,11 @@ namespace PL
             blTemp = bl;
             All_Stations.ItemsSource = blTemp.GetListStation();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

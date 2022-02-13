@@ -24,10 +24,12 @@ namespace PL
     public partial class Drone : Window
     {
         IBL bLTemp;
+        DroneToList d;
         public Drone(IBL bl)
         {
             InitializeComponent();
             bLTemp = bl;
+            GridUpdate.Visibility = Visibility.Collapsed;
             GridAdd.Visibility = Visibility.Visible;
             weightSelectorA.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
             IdStationA.ItemsSource = bLTemp.GetListStation().Select(x => x.Id);
@@ -37,16 +39,12 @@ namespace PL
         public Drone(IBL bl, DroneToList d)
         {
             InitializeComponent();
-            GridUpdate.Visibility = Visibility.Visible;
+            this.d = d;
             bLTemp = bl;
+            GridUpdate.Visibility = Visibility.Visible;
+            GridUpdate.DataContext = d;
             Id.Text = Convert.ToString(d.Id);
-            Model.Text = d.Model;
-            weight.Text = d.MaxWeight.ToString();
-            status.Text = d.Status.ToString();
-            IdStation.Text = d.ParcelDelivered.ToString();
-            battery.Text = Convert.ToString(d.Battery);
-            location.Text = Convert.ToString(d.LocationNow);
-            if (Convert.ToInt32(battery.Text) != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
+            if (d.Battery != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
             {
                 SendDroneToCharging.Visibility = Visibility.Visible;
                 SendDroneToCharging.Visibility = Visibility.Visible;
@@ -60,6 +58,10 @@ namespace PL
             {
                 CollectionParcelByDrone.Visibility = Visibility.Visible;
                 SupplyParcel.Visibility = Visibility.Visible;
+            }
+            if (d.ParcelDelivered != 0)
+            {
+                DronesParcle.Visibility = Visibility.Visible;
             }
 
 
@@ -84,23 +86,7 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
 
-            //    }
-            //    else
-            //    {
-
-            //        MessageBox.Show("The drone's ID is not Positive");
-            //        IdA.Text = null;
-
-            //    }
-
-
             {
-                //}
-                //else
-                //{
-                //    MessageBox.Show("The drone's ID is Invalid");
-                //    IdA.Text = null;
-                //}
 
             }
         }
@@ -201,6 +187,15 @@ namespace PL
             Id.Background = Brushes.Transparent;
             Regex regex = new Regex("[*0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void GetParcleDroen_Click(object sender, RoutedEventArgs e)
+        {
+
+            Parcel Parcel = new Parcel(bLTemp, d.ParcelDelivered);
+            MessageBox.Show("show the drone");
+            Parcel.Show();
+
         }
     }
 }

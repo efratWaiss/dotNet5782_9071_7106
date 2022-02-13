@@ -25,6 +25,22 @@ namespace PL
         {
             InitializeComponent();
             blTemp = bl;
+            AllCustomer.ItemsSource = blTemp.GetListCustomer();
         }
+
+        private void AllCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Customer customer = new Customer(blTemp, (BO.CustomerToList)AllCustomer.SelectedValue);
+            customer.Show();
+
+        }
+
+        private void AddCustomerClick(object sender, RoutedEventArgs e)
+        {
+            Customer customer = new Customer(blTemp);
+            customer.Show();
+        }
+
+       
     }
 }

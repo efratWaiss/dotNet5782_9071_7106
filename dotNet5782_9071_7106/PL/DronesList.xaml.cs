@@ -85,7 +85,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void AllDrone_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -94,6 +94,7 @@ namespace PL
                 StatusSelector.SelectedItem = null; 
                 AllDrone.ItemsSource = bLTemp.GetListDrone();
                 DronesListViewBy.Visibility = Visibility.Collapsed;
+                GroupingDrones.Visibility = Visibility.Collapsed;
                 AllDrone.Visibility = Visibility.Visible;
                 
             }
@@ -120,8 +121,10 @@ namespace PL
         private void Button_Click_Group(object sender, RoutedEventArgs e)
         {
             DronesListViewBy.Visibility = Visibility.Collapsed;
-            AllDrone.Visibility = Visibility.Visible;
-            AllDrone.ItemsSource = bLTemp.GetListDroneByGroup();
+            AllDrone.Visibility = Visibility.Collapsed;
+            GroupingDrones.Visibility = Visibility.Visible;
+            GroupingDrones.ItemsSource = bLTemp.GetListDroneByGroup();
+
         }
     }
 

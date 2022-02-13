@@ -21,4 +21,12 @@
             Fast,
             Emergency
         }
+    public enum ParcelStatsus
+    {
+        Defined,
+        associated,
+        collected,
+        provided,
+        created
     }
+}
