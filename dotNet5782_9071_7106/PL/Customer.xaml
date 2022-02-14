@@ -1,0 +1,78 @@
+﻿<Window x:Class="PL.Customer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="Customer" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="AddCustomer" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Id" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="Phone" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="Longitude" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="Latitude" Grid.Row="5" Grid.Column="1"/>
+            <TextBox x:Name="IdA" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="NameA"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="PhoneA"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="LongitudeA"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="LatitudeA"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Button x:Name="Save" Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="5" VerticalAlignment="Top" Click="Button_ClickSave"/>
+            <!--<Button x:Name="Close" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Button_ClickClose"/>-->
+        </Grid>
+        <Grid x:Name="UpDateCustomer" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Id" Grid.Row="1" Grid.Column="1" />
+            <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="Phone" Grid.Row="3" Grid.Column="1"  />
+            <Label Content="Parcel Send And provided" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="Parcel Send And Not provided" Grid.Row="5" Grid.Column="1"/>
+            <Label Content="Number Get List Parcel" Grid.Row="6" Grid.Column="1" />
+            <Label Content="Number Parcel To Customer" Grid.Row="7" Grid.Column="1"/>
+            <!--<StackPanel x:Name="k" Grid.Column="2">-->
+            <TextBox x:Name="IdU" MaxLength="9" Grid.Column="2" Text="{Binding Path=Identity}" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="NameU" Text="{Binding Path=Name}"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="PhoneU" Text="{Binding Path=Phone}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="ParcelSendAndprovidedU" Text="{Binding Path=ParcelSendAndprovided}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="ParcelSendAndNotprovidedU" Text="{Binding Path=ParcelSendAndNotprovided}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="NumberGetListParcelU" Text="{Binding Path=NumberGetListParcel}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="NumberParcelTOCustomerU" Text="{Binding Path=NumberParcelTOCustomer}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="60,9,0,0" Grid.Row="8" VerticalAlignment="Top" Click="Button_ClickSaveUpdate"/>
+            <!--</StackPanel>-->
+        </Grid>
+        <!--</StackPanel>-->
+    </Grid>
+</Window>

@@ -50,6 +50,11 @@ namespace PL
             MessageBox.Show("add Station");
             Station.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

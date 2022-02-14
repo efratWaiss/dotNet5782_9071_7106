@@ -294,14 +294,18 @@ namespace BlApi
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
-        public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots)
+        public void UpdateStationDetails(int IdStation, String? NameStation, int ChargeSlots)
         {
             try
             {
+                var station = GetListStation().FirstOrDefault(x => x.Id == IdStation);
+                
 
                 if (!NameStation.Equals(default) && !ChargeSlots.Equals(default))
                 {
-                    dal.UpdateStationDetails(IdStation, NameStation, ChargeSlots);
+
+                    station.Name = NameStation;
+                    station.OccupanciesChargingPositions= ChargeSlots;
                 }
                 else
                 {
@@ -317,16 +321,16 @@ namespace BlApi
         {
             try
             {
-                var customer = dal.GetCustomer(IdCustomer);
-                if (!Name.Equals(default))
+                
+                var customer1 = GetListCustomer().FirstOrDefault(x => x.Identity == IdCustomer);
+                if (!Name.Equals(default)&&!Phone.Equals(default))
                 {
-                    customer.Name = Name;
-                }
-                if (!Phone.Equals(default))
-                {
-                    customer.Phone = Phone;
-                }
+                    customer1.Name = Name;
+                    customer1.Phone = Phone;
 
+                }
+                else { throw new Exception("you didnt put good values"); }
+              
             }
             catch (DO.IdException ex)
             {

@@ -1,4 +1,8 @@
 ﻿using BO;
+//<<<<<<< HEAD
+//using IBL.BO;
+//=======
+//>>>>>>> cbcf2b16fc2b8b9724be35762ed329278ca6d9cc
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +27,7 @@ namespace BlApi
         public IEnumerable<ParcelToList> ParcelNoDrone();
         public IEnumerable<StationToList> StationWithAvailableStands();
         public void UpdateParcelToDrone(int idDrone);
+        public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone);
         public void UpdateNameDrone(int idDrone, string model);
         public void DeliveryOfAParcelByDrone(int idDrone);
         public void PackageCollectionByDrone(int idDrone);
@@ -31,6 +36,7 @@ namespace BlApi
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus);
         public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight);
         public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup();
+        //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup();
         public IEnumerable<IGrouping<int, StationToList>> GetListSationByGroup();
     }
 }

@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="CustomersList" Height="450" Width="800">
     <Grid>
+        <DataGrid x:Name="AllCustomer" MouseDoubleClick="AllCustomer_MouseDoubleClick"  />
+        <Button x:Name="buttonAdd" Content="Add Customer" HorizontalAlignment="Left" Margin="272,296,0,0" VerticalAlignment="Top" Click="AddCustomerClick"/>
         
+
     </Grid>
 </Window>
