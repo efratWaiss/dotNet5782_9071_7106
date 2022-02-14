@@ -1,0 +1,76 @@
+﻿<Window x:Class="PL.Station"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="Station" Height="450" Width="800">
+    <Grid>
+
+        <Grid x:Name="GridAdd" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Id"  Grid.Row="1" Grid.Column="1"/>
+            <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="longitude" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="latitude" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="AvailableChargeSlots" Grid.Row="5" Grid.Column="1"/>
+            <TextBox x:Name="Id" IsEnabled="True"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="Name" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="longitude" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="latitude" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="AvailableChargeSlots" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Grid.Column="1" Content="Save" HorizontalAlignment="Center" Margin="0,27,0,0" Grid.Row="7" VerticalAlignment="Top" Click="SaveAndAdd"/>
+            <Button Grid.Column="2" Content="Update Station Details" HorizontalAlignment="Left" Margin="89,27,0,0" Grid.Row="7" VerticalAlignment="Top" Click="UpdateStationDetails"/>
+        </Grid>
+        <Grid x:Name="GridUpdate2" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="IdU"  Grid.Row="1" Grid.Column="1"/>
+            <Label Content="NameU" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="longitudeU" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="latitudeU" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="AvailableChargeSlotsU" Grid.Row="5" Grid.Column="1"/>
+            <Label Content="ChargeSlotsU" Grid.Row="6" Grid.Column="1"/>
+            <TextBox x:Name="IdU" IsEnabled="True" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="NameU" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="longitudeU" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="latitudeU" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="AvailableChargeSlotsU" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="ChargeSlotsU" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+
+        </Grid>
+
+    </Grid>
+</Window>

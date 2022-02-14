@@ -27,6 +27,28 @@ namespace PL
             InitializeComponent();
             blTemp = bl;
             All_Stations.ItemsSource = blTemp.GetListStation();
+            All_Stations.Visibility = Visibility.Visible;
+         
+
+        }
+
+        private void GroupStationsByAvailable(object sender, RoutedEventArgs e)
+        {
+            All_Stations.Visibility = Visibility.Collapsed;        
+            GroupingStations.ItemsSource=blTemp.GetListSationByGroup();
+            GroupingStations.Visibility= Visibility.Visible; 
+        }
+
+        private void ViewAllStations(object sender, RoutedEventArgs e)
+        {
+            GroupingStations.Visibility=Visibility.Collapsed;
+            All_Stations.Visibility = Visibility.Visible;
+        }
+        private void Add_Station(object sender, RoutedEventArgs e)
+        {
+            Station Station  = new Station(blTemp);
+            MessageBox.Show("add Station");
+            Station.Show();
         }
     }
 

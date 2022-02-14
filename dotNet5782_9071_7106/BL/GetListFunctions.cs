@@ -121,6 +121,22 @@ namespace BlApi
                     select g;
             return t;
         }
+        //public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup()
+        //{
+        //    var t = from drone in DronesList
+        //            group drone by drone.Status into g
+        //            select g;
+        //    return t;
+        //}
+        public IEnumerable<IGrouping<int,StationToList>> GetListSationByGroup()
+        {
+            var s = from station in GetListStation()
+                    orderby station.AvailableChargingPositions
+                    group station by station.AvailableChargingPositions into g
+                    select g;
+            return s;
+        }
+
     }
 
 }
