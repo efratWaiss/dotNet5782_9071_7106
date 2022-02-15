@@ -168,7 +168,7 @@ namespace BlApi
 
             }
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
-        }
+        }//חבילה
         public IEnumerable<ParcelToList> ParcelNoDrone()
         {
             try
@@ -294,7 +294,7 @@ namespace BlApi
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
-        public void UpdateStationDetails(int IdStation, String? NameStation, int ChargeSlots)
+        public void UpdateStationDetails(int IdStation, String NameStation, int ChargeSlots)
         {
             try
             {

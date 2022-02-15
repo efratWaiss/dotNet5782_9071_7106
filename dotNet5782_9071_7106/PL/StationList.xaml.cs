@@ -55,6 +55,17 @@ namespace PL
         {
 
         }
+        private void StationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (StationListViewBy.SelectedValue is StationToList)
+            {
+                Station station = new BO.Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
+                MessageBox.Show("show the station");
+                Station.Show();
+
+            }
+        }
     }
 
 }

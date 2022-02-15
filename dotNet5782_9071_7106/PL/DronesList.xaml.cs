@@ -73,17 +73,6 @@ namespace PL
             this.Close();
         }
 
-        private void DronesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-            if (DronesListViewBy.SelectedValue is DroneToList)
-            {
-                Drone Drone = new Drone(bLTemp, (DroneToList)DronesListViewBy.SelectedValue);
-                MessageBox.Show("show the drone");
-                Drone.Show();
-
-            }
-        }
 
         private void AllDrone_Click(object sender, RoutedEventArgs e)
         {
@@ -114,6 +103,19 @@ namespace PL
                 MessageBox.Show("show the drone");
                 Drone.Show();
 
+
+            }
+        }
+
+        //למה יש כפילות בפונקציות?
+        private void DronesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            if (DronesListViewBy.SelectedValue is DroneToList)
+            {
+                Drone Drone = new Drone(bLTemp, (DroneToList)DronesListViewBy.SelectedValue);
+                MessageBox.Show("show the drone");
+                Drone.Show();
 
             }
         }

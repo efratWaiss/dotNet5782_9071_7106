@@ -32,5 +32,7 @@
         <Button Content="select Stations" Click="GroupStationsByAvailable" Grid.Row="0" Margin="0,41,15,108" Grid.Column="1" />
         <Button Content="View All Stations" Click="ViewAllStations" Grid.Column="2" Margin="22,41,0,108"/>
         <Button Content="Add Station" Click="Add_Station" Margin="10,41,10,108" RenderTransformOrigin="0.5,2.934"/>
+        <DataGrid x:Name="StationListViewBy"  Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="StationListView_MouseDoubleClick" Margin="0,2,0,0"  />
+
     </Grid>
 </Window>

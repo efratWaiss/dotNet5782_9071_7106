@@ -18,10 +18,19 @@ namespace PL
     public partial class Station : Window
     {
         IBL blTemp;
+        StationList s;
         public Station(IBL bl)
         {
                 InitializeComponent();
                 blTemp = bl;
+        }
+        
+        public Station(IBL bl,StationList s)
+        {
+            this.s = s;
+            GridUpdate2.Visibility = Visibility.Visible;
+            GridAdd.Visibility = Visibility.Collapsed;
+
         }
 
         private void SaveAndAdd(object sender, RoutedEventArgs e)
@@ -43,7 +52,7 @@ namespace PL
 
         private void UpdateStationDetails(object sender, RoutedEventArgs e)
         {
-            blTemp.U
+            //blTemp.UpdateStationDetails
         }
     }
    }
