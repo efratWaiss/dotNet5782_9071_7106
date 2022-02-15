@@ -10,20 +10,29 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*"/>
+            
         </Grid.ColumnDefinitions >
-        <ListView x:Name="All_Stations">
-            <Button Content="Add Station" RenderTransformOrigin="1.867,19.998" Click="Button_Click" Height="41"/>
-        </ListView>
 
+        <DataGrid x:Name="All_Stations" Grid.ColumnSpan="5" Margin="0,217,0,0" Grid.RowSpan="2" />
+        <ItemsControl x:Name="GroupingStations" Visibility="Collapsed" Margin="0,2,0,0" Grid.Row="1" Width="700">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Expander Header="{Binding Key}">
+                        <DataGrid ItemsSource="{Binding}"/>
+                    </Expander>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Content="select Stations" Click="GroupStationsByAvailable" Grid.Row="0" Margin="0,41,15,108" Grid.Column="1" />
+        <Button Content="View All Stations" Click="ViewAllStations" Grid.Column="2" Margin="22,41,0,108"/>
+        <Button Content="Add Station" Click="Add_Station" Margin="10,41,10,108" RenderTransformOrigin="0.5,2.934"/>
+        <DataGrid x:Name="StationListViewBy"  Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="StationListView_MouseDoubleClick" Margin="0,2,0,0"  />
 
     </Grid>
 </Window>

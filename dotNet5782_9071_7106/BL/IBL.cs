@@ -36,5 +36,6 @@ namespace BlApi
         public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight);
         public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup();
         //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup();
+        public IEnumerable<IGrouping<int, StationToList>> GetListSationByGroup();
     }
 }
