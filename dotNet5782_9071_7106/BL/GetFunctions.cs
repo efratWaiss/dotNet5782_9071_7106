@@ -43,7 +43,7 @@ namespace BlApi
                 }
                 return c;
             }
-            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
+            catch (DO.NotExistException ex) { throw new BO.NotExistException(ex.Message); }
 
         }
         public BO.Drone GetDrone(int id)
