@@ -9,7 +9,7 @@
 
     <Grid>
 
-        <Grid x:Name="GridUpdate" Visibility="Visible">
+        <Grid x:Name="GridUpdate" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -44,7 +44,7 @@
             <TextBox x:Name="weight" Text="{Binding Path=MaxWeight}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="IdStation" Text="{Binding Path=IdStation}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="status" Text="{Binding Path=Status}"  IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="battery" Text="{Binding Path=Status}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="battery" Text="{Binding Path=Battery}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="parcel" Text="{Binding Path=ParcelDelivered}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="location" Text="{Binding Path=LocationNow}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="8"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Content="Update Drones Model"  HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" RenderTransformOrigin="-0.334,0.551" Height="27" Click="Button_Click_3"/>
@@ -84,7 +84,27 @@
 
 
         </Grid>
+        <Grid x:Name="GetDrone" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="id"  Grid.Row="1" Grid.Column="1"/>
+            <Label Content="battery" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="location now" Grid.Row="3" Grid.Column="1"/>
+            <TextBox x:Name="IdG" Text="{Binding Path=Id}" IsEnabled="False" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="batteryG" Text="{Binding Path=Battery}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="locationG" Text="{Binding Path=LocationNow}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
+        </Grid>
     </Grid>
     <Window.Resources>
         <Style TargetType="TextBox">

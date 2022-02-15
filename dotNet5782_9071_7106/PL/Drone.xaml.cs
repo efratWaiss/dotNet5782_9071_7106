@@ -25,12 +25,14 @@ namespace PL
     {
         IBL bLTemp;
         DroneToList d;
+        DroneInParcel d1;
         public Drone(IBL bl)
         {
             InitializeComponent();
             bLTemp = bl;
             GridUpdate.Visibility = Visibility.Collapsed;
             GridAdd.Visibility = Visibility.Visible;
+            GetDrone.Visibility = Visibility.Collapsed;
             weightSelectorA.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
             IdStationA.ItemsSource = bLTemp.GetListStation().Select(x => x.Id);
 
@@ -42,8 +44,9 @@ namespace PL
             this.d = d;
             bLTemp = bl;
             GridUpdate.Visibility = Visibility.Visible;
+            GetDrone.Visibility = Visibility.Collapsed;
+            GridAdd.Visibility = Visibility.Collapsed;
             GridUpdate.DataContext = d;
-            Id.Text = Convert.ToString(d.Id);
             if (d.Battery != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
             {
                 SendDroneToCharging.Visibility = Visibility.Visible;
@@ -64,6 +67,16 @@ namespace PL
                 DronesParcle.Visibility = Visibility.Visible;
             }
 
+        }
+        public Drone(IBL bl, DroneInParcel d)
+        {
+            InitializeComponent();
+            this.d1 = d;
+            bLTemp = bl;
+            GridUpdate.Visibility = Visibility.Collapsed;
+            GetDrone.Visibility = Visibility.Visible;
+            GridAdd.Visibility = Visibility.Collapsed;
+            GetDrone.DataContext = d1;
 
 
         }

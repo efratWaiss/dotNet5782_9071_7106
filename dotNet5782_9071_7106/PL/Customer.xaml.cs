@@ -23,31 +23,38 @@ namespace PL
     {
         IBL bl;
         BO.CustomerToList customer;
+        BO.CustomerInParcel customer1;
         public Customer(IBL blTemp)
         {
             InitializeComponent();
             bl = blTemp;
 
             AddCustomer.Visibility = Visibility.Visible;
+            GetCustomer.Visibility = Visibility.Collapsed;
+            UpDateCustomer.Visibility = Visibility.Collapsed;
         }
-        //<TextBox x:Name="Nameu"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-        //   <TextBox x:Name="PhoneU"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-        //   <TextBox x:Name="ParcelSendAndprovidedU"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        //   <TextBox x:Name="ParcelSendAndNotprovidedU"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        //   <TextBox x:Name="NumberGetListParcelU"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-        //   <TextBox x:Name="NumberParcelTOCustomerU"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-
+        
         public Customer(IBL blTemp, BO.CustomerToList customer)
         {
             InitializeComponent();
             bl = blTemp;
             UpDateCustomer.Visibility = Visibility.Visible;
             AddCustomer.Visibility = Visibility.Collapsed;
+            GetCustomer.Visibility = Visibility.Collapsed;
             this.customer = customer;
             UpDateCustomer.DataContext = customer;
         }
 
-
+        public Customer(IBL blTemp, BO.CustomerInParcel c)
+        {
+            InitializeComponent();
+            bl = blTemp;
+            UpDateCustomer.Visibility = Visibility.Collapsed;
+            AddCustomer.Visibility = Visibility.Collapsed;
+            GetCustomer.Visibility = Visibility.Visible;
+            this.customer1 = c;
+            GetCustomer.DataContext = customer1;
+        }
         private void Button_ClickSave(object sender, RoutedEventArgs e)
         {
             try

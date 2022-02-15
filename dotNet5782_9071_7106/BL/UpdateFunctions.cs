@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
-    partial class BL :IBL
+    partial class BL : IBL
     {
         public void SendDroneToStation(int idDrone)
         {
@@ -163,7 +163,7 @@ namespace BlApi
 
                 else
                 {
-                    throw new NotImplementedException("this Drone's id not exist in the system");
+                    throw new NotImplementedException("this Drone's id not exist in the system");//TODO:exception
                 }
 
             }
@@ -245,18 +245,11 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
         }
-        public IEnumerable<StationToList> StationWithAvailableStands()
+
+        public void DeleateParcel(int Id)
         {
-            List<StationToList> stands = new List<StationToList>();
-            var stations = GetListStation();
-            foreach (var item in stations)
-            {
-                if (item.AvailableChargingPositions != 0)
-                {
-                    stands.Add(item);
-                }
-            }
-            return stands;
+            ParcelToList p;
+            
         }
         public void UpdateNameDrone(int Id, String Model)
         {
@@ -275,13 +268,13 @@ namespace BlApi
             try
             {
                 var station = GetListStation().FirstOrDefault(x => x.Id == IdStation);
-                
+
 
                 if (!NameStation.Equals(default) && !ChargeSlots.Equals(default))
                 {
 
                     station.Name = NameStation;
-                    station.OccupanciesChargingPositions= ChargeSlots;
+                    station.OccupanciesChargingPositions = ChargeSlots;
                 }
                 else
                 {
@@ -297,16 +290,16 @@ namespace BlApi
         {
             try
             {
-                
+
                 var customer1 = GetListCustomer().FirstOrDefault(x => x.Identity == IdCustomer);
-                if (!Name.Equals(default)&&!Phone.Equals(default))
+                if (!Name.Equals(default) && !Phone.Equals(default))
                 {
                     customer1.Name = Name;
                     customer1.Phone = Phone;
 
                 }
                 else { throw new Exception("you didnt put good values"); }
-              
+
             }
             catch (DO.IdException ex)
             {
@@ -355,3 +348,5 @@ namespace BlApi
         }
     }
 }
+    
+

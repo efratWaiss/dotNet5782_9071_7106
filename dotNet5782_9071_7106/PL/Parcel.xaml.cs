@@ -25,9 +25,10 @@ namespace PL
         int parcelId;
         public Parcel(IBL blTemp)
         {
+            InitializeComponent();
             bl = blTemp;
-            WeightSelectorA.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
-            PrioritiesSelectorA.ItemsSource = Enum.GetValues(typeof(BO.ParcelStatsus));
+            WeightSelector.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
+            PrioritiesSelector.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             AddParcel.Visibility = Visibility.Visible;
             GridParcel.Visibility = Visibility.Collapsed;
         }
@@ -39,8 +40,16 @@ namespace PL
             GridParcel.DataContext = bl.GetParcel(parcelId);
             GridParcel.Visibility = Visibility.Visible;
             AddParcel.Visibility = Visibility.Collapsed;
+            if (bl.GetParcel(parcelId).DroneId != 0)
+            {
+                DeleateParcel.IsEnabled = true;
+            }
+            if (!bl.GetParcel(parcelId).scheduled.Equals(default) && bl.GetParcel(parcelId).PickedUp.Equals(default))
+            {
+                GetDrone.IsEnabled = true;
+                PickedAndDeliver.IsEnabled = true;
+            }
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -50,11 +59,11 @@ namespace PL
         {
             try
             {
-                var parcel= bl.GetParcel(parcelId);
+
                 bl.AddParcel(Convert.ToInt32(SenderIdA.Text)
                     , Convert.ToInt32(TargetIdA.Text)
-                    ,(BO.WeightCategories)WeightSelectorA.SelectedItem
-                    ,(BO.Priorities)PrioritiesSelectorA.SelectedItem);
+                    , (BO.WeightCategories)WeightSelector.SelectedItem
+                    , (BO.Priorities)PrioritiesSelector.SelectedItem);
                 MessageBox.Show("The Parcel was successfully added");
                 this.Close();
             }
@@ -63,6 +72,61 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void Button_ClickDeleateParcel(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_UpdateParcelToDrone(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.UpdateParcelToDrone(parcelId);
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_Target(object sender, RoutedEventArgs e)
+        {
+            Customer customer = new Customer(bl, bl.GetParcel(parcelId).Target);
+            customer.Show();
+        }
+
+        private void Button_Click_Sender(object sender, RoutedEventArgs e)
+        {
+            Customer customer = new Customer(bl,bl.GetParcel(parcelId).Sender);
+            customer.Show();
+        }
+
+        private void Button_Click_Drone(object sender, RoutedEventArgs e)
+        {
+            Drone drone = new Drone(bl, bl.GetParcel(parcelId).DroneInParcel);
+            drone.Show();
+           
+    }
+
+        private void Button_Click_PickedAndDeliver(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.PackageCollectionByDrone(bl.GetParcel(parcelId).DroneId);
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
