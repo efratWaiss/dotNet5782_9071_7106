@@ -48,7 +48,7 @@
             <TextBox x:Name="parcel" Text="{Binding Path=ParcelDelivered}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="location" Text="{Binding Path=LocationNow}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="8"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Content="Update Drones Model"  HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" RenderTransformOrigin="-0.334,0.551" Height="27" Click="Button_Click_3"/>
-            <Button Content="Close" HorizontalAlignment="Center" Margin="0,11,0,0" VerticalAlignment="Top" Click="Button_Click_2" Grid.Row="10" Grid.Column="3" Width="144"/>
+            <Button Content="Close" HorizontalAlignment="Center" Margin="0,11,0,0" VerticalAlignment="Top" Click="Button_Click_2" Grid.Row="10" Grid.Column="3" Width="144" Height="37" Grid.RowSpan="2"/>
             <Button x:Name="SendDroneToCharging" Visibility="Hidden" Content="Send drone to charging" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Width="180" Height="36" Click="Button_Click_4"/>
             <Button x:Name="FreeDrone" Visibility="Hidden" Content="Free Drone" Grid.Column="2" HorizontalAlignment="Left" Margin="100,18,0,0" Grid.RowSpan="2" Grid.Row="10" VerticalAlignment="Top" Click="FreeDrone_Click"/>
             <Button x:Name="SendDroneToShipping" Visibility="Hidden" Content="Send Drone To Shipping" HorizontalAlignment="Left" Margin="22,18,0,0" Grid.Row="11" VerticalAlignment="Top" Width="178" Click="SendDroneToShipping_Click"/>
@@ -86,4 +86,29 @@
         </Grid>
 
     </Grid>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="White"/>
+
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="White"/>
+
+        </Style>
+    </Window.Resources>
+
 </Window>

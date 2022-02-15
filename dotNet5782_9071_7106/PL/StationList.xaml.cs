@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace PL
     /// </summary>
     public partial class StationList : Window
     {
+        
         IBL blTemp;
         public StationList(IBL bl)
         {
@@ -58,13 +60,10 @@ namespace PL
         private void StationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            if (StationListViewBy.SelectedValue is StationToList)
-            {
-                Station station = new BO.Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
+                Station station = new Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
                 MessageBox.Show("show the station");
-                Station.Show();
+                station.Show();
 
-            }
         }
     }
 

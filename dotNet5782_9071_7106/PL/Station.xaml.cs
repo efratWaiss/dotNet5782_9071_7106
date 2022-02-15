@@ -18,19 +18,21 @@ namespace PL
     public partial class Station : Window
     {
         IBL blTemp;
-        StationList s;
+        BO.StationToList s;
         public Station(IBL bl)
         {
-                InitializeComponent();
-                blTemp = bl;
+            InitializeComponent();
+            blTemp = bl;
         }
-        
-        public Station(IBL bl,StationList s)
+
+        public Station(IBL bl, BO.StationToList s)
         {
+            InitializeComponent();
+            GridUpdate2.DataContext = s;
+            blTemp = bl;
             this.s = s;
             GridUpdate2.Visibility = Visibility.Visible;
-            GridAdd.Visibility = Visibility.Collapsed;
-
+            //AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
         }
 
         private void SaveAndAdd(object sender, RoutedEventArgs e)
@@ -38,10 +40,10 @@ namespace PL
             try
             {
                 blTemp.AddStation(Convert.ToInt32(Id.Text),
-                    Convert.ToString(Name.Text),
-                    BO.Location(Convert.ToDouble(longitude.Text),Convert.ToDouble (latitude.Text)),
+                    Convert.ToString(name.Text),
+                    new BO.Location(Convert.ToDouble(longitude.Text), Convert.ToDouble(latitude.Text)),
                     Convert.ToInt32(AvailableChargeSlots));
-                 MessageBox.Show("The station was successfully added");
+                MessageBox.Show("The station was successfully added");
                 this.Close();
             }
             catch (BO.IdException ex)
@@ -54,6 +56,14 @@ namespace PL
         {
             //blTemp.UpdateStationDetails
         }
+        //private void ListDrones()
+        //{
+
+        //}
+        //public AllDrones2_MouseDoubleClick()
+        //{
+
+        //}
     }
    }
     

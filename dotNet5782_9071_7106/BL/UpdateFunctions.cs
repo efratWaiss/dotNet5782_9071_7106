@@ -169,31 +169,7 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
         }//חבילה
-        public IEnumerable<ParcelToList> ParcelNoDrone()
-        {
-            try
-            {
-                var parcels =GetListParcel();
-                bool provided = false;
-                List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
-                foreach (var item in parcels)
-                {
-                    foreach (var item1 in DronesList)
-                    {
-                        if (item1.ParcelDelivered == item.Id)
-                        {
-                            provided = true;
-                        }
-                    }
-                    if (provided == false)
-                    {
-                        newParcelNoDrone.Add(item);
-                    }
-                }
-                return newParcelNoDrone;
-            }
-            catch (DO.IdException ex) { throw new IdException(ex.Message); }
-        }
+        
         public void PackageCollectionByDrone(int idDrone)
         {
             try

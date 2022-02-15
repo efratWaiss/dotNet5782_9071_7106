@@ -44,4 +44,18 @@
             <!--<DataGrid x:Name="DronesListViewBy"  Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick" Margin="0,2,0,0"  />-->
         </Grid>
     </Grid>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="#FF01356E"/>
+
+        </Style>
+    </Window.Resources>
+
 </Window>
