@@ -38,7 +38,7 @@ namespace PL
         {
             InitializeComponent();
             blTemp = bl;
-            AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
+            //AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
         }
       
         private void GroupStationsByAvailable(object sender, RoutedEventArgs e)

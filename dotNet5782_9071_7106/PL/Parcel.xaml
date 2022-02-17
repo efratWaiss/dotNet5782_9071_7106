@@ -56,14 +56,15 @@
             <TextBox x:Name="scheduledT" Text="{Binding Path=scheduled}" Grid.Row="10" Grid.Column="2" IsReadOnly="True"/>
             <TextBox x:Name="PickedUpT" Text="{Binding Path=PickedUp}" Grid.Row="11" Grid.Column="2" IsReadOnly="True"/>
             <TextBox x:Name="DeliveredT" Text="{Binding Path=Delivered}" Grid.Row="12" Grid.Column="2" IsReadOnly="True"/>
-            <Button Content="close" Grid.Column="4" HorizontalAlignment="Left" Margin="29,1,0,0" Grid.Row="12" VerticalAlignment="Top" Click="Button_Click_1"/>
-            <Button Name="DeleateParcel" Content="Deleate Parcel" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="9" VerticalAlignment="Center" Click="Button_ClickDeleateParcel" IsEnabled="False"/>
-            <Button Name="UpdateParcelToDrone" Content="Update Parcel To Drone" Grid.Column="4" HorizontalAlignment="Left" Margin="10,3,0,0" Grid.Row="11" VerticalAlignment="Top" Click="Button_Click_UpdateParcelToDrone" IsEnabled="True"/>
-            <Button Name="GetSender" Content="Sender" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="10" VerticalAlignment="Center" Click="Button_Click_Sender" />
-            <Button Name="GetTarget" Content="Target" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="8" VerticalAlignment="Center" Click="Button_Click_Target" />
-            <Button Name="GetDrone" IsEnabled="False" Content="Drone" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="7" VerticalAlignment="Center" Click="Button_Click_Drone" />
-            <Button Name="PickedAndDeliver" IsEnabled="False" Content="Picked And Deliver" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="6" VerticalAlignment="Center" Click="Button_Click_PickedAndDeliver" />
-
+            <WrapPanel Grid.Row="0" Margin="0,0,0,283" Grid.RowSpan="2">
+                <Button Content="close" Grid.Column="4" HorizontalAlignment="Left" Margin="29,1,0,0" Grid.Row="12" VerticalAlignment="Top" Click="Button_Click_1"/>
+                <Button Name="DeleateParcel" Content="Deleate Parcel" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="9" VerticalAlignment="Center" Click="Button_ClickDeleateParcel" IsEnabled="False"/>
+                <Button Name="UpdateParcelToDrone" Content="Update Parcel To Drone" Grid.Column="4" HorizontalAlignment="Left" Margin="10,3,0,0" Grid.Row="11" VerticalAlignment="Top" Click="Button_Click_UpdateParcelToDrone" IsEnabled="True"/>
+                <Button Name="GetSender" Content="Sender" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="10" VerticalAlignment="Center" Click="Button_Click_Sender" />
+                <Button Name="GetTarget" Content="Target" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="8" VerticalAlignment="Center" Click="Button_Click_Target" />
+                <Button Name="GetDrone" IsEnabled="False" Content="Drone" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="7" VerticalAlignment="Center" Click="Button_Click_Drone" />
+                <Button Name="PickedAndDeliver" IsEnabled="False" Content="Picked And Deliver" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="6" VerticalAlignment="Center" Click="Button_Click_PickedAndDeliver" />
+            </WrapPanel>
         </Grid>
         <Grid x:Name="AddParcel" Visibility="Visible">
             <!--public int AddParcel(int SenderId, int TargetId, BO.WeightCategories Weight, BO.Priorities Priorities)-->

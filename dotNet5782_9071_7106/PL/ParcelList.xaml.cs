@@ -111,5 +111,7 @@ namespace PL
             AllParcel.ItemsSource = blTemp.GetListParcelByDate(DateSelctorFrom.SelectedDate.Value.Date, DateSelctorUntil.SelectedDate.Value.Date);
          
     }
+
+     
     }
 }
