@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationList" Height="640" Width="800">
+        Title="StationList" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions >
-            <!--<ColumnDefinition Width="300"/>-->
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions >
 
         <DataGrid x:Name="All_Stations" MouseDoubleClick="StationListView_MouseDoubleClick" Grid.ColumnSpan="4" Width="700" Margin="0,217,0,0" Grid.RowSpan="2" />
-        <ItemsControl x:Name="GroupingStations" Visibility="Collapsed" Margin="0,2,0,0" Grid.Row="1" Width="700" Grid.ColumnSpan="4">
+        <ItemsControl x:Name="GroupingStations" Visibility="Collapsed" Margin="0,2,0,0" Grid.Row="2" Width="700" Grid.ColumnSpan="4">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Expander Header="{Binding Key}">
@@ -30,19 +30,20 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <DataGrid x:Name="StationListViewBy" Visibility="Collapsed" IsReadOnly="True"  />
+        <DataGrid x:Name="StationListViewBy"  Grid.Row="2" Visibility="Collapsed" IsReadOnly="True"  Margin="0,2,0,0"/>
+
         <WrapPanel Grid.RowSpan="1" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0">
-            <Button Content="select Stations" Click="GroupStationsByAvailable" />
-            <Button Content="View All Stations" Click="ViewAllStations"/>
-            <Button Content="Add Station" Click="Add_Station"  /> 
-            <Button Content="Close"  Click="Button_Click_Close" />
+            <Button Content="select Stations" Click="GroupStationsByAvailable" RenderTransformOrigin="0.5,0.5"/>
+            <Button Content="View All Stations" Click="ViewAllStations" RenderTransformOrigin="0.5,0.5" />
+            <Button Content="Add Station" Click="Add_Station" RenderTransformOrigin="0.5,0.5" />
+            <Button Content="Close" Click="Button_Click_Close"  Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
+
         </WrapPanel>
-        
     </Grid>
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="BorderBrush" Value="LightBlue"/>
-            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
@@ -50,8 +51,7 @@
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Background" Value="#FF01356E"/>
             <Setter Property="Height" Value=" 40" />
-            <Setter Property="Width" Value="160"/>
-            <!--<Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>-->
+            <Setter Property="Width" Value=" 150" />
             <Setter Property="Margin" Value="0,0,0,0"/>
         </Style>
     </Window.Resources>
