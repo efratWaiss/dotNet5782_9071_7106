@@ -30,8 +30,15 @@ namespace PL
             blTemp = bl;
             All_Stations.ItemsSource = blTemp.GetListStation();
             All_Stations.Visibility = Visibility.Visible;
-         
+           
 
+
+        }
+        public StationList(IBL bl, BO.StationToList s)
+        {
+            InitializeComponent();
+            blTemp = bl;
+            AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
         }
 
         private void GroupStationsByAvailable(object sender, RoutedEventArgs e)
@@ -60,11 +67,16 @@ namespace PL
         private void StationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-                Station station = new Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
-                MessageBox.Show("show the station");
-                station.Show();
+            Station station = new Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
+            MessageBox.Show("show the station");
+            station.Show();
 
         }
+        //private void AllDrones2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    Drone drone = new Drone(blTemp, ((BO.DroneToList)AllDrones.SelectedItem).Id);
+        //    drone.Show();
+        //}
     }
 
 }

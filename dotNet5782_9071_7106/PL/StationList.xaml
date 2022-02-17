@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*" />
-            
+
         </Grid.ColumnDefinitions >
 
         <DataGrid x:Name="All_Stations" Grid.ColumnSpan="5" Margin="0,217,0,0" Grid.RowSpan="2" />
@@ -29,22 +29,25 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Content="select Stations" Click="GroupStationsByAvailable" Grid.Row="0" Margin="0,41,15,108" Grid.Column="1" />
-        <Button Content="View All Stations" Click="ViewAllStations" Grid.Column="2" Margin="22,41,0,108"/>
-        <Button Content="Add Station" Click="Add_Station" Margin="10,41,10,108" RenderTransformOrigin="0.5,2.934"/>
+        <Button Content="select Stations" Click="GroupStationsByAvailable" Grid.Row="0" Margin="178,0,82,202" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Button Content="View All Stations" Click="ViewAllStations" Grid.Column="2" Margin="118,0,142,202" Grid.ColumnSpan="2"/>
+        <Button Content="Add Station" Click="Add_Station" Margin="58,0,2,202" RenderTransformOrigin="0.5,2.934" Grid.Column="3"/>
         <DataGrid x:Name="StationListViewBy" Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="StationListView_MouseDoubleClick" Margin="0,2,0,0"/>
+        <!--<DataGrid x:Name="AllDrones" Grid.Row="8" Margin="0,2,0,0" IsReadOnly="true" MouseDoubleClick="AllDrones2_MouseDoubleClick"/>-->
+
     </Grid>
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="BorderBrush" Value="#FF01356E"/>
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="8" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Background" Value="#FF01356E"/>
-
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Width" Value="140"/>
         </Style>
     </Window.Resources>
 

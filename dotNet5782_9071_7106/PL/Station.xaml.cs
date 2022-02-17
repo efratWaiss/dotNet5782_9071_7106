@@ -32,7 +32,8 @@ namespace PL
             blTemp = bl;
             this.s = s;
             GridUpdate2.Visibility = Visibility.Visible;
-            //AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
+            GridAdd.Visibility = Visibility.Collapsed;
+            AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
         }
 
         private void SaveAndAdd(object sender, RoutedEventArgs e)
@@ -52,19 +53,33 @@ namespace PL
             }
         }
 
-        private void UpdateStationDetails(object sender, RoutedEventArgs e)
+        private void UpdateStationDetailsU(object sender, RoutedEventArgs e)
         {
-            //blTemp.UpdateStationDetails
+            blTemp.UpdateStationDetails(Convert.ToInt32(IdU.Text), Convert.ToString(NameU.Text), 
+                Convert.ToDouble(ChargeSlotsU.Text));
         }
-        //private void ListDrones()
-        //{
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void ListDrones(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
+                blTemp.PackageCollectionByDrone(bl.GetParcel(parcelId).DroneId);
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        //}
         //public AllDrones2_MouseDoubleClick()
         //{
 
         //}
     }
-   }
+}
     
 

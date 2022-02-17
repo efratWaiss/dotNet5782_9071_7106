@@ -34,6 +34,7 @@ namespace BlApi
         public void FreeDrone(int idDrone, double timeInCharging);
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus);
         public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight);
+        void UpdateStationDetails(int v1, string v2, double v3);
         public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup();
         //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup();
         public IEnumerable<IGrouping<int, StationToList>> GetListSationByGroup();
