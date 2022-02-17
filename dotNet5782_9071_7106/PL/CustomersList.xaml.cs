@@ -41,6 +41,9 @@ namespace PL
             customer.Show();
         }
 
-       
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

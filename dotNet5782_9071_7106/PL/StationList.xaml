@@ -19,8 +19,8 @@
             
         </Grid.ColumnDefinitions >
 
-        <DataGrid x:Name="All_Stations" Grid.ColumnSpan="5" Margin="0,217,0,0" Grid.RowSpan="2" />
-        <ItemsControl x:Name="GroupingStations" Visibility="Collapsed" Margin="0,2,0,0" Grid.Row="1" Width="700">
+        <DataGrid x:Name="All_Stations" MouseDoubleClick="StationListView_MouseDoubleClick" Grid.ColumnSpan="4" Width="700" Margin="0,217,0,0" Grid.RowSpan="2" />
+        <ItemsControl x:Name="GroupingStations" Visibility="Collapsed" Margin="0,2,0,0" Grid.Row="1" Width="700" Grid.ColumnSpan="4">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Expander Header="{Binding Key}">
@@ -32,7 +32,8 @@
         <Button Content="select Stations" Click="GroupStationsByAvailable" Grid.Row="0" Margin="0,41,15,108" Grid.Column="1" />
         <Button Content="View All Stations" Click="ViewAllStations" Grid.Column="2" Margin="22,41,0,108"/>
         <Button Content="Add Station" Click="Add_Station" Margin="10,41,10,108" RenderTransformOrigin="0.5,2.934"/>
-        <DataGrid x:Name="StationListViewBy" Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="StationListView_MouseDoubleClick" Margin="0,2,0,0"/>
+        <DataGrid x:Name="StationListViewBy"  Grid.Row="1" Visibility="Collapsed" IsReadOnly="True"  Margin="0,2,0,0"/>
+        <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="39,59,0,0" VerticalAlignment="Top" Click="Button_Click_Close"/>
     </Grid>
     <Window.Resources>
         <Style TargetType="Button">

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -131,6 +132,23 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void PreviewTextInput_SenderIdA(object sender, TextCompositionEventArgs e)
+        {
+            SenderIdA.Background = Brushes.Transparent;
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void PreviewTextInput_TargetIdA(object sender, TextCompositionEventArgs e)
+        {
+            TargetIdA.Background = Brushes.Transparent;
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

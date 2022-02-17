@@ -33,7 +33,7 @@ namespace PL
          
 
         }
-
+      
         private void GroupStationsByAvailable(object sender, RoutedEventArgs e)
         {
             All_Stations.Visibility = Visibility.Collapsed;        
@@ -60,11 +60,16 @@ namespace PL
         private void StationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             
-            Station station = new Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
+            Station station = new Station(blTemp, (StationToList)All_Stations.SelectedValue);
             MessageBox.Show("show the station");
             station.Show();
 
 
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 

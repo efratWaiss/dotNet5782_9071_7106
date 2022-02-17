@@ -8,7 +8,7 @@
         Title="Station" Height="450" Width="800">
     <Grid>
 
-        <Grid x:Name="GridAdd" Visibility="Collapsed">
+        <Grid x:Name="GridAdd" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -27,18 +27,18 @@
             </Grid.ColumnDefinitions>
             <Label Content="Id"  Grid.Row="1" Grid.Column="1"/>
             <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
-            <Label Content="longitude" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="longitude" Grid.Row="3" Grid.Column="1" />
             <Label Content="latitude" Grid.Row="4" Grid.Column="1"/>
             <Label Content="AvailableChargeSlots" Grid.Row="5" Grid.Column="1"/>
-            <TextBox x:Name="Id" IsEnabled="True"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="Id"  IsEnabled="True"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="name" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="longitude" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="latitude" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="longitude" IsEnabled="True" PreviewTextInput="LongitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="latitude" IsEnabled="True" PreviewTextInput="latitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="AvailableChargeSlots" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Grid.Column="1" Content="Save" HorizontalAlignment="Center" Margin="0,27,0,0" Grid.Row="7" VerticalAlignment="Top" Click="SaveAndAdd"/>
-            <Button Grid.Column="2" Content="Update Station Details" HorizontalAlignment="Left" Margin="89,27,0,0" Grid.Row="7" VerticalAlignment="Top" Click="UpdateStationDetails"/>
+            <Button Content="Close" Grid.Column="2" HorizontalAlignment="Left" Margin="25,27,0,0" Grid.Row="7" VerticalAlignment="Top" Click="Button_Click_Close1"/>
         </Grid>
-        <Grid x:Name="GridUpdate2" Visibility="Visible">
+        <Grid x:Name="GridUpdate2" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -57,23 +57,31 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Content="IdU"  Grid.Row="1" Grid.Column="1"/>
-            <Label Content="NameU" Grid.Row="2" Grid.Column="1"/>
-            <Label Content="longitudeU" Grid.Row="3" Grid.Column="1"/>
-            <Label Content="latitudeU" Grid.Row="4" Grid.Column="1"/>
-            <Label Content="AvailableChargeSlotsU" Grid.Row="5" Grid.Column="1"/>
-            <Label Content="ChargeSlotsU" Grid.Row="6" Grid.Column="1"/>
-            <Label Content="ListDrones" Grid.Column="2"/>
+            <Label Content="Id"  Grid.Row="1" Grid.Column="1"/>
+            <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
+            <!--<Label Content="longitude" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="latitude" Grid.Row="4" Grid.Column="1"/>-->
+            <Label Content="Available ChargeSlots" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="Charge Slots" Grid.Row="4" Grid.Column="1"/>
+            <!--<Label Content="List Drones" Grid.Column="2"/>-->
+            <!--public int Id { get; set; }
+        public string Name { get; set; }
+        public int AvailableChargingPositions { get; set; }
+        public int OccupanciesChargingPositions { get; set; }-->
+
             <TextBox x:Name="IdU" IsEnabled="True" Text="{Binding Path=Id}" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="NameU" IsEnabled="True"  Text="{Binding Path=Name}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="longitudeU" IsEnabled="False"  Text="{Binding Path=longitude}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="latitudeU" IsEnabled="False"  Text="{Binding Path=latitude}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="AvailableChargeSlotsU" IsEnabled="False" Text="{Binding Path=AvailableChargeSlots}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="ChargeSlotsU" IsEnabled="True" Text="{Binding Path=ChargeSlotsU}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="DronesInCharging" IsEnabled="False" Text="{Binding Path=DronesInCharging}" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+            <!--<TextBox x:Name="longitudeU" IsEnabled="False"  Text="{Binding Path=longitude}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="latitudeU" IsEnabled="False"  Text="{Binding Path=latitude}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>-->
+            <TextBox x:Name="AvailableChargeSlotsU" IsEnabled="False" Text="{Binding Path=AvailableChargingPositions}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="ChargeSlotsU" IsEnabled="True" Text="{Binding Path=OccupanciesChargingPositions}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <!--<TextBox x:Name="DronesInCharging" IsEnabled="False" Text="{Binding Path=DronesInCharging}" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />-->
             <!--<Button x:Name="ListDrone" Content="ListDrones" Click="ListDrones" Grid.Column="2" Grid.Row="9" />
             <DataGrid x:Name="AllDrones" Grid.Row="8"  MouseDoubleClick="AllDrones2_MouseDoubleClick" Margin="0,2,0,0" IsReadOnly="true"/>-->
-
+            <Button Grid.Column="2" Content="Update Station Details" HorizontalAlignment="Left" VerticalAlignment="Center" Click="UpdateStationDetails" Grid.Row="9" Margin="35,0,0,0"/>
+            <Button Content="drone in parcel" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Center" RenderTransformOrigin="-0.03,-0.428" Width="135" Click="Button_Click"/>
+            <DataGrid x:Name="drones" Visibility="Collapsed" Grid.Row="5" Grid.ColumnSpan="4" Width="170" Margin="0,2,0,0"  IsReadOnly="true" MouseDoubleClick="MouseDoubleClick_DroneInParcel" SelectionChanged="SelectionChanged" />
+            <Button Content="Close" HorizontalAlignment="Left" Margin="116,21,0,0" Grid.Row="9" VerticalAlignment="Top" Click="Button_Click_Close"/>
         </Grid>
 
     </Grid>
@@ -87,6 +95,7 @@
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Background" Value="#FF01356E"/>
+
 
         </Style>
     </Window.Resources>
