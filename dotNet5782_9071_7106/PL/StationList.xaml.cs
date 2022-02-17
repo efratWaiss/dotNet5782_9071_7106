@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace PL
         private void GroupStationsByAvailable(object sender, RoutedEventArgs e)
         {
             All_Stations.Visibility = Visibility.Collapsed;        
-            GroupingStations.ItemsSource=blTemp.GetListSationByGroup();
+            GroupingStations.ItemsSource=blTemp.GetListStationByGroup();
             GroupingStations.Visibility= Visibility.Visible; 
         }
 
@@ -57,14 +58,12 @@ namespace PL
         }
         private void StationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            
+            Station station = new Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
+            MessageBox.Show("show the station");
+            station.Show();
 
-            if (StationListViewBy.SelectedValue is StationToList)
-            {
-                Station station = new BO.Station(blTemp, (StationToList)StationListViewBy.SelectedValue);
-                MessageBox.Show("show the station");
-                Station.Show();
 
-            }
         }
     }
 

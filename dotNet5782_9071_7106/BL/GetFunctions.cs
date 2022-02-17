@@ -30,16 +30,22 @@ namespace BlApi
                             , item.PickedUp
                             , item.Delivered));
                     else if (item.TargetId == c.Id)
-                        c.parcelFromCustomer.Add(new BO.Parcel(item.Id, new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
-                           , new CustomerInParcel(c.Id, c.Name)
-                           , (BO.WeightCategories)item.Weight
-                           , (BO.Priorities)item.priority
-                           , new DroneInParcel(DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id, DronesList.FirstOrDefault(x => x.Id == item.DroneId).Battery, DronesList.FirstOrDefault(x => x.Id == item.DroneId).LocationNow)
-                           , item.Requested
-                           , DronesList.FirstOrDefault(x => x.Id == item.DroneId).Id
-                           , item.scheduled
-                           , item.PickedUp
-                           , item.Delivered));
+                    {
+                        DroneToList drone = DronesList.FirstOrDefault(x => x.Id == item.DroneId);
+                        if (drone != null)
+                        {
+                            c.parcelFromCustomer.Add(new BO.Parcel(item.Id, new CustomerInParcel(dal.GetCustomer(item.SenderId).Id, dal.GetCustomer(item.SenderId).Name)
+                               , new CustomerInParcel(c.Id, c.Name)
+                               , (BO.WeightCategories)item.Weight
+                               , (BO.Priorities)item.priority
+                               , new DroneInParcel(item.DroneId, drone.Battery, drone.LocationNow)
+                               , item.Requested
+                               , item.DroneId
+                               , item.scheduled
+                               , item.PickedUp
+                               , item.Delivered));
+                        }
+                    }
                 }
                 return c;
             }

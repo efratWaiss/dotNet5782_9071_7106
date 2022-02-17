@@ -21,27 +21,49 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
-                <Label Content="Filter parcel by date" Grid.Column="0" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
-                <!--<ComboBox Name="DateSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" BorderBrush="White" Grid.Row="0"/>-->
-                <Label Content="Filter drones by status" Grid.Column="2" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
-                <Label Content="Filter drones by status" Grid.Column="2" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
-                <ComboBox Name="StatusSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" BorderBrush="White" Grid.Row="0" SelectionChanged="StatusSelector_SelectionChanged"/>
-                <Button Content="View all parcel" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Height="77" Width="187" Click="AllDrone_Click" Background="LightBlue" BorderBrush="White" FontSize="14" Grid.Row="2"/>
+
+                <Label Content="from date" Grid.Column="1" Height="30" VerticalAlignment="Top" BorderBrush="White" RenderTransformOrigin="0.521,-0.659" Margin="0,-1,0,0"/>
+                <DatePicker Name="DateSelctorFrom" Margin="64,1,155,34" RenderTransformOrigin="2.29,-0.227" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label Content="until date" Grid.Column="1" Height="30" VerticalAlignment="Top" BorderBrush="White" RenderTransformOrigin="0.521,-0.659" Margin="5,39,155,0" Grid.ColumnSpan="2"/>
+                <DatePicker Name="DateSelctorUntil" Margin="64,35,155,0" RenderTransformOrigin="2.29,-0.227" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                <Label Content="Filter drones by status" Grid.Column="3" Height="70" VerticalAlignment="Center" BorderBrush="White"/>
+                <ComboBox Name="StatusSelector" Grid.Column="4" BorderBrush="White" Grid.Row="0" SelectionChanged="StatusSelector_SelectionChanged" Margin="0,1,0,-1"/>
+                <Button Content="Group sender" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Width="86" Margin="0,10,0,0" Click="Button_ClickGroupSender"/>
+                <Button Content="Group target" Grid.Column="2" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Width="86" Click="Button_ClickGroupTarget"/>
+                <!--<Label Content="chose when:" Margin="0,-1,0,1"/>-->
+                <!--<StackPanel RenderTransformOrigin="0.524,0.424" Margin="71,5,0,-51">
+                    <RadioButton x:Name="r1" GroupName="DateSelect" IsChecked="True">scheduled</RadioButton>
+                    <RadioButton x:Name="r2" GroupName="DateSelect" Margin="0,17,0,-17">Requested</RadioButton>
+                    <RadioButton x:Name="r3" GroupName="DateSelect" Margin="0,35,0,-35">PickedUp</RadioButton>
+                    <RadioButton x:Name="r4" GroupName="DateSelect" Margin="0,52,0,-52">Delivered</RadioButton>
+                </StackPanel>-->
             </Grid>
             <Button Content="Add parcel" HorizontalAlignment="Left"  Margin="24,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" RenderTransformOrigin="0.5,2.934" BorderThickness="4" BorderBrush="#FF01356E" Click="Button_ClickAddParcel" />
-            <Button Content="Close" HorizontalAlignment="Left" Margin="201,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" Click="Button_ClickClose" BorderBrush="#FF01356E" BorderThickness="4"/>
-            <Button Content="Group List" HorizontalAlignment="Left" Margin="400,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" Click="Button_Click_Group" BorderBrush="#FF01356E" BorderThickness="4" />
-            <DataGrid x:Name="AllParcel" Grid.Row="1"   Margin="0,2,0,0" IsReadOnly="true" MouseDoubleClick="AllDrone_MouseDoubleClick"/>
-            <ItemsControl x:Name="GroupingParcel" Grid.Row="1" Visibility="Collapsed" Margin="0,2,0,0">
+            <Button Content="View all parcel" Click="AllDrone_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="147"   BorderBrush="#FF01356E" Grid.Row="3" Margin="201,78,0,0" BorderThickness="4" Grid.Column="3"/>
+            <Button Content="Close" HorizontalAlignment="Left" Margin="377,78,0,0" Grid.Row="2" VerticalAlignment="Top" Height="60" Width="147" Click="Button_ClickClose" BorderBrush="#FF01356E" BorderThickness="4"/>
+            <DataGrid x:Name="AllParcel" Grid.Row="1"   Margin="0,51,0,0" IsReadOnly="true" MouseDoubleClick="AllDrone_MouseDoubleClick"/>
+            <ItemsControl x:Name="GroupSender" Grid.Row="1" Visibility="Collapsed" Margin="0,2,0,0">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate >
                         <Expander Header="{Binding Key}">
-                            <DataGrid ItemsSource="{Binding}" />
+                            <!--MouseDoubleClick="GroupSender_MouseDoubleClick"-->
+                            <DataGrid x:Name="GroupSender" ItemsSource="{Binding}" />
                         </Expander>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <!--<DataGrid x:Name="DronesListViewBy"  Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick" Margin="0,2,0,0"  />-->
+            <ItemsControl x:Name="GroupTarget" Grid.Row="1" Visibility="Collapsed" Margin="0,2,0,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate >
+                        <Expander Header="{Binding Key}">
+                            <!--MouseDoubleClick="GroupTarget_MouseDoubleClick"-->
+                            <DataGrid ItemsSource="{Binding}"/>
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Content="Filter" HorizontalAlignment="Left" Margin="170,26,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_ClickFilter"/>
         </Grid>
     </Grid>
 </Window>

@@ -36,7 +36,7 @@
             <Button x:Name="Save" Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="5" VerticalAlignment="Top" Click="Button_ClickSave"/>
             <!--<Button x:Name="Close" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Button_ClickClose"/>-->
         </Grid>
-        <Grid x:Name="UpDateCustomer" Visibility="Collapsed">
+        <Grid x:Name="UpDateCustomer" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -46,6 +46,8 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -68,9 +70,14 @@
             <TextBox x:Name="ParcelSendAndNotprovidedU" Text="{Binding Path=ParcelSendAndNotprovided}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="NumberGetListParcelU" Text="{Binding Path=NumberGetListParcel}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="NumberParcelTOCustomerU" Text="{Binding Path=NumberParcelTOCustomer}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="60,9,0,0" Grid.Row="8" VerticalAlignment="Top" Click="Button_ClickSaveUpdate"/>
+           
+            <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="62,18,0,0" Grid.Row="10" VerticalAlignment="Top" Click="Button_ClickSaveUpdate"/>
+            <Button Content="Parcel Get" Grid.Column="2" HorizontalAlignment="Left" Margin="84,19,0,0" Grid.Row="10" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button Content="Parcel Set" Grid.Column="1" HorizontalAlignment="Left" Margin="108,18,0,0" Grid.Row="98" VerticalAlignment="Top" RenderTransformOrigin="0.434,-0.904" Click="Button_Click__ParcelSet"/>
+            <DataGrid x:Name="ParcelsSet" Grid.Row="8"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
+            <DataGrid x:Name="ParcelsGet" Grid.Row="9"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
         </Grid>
-        <Grid Name="GetCustomer">
+        <Grid Name="GetCustomer" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -92,7 +99,7 @@
             <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
             <TextBox x:Name="IdST" Text="{Binding Path=Identity}" IsReadOnly="True" MaxLength="9" Grid.Column="2"  HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="NameUST" Text="{Binding Path=Name}" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            
+
         </Grid>
     </Grid>
 </Window>

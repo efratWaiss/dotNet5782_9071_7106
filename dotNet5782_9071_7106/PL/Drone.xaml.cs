@@ -198,7 +198,7 @@ namespace PL
         private void IdA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Id.Background = Brushes.Transparent;
-            Regex regex = new Regex("[*0-9]+");
+            Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

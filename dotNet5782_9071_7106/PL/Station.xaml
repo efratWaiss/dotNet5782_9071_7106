@@ -31,7 +31,7 @@
             <Label Content="latitude" Grid.Row="4" Grid.Column="1"/>
             <Label Content="AvailableChargeSlots" Grid.Row="5" Grid.Column="1"/>
             <TextBox x:Name="Id" IsEnabled="True"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="Name" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="name" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="longitude" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="latitude" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="AvailableChargeSlots" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -61,13 +61,13 @@
             <Label Content="longitudeU" Grid.Row="3" Grid.Column="1"/>
             <Label Content="latitudeU" Grid.Row="4" Grid.Column="1"/>
             <Label Content="AvailableChargeSlotsU" Grid.Row="5" Grid.Column="1"/>
-            <Label Content="ChargeSlotsU" Grid.Row="6" Grid.Column="1"/>
-            <TextBox x:Name="IdU" IsEnabled="True" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="NameU" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="longitudeU" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="latitudeU" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="AvailableChargeSlotsU" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="ChargeSlotsU" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="ChargeSlotsU" Grid.Row="6" Grid.Column="1" />
+            <TextBox x:Name="IdU" IsEnabled="True" Text="{Binding Path=Id}" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="NameU" IsEnabled="True"  Text="{Binding Path=Name}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="longitudeU" IsEnabled="False"  Text="{Binding Path=longitude}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="latitudeU" IsEnabled="False"  Text="{Binding Path=latitude}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="AvailableChargeSlotsU"  Text="{Binding Path=AvailableChargeSlots}" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="ChargeSlotsU" IsEnabled="True" Text="{Binding Path=ChargeSlots}"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 
         </Grid>

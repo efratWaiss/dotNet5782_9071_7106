@@ -78,7 +78,7 @@ namespace PL
         {
             try
             {
-
+                bl.DeleteParcel(parcelId);
             }
             catch (BO.IdException ex)
             {
@@ -93,6 +93,10 @@ namespace PL
                 bl.UpdateParcelToDrone(parcelId);
             }
             catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotExistException ex)
             {
                 MessageBox.Show(ex.Message);
             }
