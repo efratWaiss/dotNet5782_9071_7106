@@ -7,30 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
     <Grid Background="White">
-        <Image Source="drone.jpg" Width="800" Margin="0,53,0,-121"/>
-        <Rectangle Fill="#FF01356E" StrokeThickness="2" Margin="0,0,0,560" />
-        <Button x:Name="buttonDrone" Content="open drones list" Click="Button_ClickDrone" 
-                  Margin="674,0,2,561" Visibility="Visible" RenderTransformOrigin="0,0" >
-            <!--<Button.RenderTransform>//היה לכל הכפתורים והורדתי. נראה שזה לא נצרך
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.456"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-            <Button.Background>
-                <ImageBrush/>
-            </Button.Background>-->
-        </Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="Auto"/>
+          
+        </Grid.RowDefinitions>
+        <Image Source="drone.jpg" Width="800" Margin="0,53,0,-121" Grid.Row="1"/>
+        <!--<Rectangle Fill="#FF01356E" StrokeThickness="2" Margin="0,0,0,560" />-->
+
+        <StackPanel Grid.Row="0">
+            <Button x:Name="buttonDrone" Grid.Row="0" Content="open drones list" Click="Button_ClickDrone" 
+               Visibility="Visible" RenderTransformOrigin="0,0" />
+
+
         <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation"
-               Margin="551,0,124,561" Visibility="Visible"  RenderTransformOrigin="0.5,0.5" />
+                Visibility="Visible"  RenderTransformOrigin="0.5,0.5" Grid.Row="0" Margin="7,25,643,25" />
         <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" 
-                 Margin="428,0,247,561" Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
-        <Button x:Name="button_Parcel" Content="Parcel List" Click="Button_ClickParcel" Margin="305,0,370,561"
-                  Visibility="Visible" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" />
-        <Button x:Name="button_Copy3" Content="?????" Click="Button_Click" Margin="181,0,494,561" 
-             Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
+                 Visibility="Visible" RenderTransformOrigin="0.5,0.5" Margin="480,25,170,25" />
+        <Button x:Name="button_Parcel" Content="Parcel List" Click="Button_ClickParcel" Grid.Row="0"
+                  FontStyle="Italic" RenderTransformOrigin="0.5,0.5" Margin="162,25,488,25" />
+        </StackPanel>
+        
+        <!--<Button x:Name="button_Copy3" Content="?????" Click="Button_Click" Grid.Row="0"
+             Visibility="Visible" RenderTransformOrigin="0.5,0.5" Margin="125,25,525,25" />-->
 
     </Grid>
     <Window.Resources>
@@ -42,7 +41,9 @@
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Height" Value=" 50" />
+            <Setter Property="Width" Value=" 150" />
 
         </Style>
     </Window.Resources>

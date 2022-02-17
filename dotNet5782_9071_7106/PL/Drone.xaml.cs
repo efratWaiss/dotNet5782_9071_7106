@@ -26,13 +26,14 @@ namespace PL
         IBL bLTemp;
         DroneToList d;
         DroneInParcel d1;
+        DroneInCharging d2;
         public Drone(IBL bl)
         {
             InitializeComponent();
             bLTemp = bl;
             GridUpdate.Visibility = Visibility.Collapsed;
             GridAdd.Visibility = Visibility.Visible;
-            GetDrone.Visibility = Visibility.Collapsed;
+            GetDroneinParcel.Visibility = Visibility.Collapsed;
             weightSelectorA.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
             IdStationA.ItemsSource = bLTemp.GetListStation().Select(x => x.Id);
 
@@ -44,8 +45,9 @@ namespace PL
             this.d = d;
             bLTemp = bl;
             GridUpdate.Visibility = Visibility.Visible;
-            GetDrone.Visibility = Visibility.Collapsed;
+            GetDroneinParcel.Visibility = Visibility.Collapsed;
             GridAdd.Visibility = Visibility.Collapsed;
+            GetDroneinCharging.Visibility = Visibility.Collapsed;
             GridUpdate.DataContext = d;
             if (d.Battery != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
             {
@@ -74,13 +76,26 @@ namespace PL
             this.d1 = d;
             bLTemp = bl;
             GridUpdate.Visibility = Visibility.Collapsed;
-            GetDrone.Visibility = Visibility.Visible;
+            GetDroneinParcel.Visibility = Visibility.Visible;
             GridAdd.Visibility = Visibility.Collapsed;
-            GetDrone.DataContext = d1;
+            GetDroneinCharging.Visibility = Visibility.Collapsed;
+
+            GetDroneinParcel.DataContext = d1;
 
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public Drone(IBL bl, DroneInCharging d)
+        {
+            InitializeComponent();
+            bLTemp = bl;
+            d2 = d;
+            GridUpdate.Visibility = Visibility.Collapsed;
+            GetDroneinParcel.Visibility = Visibility.Collapsed;
+            GridAdd.Visibility = Visibility.Collapsed;
+            GetDroneinCharging.Visibility = Visibility.Visible;
+
+        }
+        private void Button_ClickSave(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -103,22 +118,22 @@ namespace PL
 
             }
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_Close2(object sender, RoutedEventArgs e)
         {
 
-            GridAdd.Visibility = Visibility.Collapsed;
+            
             this.Close();
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_close1(object sender, RoutedEventArgs e)
         {
-            GridUpdate.Visibility = Visibility.Visible;
+           
             this.Close();
 
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Button_Click_UpdateDronesModel(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -130,7 +145,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Button_Click_SendDroneToCharging(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -147,7 +162,7 @@ namespace PL
         {
             try
             {
-                /* bLTemp.FreeDrone(Convert.ToInt32(Id.Text),)*///TODO: ךהכניס זמן טעינה בתחנה
+                bLTemp.FreeDrone(Convert.ToInt32(Id.Text), 0);
             }
             catch (BO.IdException ex)
             {
@@ -198,7 +213,7 @@ namespace PL
         private void IdA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Id.Background = Brushes.Transparent;
-            Regex regex = new Regex("[*0-9]+");
+            Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -209,6 +224,11 @@ namespace PL
             MessageBox.Show("show the drone");
             Parcel.Show();
 
+        }
+
+        private void Button_Click_Close3(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

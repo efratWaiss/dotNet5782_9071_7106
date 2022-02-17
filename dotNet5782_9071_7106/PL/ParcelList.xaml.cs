@@ -28,13 +28,17 @@ namespace PL
             blTemp = bl;
             AllParcel.ItemsSource = blTemp.GetListParcel();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(ParcelStatsus));
+            GroupTarget.Visibility = Visibility.Collapsed;
+            GroupSender.Visibility = Visibility.Collapsed;
+
         }
 
         private void AllDrone_Click(object sender, RoutedEventArgs e)
         {
             AllParcel.ItemsSource = blTemp.GetListParcel();
             AllParcel.Visibility = Visibility.Visible;
-            GroupingParcel.Visibility = Visibility.Collapsed;
+            GroupTarget.Visibility = Visibility.Collapsed;
+            GroupSender.Visibility = Visibility.Collapsed;
         }
 
         private void Button_ClickClose(object sender, RoutedEventArgs e)
@@ -47,30 +51,34 @@ namespace PL
             Parcel parcel = new Parcel(blTemp, ((BO.ParcelToList)AllParcel.SelectedItem).Id);
             parcel.Show();
         }
-
-        private void Button_Click_Group(object sender, RoutedEventArgs e)
-        {
-            AllParcel.Visibility = Visibility.Collapsed;
-            GroupingParcel.Visibility = Visibility.Visible;
-            //GroupingParcel.ItemsSource = blTemp.GetListParceleByGroup();
-        }
+        //private void GroupSender_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    Parcel parcel = new Parcel(blTemp, ((BO.ParcelToList)GroupSender).Id);
+        //    parcel.Show();
+        //}
+        //private void GroupTarget_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    Parcel parcel = new Parcel(blTemp, ((BO.ParcelToList)GroupTarget).Id);
+        //    parcel.Show();
+        //}
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //try
-            //{
-            //    AllParcel.Visibility = Visibility.Collapsed;
-            //    GroupingParcel.Visibility = Visibility.Collapsed;
-                
-            //    if (StatusSelector.SelectedItem != null)
-            //    {
-            //        //AllParcel.ItemsSource=blTemp
-            //    }
-            //}
-            //catch (BO.IdException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            try
+            {
+                AllParcel.Visibility = Visibility.Collapsed;
+                GroupTarget.Visibility = Visibility.Collapsed;
+                GroupSender.Visibility = Visibility.Collapsed;
+
+                if (StatusSelector.SelectedItem != null)
+                {
+                    //AllParcel.ItemsSource = blTemp.
+                }
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_ClickAddParcel(object sender, RoutedEventArgs e)
@@ -78,5 +86,30 @@ namespace PL
             Parcel parcel = new Parcel(blTemp);
             parcel.Show();
         }
+
+        private void Button_ClickGroupSender(object sender, RoutedEventArgs e)
+        {
+            AllParcel.Visibility = Visibility.Collapsed;
+            GroupSender.Visibility = Visibility.Visible;
+            GroupTarget.Visibility = Visibility.Collapsed;
+            GroupSender.ItemsSource = blTemp.GetListParcelBySenderGroup();
+        }
+
+        private void Button_ClickGroupTarget(object sender, RoutedEventArgs e)
+        {
+            AllParcel.Visibility = Visibility.Collapsed;
+            GroupSender.Visibility = Visibility.Collapsed;
+            GroupTarget.Visibility = Visibility.Visible;
+            GroupTarget.ItemsSource = blTemp.GetListParcelByTargetGroup();
+        }
+
+        private void Button_ClickFilter(object sender, RoutedEventArgs e)
+        {
+            AllParcel.Visibility = Visibility.Visible;
+            GroupTarget.Visibility = Visibility.Collapsed;
+            GroupSender.Visibility = Visibility.Collapsed;
+            AllParcel.ItemsSource = blTemp.GetListParcelByDate(DateSelctorFrom.SelectedDate.Value.Date, DateSelctorUntil.SelectedDate.Value.Date);
+         
+    }
     }
 }

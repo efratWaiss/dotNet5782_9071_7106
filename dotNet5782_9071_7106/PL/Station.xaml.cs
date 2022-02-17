@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,17 +24,25 @@ namespace PL
         {
             InitializeComponent();
             blTemp = bl;
+            GridUpdate2.Visibility = Visibility.Collapsed;
+            GridAdd.Visibility = Visibility.Visible;
+            drones.Visibility = Visibility.Collapsed;
+
         }
 
         public Station(IBL bl, BO.StationToList s)
         {
             InitializeComponent();
-            GridUpdate2.DataContext = s;
             blTemp = bl;
+            GridUpdate2.DataContext = s;
             this.s = s;
+            GridUpdate2.DataContext = s;
             GridUpdate2.Visibility = Visibility.Visible;
             GridAdd.Visibility = Visibility.Collapsed;
-            AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
+            drones.Visibility = Visibility.Collapsed;
+            drones.ItemsSource = blTemp.GetStation(s.Id).DronesInCharging;//TODO: ????
+
+
         }
 
         private void SaveAndAdd(object sender, RoutedEventArgs e)
@@ -52,34 +61,65 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void UpdateStationDetailsU(object sender, RoutedEventArgs e)
+        private void LongitudeA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            blTemp.UpdateStationDetails(Convert.ToInt32(IdU.Text), Convert.ToString(NameU.Text), 
-                Convert.ToDouble(ChargeSlotsU.Text));
+            longitude.Background = Brushes.Transparent;
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
+        private void latitudeA_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            latitude.Background = Brushes.Transparent;
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void UpdateStationDetails(object sender, RoutedEventArgs e)
+        {
+            //blTemp.UpdateStationDetails
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            drones.Visibility = Visibility.Visible;
+
+
+        }
+
+
+        private void MouseDoubleClick_DroneInParcel(object sender, MouseButtonEventArgs e)
+        {
+            Drone drone = new Drone(blTemp, (BO.DroneInCharging)drones.SelectedValue);
+            drone.Show();
+
+        }
+
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        private void ListDrones(object sender, RoutedEventArgs e)
+
+        private void Button_Click_Close1(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                //AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
-                blTemp.PackageCollectionByDrone(bl.GetParcel(parcelId).DroneId);
-            }
-            catch (BO.IdException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.Close();
         }
+
+
+        //private void ListDrones()
+        //{
 
         //public AllDrones2_MouseDoubleClick()
         //{
 
         //}
     }
+
+
 }
-    
+
 

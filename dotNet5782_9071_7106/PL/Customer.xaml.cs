@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,7 +34,7 @@ namespace PL
             GetCustomer.Visibility = Visibility.Collapsed;
             UpDateCustomer.Visibility = Visibility.Collapsed;
         }
-        
+
         public Customer(IBL blTemp, BO.CustomerToList customer)
         {
             InitializeComponent();
@@ -43,6 +44,20 @@ namespace PL
             GetCustomer.Visibility = Visibility.Collapsed;
             this.customer = customer;
             UpDateCustomer.DataContext = customer;
+            ParcelsGet.ItemsSource = bl.GetCustomer(customer.Identity).parcelFromCustomer;
+            ParcelsSet.ItemsSource = bl.GetCustomer(customer.Identity).parcelToCustomer;
+        }
+        private void LongitudeA_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            LongitudeA.Background = Brushes.Transparent;
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void LatitudeA_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            LatitudeA.Background = Brushes.Transparent;
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         public Customer(IBL blTemp, BO.CustomerInParcel c)
@@ -78,7 +93,7 @@ namespace PL
         {
             try
             {
-                bl.UpdateCustomerDetails(Convert.ToInt32(IdU.Text), NameU.Text.ToString(),PhoneU.Text.ToString());
+                bl.UpdateCustomerDetails(Convert.ToInt32(IdU.Text), NameU.Text.ToString(), PhoneU.Text.ToString());
                 MessageBox.Show("The customer was successfully update");
             }
             catch (BO.IdException ex)
@@ -86,6 +101,36 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ParcelsGet.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click__ParcelSet(object sender, RoutedEventArgs e)
+        {
+            ParcelsSet.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_Close1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        //private void Button_Click_ParcelSet(object sender, RoutedEventArgs e)
+        //{
+        //    ParcelsSet.Visibility = Visibility.Visible;
+        //}
+
+        //private void Button_Click__ParcelSet(object sender, RoutedEventArgs e)
+        //{
+
+        //}
 
         //private void Button_ClickClose(object sender, RoutedEventArgs e)
         //{

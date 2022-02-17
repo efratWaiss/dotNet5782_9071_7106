@@ -431,5 +431,25 @@ namespace DalObject
         //    {
         //    return DataSource.drones.Where(condition);
         //    }
+        public void DealeteParcel(int id)
+        {
+            bool flag = false;
+
+            foreach (var parcel in GetListParcel())
+            {
+                if (parcel.Id == id)
+                {
+                    DataSource.parcels.Remove(parcel);
+                    flag = true;
+                }
+            }
+            if (flag == false)
+            {
+                throw new NotExistException("this parcel'id not exist in the system");
+            }
+
+
+
+        }
     }
 }

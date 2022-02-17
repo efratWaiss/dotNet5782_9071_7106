@@ -37,6 +37,11 @@ namespace BlApi
         void UpdateStationDetails(int v1, string v2, double v3);
         public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup();
         //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup();
-        public IEnumerable<IGrouping<int, StationToList>> GetListSationByGroup();
+        public IEnumerable<IGrouping<int, StationToList>> GetListStationByGroup();
+        //public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelByGroup(BO.Customer c);
+        public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelBySenderGroup();
+        public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelByTargetGroup();
+        public IEnumerable<ParcelToList> GetListParcelByDate(DateTime from, DateTime to);
+        public void DeleteParcel(int id);
     }
 }

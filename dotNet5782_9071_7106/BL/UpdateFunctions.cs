@@ -163,13 +163,13 @@ namespace BlApi
 
                 else
                 {
-                    throw new NotImplementedException("this Drone's id not exist in the system");//TODO:exception
+                    throw new NotExistException("this Drone's id not exist in the system");//TODO:exception
                 }
 
             }
-            catch (DO.IdException ex) { throw new IdException(ex.Message); }
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }//חבילה
-        
+       
         public void PackageCollectionByDrone(int idDrone)
         {
             try
@@ -199,7 +199,7 @@ namespace BlApi
                     throw new NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
                 }
             }
-            catch (DO.IdException ex) { throw new IdException(ex.Message); }
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
         public void DeliveryOfAParcelByDrone(int idDrone)
         {
@@ -243,14 +243,10 @@ namespace BlApi
                     throw new NotImplementedException("The package has not been collected or the package has already been delivered or the skimmer is not associated with any package");
                 }
             }
-            catch (DO.IdException ex) { throw new IdException(ex.Message); }
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
 
-        public void DeleateParcel(int Id)
-        {
-            ParcelToList p;
-            
-        }
+       
         public void UpdateNameDrone(int Id, String Model)
         {
             try
@@ -260,7 +256,7 @@ namespace BlApi
                 var Drone1 = DronesList.FirstOrDefault(x => x.Id == Id);
                 Drone1.Model = Model;
             }
-            catch (DO.IdException ex) { throw new IdException(ex.Message); }
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
 
         }
         public void UpdateStationDetails(int IdStation, String NameStation, int ChargeSlots)
@@ -303,7 +299,7 @@ namespace BlApi
             }
             catch (DO.IdException ex)
             {
-                throw new IdException(ex.Message);
+                throw new BO.IdException(ex.Message);
             }
         }
         public void FreeDrone(int idDrone, double timeInCharging)
@@ -331,7 +327,7 @@ namespace BlApi
                     }
                     catch (DO.IdException ex)
                     {
-                        throw new IdException(ex.Message);
+                        throw new BO.IdException(ex.Message);
                     }
 
                 }
@@ -343,6 +339,18 @@ namespace BlApi
             else
             {
                 throw new NotImplementedException("this id drone not exist in the system");
+            }
+
+        }
+        public void DeleteParcel(int id)
+        {
+            try
+            {
+                dal.DealeteParcel(id);
+            }
+            catch (DO.NotExistException ex)
+            {
+                throw new BO.NotExistException(ex.Message);
             }
 
         }

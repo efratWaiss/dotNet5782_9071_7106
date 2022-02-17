@@ -62,6 +62,8 @@
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Width" Value="140"/>
         </Style>
    
     

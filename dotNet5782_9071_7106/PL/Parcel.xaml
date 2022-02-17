@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Parcel" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="GridParcel" Visibility="Visible">
+        <Grid x:Name="GridParcel" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -65,7 +65,7 @@
             <Button Name="PickedAndDeliver" IsEnabled="False" Content="Picked And Deliver" Grid.Column="4" HorizontalAlignment="Left" Margin="29,0,0,0" Grid.Row="6" VerticalAlignment="Center" Click="Button_Click_PickedAndDeliver" />
 
         </Grid>
-        <Grid x:Name="AddParcel" Visibility="Collapsed">
+        <Grid x:Name="AddParcel" Visibility="Visible">
             <!--public int AddParcel(int SenderId, int TargetId, BO.WeightCategories Weight, BO.Priorities Priorities)-->
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -85,13 +85,12 @@
             <Label Content="Target Id" Grid.Row="2" Grid.Column="1"/>
             <Label Content="Weight" Grid.Row="3" Grid.Column="1"/>
             <Label Content="Priorities" Grid.Row="4" Grid.Column="1"/>
-            <TextBox x:Name="SenderIdA" Grid.Row="1" Grid.Column="2" MaxLength="9"/>
-            <TextBox x:Name="TargetIdA" Grid.Row="2" Grid.Column="2" MaxLength="9"/>
-
+            <TextBox x:Name="SenderIdA" MaxLength="10" Grid.Row="1" Grid.Column="2" PreviewTextInput="PreviewTextInput_SenderIdA"/>
+            <TextBox x:Name="TargetIdA" MaxLength="10" Grid.Row="2" Grid.Column="2" PreviewTextInput="PreviewTextInput_TargetIdA"/>
             <ComboBox Name="PrioritiesSelector"  HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4"/>
             <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="82,24,0,0" Grid.Row="5" VerticalAlignment="Top" Click="Button_ClickSaveAdd"/>
             <ComboBox Name="WeightSelector"  Grid.Column="2" HorizontalAlignment="Stretch" Margin="67,36,0,0" Grid.Row="3" VerticalAlignment="Stretch" Width="120"/>
-
+            <Button Content="Close" Grid.Column="2" HorizontalAlignment="Left" Margin="128,24,0,0" Grid.Row="5" VerticalAlignment="Top" Click="Button_Click_Close"/>
         </Grid>
     </Grid>
     <Window.Resources>

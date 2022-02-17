@@ -9,7 +9,8 @@
     <Grid>
         <DataGrid x:Name="AllCustomer" MouseDoubleClick="AllCustomer_MouseDoubleClick"  />
         <Button x:Name="buttonAdd" Content="Add Customer" HorizontalAlignment="Left" Margin="272,296,0,0" VerticalAlignment="Top" Click="AddCustomerClick"/>
-        
+        <Button Content="close" HorizontalAlignment="Left" Margin="467,306,0,0" VerticalAlignment="Top" Click="Button_Click_Close"/>
+
 
     </Grid>
 </Window>
