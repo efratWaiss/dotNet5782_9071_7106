@@ -8,26 +8,26 @@
         Title="MainWindow" Height="640" Width="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="Auto"/>
-          
+
         </Grid.RowDefinitions>
         <Image Source="drone.jpg" Width="800" Margin="0,53,0,-121" Grid.Row="1"/>
         <!--<Rectangle Fill="#FF01356E" StrokeThickness="2" Margin="0,0,0,560" />-->
 
-        <StackPanel Grid.Row="0">
+        <WrapPanel Grid.Row="0" Margin="0,0,0,283" Grid.RowSpan="2">
             <Button x:Name="buttonDrone" Grid.Row="0" Content="open drones list" Click="Button_ClickDrone" 
                Visibility="Visible" RenderTransformOrigin="0,0" />
 
 
-        <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation"
-                Visibility="Visible"  RenderTransformOrigin="0.5,0.5" Grid.Row="0" Margin="7,25,643,25" />
-        <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" 
-                 Visibility="Visible" RenderTransformOrigin="0.5,0.5" Margin="480,25,170,25" />
-        <Button x:Name="button_Parcel" Content="Parcel List" Click="Button_ClickParcel" Grid.Row="0"
-                  FontStyle="Italic" RenderTransformOrigin="0.5,0.5" Margin="162,25,488,25" />
-        </StackPanel>
-        
+            <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation"
+                Visibility="Visible"  RenderTransformOrigin="0.5,0.5"  />
+            <Button x:Name="button_Parcel" Content="Parcel List" Click="Button_ClickParcel"
+                  FontStyle="Italic" RenderTransformOrigin="0.5,0.5" />
+            <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" 
+                 Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
+        </WrapPanel>
+
         <!--<Button x:Name="button_Copy3" Content="?????" Click="Button_Click" Grid.Row="0"
              Visibility="Visible" RenderTransformOrigin="0.5,0.5" Margin="125,25,525,25" />-->
 
