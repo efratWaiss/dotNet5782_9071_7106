@@ -146,6 +146,45 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
+        //public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup()
+        //{
+        //    var t = from drone in DronesList
+        //            group drone by drone.Status into g
+        //            select g;
+        //    return t;
+        //}
+        public IEnumerable<IGrouping<int,StationToList>> GetListSationByGroup()
+        {
+            var s = from station in GetListStation()
+                    orderby station.AvailableChargingPositions
+                    group station by station.AvailableChargingPositions into g
+                    select g;
+            return s;
+        public IEnumerable<ParcelToList> ParcelNoDrone()
+        {
+            try
+            {
+                var parcels = GetListParcel();
+                bool provided = false;
+                List<ParcelToList> newParcelNoDrone = new List<ParcelToList>();
+                foreach (var item in parcels)
+                {
+                    foreach (var item1 in DronesList)
+                    {
+                        if (item1.ParcelDelivered == item.Id)
+                        {
+                            provided = true;
+                        }
+                    }
+                    if (provided == false)
+                    {
+                        newParcelNoDrone.Add(item);
+                    }
+                }
+                return newParcelNoDrone;
+            }
+            catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
+        }
         public IEnumerable<StationToList> StationWithAvailableStands()
         {
             List<StationToList> stands = new List<StationToList>();

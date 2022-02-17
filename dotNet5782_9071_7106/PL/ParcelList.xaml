@@ -66,4 +66,18 @@
             <Button Content="Filter" HorizontalAlignment="Left" Margin="170,26,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_ClickFilter"/>
         </Grid>
     </Grid>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="#FF01356E"/>
+
+        </Style>
+    </Window.Resources>
+
 </Window>

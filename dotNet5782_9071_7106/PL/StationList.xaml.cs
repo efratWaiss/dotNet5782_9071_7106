@@ -22,6 +22,7 @@ namespace PL
     /// </summary>
     public partial class StationList : Window
     {
+        
         IBL blTemp;
         public StationList(IBL bl)
         {

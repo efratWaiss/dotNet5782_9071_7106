@@ -30,6 +30,7 @@ namespace PL
         public Station(IBL bl,BO.StationToList s)
         {
             InitializeComponent();
+            GridUpdate2.DataContext = s;
             blTemp = bl;
             this.s = s;
             GridUpdate2.DataContext = s;
@@ -44,9 +45,9 @@ namespace PL
             {
                 blTemp.AddStation(Convert.ToInt32(Id.Text),
                     Convert.ToString(name.Text),
-                  new BO.Location(Convert.ToDouble(longitude.Text),Convert.ToDouble (latitude.Text)),
+                    new BO.Location(Convert.ToDouble(longitude.Text), Convert.ToDouble(latitude.Text)),
                     Convert.ToInt32(AvailableChargeSlots));
-                 MessageBox.Show("The station was successfully added");
+                MessageBox.Show("The station was successfully added");
                 this.Close();
             }
             catch (BO.IdException ex)
@@ -59,6 +60,14 @@ namespace PL
         {
             //blTemp.UpdateStationDetails
         }
+        //private void ListDrones()
+        //{
+
+        //}
+        //public AllDrones2_MouseDoubleClick()
+        //{
+
+        //}
     }
    }
     
