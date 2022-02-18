@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Customer" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="AddCustomer" Visibility="Visible">
+        <Grid x:Name="AddCustomer" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -35,11 +35,12 @@
             <TextBox x:Name="LongitudeA" PreviewTextInput="LongitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
             <TextBox x:Name="LatitudeA" PreviewTextInput="LatitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
             <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-            <Button x:Name="Save" Content="Save" Click="Button_ClickSave"/>
-            <!--<Button x:Name="Close" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Button_ClickClose"/>-->
+                <Button x:Name="Save" Content="Save" Click="Button_ClickSave"/>
+                <Button Content="Drones dalivered"  Background="Azure" Click="Drones_delivered"/>
+                <!--<Button x:Name="Close" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Button_ClickClose"/>-->
             </WrapPanel>
         </Grid>
-        <Grid x:Name="UpDateCustomer" Visibility="Collapsed">
+        <Grid x:Name="UpDateCustomer" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -73,13 +74,15 @@
             <TextBox x:Name="ParcelSendAndNotprovidedU" Text="{Binding Path=ParcelSendAndNotprovided}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="NumberGetListParcelU" Text="{Binding Path=NumberGetListParcel}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="NumberParcelTOCustomerU" Text="{Binding Path=NumberParcelTOCustomer}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-
-            <Button Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="62,18,0,0" Grid.Row="10" VerticalAlignment="Top" Click="Button_ClickSaveUpdate"/>
-            <Button Content="Parcel Get" Grid.Column="2" HorizontalAlignment="Left" Margin="84,19,0,0" Grid.Row="10" VerticalAlignment="Top" Click="Button_Click"/>
-            <Button Content="Parcel Set" Grid.Column="1" HorizontalAlignment="Left" Margin="108,18,0,0" Grid.Row="98" VerticalAlignment="Top" RenderTransformOrigin="0.434,-0.904" Click="Button_Click__ParcelSet"/>
+            <WrapPanel Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0" Margin="0,0,0,0">
+                <Button Content="Save" Click="Button_ClickSaveUpdate"/>
+                <Button Content="Parcel Get" Click="Button_Click"/>
+                <Button Content="Parcel Set" Click="Button_Click__ParcelSet"/>
+                <Button Content="Close" Click="Button_Click_Close"/>
+                <Button Content="Drones dalivered"  Background="Azure" Click="Drones_delivered"/>
+            </WrapPanel>
             <DataGrid x:Name="ParcelsSet" Grid.Row="8"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
             <DataGrid x:Name="ParcelsGet" Grid.Row="9"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
-            <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="140,18,0,0" Grid.Row="10" VerticalAlignment="Top" Click="Button_Click_Close"/>
         </Grid>
         <Grid Name="GetCustomer" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -104,7 +107,7 @@
             <TextBox x:Name="IdST" Text="{Binding Path=Identity}" IsReadOnly="True" MaxLength="9" Grid.Column="2"  HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="NameUST" Text="{Binding Path=Name}" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
             <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
-            <Button Content="close" HorizontalAlignment="Left" Click="Button_Click_Close1"/>
+                <Button Content="close" HorizontalAlignment="Left" Click="Button_Click_Close1"/>
             </WrapPanel>
         </Grid>
     </Grid>

@@ -54,7 +54,7 @@ namespace PL
                     new BO.Location(Convert.ToDouble(longitude.Text), Convert.ToDouble(latitude.Text)),
                     Convert.ToInt32(AvailableChargeSlots));
                 MessageBox.Show("The station was successfully added");
-                this.Close();
+                this.Close();//יש כאן בעיה בהרצה
             }
             catch (BO.IdException ex)
             {
