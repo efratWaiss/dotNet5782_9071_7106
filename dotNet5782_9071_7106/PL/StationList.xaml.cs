@@ -30,8 +30,15 @@ namespace PL
             blTemp = bl;
             All_Stations.ItemsSource = blTemp.GetListStation();
             All_Stations.Visibility = Visibility.Visible;
-         
+           
 
+
+        }
+        public StationList(IBL bl, BO.StationToList s)
+        {
+            InitializeComponent();
+            blTemp = bl;
+            //AllDrones.ItemsSource = bl.GetStation(s.Id).DronesInCharging;
         }
       
         private void GroupStationsByAvailable(object sender, RoutedEventArgs e)

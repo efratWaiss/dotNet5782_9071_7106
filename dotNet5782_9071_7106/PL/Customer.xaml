@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="Customer" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="AddCustomer" Visibility="Collapsed">
+        <Grid x:Name="AddCustomer" Visibility="Visible">
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -23,18 +24,20 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Content="Id" Grid.Row="1" Grid.Column="1"/>
-            <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
-            <Label Content="Phone" Grid.Row="3" Grid.Column="1"/>
-            <Label Content="Longitude" Grid.Row="4" Grid.Column="1"/>
-            <Label Content="Latitude" Grid.Row="5" Grid.Column="1"/>
-            <TextBox x:Name="IdA" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="NameA"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="PhoneA" MaxLength="10" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="LongitudeA" PreviewTextInput="LongitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="LatitudeA" PreviewTextInput="LatitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <Button x:Name="Save" Content="Save" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="5" VerticalAlignment="Top" Click="Button_ClickSave"/>
+            <Label Content="Id" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="Name" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="Phone" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="Longitude" Grid.Row="5" Grid.Column="1"/>
+            <Label Content="Latitude" Grid.Row="6" Grid.Column="1"/>
+            <TextBox x:Name="IdA" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="NameA"  Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="PhoneA" MaxLength="10" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="LongitudeA" PreviewTextInput="LongitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="LatitudeA" PreviewTextInput="LatitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <Button x:Name="Save" Content="Save" Click="Button_ClickSave"/>
             <!--<Button x:Name="Close" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Button_ClickClose"/>-->
+            </WrapPanel>
         </Grid>
         <Grid x:Name="UpDateCustomer" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -78,7 +81,7 @@
             <DataGrid x:Name="ParcelsGet" Grid.Row="9"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
             <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="140,18,0,0" Grid.Row="10" VerticalAlignment="Top" Click="Button_Click_Close"/>
         </Grid>
-        <Grid Name="GetCustomer" Visibility="Visible">
+        <Grid Name="GetCustomer" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -96,12 +99,28 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Content="Id"   Grid.Row="1" Grid.Column="1" />
-            <Label Content="Name" Grid.Row="2" Grid.Column="1"/>
-            <TextBox x:Name="IdST" Text="{Binding Path=Identity}" IsReadOnly="True" MaxLength="9" Grid.Column="2"  HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="NameUST" Text="{Binding Path=Name}" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <Button Content="close" HorizontalAlignment="Left" Margin="119,9,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-0.176,-0.834" Click="Button_Click_Close1"/>
-
+            <Label Content="Id"   Grid.Row="2" Grid.Column="1" />
+            <Label Content="Name" Grid.Row="3" Grid.Column="1"/>
+            <TextBox x:Name="IdST" Text="{Binding Path=Identity}" IsReadOnly="True" MaxLength="9" Grid.Column="2"  HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="NameUST" Text="{Binding Path=Name}" IsReadOnly="True" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <Button Content="close" HorizontalAlignment="Left" Click="Button_Click_Close1"/>
+            </WrapPanel>
         </Grid>
     </Grid>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Height" Value=" 40" />
+            <Setter Property="Width" Value=" 150" />
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+    </Window.Resources>
 </Window>

@@ -22,7 +22,7 @@
 
             <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation"
                 Visibility="Visible"  RenderTransformOrigin="0.5,0.5"  />
-            <Button x:Name="button_Parcel" Content="Parcel List" Click="Button_ClickParcel"
+            <Button x:Name="button_Parcel" Content="Parcel List"  Click="Button_ClickParcel"
                   FontStyle="Italic" RenderTransformOrigin="0.5,0.5" />
             <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" 
                  Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
@@ -34,7 +34,7 @@
     </Grid>
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="BorderBrush" Value="LightBlue"/>
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>

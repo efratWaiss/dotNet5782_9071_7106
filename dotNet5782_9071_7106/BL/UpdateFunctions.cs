@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlApi
 {
+
     partial class BL : IBL
     {
         public void SendDroneToStation(int idDrone)
@@ -66,7 +67,7 @@ namespace BlApi
                 var drone1 = DronesList.FirstOrDefault(x => x.Id == idDrone);
                 if (drone1 != default)
                 {
-                    if (drone1.Status == DroneStatuses.Vacant)//האם הרחפן פנוי 
+                    if (drone1.Status == DroneStatuses.Vacant)//האם הרחפן פנוי
                     {
 
                         for (int i = 0; i < dal.GetListParcel().Count(); i++)
@@ -169,7 +170,7 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }//חבילה
-       
+
         public void PackageCollectionByDrone(int idDrone)
         {
             try
@@ -246,7 +247,7 @@ namespace BlApi
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
 
-       
+
         public void UpdateNameDrone(int Id, String Model)
         {
             try
@@ -354,7 +355,9 @@ namespace BlApi
             }
 
         }
+       public void UpdateStationDetails(int v1, string v2, double v3)
+        {
+
+        }
     }
 }
-    
-

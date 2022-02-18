@@ -7,10 +7,36 @@
         mc:Ignorable="d"
         Title="CustomersList" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="AllCustomer" MouseDoubleClick="AllCustomer_MouseDoubleClick"  />
-        <Button x:Name="buttonAdd" Content="Add Customer" HorizontalAlignment="Left" Margin="272,296,0,0" VerticalAlignment="Top" Click="AddCustomerClick"/>
-        <Button Content="close" HorizontalAlignment="Left" Margin="467,306,0,0" VerticalAlignment="Top" Click="Button_Click_Close"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
 
-
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <Button x:Name="buttonAdd" Content="Add Customer" Click="AddCustomerClick"/>
+            <Button Content="close" Click="Button_Click_Close"/>
+        </WrapPanel>
+        <DataGrid x:Name="AllCustomer" MouseDoubleClick="AllCustomer_MouseDoubleClick" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"/>
     </Grid>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Height" Value=" 40" />
+            <Setter Property="Width" Value=" 150" />
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+    </Window.Resources>
 </Window>

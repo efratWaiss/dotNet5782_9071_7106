@@ -75,6 +75,7 @@ namespace PL
         }
         private void UpdateStationDetails(object sender, RoutedEventArgs e)
         {
+
             //blTemp.UpdateStationDetails
         }
 
@@ -113,7 +114,6 @@ namespace PL
         //private void ListDrones()
         //{
 
-        //}
         //public AllDrones2_MouseDoubleClick()
         //{
 
