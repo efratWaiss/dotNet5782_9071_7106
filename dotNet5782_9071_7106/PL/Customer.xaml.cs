@@ -47,6 +47,14 @@ namespace PL
             ParcelsGet.ItemsSource = bl.GetCustomer(customer.Identity).parcelFromCustomer;
             ParcelsSet.ItemsSource = bl.GetCustomer(customer.Identity).parcelToCustomer;
         }
+
+        private void Drones_delivered(object sender, RoutedEventArgs e)
+        {
+            //MainWindow mainWindow = new MainWindow();
+            //MainWindow.Show();//חזרה לתפריט הראשי
+
+        }
+
         private void LongitudeA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             LongitudeA.Background = Brushes.Transparent;

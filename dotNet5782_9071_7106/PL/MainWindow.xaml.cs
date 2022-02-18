@@ -29,6 +29,7 @@ namespace PL
             InitializeComponent();
             bl = BLFactory.GetBL();
         }
+      
 
         private void Button_ClickDrone(object sender, RoutedEventArgs e)
         {

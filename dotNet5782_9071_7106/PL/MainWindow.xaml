@@ -8,24 +8,20 @@
         Title="MainWindow" Height="640" Width="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="70"/>
             <RowDefinition Height="Auto"/>
-
         </Grid.RowDefinitions>
-        <Image Source="drone.jpg" Width="800" Margin="0,53,0,-121" Grid.Row="1"/>
-        <!--<Rectangle Fill="#FF01356E" StrokeThickness="2" Margin="0,0,0,560" />-->
+        <!--<Button Content="Drones dalivered"  Background="Azure" Margin="0,20,0,0" Grid.Row="1" Click="Drones_delivered"/>-->
+        <Image Source="drone.jpg" Width="800" Margin="0,55,0,-163" Grid.Row="2"/>
+        
 
-        <WrapPanel Grid.Row="0" Margin="0,0,0,283" Grid.RowSpan="2">
-            <Button x:Name="buttonDrone" Grid.Row="0" Content="open drones list" Click="Button_ClickDrone" 
-               Visibility="Visible" RenderTransformOrigin="0,0" />
-
-
-            <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation"
-                Visibility="Visible"  RenderTransformOrigin="0.5,0.5"  />
-            <Button x:Name="button_Parcel" Content="Parcel List"  Click="Button_ClickParcel"
-                  FontStyle="Italic" RenderTransformOrigin="0.5,0.5" />
-            <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" 
-                 Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
+        <WrapPanel Grid.Row="0" Grid.RowSpan="2"  >
+            <Button x:Name="buttonDrone" Grid.Row="0" Content="open drones list"  Click="Button_ClickDrone" Visibility="Visible" />
+            <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation" Visibility="Visible" />
+            <Button x:Name="button_Parcel" Content="Parcel List"  Click="Button_ClickParcel" FontStyle="Italic"/>
+            <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" Visibility="Visible" />
+            <!--<Rectangle Fill="#FF01356E" Width="200" />-->
         </WrapPanel>
 
         <!--<Button x:Name="button_Copy3" Content="?????" Click="Button_Click" Grid.Row="0"
