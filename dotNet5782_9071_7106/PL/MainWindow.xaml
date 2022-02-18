@@ -23,7 +23,7 @@
             <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation"
                 Visibility="Visible"  RenderTransformOrigin="0.5,0.5"  />
             <Button x:Name="button_Parcel" Content="Parcel List"  Click="Button_ClickParcel"
-                  FontStyle="Italic" RenderTransformOrigin="0.5,0.5" />
+                  FontStyle="Italic" RenderTransformOrigin="0.5,0.5" Background="#FF50686F" />
             <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" 
                  Visibility="Visible" RenderTransformOrigin="0.5,0.5" />
         </WrapPanel>
@@ -41,7 +41,7 @@
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Background" Value="LightBlue"/>
             <Setter Property="Height" Value=" 50" />
             <Setter Property="Width" Value=" 150" />
 
