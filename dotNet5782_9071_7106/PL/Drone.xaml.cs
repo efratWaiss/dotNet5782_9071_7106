@@ -51,22 +51,22 @@ namespace PL
             GridUpdate.DataContext = d;
             if (d.Battery != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
             {
-                SendDroneToCharging.Visibility = Visibility.Visible;
-                SendDroneToCharging.Visibility = Visibility.Visible;
+                SendDroneToCharging.IsEnabled = true;
+               
 
             }
             else if ((BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
             {
-                FreeDrone.Visibility = Visibility.Visible;
+                FreeDrone.IsEnabled = true;
             }
             else
             {
-                CollectionParcelByDrone.Visibility = Visibility.Visible;
-                SupplyParcel.Visibility = Visibility.Visible;
+                CollectionParcelByDrone.IsEnabled = true;
+                SupplyParcel.IsEnabled = true;
             }
             if (d.ParcelDelivered != 0)
             {
-                DronesParcle.Visibility = Visibility.Visible;
+                DronesParcle.IsEnabled = true;
             }
 
         }
@@ -223,7 +223,7 @@ namespace PL
             Parcel Parcel = new Parcel(bLTemp, d.ParcelDelivered);
             MessageBox.Show("show the drone");
             Parcel.Show();
-
+            
         }
 
         private void Button_Click_Close3(object sender, RoutedEventArgs e)

@@ -33,10 +33,10 @@
             <Label Content="until date" Margin="55,20,0,0"  />
         </WrapPanel >
         <WrapPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="3" Grid.RowSpan="1">
-            <DatePicker Name="DateSelctorFrom"/>
-            <DatePicker x:Name="DateSelctorUntil" Width="252"/>
+            <DatePicker Name="DateSelctorFrom" Width="222"/>
+            <DatePicker x:Name="DateSelctorUntil" Width="222" />
         </WrapPanel>
-        <Button Content="Filter date" Click="Button_ClickFilter" Grid.Row="1" Grid.Column="4" Width="100" Margin="40,0,0,0" Background="LightBlue"/>
+        <Button Content="Filter date" Click="Button_ClickFilter" Grid.Row="1" Grid.Column="4" Width="82" Margin="60,0,0,0" />
         <ComboBox Name="StatusSelector" Grid.Column="1" Grid.Row="1" SelectionChanged="StatusSelector_SelectionChanged" Height="40" BorderBrush="LightBlue" BorderThickness="3" />
         <Label Content="Filter drones by status" Grid.Column="0" Grid.Row="1" Margin="15,40,0,0" />
         <DataGrid x:Name="AllParcel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" IsReadOnly="true" MouseDoubleClick="AllDrone_MouseDoubleClick" />
@@ -62,7 +62,7 @@
 
     </Grid>
     <Window.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="TextBox">
             <Setter Property="BorderBrush" Value="#FF01356E"/>
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
@@ -70,7 +70,18 @@
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Background" Value="White"/>
+
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="LightBlue"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="LightBlue"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="140"/>
             <Setter Property="Margin" Value="0,0,0,0"/>

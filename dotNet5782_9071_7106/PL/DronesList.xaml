@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DronesList" Height="640" Width="800">
-    <Grid x:Name="MainGrid" Margin="0,0,0,0" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -20,31 +20,20 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <!--<Image Source="drone2.jpg" Margin="-103,174,-109,-520" Grid.ColumnSpan="5"/>-->
-            <Label Content="Filter drones by status" Grid.Column="0" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
-            <ComboBox Name="StatusSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" BorderBrush="White" Grid.Row="0">
-                <!--<ComboBox.Background>
-                    <ImageBrush ImageSource="drone2.jpg"/>
-                </ComboBox.Background>-->
-            </ComboBox>
-            <Label Content="Filter drones by weight" Grid.Column="2" Height="70" VerticalAlignment="Bottom" BorderBrush="White" Grid.Row="0"/>
-            <ComboBox Name="weightSelector" HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="3" SelectionChanged="weightSelector_SelectionChanged" BorderBrush="White" Grid.Row="0">
-                <!--<ComboBox.Background>
-                    <ImageBrush ImageSource="drone2.jpg"/>
-                </ComboBox.Background>-->
-            </ComboBox>
-            <Button Content="View all drones" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Height="77" Width="187" Click="AllDrone_Click" Background="LightBlue" BorderBrush="White" FontSize="14" Grid.Row="2"/>
+            <WrapPanel Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4">
+                <Button Content="Add drone" Click="Button_Click" />
+                <Button Content="Close" Click="Button_Click_1"/>
+                <Button Content="View all drones" Click="AllDrone_Click"/>
+                <Button Content="Group List" Click="Button_Click_Group"/>
+            </WrapPanel>
 
-            <!--<ListView x:Name="AllDrone" Grid.Row="1"  MouseDoubleClick="AllDrone_MouseDoubleClick" Margin="0,2,0,0"   />-->
-
-        </Grid>
-        <!--<Rectangle Fill="White" StrokeThickness="2" Margin="0,329,0,0" Grid.Row="1" />-->
-        <Button Content="Add drone" HorizontalAlignment="Left"  Margin="24,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" RenderTransformOrigin="0.5,2.934" Click="Button_Click" BorderThickness="4" BorderBrush="#FF01356E" />
-        <Button Content="Close" HorizontalAlignment="Left" Margin="201,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" Click="Button_Click_1" BorderBrush="#FF01356E" BorderThickness="4"/>
-        <Button Content="Group List" HorizontalAlignment="Left" Margin="400,78,0,0" Grid.Row="3" VerticalAlignment="Top" Height="60" Width="147" Click="Button_Click_Group" BorderBrush="#FF01356E" BorderThickness="4" />
-        
-        <DataGrid x:Name="AllDrone" Grid.Row="1"  MouseDoubleClick="AllDrone_MouseDoubleClick" Margin="0,2,0,0" IsReadOnly="true"/>
-        <ItemsControl x:Name="GroupingDrones" Grid.Row="1" Visibility="Collapsed" Margin="0,2,0,0">
+            <Label Content="Filter drones by status" Grid.Column="0" Grid.Row="1"/>
+            <ComboBox Name="StatusSelector" Grid.Column="1" SelectionChanged="StatusSelector_SelectionChanged" Grid.Row="1" />
+            <Label Content="Filter drones by weight" Grid.Column="2" Grid.Row="1" />
+            <ComboBox Name="weightSelector" Grid.Column="3" SelectionChanged="weightSelector_SelectionChanged" Grid.Row="1"/>
+       
+        <DataGrid x:Name="AllDrone" Grid.Row="2"  MouseDoubleClick="AllDrone_MouseDoubleClick" Margin="0,2,0,0" IsReadOnly="true" Grid.ColumnSpan="5"/>
+        <ItemsControl x:Name="GroupingDrones" Grid.Row="2" Visibility="Collapsed" Margin="0,2,0,0" Grid.ColumnSpan="5">
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
                     <Expander Header="{Binding Key}">
@@ -53,20 +42,22 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <DataGrid x:Name="DronesListViewBy"  Grid.Row="1" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick" Margin="0,2,0,0"  />
-
-    </Grid>
+        <DataGrid x:Name="DronesListViewBy" Grid.ColumnSpan="5" BorderThickness="3" Grid.Row="2" Visibility="Collapsed" MouseDoubleClick="DronesListView_MouseDoubleClick" Margin="0,2,0,0"  />
+ </Grid>
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="BorderBrush" Value="LightBlue"/>
+            <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Height" Value="15"/>
-            <Setter Property="Width" Value="140"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Height" Value=" 50" />
+            <Setter Property="Width" Value=" 150" />
+
         </Style>
-   
-    
     </Window.Resources>
 
 </Window>

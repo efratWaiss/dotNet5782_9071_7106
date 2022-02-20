@@ -48,12 +48,12 @@ namespace PL
             ParcelsSet.ItemsSource = bl.GetCustomer(customer.Identity).parcelToCustomer;
         }
 
-        private void Drones_delivered(object sender, RoutedEventArgs e)
-        {
-            //MainWindow mainWindow = new MainWindow();
-            //MainWindow.Show();//חזרה לתפריט הראשי
+        //private void Drones_delivered(object sender, RoutedEventArgs e)
+        //{
+        //    //MainWindow mainWindow = new MainWindow();
+        //    //MainWindow.Show();//חזרה לתפריט הראשי
 
-        }
+        //}
 
         private void LongitudeA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
