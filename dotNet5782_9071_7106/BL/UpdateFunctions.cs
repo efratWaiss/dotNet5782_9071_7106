@@ -170,7 +170,6 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }//חבילה
-
         public void PackageCollectionByDrone(int idDrone)
         {
             try
@@ -246,8 +245,6 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
-
-
         public void UpdateNameDrone(int Id, String Model)
         {
             try
