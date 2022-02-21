@@ -47,6 +47,30 @@ namespace DO
         override public string ToString()
         { return Message; }
     }
+    public class XMLFileLoadCreateException : Exception
+    {
+        public XMLFileLoadCreateException() : base() { }
+        public XMLFileLoadCreateException(string message) : base(message) { }
+        public XMLFileLoadCreateException(string message, Exception inner)
+                    : base(message, inner) { }
+        protected XMLFileLoadCreateException(SerializationInfo info, StreamingContext context)
+                    : base(info, context) { }
+
+        override public string ToString()
+        { return Message; }
+    }
+    public class BadPersonIdException : Exception
+    {
+        public BadPersonIdException(int id,String s) : base() { }
+        public BadPersonIdException(string message) : base(message) { }
+        public BadPersonIdException(string message, Exception inner)
+                    : base(message, inner) { }
+        protected BadPersonIdException(SerializationInfo info, StreamingContext context)
+                    : base(info, context) { }
+
+        override public string ToString()
+        { return Message; }
+    }
 }
 
 

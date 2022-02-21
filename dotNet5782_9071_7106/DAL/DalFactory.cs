@@ -16,6 +16,7 @@ namespace DalApi
             {
                 case "DalObject": return DalObject.DalObject.Instance;
                 //case "DalXml":return new DalXml();
+                case "DalXml": return 
                 default: throw new NotFoundThisInstance("This instance not found");
             }
             

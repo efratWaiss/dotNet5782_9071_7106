@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31129.286
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Targil0", "Targil0\Targil0.csproj", "{F9A3EC76-781B-430B-BA6A-E1CE3A1EF198}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{7675
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI _BL", "ConsoleUI _BL\ConsoleUI _BL.csproj", "{72C6BE50-A05E-4033-9158-2F6166EFE1F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{770094C1-EF7E-4A43-80B5-59C1574AABC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{770094C1-EF7E-4A43-80B5-59C1574AABC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{D6A1FCFA-9174-427D-A9BC-385DFCB000AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{770094C1-EF7E-4A43-80B5-59C1574AABC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{770094C1-EF7E-4A43-80B5-59C1574AABC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{770094C1-EF7E-4A43-80B5-59C1574AABC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A1FCFA-9174-427D-A9BC-385DFCB000AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A1FCFA-9174-427D-A9BC-385DFCB000AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A1FCFA-9174-427D-A9BC-385DFCB000AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A1FCFA-9174-427D-A9BC-385DFCB000AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
