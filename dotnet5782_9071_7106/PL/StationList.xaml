@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationList" Height="450" Width="800">
+        Title="StationList" Height="640" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
@@ -53,6 +53,17 @@
             <Setter Property="Height" Value=" 40" />
             <Setter Property="Width" Value=" 150" />
             <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="White"/>
+
         </Style>
     </Window.Resources>
 

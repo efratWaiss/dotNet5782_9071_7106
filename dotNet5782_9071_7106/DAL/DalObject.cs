@@ -204,7 +204,7 @@ namespace DalObject
 
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void UpdateParcelToDrone(int idDrone, int idParcel)
+        public void UpdateParcelToDrone(int idDrone, int idParcel)//משייך חבילה לרחפן
         {
             bool b = true;
             bool b2 = false;
@@ -215,24 +215,24 @@ namespace DalObject
                 else
                     b = true;
             }
-            if (b == false)
+            if (b == false)//אין רחפן שכזה
             {
                 throw new NotExistException("this id Drone not exist in the system");
             }
-            for (int i = 0; i < DataSource.parcels.Count; i++)
+            for (int i = 0; i < DataSource.parcels.Count; i++)//עובר על החבילות
             {
-                if (DataSource.parcels[i].Id == idParcel)
+                if (DataSource.parcels[i].Id == idParcel)//מוצא את החבילה
                 {
                     b2 = true;
-                    var theParcel = DataSource.parcels[i];
+                    var theParcel = DataSource.parcels[i];//מעדכן את שיוך הרחפן לחבילה
                     theParcel.DroneId = idDrone;
                     DataSource.parcels[i] = theParcel;
                 }
             }
-            if (b2 == false)
+            if (b2 == false)//לא מצא חבילה מתאימה
             {
                 throw new NotExistException("this id parcel not exist in the system");
-            }
+            };1 
 
         }
 
