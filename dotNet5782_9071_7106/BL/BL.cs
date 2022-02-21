@@ -13,14 +13,14 @@ namespace BlApi
 {
     sealed partial class BL : IBL
     {
-        
+
         static readonly BL instance = new BL();
         static BL() { }
 
         public static BL Instance { get => instance; }
 
-       
-        IDAL dal ;
+
+        IDAL dal;
         public List<DroneToList> DronesList = new();
 
         private double available;//רחפן ריק
@@ -40,7 +40,7 @@ namespace BlApi
             MediumWeight = arr[2];
             heavyWeight = arr[3];
             ChargingRate = arr[4];
-            
+
             Initialize();
 
         }
@@ -189,7 +189,7 @@ namespace BlApi
             }
             return wightDrone;
         }
-        
+
     }
 }
 

@@ -337,7 +337,7 @@ namespace BlApi
         {
             try
             {
-                dal.DealeteParcel(id);
+                dal.DeleteParcel(id);
             }
             catch (DO.NotExistException ex)
             {

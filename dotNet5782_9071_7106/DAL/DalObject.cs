@@ -232,7 +232,7 @@ namespace DalObject
             if (b2 == false)//לא מצא חבילה מתאימה
             {
                 throw new NotExistException("this id parcel not exist in the system");
-            };1 
+            }; 
 
         }
 
@@ -428,7 +428,7 @@ namespace DalObject
 
         }//TODO:
       
-        public void DealeteParcel(int id)
+        public void DeleteParcel(int id)
         {
             bool flag = false;
 
