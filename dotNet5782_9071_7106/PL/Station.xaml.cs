@@ -29,7 +29,6 @@ namespace PL
             drones.Visibility = Visibility.Collapsed;
 
         }
-
         public Station(IBL bl, BO.StationToList s)
         {
             InitializeComponent();
@@ -44,7 +43,6 @@ namespace PL
 
 
         }
-
         private void SaveAndAdd(object sender, RoutedEventArgs e)
         {
             try
@@ -75,10 +73,18 @@ namespace PL
         }
         private void UpdateStationDetails(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                blTemp.UpdateStationDetails(s.Id, NameU.Text.ToString(), Convert.ToInt32(ChargeSlotsU.Text));
+                MessageBox.Show("The Station was successfully updated");
 
-            //blTemp.UpdateStationDetails
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -86,40 +92,26 @@ namespace PL
 
 
         }
-
-
         private void MouseDoubleClick_DroneInParcel(object sender, MouseButtonEventArgs e)
         {
             Drone drone = new Drone(blTemp, (BO.DroneInCharging)drones.SelectedValue);
             drone.Show();
 
         }
-
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void Button_Click_Close1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-
-        //private void ListDrones()
-        //{
-
-        //public AllDrones2_MouseDoubleClick()
-        //{
-
-        //}
     }
-
 
 }
 

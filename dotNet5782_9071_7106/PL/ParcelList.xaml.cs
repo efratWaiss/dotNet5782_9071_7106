@@ -72,7 +72,7 @@ namespace PL
 
                 if (StatusSelector.SelectedItem != null)
                 {
-                    //AllParcel.ItemsSource = blTemp.
+                    //AllParcel.ItemsSource = blTemp.get
                 }
             }
             catch (BO.IdException ex)

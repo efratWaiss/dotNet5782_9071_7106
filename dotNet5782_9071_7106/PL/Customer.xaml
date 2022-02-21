@@ -36,7 +36,7 @@
             <TextBox x:Name="LatitudeA" PreviewTextInput="LatitudeA_PreviewTextInput" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
             <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
                 <Button x:Name="Save" Content="Save" Click="Button_ClickSave"/>
-                <Button Content="Drones dalivered"  Background="Azure" Click="Drones_delivered"/>
+                <!--<Button Content="Drones dalivered"  Background="Azure" Click="Drones_delivered"/>-->
                 <!--<Button x:Name="Close" Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="74,10,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Button_ClickClose"/>-->
             </WrapPanel>
         </Grid>
@@ -75,11 +75,11 @@
             <TextBox x:Name="NumberGetListParcelU" Text="{Binding Path=NumberGetListParcel}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <TextBox x:Name="NumberParcelTOCustomerU" Text="{Binding Path=NumberParcelTOCustomer}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <WrapPanel Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0" Margin="0,0,0,0">
-                <Button Content="Save" Click="Button_ClickSaveUpdate"/>
+                <Button Content="Update details" Click="Button_ClickSaveUpdate"/>
                 <Button Content="Parcel Get" Click="Button_Click"/>
                 <Button Content="Parcel Set" Click="Button_Click__ParcelSet"/>
                 <Button Content="Close" Click="Button_Click_Close"/>
-                <Button Content="Drones dalivered"  Background="Azure" Click="Drones_delivered"/>
+                <!--<Button Content="Drones dalivered"  Background="Azure" Click="Drones_delivered"/>-->
             </WrapPanel>
             <DataGrid x:Name="ParcelsSet" Grid.Row="8"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
             <DataGrid x:Name="ParcelsGet" Grid.Row="9"  Margin="0,2,0,0" Grid.ColumnSpan="4" IsReadOnly="true" Visibility="Collapsed"/>
@@ -113,6 +113,19 @@
     </Grid>
     <Window.Resources>
         <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="LightBlue"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Height" Value=" 40" />
+            <Setter Property="Width" Value=" 150" />
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+        <Style TargetType="TextBox">
             <Setter Property="BorderBrush" Value="#FF01356E"/>
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
@@ -120,10 +133,8 @@
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FF01356E"/>
-            <Setter Property="Height" Value=" 40" />
-            <Setter Property="Width" Value=" 150" />
-            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Background" Value="White"/>
+
         </Style>
     </Window.Resources>
 </Window>

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Station" Height="450" Width="800">
+        Title="Station" Height="640" Width="800">
     <Grid >
-        <Grid x:Name="GridAdd" Visibility="Visible" >
+        <Grid x:Name="GridAdd" Visibility="Collapsed" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -39,7 +39,7 @@
                 <Button Content="Close"  Click="Button_Click_Close1"/>
             </WrapPanel>
         </Grid>
-        <Grid x:Name="GridUpdate2" Visibility="Collapsed">
+        <Grid x:Name="GridUpdate2" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -62,7 +62,7 @@
             <Label Content="Name" Grid.Row="3" Grid.Column="1"/>
             <Label Content="Available ChargeSlots" Grid.Row="4" Grid.Column="1"/>
             <Label Content="Charge Slots" Grid.Row="5" Grid.Column="1"/>
-            <TextBox x:Name="IdU" IsEnabled="True" Text="{Binding Path=Id}" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="IdU" IsEnabled="False" Text="{Binding Path=Id}" MaxLength="9" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="NameU" IsEnabled="True"  Text="{Binding Path=Name}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="AvailableChargeSlotsU" IsEnabled="False" Text="{Binding Path=AvailableChargingPositions}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="ChargeSlotsU" IsEnabled="True" Text="{Binding Path=OccupanciesChargingPositions}" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -88,9 +88,21 @@
             <Setter Property="Background" Value="#FF01356E"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="160"/>
-            <!--<Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>-->
             <Setter Property="Margin" Value="0,0,0,0"/>
+            
         </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="White"/>
+
+        </Style>
+        
     </Window.Resources>
 
 </Window>

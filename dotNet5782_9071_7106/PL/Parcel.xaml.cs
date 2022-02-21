@@ -41,6 +41,8 @@ namespace PL
             GridParcel.DataContext = bl.GetParcel(parcelId);
             GridParcel.Visibility = Visibility.Visible;
             AddParcel.Visibility = Visibility.Collapsed;
+            WeightSelectorU.ItemsSource = Enum.GetValues(typeof(BO.WeightCategories));
+            PrioritiesSelectorU.ItemsSource = Enum.GetValues(typeof(BO.Priorities));
             if (bl.GetParcel(parcelId).DroneId != 0)
             {
                 DeleateParcel.IsEnabled = true;
@@ -92,6 +94,7 @@ namespace PL
             try
             {
                 bl.UpdateParcelToDrone(parcelId);
+                MessageBox.Show("The parcel was successfully updated");
             }
             catch (BO.IdException ex)
             {
@@ -149,6 +152,18 @@ namespace PL
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click_UpdateParcelDetailes(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.UpdateParcelDetails(parcelId, (BO.WeightCategories)WeightSelectorU.SelectedItem, (BO.Priorities)PrioritiesSelectorU.SelectedItem);
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

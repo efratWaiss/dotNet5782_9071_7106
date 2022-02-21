@@ -261,20 +261,7 @@ namespace BlApi
         {
             try
             {
-                var station = GetListStation().FirstOrDefault(x => x.Id == IdStation);
-
-
-                if (!NameStation.Equals(default) && !ChargeSlots.Equals(default))
-                {
-
-                    station.Name = NameStation;
-                    station.OccupanciesChargingPositions = ChargeSlots;
-                }
-                else
-                {
-                    throw new Exception("you didnt put good values");
-                }
-
+                dal.UpdateStationDetails(IdStation, NameStation, ChargeSlots);
 
             }
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
@@ -284,16 +271,22 @@ namespace BlApi
         {
             try
             {
+                dal.UpdateCustomerDetails(IdCustomer, Name, Phone);
 
-                var customer1 = GetListCustomer().FirstOrDefault(x => x.Identity == IdCustomer);
-                if (!Name.Equals(default) && !Phone.Equals(default))
-                {
-                    customer1.Name = Name;
-                    customer1.Phone = Phone;
-
-                }
-                else { throw new Exception("you didnt put good values"); }
-
+            }
+            catch (DO.IdException ex)
+            {
+                throw new BO.IdException(ex.Message);
+            }
+        }
+        public void UpdateParcelDetails(int Id,BO.WeightCategories w,BO.Priorities p)
+        {
+            try
+            {
+                DO.Parcel parcel = dal.GetParcel(Id);
+                parcel.Weight = (DO.WeightCategories)w;
+                parcel.priority = (DO.Priorities)p;
+                dal.UpdateParcel(parcel);
             }
             catch (DO.IdException ex)
             {
@@ -352,9 +345,6 @@ namespace BlApi
             }
 
         }
-       public void UpdateStationDetails(int v1, string v2, double v3)
-        {
 
-        }
     }
 }

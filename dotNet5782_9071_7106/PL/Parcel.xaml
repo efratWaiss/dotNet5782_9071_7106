@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Parcel" Height="640" Width="800">
     <Grid>
-        <Grid x:Name="GridParcel" Visibility="Collapsed">
+        <Grid x:Name="GridParcel" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition />
@@ -45,10 +45,12 @@
             <Label Content="PickedUp" Grid.Row="12" Grid.Column="1"/>
             <Label Content="Delivered" Grid.Row="13" Grid.Column="1"/>
             <TextBox x:Name="IdT" Grid.Row="2" Text="{Binding Path=ParcelId}" Grid.Column="2" IsReadOnly="True"/>
-            <TextBox x:Name="SenderT" Text="{Binding Path=Sender.Identity}" Grid.Row="3" Grid.Column="2" IsReadOnly="True"/>
-            <TextBox x:Name="TargetT" Text="{Binding Path=Target.Identity}" Grid.Row="4" Grid.Column="2" IsReadOnly="True"/>
-            <TextBox x:Name="WeightT" Text="{Binding Path=Weight}" Grid.Row="5" Grid.Column="2" IsReadOnly="True"/>
-            <TextBox x:Name="PriorityT" Text="{Binding Path=Priority}" Grid.Row="6" Grid.Column="2" IsReadOnly="True"/>
+            <TextBox x:Name="SenderT" Text="{Binding Path=Sender.Identity}" Grid.Row="3" IsReadOnly="True" Grid.Column="2" />
+            <TextBox x:Name="TargetT" Text="{Binding Path=Target.Identity}" Grid.Row="4" IsReadOnly="True" Grid.Column="2"/>
+            <ComboBox Name="WeightSelectorU"  Grid.Column="2" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch"/>
+            <ComboBox Name="PrioritiesSelectorU"  HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="6"/>
+            <!--<TextBox x:Name="WeightT" Text="{Binding Path=Weight}" Grid.Row="5" Grid.Column="2" IsEnabled="True"/>
+            <TextBox x:Name="PriorityT" Text="{Binding Path=Priority}" Grid.Row="6" Grid.Column="2" IsEnabled="True"/>-->
             <TextBox x:Name="StatusT" Text="{Binding Path=ParcelStatsus}" Grid.Row="7" Grid.Column="2" IsReadOnly="True"/>
             <TextBox x:Name="DroneInParcelT" Text="{Binding Path=DroneInParcel.Id}" Grid.Row="8" Grid.Column="2" IsReadOnly="True"/>
             <TextBox x:Name="RequestedT" Text="{Binding Path=Requested}" Grid.Row="9" Grid.Column="2" IsReadOnly="True"/>
@@ -56,7 +58,7 @@
             <TextBox x:Name="scheduledT" Text="{Binding Path=scheduled}" Grid.Row="11" Grid.Column="2" IsReadOnly="True"/>
             <TextBox x:Name="PickedUpT" Text="{Binding Path=PickedUp}" Grid.Row="12" Grid.Column="2" IsReadOnly="True"/>
             <TextBox x:Name="DeliveredT" Text="{Binding Path=Delivered}" Grid.Row="13" Grid.Column="2" IsReadOnly="True"/>
-            <WrapPanel Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="5" Grid.Column="0">
+            <WrapPanel Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="5" Grid.Column="0">
                 <Button Content="close"  Click="Button_Click_1"/>
                 <Button Name="DeleateParcel" Content="Deleate Parcel"  Click="Button_ClickDeleateParcel" IsEnabled="False"/>
                 <Button Name="UpdateParcelToDrone" Content="Update Parcel To Drone" Grid.Column="4" HorizontalAlignment="Left" Click="Button_Click_UpdateParcelToDrone" IsEnabled="True"/>
@@ -64,9 +66,10 @@
                 <Button Name="GetTarget" Content="Target" Grid.Column="4" HorizontalAlignment="Left"  Click="Button_Click_Target" />
                 <Button Name="GetDrone" IsEnabled="False" Content="Drone"  Click="Button_Click_Drone" />
                 <Button Name="PickedAndDeliver" IsEnabled="False" Content="Picked And Deliver" Click="Button_Click_PickedAndDeliver" />
+                <Button Name="UpdateParcelDetailes"  Content="Update Parcel Detailes" Click="Button_Click_UpdateParcelDetailes" />
             </WrapPanel>
         </Grid>
-        <Grid x:Name="AddParcel" Visibility="Visible">
+        <Grid x:Name="AddParcel" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -106,7 +109,7 @@
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Background" Value="#FF01356E"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="105"/>
+            <Setter Property="Width" Value="180"/>
             <Setter Property="Margin" Value="0,0,0,0"/>
         </Style>
     </Window.Resources>

@@ -17,8 +17,8 @@
         
 
         <WrapPanel Grid.Row="0" Grid.RowSpan="2"  >
-            <Button x:Name="buttonDrone" Grid.Row="0" Content="open drones list"  Click="Button_ClickDrone" Visibility="Visible" />
-            <Button x:Name="button_Station" Content="station List" Click="Button_ClickStation" Visibility="Visible" />
+            <Button x:Name="buttonDrone" Grid.Row="0" Content="Drones list"  Click="Button_ClickDrone" Visibility="Visible" />
+            <Button x:Name="button_Station" Content="Station List" Click="Button_ClickStation" Visibility="Visible" />
             <Button x:Name="button_Parcel" Content="Parcel List"  Click="Button_ClickParcel" FontStyle="Italic"/>
             <Button x:Name="button_Customer" Content="Customer List" Click="Button_ClickCustomer" Visibility="Visible" />
             <!--<Rectangle Fill="#FF01356E" Width="200" />-->
@@ -37,7 +37,7 @@
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Background" Value="LightBlue"/>
             <Setter Property="Height" Value=" 50" />
             <Setter Property="Width" Value=" 150" />
 
