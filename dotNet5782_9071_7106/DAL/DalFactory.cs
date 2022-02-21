@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 namespace DalApi
 {
     public static class DalFactory
@@ -16,7 +17,7 @@ namespace DalApi
             {
                 case "DalObject": return DalObject.DalObject.Instance;
                 //case "DalXml":return new DalXml();
-                case "DalXml": return 
+                case "DalXml": return DL.DLXML.Instance;
                 default: throw new NotFoundThisInstance("This instance not found");
             }
             

@@ -7,10 +7,9 @@ using System.Xml.Linq;
 namespace DL
 {
 
-    sealed partial class DLXML : IDal
+    sealed partial class DLXML : IDAL
     {
-        
-        public DO.Customer GetCustomer(int id)
+        public Customer GetCustomer(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
 
@@ -27,12 +26,12 @@ namespace DL
                         ).FirstOrDefault();
 
             if (c.Equals(default))
-                throw new DO.BadPersonIdException(id, $"Customer id not exists in the system: {id}");
+                throw new BadPersonIdException(id, $"Customer id not exists in the system: {id}");
 
             return c;
         }
 
-        public DO.Drone GetDrone(int id)
+        public Drone GetDrone(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
 
@@ -52,42 +51,42 @@ namespace DL
 
         }
 
-        public P GetParcel(int id)
+        public Parcel GetParcel(int id)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(DronePath);
+            XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
 
             Parcel p = (from per in personsRootElem.Elements()
-                        where int.Parse(per.Element("ID").Value) == id
+                        where int.Parse(per.Element("Id").Value) == id
                         select new Parcel()
                         {
-                            Id = Int32.Parse(per.Element("ID").Value),
-                            SenderId = Int32.Parse(per.Element("ID").Value),
-                            TargetId = Int32.Parse(per.Element("ID").Value),
-                            Weight = (WeightCategories)Enum.Parse(typeof(WeightCategories), per.Element("MaxWeight").Value),
+                            Id = Int32.Parse(per.Element("Id").Value),
+                            SenderId = Int32.Parse(per.Element("SenderId").Value),
+                            TargetId = Int32.Parse(per.Element("TargetId").Value),
+                            Weight = (WeightCategories)Enum.Parse(typeof(WeightCategories), per.Element("Weight").Value),
                             priority = (Priorities)Enum.Parse(typeof(Priorities), per.Element("priority").Value),
                             Requested = DateTime.Parse(per.Element("Requested").Value),
                             DroneId = Int32.Parse(per.Element("DroneId").Value),
-                            scheduled = DateTime.Parse(per.Element("Requested").Value),
-                            PickedUp = DateTime.Parse(per.Element("Requested").Value),
-                            Delivered = DateTime.Parse(per.Element("Requested").Value)
+                            scheduled = DateTime.Parse(per.Element("scheduled").Value),
+                            PickedUp = DateTime.Parse(per.Element("PickedUp").Value),
+                            Delivered = DateTime.Parse(per.Element("Delivered").Value)
 
                         }
                         ).FirstOrDefault();
             if (p.Equals(default))
-                throw new DO.BadPersonIdException(id, $" Parcel id not exists in the system: {id}");
+                throw new BadPersonIdException(id, $" Parcel id not exists in the system: {id}");
 
             return p;
 
         }
-        public DO.Station GetStation(int id)
+        public Station GetStation(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
 
             Station s = (from ser in personsRootElem.Elements()
-                         where int.Parse(ser.Element("ID").Value) == id
+                         where int.Parse(ser.Element("Id").Value) == id
                          select new Station()
                          {
-                             Id = Int32.Parse(ser.Element("ID").Value),
+                             Id = Int32.Parse(ser.Element("Id").Value),
                              Name = ser.Element("Name").Value,
                              Longitude = double.Parse(ser.Element("Longitude").Value),
                              Latitude = double.Parse(ser.Element("Latitude").Value),
@@ -95,22 +94,22 @@ namespace DL
                          }
                         ).FirstOrDefault();
             if (s.Equals(default))
-                throw new DO.BadPersonIdException(id, $" Station id not exists in the system: {id}");
+                throw new BadPersonIdException(id, $" Station id not exists in the system: {id}");
 
             return s;
 
         }
 
-        public DO.DroneCharge GetDroneCharge(int Droneld)
+        public DroneCharge GetDroneCharge(int Droneld)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(DroneChargePath);
 
             DroneCharge d = (from ser in personsRootElem.Elements()
-                         where int.Parse(ser.Element("Droneld").Value) == Droneld
+                             where int.Parse(ser.Element("Droneld").Value) == Droneld
                              select new DroneCharge()
-                         {
-                             Droneld = Int32.Parse(ser.Element("DroneId").Value),
-                             Stationld = Int32.Parse(ser.Element("Stationld").Value)
+                             {
+                                 Droneld = Int32.Parse(ser.Element("DroneId").Value),
+                                 Stationld = Int32.Parse(ser.Element("Stationld").Value)
                              }
                         ).FirstOrDefault();
             if (d.Equals(default))
