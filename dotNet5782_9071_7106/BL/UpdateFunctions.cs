@@ -11,6 +11,7 @@ namespace BlApi
 
     partial class BL : IBL
     {
+        #region SendDroneToStation
         public void SendDroneToStation(int idDrone)
         {
             double min = double.MaxValue;
@@ -47,6 +48,7 @@ namespace BlApi
                 throw new NotImplementedException("this Drone's id not exist in the system");
             }
         }
+        #endregion
         public void UpdateParcelToDrone(int idDrone)
         {
             try
