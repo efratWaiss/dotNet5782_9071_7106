@@ -45,7 +45,7 @@
                 <Button x:Name="FreeDrone" IsEnabled="False" Content="Free Drone" Click="FreeDrone_Click"/>
                 <Button x:Name="SendDroneToShipping" IsEnabled="False" Content="Send Drone To Shipping" Click="SendDroneToShipping_Click"/>
                 <Button x:Name="CollectionParcelByDrone"  IsEnabled="False" Content="Collection parcel by drone" Click="CollectionParcelByDrone_Click"/>
-                <Button x:Name="SupplyParcel" IsEnabled="False" Content="Supply parcel" Click="SupplyParcel_Click"/>
+                <!--<Button x:Name="SupplyParcel" IsEnabled="False" Content="Supply parcel" Click="SupplyParcel_Click"/>-->
                 <Button x:Name="DronesParcle" Visibility="Visible" Content="Drones Parcel" Click="GetParcleDroen_Click"/>
             </WrapPanel>
             <Label Content="id"  Grid.Row="3" Grid.Column="1"/>

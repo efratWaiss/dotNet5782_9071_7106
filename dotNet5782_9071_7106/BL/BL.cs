@@ -166,26 +166,26 @@ namespace BlApi
 
             return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
-        private double droneWeight(int idDrone)// ומחזירה את משקל הרחפן WeightCategories הפונקציה בודקת לפי 
+        private double DroneWeight(int idDrone)// ומחזירה את משקל הרחפן WeightCategories הפונקציה בודקת לפי 
         {
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-            double wightDrone = 0;
+            double weightDrone = 0;
             switch (drone.MaxWeight)
             {
                 case WeightCategories.Easy:
-                    wightDrone = lightWeight;
+                    weightDrone = lightWeight;
                     break;
                 case WeightCategories.Intermediate:
-                    wightDrone = MediumWeight;
+                    weightDrone = MediumWeight;
                     break;
                 case WeightCategories.Liver:
-                    wightDrone = heavyWeight;
+                    weightDrone = heavyWeight;
                     break;
                 default:
-                    wightDrone = available;
+                    weightDrone = available;
                     break;
             }
-            return wightDrone;
+            return weightDrone;
         }
 
     }
