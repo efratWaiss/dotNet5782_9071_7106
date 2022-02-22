@@ -171,33 +171,33 @@ namespace BlApi
 
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
-        }//חבילה
-        public void PackageCollectionByDrone(int idDrone)
+        }//חבילה, יהיה יותר יפה בהמשך לשנות את השדות שהוא מראה
+        public void PackageCollectionByDrone(int idDrone)//איסוף חבילה ע"י רחפן 
         {
             try
             {
                 bool flag = false;
                 var pacelsL = dal.GetListParcel().ToList();
-                var drone = dal.GetDrone(idDrone);
+                var drone = dal.GetDrone(idDrone);//למצוא ברשימת הרחפנים את הרחפן שהזיהוי שלו שווה לזיהוי הרחפן שקיבלנו
                 DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
+                var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);//מציאת החבילות שנאספו ע"י רחפנים
                 for (int i = 0; i < dal.GetListParcel().Count() && flag == false; i++)
-                {
-
+                {//עבור על רשימת החבילות כל עוד לא נמצאה חבילה ששויכה לרחפן שנשלח 
+                 //ועוד לא נאספה על ידו
                     if (pacelsL[i].DroneId == idDrone && pacelsL[i].PickedUp.Equals(default))
                     {
                         flag = true;
                         GetListDrone.Battery = GetListDrone.Battery - (GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
-                             new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude))) * ChargingRate * droneWeight(pacelsL[i].DroneId);
+                        new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude))) * ChargingRate * droneWeight(pacelsL[i].DroneId);
+                        //הבטריה של הרחפן מתעדכנת לבטריה הנדרשת לרחפן על מנת לאסוף את החבילה 
                         GetListDrone.LocationNow = new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude);
-                        itemParcel.PickedUp = DateTime.Now;
-                        dal.UpdateParcel(itemParcel);
-                    }
-
+                        //מיקום הרחפן מתעדכן למיקום הלקוח שמקבל את החבילה 
+                        itemParcel.PickedUp = DateTime.Now;//עדכון שעת האיסוף לשעה נוכחית
+                        dal.UpdateParcel(itemParcel); //עדכון החבילה עפ"י החבילה שנשלחה
+                   }
                 }
                 if (flag == false)
-                {
-
+                {//אם לא מצאת חבילה ששויכה לרחפן זה ועוד לא נאספה זרוק שגיאה
                     throw new NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
                 }
             }
