@@ -6,12 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
+
 
 namespace DL
 {
 
     sealed partial class DLXML : IDAL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Customer> GetListCustomer()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
@@ -27,7 +30,7 @@ namespace DL
                     }
                    );
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Drone> GetListDrone()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(DronePath);
@@ -41,7 +44,7 @@ namespace DL
                     }
                    );
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetListParcel()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -62,7 +65,7 @@ namespace DL
                     }
                    );
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetListStation()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
@@ -78,7 +81,7 @@ namespace DL
                     }
                    );
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneCharge> GetListDroneCharges()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(DroneChargePath);
@@ -91,7 +94,7 @@ namespace DL
                     }
                    );
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> ParcelNoDrone()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -114,7 +117,7 @@ namespace DL
                     }
                    );
         }
-       
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> StationNoCharge()
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);

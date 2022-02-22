@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BO;
 using DalApi;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable IDE0005 // Using directive is unnecessary.
 #pragma warning restore IDE0005 // Using directive is unnecessary.
@@ -41,6 +42,7 @@ namespace BlApi
             Initialize();
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         #region Initialize
         private void Initialize()
         {
@@ -161,11 +163,13 @@ namespace BlApi
 
         }
         #endregion
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double GetDistanceBetweenTwoLocation(Location l1, Location l2)//הפונקציה מחשבצ מרחק בין שני מיקומים
         {
 
             return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private double DroneWeight(int idDrone)// ומחזירה את משקל הרחפן WeightCategories הפונקציה בודקת לפי 
         {
             var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);

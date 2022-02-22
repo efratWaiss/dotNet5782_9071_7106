@@ -3,12 +3,14 @@ using DO;
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DL
 {
 
     sealed partial class DLXML : IDAL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer GetCustomer(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
@@ -30,7 +32,7 @@ namespace DL
 
             return c;
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone GetDrone(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -50,7 +52,7 @@ namespace DL
             return d;
 
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Parcel GetParcel(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -78,6 +80,7 @@ namespace DL
             return p;
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Station GetStation(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
@@ -99,7 +102,7 @@ namespace DL
             return s;
 
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DroneCharge GetDroneCharge(int Droneld)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(DroneChargePath);

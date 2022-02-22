@@ -3,6 +3,7 @@ using DO;
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DL
 {
@@ -12,6 +13,7 @@ namespace DL
         public static readonly DLXML instance = new DLXML();
         static DLXML() { }
         DLXML() { }
+
         public static DLXML Instance { get => instance; }
         #region DS XML Files
 
