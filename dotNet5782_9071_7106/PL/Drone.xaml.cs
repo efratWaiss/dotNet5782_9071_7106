@@ -52,7 +52,7 @@ namespace PL
             if (d.Battery != 100 && (BO.DroneStatuses)d.Status == DroneStatuses.Vacant)
             {
                 SendDroneToCharging.IsEnabled = true;
-               
+                SendDroneToShipping.IsEnabled = true;
 
             }
             else if ((BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
@@ -62,7 +62,8 @@ namespace PL
             else
             {
                 CollectionParcelByDrone.IsEnabled = true;
-                SupplyParcel.IsEnabled = true;
+               
+                //SupplyParcel.IsEnabled = true;
             }
             if (d.ParcelDelivered != 0)
             {
@@ -163,8 +164,17 @@ namespace PL
             try
             {
                 bLTemp.FreeDrone(Convert.ToInt32(Id.Text), 0);
+                MessageBox.Show("The drone רelease from the charging station");
             }
             catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotImplementedException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -175,9 +185,9 @@ namespace PL
         {
             try
             {
-                bLTemp.UpdateParcelToDrone(Convert.ToInt32(Id.Text));
+                bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
             }
-            catch (BO.IdException ex)
+            catch (BO.NotImplementedException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -197,18 +207,18 @@ namespace PL
             }
         }
 
-        private void SupplyParcel_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
+        //private void SupplyParcel_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         private void IdA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

@@ -86,7 +86,7 @@ namespace BlApi
             }
             else
             {
-                throw new NotImplementedException("this id not exist in the system");
+                throw new BO.NotExistException("this id not exist in the system");
             }
 
         }
@@ -110,9 +110,9 @@ namespace BlApi
                 }
                 return p;
             }
-            catch (DO.IdException ex)
+            catch (DO.NotExistException ex)
             {
-                throw new NotImplementedException(ex.Message);
+                throw new BO.NotExistException(ex.Message);
             }
 
         }
@@ -133,7 +133,7 @@ namespace BlApi
                 }
                 return new BO.Station(stationDal.Id, stationDal.Name, new Location(stationDal.Longitude, stationDal.Latitude), stationDal.ChargeSlots, d); ;
             }
-            catch (DO.IdException ex) { throw new BO.NotExistException(ex.Message); }
+            catch (DO.NotExistException ex) { throw new BO.NotExistException(ex.Message); }
 
         }
     }

@@ -48,9 +48,9 @@ namespace PL
             try
             {
                 blTemp.AddStation(Convert.ToInt32(Id.Text),
-                    Convert.ToString(name.Text),
+                    (name.Text).ToString(),
                     new BO.Location(Convert.ToDouble(longitude.Text), Convert.ToDouble(latitude.Text)),
-                    Convert.ToInt32(AvailableChargeSlots));
+                    Convert.ToInt32(AvailableChargeSlots.Text));
                 MessageBox.Show("The station was successfully added");
                 this.Close();//יש כאן בעיה בהרצה
             }
