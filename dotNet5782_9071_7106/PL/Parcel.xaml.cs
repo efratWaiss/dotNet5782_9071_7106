@@ -130,6 +130,7 @@ namespace PL
             try
             {
                 bl.PackageCollectionByDrone(bl.GetParcel(parcelId).DroneId);
+                MessageBox.Show("The parcel picked & delivered by drone");
             }
             catch (BO.IdException ex)
             {

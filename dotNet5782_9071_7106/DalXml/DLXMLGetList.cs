@@ -97,21 +97,17 @@ namespace DL
             var PNoD = (from p in personsRootElem.Elements()
                              where int.Parse(p.Element("DroneId").Value) == 0
                              select p);
-            return (from p in PNoD
-                    select new Parcel()
-                    {
-                        Id = Int32.Parse(p.Element("ID").Value),
-                        SenderId = Int32.Parse(p.Element("ID").Value),
-                        TargetId = Int32.Parse(p.Element("ID").Value),
-                        Weight = (WeightCategories)Enum.Parse(typeof(WeightCategories), p.Element("MaxWeight").Value),
-                        priority = (Priorities)Enum.Parse(typeof(Priorities), p.Element("priority").Value),
-                        Requested = DateTime.Parse(p.Element("Requested").Value),
-                        DroneId = Int32.Parse(p.Element("DroneId").Value),
-                        scheduled = DateTime.Parse(p.Element("Requested").Value),
-                        PickedUp = DateTime.Parse(p.Element("Requested").Value),
-                        Delivered = DateTime.Parse(p.Element("Requested").Value)
-                    }
-                   );
+            return (IEnumerable<Parcel>)PNoD;
+        }
+
+        
+        public IEnumerable<DO.Station> StationNoCharge()
+        {
+            XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
+            var SNoC = (from p in personsRootElem.Elements()
+                        where int.Parse(p.Element("ChargeSlots").Value) == 0
+                        select p);
+            return (IEnumerable<Station>)SNoC;
         }
     }
 }

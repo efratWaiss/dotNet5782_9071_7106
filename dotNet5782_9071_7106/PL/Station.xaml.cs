@@ -40,19 +40,21 @@ namespace PL
             GridAdd.Visibility = Visibility.Collapsed;
             drones.Visibility = Visibility.Collapsed;
             drones.ItemsSource = blTemp.GetStation(s.Id).DronesInCharging;//TODO: ????
-
+            
 
         }
         private void SaveAndAdd(object sender, RoutedEventArgs e)
         {
             try
             {
+                GridAdd.Visibility = Visibility.Visible;
                 blTemp.AddStation(Convert.ToInt32(Id.Text),
                     (name.Text).ToString(),
                     new BO.Location(Convert.ToDouble(longitude.Text), Convert.ToDouble(latitude.Text)),
                     Convert.ToInt32(AvailableChargeSlots.Text));
                 MessageBox.Show("The station was successfully added");
                 this.Close();//יש כאן בעיה בהרצה
+
             }
             catch (BO.IdException ex)
             {

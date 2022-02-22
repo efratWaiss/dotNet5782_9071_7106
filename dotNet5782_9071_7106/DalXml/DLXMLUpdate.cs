@@ -10,7 +10,7 @@ namespace DL
 {
     sealed partial class DLXML : IDAL
     {
-        public void UpdateParcelToDrone(int idDrone, int idParcel)
+        public void DeleteParcel(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
             XElement personsRootElem1 = XMLTools.LoadListFromXMLElement(DronePath);
