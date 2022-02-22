@@ -162,7 +162,7 @@ namespace DL
 
             else throw new DO.BadPersonIdException(idDrone, $"drobe id not exist in the system");
         }
-        
+
         public void DeleteParcel(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -211,12 +211,33 @@ namespace DL
 
         public double[] powerConsumpitionByDrone()
         {
-            return new double[5];
-            
-            XElement config = XMLTools.LoadListFromXMLElement();
-            XElement personsRootElem2 = XMLTools.LoadListFromXMLElement(DronePath);
-            XElement personsRootElem3 = XMLTools.LoadListFromXMLElement(DronePath);
-            configRoot.Element("Available").v
+            //XElement config = XMLTools.LoadListFromXMLElement(ConfigPath);
+            //XElement availableElement = config.Element("available");
+            //XElement lightWeightElement = config.Element("lightWeight");
+            //XElement MediumWeightElement = config.Element("MediumWeight");
+            //XElement heavyWeightElement = config.Element("heavyWeight");
+            //XElement ChargingRateElement = config.Element("ChargingRate");
+            //double available = double.Parse(availableElement.Value);
+            //double lightWeight = double.Parse(lightWeightElement.Value);
+            //double MediumWeight = double.Parse(MediumWeightElement.Value);
+            //double heavyWeight = double.Parse(heavyWeightElement.Value);
+            //double ChargingRate = double.Parse(ChargingRateElement.Value);
+            double[] arr = new double[5];
+            //arr[0] = ++available;
+            //arr[1] = ++lightWeight;
+            //arr[2] = ++MediumWeight;
+            //arr[3] = ++heavyWeight;
+            //arr[4] = ++ChargingRate;
+            //availableElement.Value = available.ToString();
+            //lightWeightElement.Value = lightWeight.ToString();
+            //MediumWeightElement.Value = MediumWeight.ToString();
+            //heavyWeightElement.Value = heavyWeight.ToString();
+            //ChargingRateElement.Value = ChargingRate.ToString();
+            //XMLTools.SaveListToXMLElement(config, ConfigPath);
+            return arr;
+
+
+
         }
     }
 }
