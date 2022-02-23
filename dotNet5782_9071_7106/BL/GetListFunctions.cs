@@ -14,21 +14,25 @@ namespace BlApi
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> GetListStation()
         {
-            var stations = dal.GetListStation();
-            List<StationToList> s = new List<StationToList>();
-            foreach (var item in stations)
+            lock (dal)
             {
-                int count = 0;
-                foreach (var item1 in dal.GetListDroneCharges())
+                var stations = dal.GetListStation();
+                List<StationToList> s = new List<StationToList>();
+                foreach (var item in stations)
                 {
-                    if (item1.Stationld == item.Id)
+                    int count = 0;
+                    foreach (var item1 in dal.GetListDroneCharges())
                     {
-                        count++;
+                        if (item1.Stationld == item.Id)
+                        {
+                            count++;
+                        }
                     }
+                    s.Add(new StationToList(item.Id, item.Name, item.ChargeSlots - count, count));
                 }
-                s.Add(new StationToList(item.Id, item.Name, item.ChargeSlots - count, count));
+                return s;
             }
-            return s;
+
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListDrone()
@@ -38,6 +42,7 @@ namespace BlApi
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<CustomerToList> GetListCustomer()
         {
+            lock (dal) { 
             var customers = dal.GetListCustomer();
             List<CustomerToList> c = new List<CustomerToList>();
             int countParcelProvided = 0;//חבילות שנשלחו וסופקו
@@ -68,12 +73,14 @@ namespace BlApi
                 c.Add(new CustomerToList(item.Id, item.Name, item.Phone, countParcelProvided, countParcelNotProvided, countGetListParcels, countParcelNotProvided + countParcelProvided));//צריך להביא
             }
             return c;
+            }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> GetListParcel()
         {
             try
             {
+                lock (dal) { 
                 var parcels = dal.GetListParcel();
                 BO.ParcelStatsus temp;
                 List<ParcelToList> p = new List<ParcelToList>();
@@ -108,6 +115,7 @@ namespace BlApi
                          , temp));
                 }
                 return p;
+                }
             }
             catch (DO.IdException ex) { throw new BO.NotExistException(ex.Message); }
         }
@@ -249,7 +257,7 @@ namespace BlApi
         //{
         //    return GetListParcel().Where(x=>GetParcel(x.Id).)
         //}
-        
+
     }
 }
 

@@ -50,125 +50,129 @@ namespace BlApi
             DroneStatuses st = new DroneStatuses();
             double battery = new double();
             Location lo = new Location(454.5, 45.5);//איתחול ערכי זבל(ישתנו בהמשך(
-
-            foreach (var drone in dal.GetListDrone())//עובר על כל הרחפנים
+            lock (dal)
             {
-                foreach (var parcel in dal.GetListParcel())//מעבר על החבילות
+                foreach (var drone in dal.GetListDrone())//עובר על כל הרחפנים
                 {
-                    if (parcel.DroneId == drone.Id && parcel.Delivered == null)//רחפן ששויך וחבילה שלא סופקה
+                    foreach (var parcel in dal.GetListParcel())//מעבר על החבילות
                     {
-
-                        var customer = dal.GetListCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);//מוצא את השולח
-                        st = DroneStatuses.Shipping;//רחפן מבצע משלוח
-                        if (parcel.scheduled != null && parcel.PickedUp == null)//חבילה שויכה אך לא נאספה
+                        if (parcel.DroneId == drone.Id && parcel.Delivered == null)//רחפן ששויך וחבילה שלא סופקה
                         {
 
-                            double min = double.MaxValue;
-                            foreach (var station in dal.GetListStation())//מעבר על תחנות הטעינה
+                            var customer = dal.GetListCustomer().FirstOrDefault(x => x.Id == parcel.SenderId);//מוצא את השולח
+                            st = DroneStatuses.Shipping;//רחפן מבצע משלוח
+                            if (parcel.scheduled != null && parcel.PickedUp == null)//חבילה שויכה אך לא נאספה
                             {
-                                if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude)) < min)
-                                {//מוצא את המרחק הקטן ביותר בין השולח לתחנה ושם ימקם את הרחפן
-                                    min = GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude));
-                                    lo.Latitude = station.Latitude;
-                                    lo.Longitude = station.Longitude;
+
+                                double min = double.MaxValue;
+                                foreach (var station in dal.GetListStation())//מעבר על תחנות הטעינה
+                                {
+                                    if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude)) < min)
+                                    {//מוצא את המרחק הקטן ביותר בין השולח לתחנה ושם ימקם את הרחפן
+                                        min = GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(customer.Latitude, customer.Longitude));
+                                        lo.Latitude = station.Latitude;
+                                        lo.Longitude = station.Longitude;
+                                    }
                                 }
                             }
+                            else if (parcel.PickedUp != null)//חבילה נאספה 
+                            {//ממקם את הרחפן במיקום השולח
+                                lo.Latitude = customer.Latitude;
+                                lo.Longitude = customer.Longitude;
+                            }
+                            //מוצא את מרחק הדרך שעך הרחפן לעבור בשביל לבצע משלוח
+                            double tempLocation =
+                                    GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.SenderId).Longitude, dal.GetCustomer(parcel.SenderId).Latitude), new Location(lo.Longitude, lo.Latitude))//מרחק בין מיקום רחפן לשולח
+                                    + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.SenderId).Longitude, dal.GetCustomer(parcel.SenderId).Latitude), new Location(dal.GetCustomer(parcel.TargetId).Longitude, dal.GetCustomer(parcel.TargetId).Latitude))//מרחק בין שולח למקבל
+                                  + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.TargetId).Longitude, dal.GetCustomer(parcel.TargetId).Latitude), new Location(lo.Longitude, lo.Latitude));
+                            Random rn1 = new Random();
+                            battery = rn1.Next((int)(tempLocation * ChargingRate * available), 100);//מחשב את הבטרייה
+                            d = new DroneToList(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, battery, st, lo, parcel.Id);
+                            DronesList.Add(d);//מוסיף את הרחפן
                         }
-                        else if (parcel.PickedUp != null)//חבילה נאספה 
-                        {//ממקם את הרחפן במיקום השולח
-                            lo.Latitude = customer.Latitude;
-                            lo.Longitude = customer.Longitude;
-                        }
-                        //מוצא את מרחק הדרך שעך הרחפן לעבור בשביל לבצע משלוח
-                        double tempLocation =
-                                GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.SenderId).Longitude, dal.GetCustomer(parcel.SenderId).Latitude), new Location(lo.Longitude, lo.Latitude))//מרחק בין מיקום רחפן לשולח
-                                + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.SenderId).Longitude, dal.GetCustomer(parcel.SenderId).Latitude), new Location(dal.GetCustomer(parcel.TargetId).Longitude, dal.GetCustomer(parcel.TargetId).Latitude))//מרחק בין שולח למקבל
-                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(parcel.TargetId).Longitude, dal.GetCustomer(parcel.TargetId).Latitude), new Location(lo.Longitude, lo.Latitude));
-                        Random rn1 = new Random();
-                        battery = rn1.Next((int)(tempLocation * ChargingRate * available), 100);//מחשב את הבטרייה
-                        d = new DroneToList(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, battery, st, lo, parcel.Id);
-                        DronesList.Add(d);//מוסיף את הרחפן
-                    }
 
-                    else
-                    {
-
-                        Random rn = new Random();
-                        int rand = rn.Next(1, 3);
-                        List<int> IDs = new List<int>();
-                        switch (rand)
+                        else
                         {
-                            case 1:
-                                int rr = rn.Next(1, dal.GetListStation().Count());
-                                lo.Latitude = dal.GetListStation().ToList()[rr].Latitude;
-                                lo.Longitude = dal.GetListStation().ToList()[rr].Longitude;
-                                d = new DroneToList(drone.Id
-                                    , drone.Model
-                                    , (WeightCategories)drone.MaxWeight
-                                    , rn.Next(0, 21)
-                                    , DroneStatuses.Maintenance
-                                    , lo
-                                    , parcel.Id);
-                                DronesList.Add(d);
-                                break;
-                            case 2:
-                                foreach (var Customer in dal.GetListCustomer())
-                                {
-                                    foreach (var Parcel in dal.GetListParcel())
+
+                            Random rn = new Random();
+                            int rand = rn.Next(1, 3);
+                            List<int> IDs = new List<int>();
+                            switch (rand)
+                            {
+                                case 1:
+                                    int rr = rn.Next(1, dal.GetListStation().Count());
+                                    lo.Latitude = dal.GetListStation().ToList()[rr].Latitude;
+                                    lo.Longitude = dal.GetListStation().ToList()[rr].Longitude;
+                                    d = new DroneToList(drone.Id
+                                        , drone.Model
+                                        , (WeightCategories)drone.MaxWeight
+                                        , rn.Next(0, 21)
+                                        , DroneStatuses.Maintenance
+                                        , lo
+                                        , parcel.Id);
+                                    DronesList.Add(d);
+                                    break;
+                                case 2:
+                                    foreach (var Customer in dal.GetListCustomer())
                                     {
-                                        if (Customer.Id == Parcel.TargetId)
+                                        foreach (var Parcel in dal.GetListParcel())
                                         {
-                                            IDs.Add(Customer.Id);//מכניס את הת''ז של הלקוחות שסופקו להם חבילות
+                                            if (Customer.Id == Parcel.TargetId)
+                                            {
+                                                IDs.Add(Customer.Id);//מכניס את הת''ז של הלקוחות שסופקו להם חבילות
+                                            }
+                                        }
+
+                                    }
+                                    int p = IDs.Count();
+                                    rand = rn.Next(1, p);
+                                    foreach (var Customer in dal.GetListCustomer())
+                                    {
+                                        if (Customer.Id == IDs[rand])
+                                        {
+                                            lo.Latitude = Customer.Latitude;
+                                            lo.Longitude = Customer.Longitude;//מיקום הרחפן יהיה כמיקום הלקוח שהוגרל
                                         }
                                     }
-
-                                }
-                                int p = IDs.Count();
-                                rand = rn.Next(1, p);
-                                foreach (var Customer in dal.GetListCustomer())
-                                {
-                                    if (Customer.Id == IDs[rand])
+                                    Location stationLocGet = new Location(12.7, 7.9);//איתחול משתנה בהמשך הפונקציה
+                                    double min = double.MaxValue;
+                                    foreach (var station in dal.GetListStation())
                                     {
-                                        lo.Latitude = Customer.Latitude;
-                                        lo.Longitude = Customer.Longitude;//מיקום הרחפן יהיה כמיקום הלקוח שהוגרל
+                                        if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude)) < min)
+                                        {
+                                            min = GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude));
+                                            stationLocGet.Latitude = station.Latitude;
+                                            stationLocGet.Longitude = station.Longitude;
+                                        }
                                     }
-                                }
-                                Location stationLocGet = new Location(12.7, 7.9);//איתחול משתנה בהמשך הפונקציה
-                                double min = double.MaxValue;
-                                foreach (var station in dal.GetListStation())
-                                {
-                                    if (GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude)) < min)
-                                    {
-                                        min = GetDistanceBetweenTwoLocation(new Location(station.Latitude, station.Longitude), new Location(lo.Longitude, lo.Latitude));
-                                        stationLocGet.Latitude = station.Latitude;
-                                        stationLocGet.Longitude = station.Longitude;
-                                    }
-                                }
-                                Random rn1 = new Random();
-                                battery = rn1.Next((int)(min * ChargingRate * available), 100);
-                                d = new DroneToList(drone.Id
-                                    , drone.Model
-                                    , (WeightCategories)drone.MaxWeight
-                                    , battery
-                                    , DroneStatuses.Vacant
-                                    , stationLocGet
-                                    , parcel.Id);
-                                DronesList.Add(d);
-                                break;
+                                    Random rn1 = new Random();
+                                    battery = rn1.Next((int)(min * ChargingRate * available), 100);
+                                    d = new DroneToList(drone.Id
+                                        , drone.Model
+                                        , (WeightCategories)drone.MaxWeight
+                                        , battery
+                                        , DroneStatuses.Vacant
+                                        , stationLocGet
+                                        , parcel.Id);
+                                    DronesList.Add(d);
+                                    break;
+                            }
                         }
+                        break;
                     }
-                    break;
                 }
-            }
 
+            }
         }
         #endregion
         [MethodImpl(MethodImplOptions.Synchronized)]
+      
         public double GetDistanceBetweenTwoLocation(Location l1, Location l2)//הפונקציה מחשבצ מרחק בין שני מיקומים
         {
 
             return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
+       
         [MethodImpl(MethodImplOptions.Synchronized)]
         private double DroneWeight(int idDrone)// ומחזירה את משקל הרחפן WeightCategories הפונקציה בודקת לפי 
         {
@@ -191,6 +195,12 @@ namespace BlApi
             }
             return weightDrone;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void Simulator(int idDrone, Action a, Func<bool> f)
+        {
+
+        }
+
 
     }
 }

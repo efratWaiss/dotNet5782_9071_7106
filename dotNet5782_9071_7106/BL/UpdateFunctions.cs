@@ -12,7 +12,7 @@ namespace BlApi
 
     partial class BL : IBL
     {
-        #region SendDroneToStation
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendDroneToStation(int idDrone)//שולחת רחפן לתחנת טעינה
         {
             double min = double.MaxValue;
@@ -48,8 +48,9 @@ namespace BlApi
             {
                 throw new BO.NotImplementedException("this Drone's id not exist in the system");
             }
-        }//v
-        #endregion
+        }
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        
         //TODO:ערכים 0
         public void UpdateParcelToDrone(int idDrone)
         {
@@ -178,72 +179,81 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }//חבילה, יהיה יותר יפה בהמשך לשנות את השדות שהוא מראה
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void CollectionAParcelByDroen(int idDrone)//איסוף חבילה ע"י רחפן 
         {
             try
             {
+
                 bool flag = false;
-                var pacelsL = dal.GetListParcel().ToList();
-                var drone = dal.GetDrone(idDrone);//למצוא ברשימת הרחפנים את הרחפן שהזיהוי שלו שווה לזיהוי הרחפן שקיבלנו
-                DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);//מציאת החבילות שנאספו ע"י רחפנים
-                for (int i = 0; i < dal.GetListParcel().Count() && flag == false; i++)
-                {//עבור על רשימת החבילות כל עוד לא נמצאה חבילה ששויכה לרחפן שנשלח 
-                 //ועוד לא נאספה על ידו
-                    if (pacelsL[i].DroneId == idDrone && pacelsL[i].PickedUp.Equals(default))
-                    {
-                        flag = true;
-                        GetListDrone.Battery = GetListDrone.Battery - (GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
-                        new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].SenderId).Latitude))) * ChargingRate *DroneWeight(pacelsL[i].DroneId);
-                        //הבטריה של הרחפן מתעדכנת לבטריה הנדרשת לרחפן על מנת לאסוף את החבילה 
-                        GetListDrone.LocationNow = new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].SenderId).Latitude);
-                        //מיקום הרחפן מתעדכן למיקום הלקוח שמקבל את החבילה 
-                        itemParcel.PickedUp = DateTime.Now;//עדכון שעת האיסוף לשעה נוכחית
-                        dal.UpdateParcel(itemParcel); //עדכון החבילה עפ"י החבילה שנשלחה
-                   }
-                }
-                if (flag == false)
-                {//אם לא מצאת חבילה ששויכה לרחפן זה ועוד לא נאספה זרוק שגיאה
-                    throw new BO.NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
+                lock (dal)
+                {
+                    var pacelsL = dal.GetListParcel().ToList();
+                    var drone = dal.GetDrone(idDrone);//למצוא ברשימת הרחפנים את הרחפן שהזיהוי שלו שווה לזיהוי הרחפן שקיבלנו
+                    DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+                    var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);//מציאת החבילות שנאספו ע"י רחפנים
+                    for (int i = 0; i < dal.GetListParcel().Count() && flag == false; i++)
+                    {//עבור על רשימת החבילות כל עוד לא נמצאה חבילה ששויכה לרחפן שנשלח 
+                     //ועוד לא נאספה על ידו
+                        if (pacelsL[i].DroneId == idDrone && pacelsL[i].PickedUp.Equals(default))
+                        {
+                            flag = true;
+                            GetListDrone.Battery = GetListDrone.Battery - (GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
+                            new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].SenderId).Latitude))) * ChargingRate * DroneWeight(pacelsL[i].DroneId);
+                            //הבטריה של הרחפן מתעדכנת לבטריה הנדרשת לרחפן על מנת לאסוף את החבילה 
+                            GetListDrone.LocationNow = new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].SenderId).Latitude);
+                            //מיקום הרחפן מתעדכן למיקום הלקוח שמקבל את החבילה 
+                            itemParcel.PickedUp = DateTime.Now;//עדכון שעת האיסוף לשעה נוכחית
+                            dal.UpdateParcel(itemParcel); //עדכון החבילה עפ"י החבילה שנשלחה
+                        }
+                    }
+                    if (flag == false)
+                    {//אם לא מצאת חבילה ששויכה לרחפן זה ועוד לא נאספה זרוק שגיאה
+                        throw new BO.NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
+                    }
                 }
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeliveryOfAParcelByDrone(int idDrone)//לספק חבילה על ידי רחפן
         {
             try
             {
                 bool flag = false;
-                var parcels = dal.GetListParcel().ToList();
-                var drone = dal.GetDrone(idDrone);
-                DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
-                for (int i = 0; i < dal.GetListParcel().Count() && flag == false; i++)
+                lock (dal)
                 {
-                    if (parcels[i].DroneId == idDrone)
+                    var parcels = dal.GetListParcel().ToList();
+                    var drone = dal.GetDrone(idDrone);
+                    DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+                    var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);
+                    for (int i = 0; i < dal.GetListParcel().Count() && flag == false; i++)
                     {
+                        if (parcels[i].DroneId == idDrone)
+                        {
 
-                        if (!parcels[i].PickedUp.Equals(default) && parcels[i].Delivered.Equals(default))
-                        {// מוצא חבילה שמשויכת לרחפןוגם שהחבילה נאספה אך לא סופקה
-                            flag = true;
-                            double v = dal.GetCustomer(parcels[i].TargetId).Longitude;
-                            double v1 = dal.GetCustomer(parcels[i].TargetId).Latitude;
-                            double b = GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
-                            new Location(dal.GetCustomer(parcels[i].TargetId).Longitude, dal.GetCustomer(parcels[i].TargetId).Latitude));
-                            GetListDrone.Battery = GetListDrone.Battery - ((GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
-                            new Location(dal.GetCustomer(parcels[i].TargetId).Longitude, dal.GetCustomer(parcels[i].TargetId).Latitude))) * ChargingRate * DroneWeight(idDrone));
-                            GetListDrone.LocationNow = new Location(dal.GetCustomer(parcels[i].SenderId).Longitude, dal.GetCustomer(parcels[i].SenderId).Latitude);
-                            GetListDrone.Status = DroneStatuses.Vacant;
-                            itemParcel.Delivered = DateTime.Now;
-                            dal.UpdateParcel(itemParcel);//מעדכן את החבילה בהתאם
+                            if (!parcels[i].PickedUp.Equals(default) && parcels[i].Delivered.Equals(default))
+                            {// מוצא חבילה שמשויכת לרחפןוגם שהחבילה נאספה אך לא סופקה
+                                flag = true;
+                                double v = dal.GetCustomer(parcels[i].TargetId).Longitude;
+                                double v1 = dal.GetCustomer(parcels[i].TargetId).Latitude;
+                                double b = GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
+                                new Location(dal.GetCustomer(parcels[i].TargetId).Longitude, dal.GetCustomer(parcels[i].TargetId).Latitude));
+                                GetListDrone.Battery = GetListDrone.Battery - ((GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
+                                new Location(dal.GetCustomer(parcels[i].TargetId).Longitude, dal.GetCustomer(parcels[i].TargetId).Latitude))) * ChargingRate * DroneWeight(idDrone));
+                                GetListDrone.LocationNow = new Location(dal.GetCustomer(parcels[i].SenderId).Longitude, dal.GetCustomer(parcels[i].SenderId).Latitude);
+                                GetListDrone.Status = DroneStatuses.Vacant;
+                                itemParcel.Delivered = DateTime.Now;
+                                dal.UpdateParcel(itemParcel);//מעדכן את החבילה בהתאם
+                            }
+
                         }
 
+                        else
+                        {
+                            flag = false;
+                        }
                     }
-                    else
-                    {
-                        flag = false;
-                    }
-
                 }
                 if (flag == false)//לא מצא את החבילה זורק שגיאה
                 {
@@ -252,33 +262,45 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateNameDrone(int Id, String Model)
         {
             try
             {
-                var Drone = dal.GetDrone(Id);
-                Drone.Model = Model;
+                lock (dal)
+                {
+                    var Drone = dal.GetDrone(Id);
+                    Drone.Model = Model;
+                }
                 var Drone1 = DronesList.FirstOrDefault(x => x.Id == Id);
                 Drone1.Model = Model;
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStationDetails(int IdStation, String NameStation, int ChargeSlots)
         {
             try
             {
-                dal.UpdateStationDetails(IdStation, NameStation, ChargeSlots);
-
+                lock (dal)
+                {
+                    dal.UpdateStationDetails(IdStation, NameStation, ChargeSlots);
+                }
             }
             catch (DO.IdException ex) { throw new IdException(ex.Message); }
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone)
         {
             try
             {
-                dal.UpdateCustomerDetails(IdCustomer, Name, Phone);
+                lock (dal)
+                {
+                    dal.UpdateCustomerDetails(IdCustomer, Name, Phone);
+
+                }
 
             }
             catch (DO.IdException ex)
@@ -286,47 +308,55 @@ namespace BlApi
                 throw new BO.IdException(ex.Message);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcelDetails(int Id, BO.WeightCategories w, BO.Priorities p)
         {
             try
             {
-                DO.Parcel parcel = dal.GetParcel(Id);
-                parcel.Weight = (DO.WeightCategories)w;
-                parcel.priority = (DO.Priorities)p;
-                dal.UpdateParcel(parcel);
+                lock (dal)
+                {
+                    DO.Parcel parcel = dal.GetParcel(Id);
+                    parcel.Weight = (DO.WeightCategories)w;
+                    parcel.priority = (DO.Priorities)p;
+                    dal.UpdateParcel(parcel);
+                }
             }
             catch (DO.IdException ex)
             {
                 throw new BO.IdException(ex.Message);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void FreeDrone(int idDrone, double timeInCharging)//שחרור רחפן מטעינת בסיס
         {
-            DO.Station station=default;
-            var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-            if (drone != default)
+            lock (dal)
             {
-                if (drone.Status == DroneStatuses.Maintenance)
-                {//משנה את הסטטוס ואת הבטרייה
-                    drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
-                    drone.Status = DroneStatuses.Vacant;
-                    
-                    foreach (var sta in dal.GetListStation())
-                    {//מחפש את התחנה שבה ממוקם הרחפן
-                        if(sta.Latitude== drone.LocationNow.Latitude&& sta.Longitude== drone.LocationNow.Longitude)
-                        {
-                            station = sta;
-                            
+                DO.Station station = default;
+                var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+                if (drone != default)
+                {
+                    if (drone.Status == DroneStatuses.Maintenance)
+                    {//משנה את הסטטוס ואת הבטרייה
+                        drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
+                        drone.Status = DroneStatuses.Vacant;
+
+                        foreach (var sta in dal.GetListStation())
+                        {//מחפש את התחנה שבה ממוקם הרחפן
+                            if (sta.Latitude == drone.LocationNow.Latitude && sta.Longitude == drone.LocationNow.Longitude)
+                            {
+                                station = sta;
+
+                            }
+
                         }
 
-                    }
-                
-                    if (!station.Equals(default))
-                    {//מוסיף עמדה פנויה לתחנה  ןמעדכן
-                     //ובנוסף מסיר DroneCharge 
-                        int ChargeSlots = station.ChargeSlots + 1;
-                        UpdateStationDetails(station.Id, station.Name, ChargeSlots);
-                        dal.removeFromDroneCharges(idDrone, station.Id);
+                        if (!station.Equals(default))
+                        {//מוסיף עמדה פנויה לתחנה  ןמעדכן
+                         //ובנוסף מסיר DroneCharge 
+                            int ChargeSlots = station.ChargeSlots + 1;
+                            UpdateStationDetails(station.Id, station.Name, ChargeSlots);
+                            dal.removeFromDroneCharges(idDrone, station.Id);
+                        }
                     }
                     else
                     {
@@ -345,19 +375,21 @@ namespace BlApi
                 throw new BO.NotExistException("this id drone not exist in the system");
             }
 
-        }//v
+        }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id)
         {
             try
             {
-                dal.DeleteParcel(id);
+                lock (dal) { dal.DeleteParcel(id); }
+
             }
             catch (DO.NotExistException ex)
             {
                 throw new BO.NotExistException(ex.Message);
             }
 
-        }//v
+        }
 
     }
 }

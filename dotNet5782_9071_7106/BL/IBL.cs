@@ -48,8 +48,11 @@ namespace BlApi
         public void UpdateNameDrone(int idDrone, string model);
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeliveryOfAParcelByDrone(int idDrone);
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void CollectionAParcelByDroen(int idDrone);
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendDroneToStation(int idDrone);//
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void FreeDrone(int idDrone, double timeInCharging);
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus);
@@ -73,5 +76,7 @@ namespace BlApi
         public IEnumerable<ParcelToList> GetListParcelByDate(DateTime from, DateTime to);
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id);
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void Simulator(int idDrone, Action a, Func<bool> f);
     }
 }
