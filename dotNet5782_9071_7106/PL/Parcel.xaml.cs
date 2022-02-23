@@ -50,7 +50,7 @@ namespace PL
             if (!bl.GetParcel(parcelId).scheduled.Equals(default) && bl.GetParcel(parcelId).PickedUp.Equals(default))
             {
                 GetDrone.IsEnabled = true;
-                PickedAndDeliver.IsEnabled = true;
+
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -93,7 +93,7 @@ namespace PL
         {
             try
             {
-                bl.UpdateParcelToDrone(parcelId);
+                bl.UpdateParcelToDrone(bl.GetParcel(parcelId).DroneId);
                 MessageBox.Show("The parcel was successfully updated");
             }
             catch (BO.IdException ex)
@@ -101,6 +101,10 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
             catch (BO.NotExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotImplementedException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -114,7 +118,7 @@ namespace PL
 
         private void Button_Click_Sender(object sender, RoutedEventArgs e)
         {
-            Customer customer = new Customer(bl,bl.GetParcel(parcelId).Sender);
+            Customer customer = new Customer(bl, bl.GetParcel(parcelId).Sender);
             customer.Show();
         }
 
@@ -122,21 +126,9 @@ namespace PL
         {
             Drone drone = new Drone(bl, bl.GetParcel(parcelId).DroneInParcel);
             drone.Show();
-           
-    }
 
-        private void Button_Click_PickedAndDeliver(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                bl.PackageCollectionByDrone(bl.GetParcel(parcelId).DroneId);
-                MessageBox.Show("The parcel picked & delivered by drone");
-            }
-            catch (BO.IdException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
+
         private void PreviewTextInput_SenderIdA(object sender, TextCompositionEventArgs e)
         {
             SenderIdA.Background = Brushes.Transparent;

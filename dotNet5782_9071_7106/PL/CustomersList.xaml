@@ -26,17 +26,23 @@
     </Grid>
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="BorderBrush" Value="#FF01356E"/>
+            <Setter Property="BorderBrush" Value="LightBlue"/>
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Background" Value="LightBlue"/>
             <Setter Property="Height" Value=" 40" />
             <Setter Property="Width" Value=" 150" />
             <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+        <Style TargetType="DataGrid">
+
+            <Setter Property="RowHeight" Value="30"/>
+            <Setter Property="ColumnWidth" Value="100" />
+            <Setter Property="IsReadOnly" Value="True" />
         </Style>
     </Window.Resources>
 </Window>

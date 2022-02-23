@@ -39,7 +39,7 @@ namespace PL
             GridUpdate2.Visibility = Visibility.Visible;
             GridAdd.Visibility = Visibility.Collapsed;
             drones.Visibility = Visibility.Collapsed;
-            drones.ItemsSource = blTemp.GetStation(s.Id).DronesInCharging;//TODO: ????
+         /*   drones.ItemsSource = blTemp.GetStation(s.Id).DronesInCharging;*///TODO: ????
             
 
         }

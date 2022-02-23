@@ -54,17 +54,23 @@ namespace PL
                 SendDroneToCharging.IsEnabled = true;
                 SendDroneToShipping.IsEnabled = true;
 
+
+
             }
             else if ((BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
             {
                 FreeDrone.IsEnabled = true;
+               
             }
+
             else
             {
+                DeliveryParcel.IsEnabled = true;
                 CollectionParcelByDrone.IsEnabled = true;
-               
-                //SupplyParcel.IsEnabled = true;
             }
+
+
+
             if (d.ParcelDelivered != 0)
             {
                 DronesParcle.IsEnabled = true;
@@ -122,19 +128,19 @@ namespace PL
         private void Button_Click_Close2(object sender, RoutedEventArgs e)
         {
 
-            
+
             this.Close();
 
         }
 
         private void Button_Click_close1(object sender, RoutedEventArgs e)
         {
-           
+
             this.Close();
 
         }
 
-        private void Button_Click_UpdateDronesModel(object sender, RoutedEventArgs e)
+        private void UpdateDronesModel_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -146,7 +152,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_SendDroneToCharging(object sender, RoutedEventArgs e)
+        private void SendDroneToCharging_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -198,8 +204,8 @@ namespace PL
         {
             try
             {
-                bLTemp.PackageCollectionByDrone(Convert.ToInt32(Id.Text));
-
+                bLTemp.CollectionAParcelByDroen(Convert.ToInt32(Id.Text));
+                MessageBox.Show("The drone collection the parcel");
             }
             catch (BO.IdException ex)
             {
@@ -207,18 +213,18 @@ namespace PL
             }
         }
 
-        //private void SupplyParcel_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+        private void DeliveryParcel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
+                MessageBox.Show("The delivery the parcel");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void IdA_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -233,7 +239,7 @@ namespace PL
             Parcel Parcel = new Parcel(bLTemp, d.ParcelDelivered);
             MessageBox.Show("show the drone");
             Parcel.Show();
-            
+
         }
 
         private void Button_Click_Close3(object sender, RoutedEventArgs e)

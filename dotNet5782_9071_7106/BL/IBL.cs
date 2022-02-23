@@ -29,8 +29,8 @@ namespace BlApi
         public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone);
         public void UpdateNameDrone(int idDrone, string model);
         public void DeliveryOfAParcelByDrone(int idDrone);
-        public void PackageCollectionByDrone(int idDrone);
-        public void SendDroneToStation(int idDrone);
+        public void CollectionAParcelByDroen(int idDrone);
+        public void SendDroneToStation(int idDrone);//
         public void FreeDrone(int idDrone, double timeInCharging);
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus);
         public IEnumerable<DroneToList> GetListByWeight(WeightCategories weight);

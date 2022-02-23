@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-          
+
             <Label Content="Id" Grid.Row="2" Grid.Column="1"/>
             <Label Content="Sender" Grid.Row="3" Grid.Column="1"/>
             <Label Content="Target" Grid.Row="4" Grid.Column="1"/>
@@ -65,7 +65,6 @@
                 <Button Name="GetSender" Content="Sender" Grid.Column="4" HorizontalAlignment="Left" Click="Button_Click_Sender" />
                 <Button Name="GetTarget" Content="Target" Grid.Column="4" HorizontalAlignment="Left"  Click="Button_Click_Target" />
                 <Button Name="GetDrone" IsEnabled="False" Content="Drone"  Click="Button_Click_Drone" />
-                <Button Name="PickedAndDeliver" IsEnabled="False" Content="Picked And Deliver" Click="Button_Click_PickedAndDeliver" />
                 <Button Name="UpdateParcelDetailes"  Content="Update Parcel Detailes" Click="Button_Click_UpdateParcelDetailes" />
             </WrapPanel>
         </Grid>
@@ -92,22 +91,43 @@
             <TextBox x:Name="TargetIdA" MaxLength="10" Grid.Row="2" Grid.Column="2" PreviewTextInput="PreviewTextInput_TargetIdA"/>
             <ComboBox Name="WeightSelector"  Grid.Column="2" HorizontalAlignment="Stretch"  Grid.Row="3" VerticalAlignment="Stretch"/>
             <ComboBox Name="PrioritiesSelector"  HorizontalAlignment= "Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4"/>
-              <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
                 <Button Content="Save" Click="Button_ClickSaveAdd"/>
                 <Button Content="Close"   Click="Button_Click_Close"/>
             </WrapPanel>
         </Grid>
     </Grid>
     <Window.Resources>
+        <Style TargetType="DataGrid">
+            <Setter Property="RowHeight" Value="30"/>
+            <Setter Property="ColumnWidth" Value="100" />
+            <Setter Property="IsReadOnly" Value="True" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontStretch" Value="ExtraCondensed"/>
+            <Setter Property="BorderThickness" Value="0.7"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+
+
+        </Style>
         <Style TargetType="Button">
-            <Setter Property="BorderBrush" Value="#FF01356E"/>
+
+            <Setter Property="BorderBrush" Value="LightBlue"/>
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Segoe UI Variable Text Semibold" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontStretch" Value="ExtraCondensed"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FF01356E"/>
+            <Setter Property="Background" Value="LightBlue"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="180"/>
             <Setter Property="Margin" Value="0,0,0,0"/>

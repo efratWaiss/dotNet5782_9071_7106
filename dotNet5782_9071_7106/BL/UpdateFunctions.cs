@@ -47,8 +47,9 @@ namespace BlApi
             {
                 throw new BO.NotImplementedException("this Drone's id not exist in the system");
             }
-        }
+        }//v
         #endregion
+        //TODO:ערכים 0
         public void UpdateParcelToDrone(int idDrone)
         {
             try
@@ -86,12 +87,12 @@ namespace BlApi
                             }
 
                             tempLocation =
-                                GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].SenderId).Longitude, dal.GetCustomer(p[i].SenderId).Latitude), drone1.LocationNow)
-                                + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), drone1.LocationNow)
-                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));//TODO: check
+                                GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].SenderId).Longitude, dal.GetCustomer(p[i].SenderId).Latitude), drone1.LocationNow)//המרחק בין הרחפן לשולח החבילה
+                                + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), new Location(dal.GetCustomer(p[i].SenderId).Longitude, dal.GetCustomer(p[i].SenderId).Latitude))//המרחק בין השולח לבין המקבל
+                              + GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(p[i].TargetId).Longitude, dal.GetCustomer(p[i].TargetId).Latitude), new Location(Longitude, Latitude));//המרחק בין מקבל החבילה לבין התחנה הקרובה ביותר אליו
 
                             //tempLocation שומר את כל הדרך שעל הרחפן לעבור, כדי להעביר חבילה מלקוח למקבל ולהגיע לתחנה הקרובה לטעינה (כדי לבדוק אם יש לו מספיק בטריה
-                            if (tempLocation <= drone1.Battery * ChargingRate * DroneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
+                            if (tempLocation <= drone1.Battery + ChargingRate * DroneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
                             {
                                 if ((drone1.MaxWeight == WeightCategories.Intermediate && (WeightCategories)p[i].Weight != WeightCategories.Liver) || (drone1.MaxWeight == WeightCategories.Easy && (WeightCategories)p[i].Weight == WeightCategories.Easy))
                                 {
@@ -162,6 +163,10 @@ namespace BlApi
                             parcelChoise.Delivered = DateTime.Now;
                         }
                     }
+                    else
+                    {
+                        throw new BO.NotImplementedException("the drone is not vacant");
+                    }
                 }
 
                 else
@@ -172,7 +177,7 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }//חבילה, יהיה יותר יפה בהמשך לשנות את השדות שהוא מראה
-        public void PackageCollectionByDrone(int idDrone)//איסוף חבילה ע"י רחפן 
+        public void CollectionAParcelByDroen(int idDrone)//איסוף חבילה ע"י רחפן 
         {
             try
             {
@@ -188,9 +193,9 @@ namespace BlApi
                     {
                         flag = true;
                         GetListDrone.Battery = GetListDrone.Battery - (GetDistanceBetweenTwoLocation(GetListDrone.LocationNow,
-                        new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude))) * ChargingRate * droneWeight(pacelsL[i].DroneId);
+                        new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].SenderId).Latitude))) * ChargingRate *DroneWeight(pacelsL[i].DroneId);
                         //הבטריה של הרחפן מתעדכנת לבטריה הנדרשת לרחפן על מנת לאסוף את החבילה 
-                        GetListDrone.LocationNow = new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].TargetId).Latitude);
+                        GetListDrone.LocationNow = new Location(dal.GetCustomer(pacelsL[i].SenderId).Longitude, dal.GetCustomer(pacelsL[i].SenderId).Latitude);
                         //מיקום הרחפן מתעדכן למיקום הלקוח שמקבל את החבילה 
                         itemParcel.PickedUp = DateTime.Now;//עדכון שעת האיסוף לשעה נוכחית
                         dal.UpdateParcel(itemParcel); //עדכון החבילה עפ"י החבילה שנשלחה
@@ -198,7 +203,7 @@ namespace BlApi
                 }
                 if (flag == false)
                 {//אם לא מצאת חבילה ששויכה לרחפן זה ועוד לא נאספה זרוק שגיאה
-                    throw new NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
+                    throw new BO.NotImplementedException("The package was not associated with this skimmer or the package has already been collected");
                 }
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
@@ -339,7 +344,7 @@ namespace BlApi
                 throw new BO.NotExistException("this id drone not exist in the system");
             }
 
-        }
+        }//v
         public void DeleteParcel(int id)
         {
             try
@@ -351,7 +356,7 @@ namespace BlApi
                 throw new BO.NotExistException(ex.Message);
             }
 
-        }
+        }//v
 
     }
 }
