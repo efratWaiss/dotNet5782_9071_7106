@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace BlApi
 {
     partial class BL : IBL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> GetListStation()
         {
             var stations = dal.GetListStation();
@@ -28,10 +30,12 @@ namespace BlApi
             }
             return s;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListDrone()
         {
             return new List<DroneToList>(DronesList);//TODO: droneList
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<CustomerToList> GetListCustomer()
         {
             var customers = dal.GetListCustomer();
@@ -65,6 +69,7 @@ namespace BlApi
             }
             return c;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> GetListParcel()
         {
             try
@@ -106,14 +111,17 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.NotExistException(ex.Message); }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListByStatus(DroneStatuses stasus)
         {
             return DronesList.Where(d => d.Status == stasus);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListByWeight(BO.WeightCategories weight)
         {
             return DronesList.Where(d => d.MaxWeight == weight);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<DroneStatuses, DroneToList>> GetListDroneByGroup()
         {
             var t = from drone in DronesList
@@ -121,7 +129,7 @@ namespace BlApi
                     select g;
             return t;
         }
-        
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<int, StationToList>> GetListSationByGroup()
         {
             var s = from station in GetListStation()
@@ -130,6 +138,7 @@ namespace BlApi
                     select g;
             return s;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ParcelNoDrone()
         {
             try
@@ -155,6 +164,7 @@ namespace BlApi
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> StationWithAvailableStands()
         {
             List<StationToList> stands = new List<StationToList>();
@@ -175,6 +185,7 @@ namespace BlApi
             //    return t;
             //}
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<int, StationToList>> GetListStationByGroup()
         {
             var s = from station in GetListStation()
@@ -183,6 +194,7 @@ namespace BlApi
                     select g;
             return s;
         }
+
         //public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelByGroup(BO.Customer c)
         //{
         //    var customers = dal.GetListParcel().Where(x => x.SenderId == c.Id || x.TargetId == c.Id);
@@ -190,6 +202,7 @@ namespace BlApi
         //            group Customer by Customer.TargetId into sw
         //            select sw;
         //}
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelBySenderGroup()
         {
             var s = from parcel in GetListParcel()
@@ -197,6 +210,7 @@ namespace BlApi
                     select g;
             return s;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelByTargetGroup()
         {
             var s = from parcel in GetListParcel()
@@ -204,6 +218,7 @@ namespace BlApi
                     select g;
             return s;
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> GetListParcelByDate(DateTime from, DateTime to)
         {
             try

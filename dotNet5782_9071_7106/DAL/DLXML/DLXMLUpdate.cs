@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DL
 {
     sealed partial class DLXML : DalApi.IDAL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcelToDrone(int idDrone, int idParcel)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -36,6 +38,7 @@ namespace DL
             else
                 throw new DO.BadPersonIdException(idDrone, $"drone id not exist in the system ");
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStationDetails(int IdStation, String? NameStation, int? ChargeSlots)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
@@ -57,6 +60,7 @@ namespace DL
                 throw new DO.BadPersonIdException(IdStation, $"Station id not exist in the system");
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateCustomerDetails(int IdCustomer, String? Name, String? Phone)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
@@ -76,6 +80,7 @@ namespace DL
                 throw new DO.BadPersonIdException(IdCustomer, $"Customer id not exist in the system");
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateParcel(Parcel p)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -102,6 +107,7 @@ namespace DL
                 throw new DO.BadPersonIdException(p.Id, $"parcel id not exist in the system");
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void FreeDrone(int idDrone)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(DronePath);
@@ -120,6 +126,7 @@ namespace DL
                 throw new DO.BadPersonIdException(idDrone, $"drone id not exist in the system");
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void targetId(int idCustomer, int idParcel)
 
         {
@@ -146,6 +153,7 @@ namespace DL
                 throw new DO.BadPersonIdException(idCustomer, $"Customer id not exist in the system");
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void pickedUpD(int idDrone, DateTime d)
 
         {
@@ -162,7 +170,7 @@ namespace DL
 
             else throw new DO.BadPersonIdException(idDrone, $"drobe id not exist in the system");
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -180,7 +188,7 @@ namespace DL
             else
                 throw new DO.BadPersonIdException(id, $"parcel id not exits in the system: {id}");
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void removeFromDroneCharges(int idDrone, int idStation)
         {
             XElement personsRootElem1 = XMLTools.LoadListFromXMLElement(DronePath);
@@ -208,7 +216,7 @@ namespace DL
             }
         }
 
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] powerConsumpitionByDrone()
         {
             //XElement config = XMLTools.LoadListFromXMLElement(ConfigPath);

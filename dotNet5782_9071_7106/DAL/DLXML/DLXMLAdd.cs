@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DL
 {
 
     sealed partial class DLXML : IDAL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddCustomer(Customer c)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
@@ -33,7 +35,7 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(personsRootElem, CustomerPath);
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDrone(Drone drone)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(DronePath);
@@ -53,7 +55,7 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(personsRootElem, DronePath);
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public int AddParcel(Parcel parcel)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
@@ -83,7 +85,7 @@ namespace DL
             XMLTools.SaveListToXMLElement(personsRootElem, ParcelPath);
             return id;
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStation(Station s)
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
@@ -103,7 +105,7 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(personsRootElem, StationPath);
         }
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendDroneToStation(int idDrone, int idStation)
 
         {

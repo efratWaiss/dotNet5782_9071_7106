@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace BlApi
 {
     partial class BL : IBL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Customer GetCustomer(int id)
         {
             try
@@ -52,6 +54,7 @@ namespace BlApi
             catch (DO.NotExistException ex) { throw new BO.NotExistException(ex.Message); }
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Drone GetDrone(int id)
         {
 
@@ -90,6 +93,7 @@ namespace BlApi
             }
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Parcel GetParcel(int id)
         {
             BO.Parcel p = default;
@@ -116,6 +120,7 @@ namespace BlApi
             }
 
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Station GetStation(int id)
         {
             List<DroneInCharging> d = new();

@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Runtime.CompilerServices;
+
 
 namespace DL
 {
@@ -17,6 +19,7 @@ namespace DL
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
+        [MethodImpl(MethodImplOptions.Synchronized)]
         #region SaveLoadWithXElement
         public static void SaveListToXMLElement(XElement rootElem, string filePath)
         {

@@ -47,7 +47,6 @@ namespace PL
         {
             try
             {
-                GridAdd.Visibility = Visibility.Visible;
                 blTemp.AddStation(Convert.ToInt32(Id.Text),
                     (name.Text).ToString(),
                     new BO.Location(Convert.ToDouble(longitude.Text), Convert.ToDouble(latitude.Text)),
