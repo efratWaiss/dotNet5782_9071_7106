@@ -43,7 +43,7 @@ namespace BlApi
 
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        #region Initialize
+    
         private void Initialize()
         {
             DroneToList d;
@@ -88,6 +88,10 @@ namespace BlApi
                             Random rn1 = new Random();
                             battery = rn1.Next((int)(tempLocation * ChargingRate * available), 100);//מחשב את הבטרייה
                             d = new DroneToList(drone.Id, drone.Model, (WeightCategories)drone.MaxWeight, battery, st, lo, parcel.Id);
+                            DO.Parcel p = parcel;
+                            p.DroneId = drone.Id;
+
+                            dal.UpdateParcel(p);//מעדכן את החבילה להיות משויכת לרחפן
                             DronesList.Add(d);//מוסיף את הרחפן
                         }
 
@@ -109,7 +113,7 @@ namespace BlApi
                                         , rn.Next(0, 21)
                                         , DroneStatuses.Maintenance
                                         , lo
-                                        , parcel.Id);
+                                        , 0);
                                     DronesList.Add(d);
                                     break;
                                 case 2:
@@ -153,7 +157,7 @@ namespace BlApi
                                         , battery
                                         , DroneStatuses.Vacant
                                         , stationLocGet
-                                        , parcel.Id);
+                                        , 0);
                                     DronesList.Add(d);
                                     break;
                             }
@@ -164,7 +168,6 @@ namespace BlApi
 
             }
         }
-        #endregion
         [MethodImpl(MethodImplOptions.Synchronized)]
       
         public double GetDistanceBetweenTwoLocation(Location l1, Location l2)//הפונקציה מחשבצ מרחק בין שני מיקומים

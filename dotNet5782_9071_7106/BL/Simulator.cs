@@ -1,7 +1,7 @@
 ﻿using System;
 using BO;
 using System.Threading;
-using static BL.BL;
+//using static BL.BL;
 using System.Linq;
 using BlApi;
 

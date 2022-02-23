@@ -39,7 +39,7 @@ namespace DO
             Station s1 = new Station(52, "sfsf", 6.3, 3.3, 5);
             Station s2 = new Station(54, "sfsf", 12.6, 14.6, 7);
             stations.Add(s1);
-            stations.Add(s2);
+            stations.Add(s2); 
             customers.Add(new Customer(325036551, "gfdx", "4545454", 12.3, 145.5));
             customers.Add(new Customer(325036552, "gfdx", "4545454", 12.3, 145.5));
             customers.Add(new Customer(325036553, "gfdx", "4545454", 12.3, 145.5));

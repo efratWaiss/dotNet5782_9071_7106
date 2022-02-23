@@ -50,7 +50,7 @@ namespace BlApi
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        
+
         //TODO:ערכים 0
         public void UpdateParcelToDrone(int idDrone)
         {
@@ -357,22 +357,23 @@ namespace BlApi
                             UpdateStationDetails(station.Id, station.Name, ChargeSlots);
                             dal.removeFromDroneCharges(idDrone, station.Id);
                         }
+
+                        else
+                        {
+                            throw new BO.NotExistException("the drone not found in station");
+                        }
                     }
+
                     else
                     {
-                        throw new BO.NotExistException("the drone not found in station");
+                        throw new BO.NotImplementedException("the drone's status is not Maintenance");
                     }
-
                 }
+
                 else
                 {
-                    throw new BO.NotImplementedException("the drone's status is not Maintenance");
+                    throw new BO.NotExistException("this id drone not exist in the system");
                 }
-
-            }
-            else
-            {
-                throw new BO.NotExistException("this id drone not exist in the system");
             }
 
         }
