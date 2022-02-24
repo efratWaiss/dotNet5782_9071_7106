@@ -204,10 +204,10 @@ namespace BlApi
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void Simulator(int idDrone, Action update, Func<bool> shouldStop)
-        {
-            var simulator = new Simulator(this, idDrone, update, shouldStop);
-        }
+        //public void Simulator(int idDrone, Action update, Func<bool> shouldStop)
+        //{
+        //    var simulator = new Simulator(this, idDrone, update, shouldStop);
+        //}
 
 
     }
