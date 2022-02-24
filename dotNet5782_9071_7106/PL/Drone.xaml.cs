@@ -206,6 +206,8 @@ namespace PL
         {
             try
             {
+                CollectionParcelByDrone.Visibility = Visibility.Collapsed;
+                DeliveryParcel.Visibility = Visibility.Visible;
                 bLTemp.CollectionAParcelByDroen(Convert.ToInt32(Id.Text));
                 MessageBox.Show("The drone collection the parcel");
             }

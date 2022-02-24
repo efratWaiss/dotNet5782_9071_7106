@@ -37,12 +37,12 @@
                 <Button x:Name="SendDroneToCharging"  IsEnabled="False" Content="Send drone to charging" Click="SendDroneToCharging_Click"/>
                 <Button x:Name="FreeDrone" IsEnabled="False" Content="Free Drone" Click="FreeDrone_Click"/>
                 <Button x:Name="SendDroneToShipping" IsEnabled="False" Content="Send Drone To Shipping" Click="SendDroneToShipping_Click"/>
-                <Button x:Name="CollectionParcelByDrone"  IsEnabled="False" Content="Collection parcel by drone" Click="CollectionParcelByDrone_Click"/>
-                <Button x:Name="DeliveryParcel" IsEnabled="False" Content="Delivery Parcel" Click="DeliveryParcel_Click"/>
+                <Button x:Name="CollectionParcelByDrone" Visibility="Visible" IsEnabled="False" Content="Collection parcel by drone" Click="CollectionParcelByDrone_Click"/>
+                <Button x:Name="DeliveryParcel" IsEnabled="False" Visibility="Collapsed" Content="Delivery Parcel" Click="DeliveryParcel_Click"/>
                 <Button x:Name="DronesParcle" Visibility="Visible" Content="Drones Parcel" Click="GetParcleDroen_Click"  IsEnabled="False"/>
                 <Button x:Name="UpdateParcelToDroen" Visibility="Visible" Content="Update Parcel To Droen"  IsEnabled="False" Click="UpdateParcelToDroen_Click"/>
                 <Button x:Name="Simulator" Visibility="Visible" Content="Simulator" Click="Simulator_Click"/>
-                <Button x:Name="cancellation" Visibility="Visible" Content="cancellation" Click="cancellation_Click_1"  />
+                <Button x:Name="cancellation" Visibility="Collapsed" Content="cancellation" Click="cancellation_Click_1"  />
 
             </WrapPanel>
             <Label Content="id"  Grid.Row="3" Grid.Column="1"/>
