@@ -264,7 +264,9 @@ namespace BlApi
                         GetListDrone.Status = DroneStatuses.Vacant;
                         itemParcel.Delivered = DateTime.Now;
                         dal.UpdateParcel(itemParcel);//מעדכן את החבילה בהתאם
-                        //GetListDrone.Battery= GetListDrone.Battery-GetDistanceBetweenTwoLocation(n)
+                        double temp= GetDistanceBetweenTwoLocation(new Location(dal.GetCustomer(itemParcel.SenderId).Longitude, dal.GetCustomer(itemParcel.SenderId).Latitude),
+                            new Location(dal.GetCustomer(itemParcel.TargetId).Longitude, dal.GetCustomer(itemParcel.TargetId).Latitude));
+                        GetListDrone.Battery = GetListDrone.Battery - temp * DroneWeight(idDrone) * available;
                     }
 
                     else
