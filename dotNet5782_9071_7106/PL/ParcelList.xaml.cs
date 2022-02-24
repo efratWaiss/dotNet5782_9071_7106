@@ -51,28 +51,18 @@ namespace PL
             Parcel parcel = new Parcel(blTemp, ((BO.ParcelToList)AllParcel.SelectedItem).Id);
             parcel.Show();
         }
-        //private void GroupSender_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    Parcel parcel = new Parcel(blTemp, ((BO.ParcelToList)GroupSender).Id);
-        //    parcel.Show();
-        //}
-        //private void GroupTarget_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    Parcel parcel = new Parcel(blTemp, ((BO.ParcelToList)GroupTarget).Id);
-        //    parcel.Show();
-        //}
-
+      
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                AllParcel.Visibility = Visibility.Collapsed;
+                AllParcel.Visibility = Visibility.Visible;
                 GroupTarget.Visibility = Visibility.Collapsed;
                 GroupSender.Visibility = Visibility.Collapsed;
 
                 if (StatusSelector.SelectedItem != null)
                 {
-                    //AllParcel.ItemsSource = blTemp.get
+                    AllParcel.ItemsSource = blTemp.GetListParcelByStatus((BO.ParcelStatsus)StatusSelector.SelectedItem);
                 }
             }
             catch (BO.IdException ex)
@@ -112,6 +102,6 @@ namespace PL
          
     }
 
-     
+        
     }
 }

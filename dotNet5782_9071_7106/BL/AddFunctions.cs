@@ -72,9 +72,9 @@ namespace BlApi
                 }
             }
 
-            catch (DO.IdException ex)
+            catch (DO.NotExistException ex)
             { // :אם מצאת כבר רחפן כזה, זרוק 
-                throw new IdException(ex.Message);
+                throw new NotExistException(ex.Message);
             }
 
         }

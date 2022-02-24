@@ -335,16 +335,16 @@ namespace BlApi
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void FreeDrone(int idDrone, double timeInCharging)//שחרור רחפן מטעינת בסיס
         {
-            //lock (dal)
-            //{
-            DO.Station station = default;
-            var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-            if (drone != default)
+            lock (dal)
             {
-                if (drone.Status == DroneStatuses.Maintenance)
-                {//משנה את הסטטוס ואת הבטרייה
-                    drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
-                    drone.Status = DroneStatuses.Vacant;
+                DO.Station station = default;
+                var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+                if (drone != default)
+                {
+                    if (drone.Status == DroneStatuses.Maintenance)
+                    {//משנה את הסטטוס ואת הבטרייה
+                        drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
+                        drone.Status = DroneStatuses.Vacant;
 
                     foreach (var sta in dal.GetListStation())
                     {//מחפש את התחנה שבה ממוקם הרחפן

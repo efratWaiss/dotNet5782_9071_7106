@@ -1,13 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xmlDroneXml.xml>
-  <Drone>
-    <Id>22331</Id>
-    <Model>fdgdgd</Model>
-    <MaxWeight>Intermediate</MaxWeight>
-  </Drone>
-  <Drone>
-    <Id>444</Id>
-    <Model>fggg</Model>
-    <MaxWeight>Intermediate</MaxWeight>
-  </Drone>
-</xmlDroneXml.xml>
+<xmlDroneXml.xml />

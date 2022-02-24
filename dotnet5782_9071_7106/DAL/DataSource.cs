@@ -1,8 +1,10 @@
+using DL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DO
 {
@@ -18,14 +20,15 @@ namespace DO
         public class Config
         {
            internal static int parcelId = 0;
-            public static double available;
-            public static double lightWeight;
-            public static double MediumWeight;
-            public static double heavyWeight;
-            public static int ChargingRate;
+            public static double available=0.2;
+            public static double lightWeight=0.2;
+            public static double MediumWeight=0.3;
+            public static double heavyWeight=0.4;
+            public static int ChargingRate=3;
         }
         internal static void Initialize()
         {
+            //XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
             Drone d1 = new Drone(1, "xyz122", WeightCategories.Easy);
             Drone d2 = new Drone(2, "xcz122", WeightCategories.Intermediate);
             Drone d3 = new Drone(3, "xyz122", WeightCategories.Liver);
@@ -39,17 +42,17 @@ namespace DO
             Station s1 = new Station(52, "sfsf", 6.3, 3.3, 5);
             Station s2 = new Station(54, "sfsf", 12.6, 14.6, 7);
             stations.Add(s1);
-            stations.Add(s2);
-            customers.Add(new Customer(325036551, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036552, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036553, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036554, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036555, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036556, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036557, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036558, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036559, "gfdx", "4545454", 12.3, 145.5));
-            customers.Add(new Customer(325036550, "gfdx", "4545454", 12.3, 145.5));
+            stations.Add(s2); 
+            customers.Add(new Customer(325036551, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036552, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036553, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036554, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036555, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036556, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036557, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036558, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036559, "gfdx", "4545454", 12.3, 5.5));
+            customers.Add(new Customer(325036550, "gfdx", "4545454", 12.3, 5.5));
 
             DateTime t = DateTime.Now;
             parcels.Add(new Parcel(325036550, 325036551, WeightCategories.Liver, Priorities.Regular, DateTime.Now, 1, DateTime.Now, null, null));
@@ -64,6 +67,7 @@ namespace DO
             parcels.Add(new Parcel(325036559, 325036554, WeightCategories.Easy, Priorities.Emergency, DateTime.Now, 1, new DateTime(2022, 4, 5, 9, 23, 12), new DateTime(2022, 4, 8, 9, 23, 12), null));
             parcels.Add(new Parcel(325036552, 325036551, WeightCategories.Liver, Priorities.Fast, DateTime.Now, 3, null, null, null));
             parcels.Add(new Parcel(325036556, 325036552, WeightCategories.Intermediate, Priorities.Fast, DateTime.Now, 2, null, null, null));
+         
         }
     }
 

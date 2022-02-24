@@ -70,7 +70,7 @@ namespace PL
                 MessageBox.Show("The Parcel was successfully added");
                 this.Close();
             }
-            catch (BO.IdException ex)
+            catch (BO.NotExistException ex)
             {
                 MessageBox.Show(ex.Message);
             }

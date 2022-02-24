@@ -43,7 +43,7 @@ namespace DL
                 }
                 else
                 {
-                    XElement rootElem = new XElement(Path.Combine(dir, filePath));
+                    XElement rootElem = new XElement(dir + filePath);
                     rootElem.Save(Path.Combine(dir, filePath));
                     return rootElem;
                 }
