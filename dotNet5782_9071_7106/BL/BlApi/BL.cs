@@ -46,8 +46,8 @@ namespace BlApi
             Initialize();
 
         }
-        //[MethodImpl(MethodImplOptions.Synchronized)]
-    
+        [MethodImpl(MethodImplOptions.Synchronized)]
+
         private void Initialize()
         {
             DroneToList d;

@@ -288,7 +288,7 @@ namespace PL
         {
             if (worker.WorkerSupportsCancellation == true)
                 worker.CancelAsync();
-
+            //מבצע נחיתה רכה. כאן הוא מבטל
             this.Close();
         }
 
