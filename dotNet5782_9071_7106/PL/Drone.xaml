@@ -39,6 +39,7 @@
                 <Button x:Name="CollectionParcelByDrone"  IsEnabled="False" Content="Collection parcel by drone" Click="CollectionParcelByDrone_Click"/>
                 <Button x:Name="DeliveryParcel" IsEnabled="False" Content="Delivery Parcel" Click="DeliveryParcel_Click"/>
                 <Button x:Name="DronesParcle" Visibility="Visible" Content="Drones Parcel" Click="GetParcleDroen_Click"/>
+                <Button x:Name="Simulator" Visibility="Visible" Content="Simulator" Click="Simulator_Click"/>
             </WrapPanel>
             <Label Content="id"  Grid.Row="3" Grid.Column="1"/>
             <Label Content="model" Grid.Row="4" Grid.Column="1"/>

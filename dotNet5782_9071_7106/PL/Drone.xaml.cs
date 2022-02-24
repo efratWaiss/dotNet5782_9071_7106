@@ -3,6 +3,7 @@ using BlApi;
 using BO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,6 +28,7 @@ namespace PL
         DroneToList d;
         DroneInParcel d1;
         DroneInCharging d2;
+        BackgroundWorker worker; //field
         public Drone(IBL bl)
         {
             InitializeComponent();
@@ -245,6 +247,27 @@ namespace PL
         private void Button_Click_Close3(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        public void Simulator_Click(object sender, RoutedEventArgs e)
+        {
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.WorkerReportsProgress = true;
+            worker.RunWorkerAsync();
+            //bLTemp.Simulator();
+        }
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            bLTemp.Simulator(d.Id,() => { },() => e.Cancel);
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+        void StopSimulator()
+        {
+            worker.CancelAsync();
         }
     }
 }

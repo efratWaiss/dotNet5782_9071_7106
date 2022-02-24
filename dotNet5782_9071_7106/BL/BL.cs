@@ -4,6 +4,9 @@ using System.Linq;
 using BO;
 using DalApi;
 using System.Runtime.CompilerServices;
+using BL;
+using System.ComponentModel;
+
 
 #pragma warning disable IDE0005 // Using directive is unnecessary.
 #pragma warning restore IDE0005 // Using directive is unnecessary.
@@ -19,7 +22,8 @@ namespace BlApi
         static BL() { }
         public static BL Instance { get => instance; }
 
-        IDAL dal;
+
+        internal IDAL dal;
         public List<DroneToList> DronesList = new();
         private double available;//רחפן ריק
         private double lightWeight;//קל
@@ -166,13 +170,13 @@ namespace BlApi
         }
         #endregion
         [MethodImpl(MethodImplOptions.Synchronized)]
-      
+
         public double GetDistanceBetweenTwoLocation(Location l1, Location l2)//הפונקציה מחשבצ מרחק בין שני מיקומים
         {
 
             return Math.Sqrt(Math.Pow(l1.Latitude - l2.Latitude, 2) + Math.Pow(l1.Longitude - l2.Longitude, 2));
         }
-       
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         private double DroneWeight(int idDrone)// ומחזירה את משקל הרחפן WeightCategories הפונקציה בודקת לפי 
         {
@@ -195,9 +199,12 @@ namespace BlApi
             }
             return weightDrone;
         }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void Simulator(int idDrone, Action a, Func<bool> f)
+        public void Simulator(int idDrone, Action update, Func<bool> shouldStop)
         {
+            var simulator = new Simulator(this, idDrone, update, shouldStop);
+            //simulator.ActivateSimulator(); הפעלת פונקציה
 
         }
 

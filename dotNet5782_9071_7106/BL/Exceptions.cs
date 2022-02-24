@@ -7,7 +7,7 @@ using System.Text;
 namespace BO
 {
     [Serializable]
-   public class IdException : Exception
+    public class IdException : Exception
     {
         public IdException() : base() { }
         public IdException(string message) : base(message) { }
@@ -19,7 +19,7 @@ namespace BO
         override public string ToString()
         { return Message; }
     }
-   public class NotExistException : Exception
+    public class NotExistException : Exception
     {
         public NotExistException() : base() { }
         public NotExistException(string message) : base(message) { }
@@ -43,4 +43,17 @@ namespace BO
         override public string ToString()
         { return Message; }
     }
+    public class SimulatorException : Exception
+    {
+        public SimulatorException() : base() { }
+        public SimulatorException(string message) : base(message) { }
+        public SimulatorException(string message, System.Exception inner)
+                    : base(message, inner) { }
+        protected SimulatorException(SerializationInfo info, StreamingContext context)
+                    : base(info, context) { }
+
+        override public string ToString()
+        { return Message; }
+    }
 }
+//SimulatorException

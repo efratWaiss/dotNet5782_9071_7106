@@ -50,7 +50,7 @@ namespace BlApi
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        
+
         //TODO:ערכים 0
         public void UpdateParcelToDrone(int idDrone)
         {
@@ -68,7 +68,7 @@ namespace BlApi
                 var p = dal.GetListParcel().ToList();
                 List<Parcel> parcels = new List<Parcel>();
                 List<Parcel> tempParcels = new List<Parcel>();
-
+                bool flag = false;//שומר האם יש חבילה שהרחפן עדיין יכול להגיע אליה
                 var drone1 = DronesList.FirstOrDefault(x => x.Id == idDrone);
                 if (drone1 != default)
                 {
@@ -96,6 +96,7 @@ namespace BlApi
                             //tempLocation שומר את כל הדרך שעל הרחפן לעבור, כדי להעביר חבילה מלקוח למקבל ולהגיע לתחנה הקרובה לטעינה (כדי לבדוק אם יש לו מספיק בטריה
                             if (tempLocation <= drone1.Battery + ChargingRate * DroneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
                             {
+                                flag = true;
                                 if ((drone1.MaxWeight == WeightCategories.Intermediate && (WeightCategories)p[i].Weight != WeightCategories.Liver) || (drone1.MaxWeight == WeightCategories.Easy && (WeightCategories)p[i].Weight == WeightCategories.Easy))
                                 {
                                     if ((Priorities)p[i].priority == Priorities.Regular)
@@ -175,9 +176,14 @@ namespace BlApi
                 {
                     throw new NotExistException("this Drone's id not exist in the system");//TODO:exception
                 }
-
+                if (flag = false)
+                {
+                    SendDroneToStation(idDrone);
+                }
             }
+
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
+
         }//חבילה, יהיה יותר יפה בהמשך לשנות את השדות שהוא מראה
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void CollectionAParcelByDroen(int idDrone)//איסוף חבילה ע"י רחפן 
@@ -329,53 +335,54 @@ namespace BlApi
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void FreeDrone(int idDrone, double timeInCharging)//שחרור רחפן מטעינת בסיס
         {
-            lock (dal)
+            //lock (dal)
+            //{
+            DO.Station station = default;
+            var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+            if (drone != default)
             {
-                DO.Station station = default;
-                var drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                if (drone != default)
-                {
-                    if (drone.Status == DroneStatuses.Maintenance)
-                    {//משנה את הסטטוס ואת הבטרייה
-                        drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
-                        drone.Status = DroneStatuses.Vacant;
+                if (drone.Status == DroneStatuses.Maintenance)
+                {//משנה את הסטטוס ואת הבטרייה
+                    drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
+                    drone.Status = DroneStatuses.Vacant;
 
-                        foreach (var sta in dal.GetListStation())
-                        {//מחפש את התחנה שבה ממוקם הרחפן
-                            if (sta.Latitude == drone.LocationNow.Latitude && sta.Longitude == drone.LocationNow.Longitude)
-                            {
-                                station = sta;
-
-                            }
+                    foreach (var sta in dal.GetListStation())
+                    {//מחפש את התחנה שבה ממוקם הרחפן
+                        if (sta.Latitude == drone.LocationNow.Latitude && sta.Longitude == drone.LocationNow.Longitude)
+                        {
+                            station = sta;
 
                         }
 
-                        if (!station.Equals(default))
-                        {//מוסיף עמדה פנויה לתחנה  ןמעדכן
-                         //ובנוסף מסיר DroneCharge 
-                            int ChargeSlots = station.ChargeSlots + 1;
-                            UpdateStationDetails(station.Id, station.Name, ChargeSlots);
-                            dal.removeFromDroneCharges(idDrone, station.Id);
-                        }
                     }
+
+                    if (!station.Equals(default))
+                    {//מוסיף עמדה פנויה לתחנה  ןמעדכן
+                     //ובנוסף מסיר DroneCharge 
+                        int ChargeSlots = station.ChargeSlots + 1;
+                        UpdateStationDetails(station.Id, station.Name, ChargeSlots);
+                        dal.removeFromDroneCharges(idDrone, station.Id);
+                    }
+
+
                     else
                     {
                         throw new BO.NotExistException("the drone not found in station");
                     }
-
                 }
+
                 else
                 {
                     throw new BO.NotImplementedException("the drone's status is not Maintenance");
                 }
-
             }
+
             else
             {
                 throw new BO.NotExistException("this id drone not exist in the system");
             }
-
         }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id)
         {
