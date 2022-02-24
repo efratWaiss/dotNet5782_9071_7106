@@ -1,1 +1,10 @@
-<xmlStationXml.xml/>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xmlStationXml.xml>
+  <Station>
+    <Id>52</Id>
+    <Name>jkjkjkj</Name>
+    <Longitude>3</Longitude>
+    <Latitude>2</Latitude>
+    <ChargeSlots>4</ChargeSlots>
+  </Station>
+</xmlStationXml.xml>

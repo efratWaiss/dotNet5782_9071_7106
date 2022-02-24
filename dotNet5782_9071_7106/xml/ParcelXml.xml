@@ -1,1 +1,15 @@
-<xmlParcelXml.xml/>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xmlParcelXml.xml>
+  <Parcel>
+    <Id>2</Id>
+    <SenderId>212</SenderId>
+    <TargetId>213</TargetId>
+    <Weight>Intermediate</Weight>
+    <Priorities>Emergency</Priorities>
+    <Requested>2022-02-24T02:31:23.0381026+02:00</Requested>
+    <DroneId>0</DroneId>
+    <scheduled />
+    <PickedUp />
+    <Delivered />
+  </Parcel>
+</xmlParcelXml.xml>

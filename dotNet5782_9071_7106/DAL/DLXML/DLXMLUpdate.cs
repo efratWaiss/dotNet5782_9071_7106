@@ -219,6 +219,7 @@ namespace DL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] powerConsumpitionByDrone()
         {
+            double[] arr = new double[5];
             //XElement config = XMLTools.LoadListFromXMLElement(ConfigPath);
             //XElement availableElement = config.Element("available");
             //XElement lightWeightElement = config.Element("lightWeight");
@@ -230,13 +231,13 @@ namespace DL
             //double MediumWeight = double.Parse(MediumWeightElement.Value);
             //double heavyWeight = double.Parse(heavyWeightElement.Value);
             //double ChargingRate = double.Parse(ChargingRateElement.Value);
-            double[] arr = new double[5];
-            //arr[0] = ++available;
-            //arr[1] = ++lightWeight;
-            //arr[2] = ++MediumWeight;
-            //arr[3] = ++heavyWeight;
-            //arr[4] = ++ChargingRate;
-            //availableElement.Value = available.ToString();
+            //double[] arr = new double[5];
+            //arr[0] =available;
+            //arr[1] = lightWeight;
+            //arr[2] = MediumWeight;
+            //arr[3] = heavyWeight;
+            //arr[4] = ChargingRate;
+            //availableElement.Value = 0.1.ToString();
             //lightWeightElement.Value = lightWeight.ToString();
             //MediumWeightElement.Value = MediumWeight.ToString();
             //heavyWeightElement.Value = heavyWeight.ToString();

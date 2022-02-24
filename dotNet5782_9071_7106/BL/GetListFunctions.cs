@@ -14,8 +14,7 @@ namespace BlApi
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> GetListStation()
         {
-            lock (dal)
-            {
+            
                 var stations = dal.GetListStation();
                 List<StationToList> s = new List<StationToList>();
                 foreach (var item in stations)
@@ -33,7 +32,7 @@ namespace BlApi
                 return s;
             }
 
-        }
+        
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListDrone()
         {
@@ -253,10 +252,31 @@ namespace BlApi
 
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
         }
-        //public IEnumerable<ParcelToList> GetListParcelByStatus(BO.ParcelStatsus p)
-        //{
-        //    return GetListParcel().Where(x=>GetParcel(x.Id).)
-        //}
+        public IEnumerable<ParcelToList> GetListParcelByStatus(BO.ParcelStatsus p)
+        {
+            List<ParcelToList> par = new List<ParcelToList>();
+            foreach (var item in GetListParcel())
+            {
+                if(dal.GetParcel(item.Id).Delivered!=null&& p== BO.ParcelStatsus.provided)
+                {
+                    par.Add(item);
+                }
+                else if(dal.GetParcel(item.Id).PickedUp != null && p == BO.ParcelStatsus.collected)
+                {
+                    par.Add(item);
+                }
+                else if(dal.GetParcel(item.Id).scheduled != null && p == BO.ParcelStatsus.associated)
+                {
+                    par.Add(item);
+                }
+                else if(dal.GetParcel(item.Id).Requested!= null && p == BO.ParcelStatsus.Defined)
+                {
+                    par.Add(item);
+                }
+            }
+ 
+            return par;
+        }
 
     }
 }

@@ -43,9 +43,24 @@ namespace DL
                         MaxWeight = (WeightCategories)Enum.Parse(typeof(WeightCategories), d.Element("MaxWeight").Value)
                     }
                    );
+
+
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetListParcel()
+        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomerPath);
+
+        //    return (from c in personsRootElem.Elements()
+        //            select new Customer()
+        //{
+        //    Id = Int32.Parse(c.Element("ID").Value),
+        //                Name = c.Element("Name").Value,
+        //                Phone = c.Element("Phone").Value,
+        //                Longitude = double.Parse(c.Element("Longitude").Value),
+        //                Latitude = double.Parse(c.Element("Latitude").Value)
+        //            }
+        //           );
+        //}
         {
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
 
@@ -53,8 +68,8 @@ namespace DL
                     select new Parcel()
                     {
                         Id = Int32.Parse(p.Element("ID").Value),
-                        SenderId = Int32.Parse(p.Element("ID").Value),
-                        TargetId = Int32.Parse(p.Element("ID").Value),
+                        SenderId = Int32.Parse(p.Element("SenderId").Value),
+                        TargetId = Int32.Parse(p.Element("TargetId").Value),
                         Weight = (WeightCategories)Enum.Parse(typeof(WeightCategories), p.Element("MaxWeight").Value),
                         priority = (Priorities)Enum.Parse(typeof(Priorities), p.Element("priority").Value),
                         Requested = DateTime.Parse(p.Element("Requested").Value),
@@ -62,7 +77,9 @@ namespace DL
                         scheduled = DateTime.Parse(p.Element("Requested").Value),
                         PickedUp = DateTime.Parse(p.Element("Requested").Value),
                         Delivered = DateTime.Parse(p.Element("Requested").Value)
+
                     }
+
                    );
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -74,7 +91,7 @@ namespace DL
                     select new Station()
                     {
                         Id = Int32.Parse(s.Element("ID").Value),
-                        Name = s.Element("Name").Value,
+                        Name = s.Element("Name").Value.ToString(),
                         Longitude = double.Parse(s.Element("Longitude").Value),
                         Latitude = double.Parse(s.Element("Latitude").Value),
                         ChargeSlots = Int32.Parse(s.Element("ChargeSlots").Value)

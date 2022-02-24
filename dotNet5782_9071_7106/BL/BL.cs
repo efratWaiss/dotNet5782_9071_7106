@@ -30,7 +30,7 @@ namespace BlApi
         public BL()
         {
 
-            dal = DalFactory.GetDAL("DalObject");
+            dal = DalFactory.GetDAL("DalXml");
             double[] arr;
             arr = dal.powerConsumpitionByDrone();
             available = arr[0];
@@ -42,7 +42,7 @@ namespace BlApi
             Initialize();
 
         }
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        //[MethodImpl(MethodImplOptions.Synchronized)]
     
         private void Initialize()
         {

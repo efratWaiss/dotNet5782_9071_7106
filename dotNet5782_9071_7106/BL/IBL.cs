@@ -67,8 +67,7 @@ namespace BlApi
         //public IEnumerable<IGrouping<int, ParcelToList>> GetListParceleByGroup();
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<int, StationToList>> GetListStationByGroup();
-        //public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelByGroup(BO.Customer c);
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<ParcelToList> GetListParcelByStatus(BO.ParcelStatsus p);     
         public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelBySenderGroup();
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<IGrouping<int, ParcelToList>> GetListParcelByTargetGroup();

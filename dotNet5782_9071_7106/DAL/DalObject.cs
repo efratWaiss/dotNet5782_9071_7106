@@ -21,15 +21,7 @@ namespace DalObject
         {
             DataSource.Initialize();
         }
-        //internal DalObject Instance
-        //{
-        //    get
-        //    {
-        //        if (instance == null)
-        //            instance = new DalObject();
-        //        return instance;
-        //    }
-        //}
+       
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStation(Station s)
         {
