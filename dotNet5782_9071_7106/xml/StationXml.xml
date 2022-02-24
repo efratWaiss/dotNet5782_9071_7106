@@ -3,8 +3,15 @@
   <Station>
     <Id>52</Id>
     <Name>jkjkjkj</Name>
-    <Longitude>3</Longitude>
-    <Latitude>2</Latitude>
+    <Longitude>3.2</Longitude>
+    <Latitude>2.6</Latitude>
     <ChargeSlots>4</ChargeSlots>
+  </Station>
+<Station>
+    <Id>54</Id>
+    <Name>ggg</Name>
+    <Longitude>12.6</Longitude>
+    <Latitude>4.6</Latitude>
+    <ChargeSlots>8</ChargeSlots>
   </Station>
 </xmlStationXml.xml>

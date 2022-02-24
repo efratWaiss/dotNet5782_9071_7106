@@ -15,7 +15,7 @@ namespace DL
         DLXML() { }
 
         public static DLXML Instance { get => instance; }
-        #region DS XML Files
+        
 
         string CustomerPath = @"CustomerXml.xml";
         string DronePath = @"DroneXml.xml";
@@ -23,9 +23,8 @@ namespace DL
         string StationPath = @"StationXml.xml";
         string DroneChargePath = @"DroneChargeXml.xml";
         string ConfigPath = @"ConfigXml.xml";
-        //string DroneSimulatorChanges = @"DroneSimulatorChangesXml";
-
-        #endregion
+      
+        
 
     }
 }

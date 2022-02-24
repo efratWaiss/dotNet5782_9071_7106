@@ -1,2 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xmlDroneXml.xml />
+<xmlDroneXml.xml>
+<Drone>
+    <Id>1</Id>
+    <Model>xyz122</Model>
+    <MaxWeight>Easy</MaxWeight>
+</Drone>
+<Drone>
+    <Id>2</Id>
+    <Model>xyz122</Model>
+    <MaxWeight>Intermediate</MaxWeight>
+   </Drone>
+<Drone>
+    <Id>3</Id>
+    <Model>xyz122</Model>
+    <MaxWeight>Liver</MaxWeight>
+   </Drone>
+<Drone>
+    <Id>4</Id>
+    <Model>xyz122</Model>
+    <MaxWeight>Intermediate</MaxWeight>
+   </Drone>
+<Drone>
+    <Id>5</Id>
+    <Model>xyz122</Model>
+    <MaxWeight>Liver</MaxWeight>
+   </Drone>
+</xmlDroneXml.xml>
