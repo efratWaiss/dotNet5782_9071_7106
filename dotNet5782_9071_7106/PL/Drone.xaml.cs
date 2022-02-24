@@ -3,6 +3,7 @@ using BlApi;
 using BO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,6 +28,7 @@ namespace PL
         DroneToList d;
         DroneInParcel d1;
         DroneInCharging d2;
+        BackgroundWorker worker; //field
         public Drone(IBL bl)
         {
             InitializeComponent();
@@ -60,7 +62,7 @@ namespace PL
             else if ((BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
             {
                 FreeDrone.IsEnabled = true;
-               
+
             }
 
             else
@@ -244,6 +246,42 @@ namespace PL
 
         private void Button_Click_Close3(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+        public void Simulator_Click(object sender, RoutedEventArgs e)
+        {
+            cancellation.Visibility = Visibility.Visible;
+            Simulator.Visibility = Visibility.Collapsed;
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.WorkerReportsProgress = true;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
+        }
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            bLTemp.Simulator(d.Id, () => worker.ReportProgress(0), () => e.Cancel);
+        }
+
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var drones = bLTemp.GetListDrone(); 
+            //תבקשו מחדש את הנתונים מהBL
+            //כמו שעשיתן אחרי כל שינוי.
+        }
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Simulator.Visibility = Visibility.Visible;
+            // לעדכן את החזרה למצב רגיל: איפשור של כפתורים, טקסטים וכו.
+        }
+
+        private void cancellation_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (worker.WorkerSupportsCancellation == true)
+                worker.CancelAsync();
+
             this.Close();
         }
     }

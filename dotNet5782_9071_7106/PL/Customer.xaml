@@ -140,10 +140,6 @@
 
 
         </Style>
-        <Style TargetType="DataGrid">
-            <Setter Property="RowHeight" Value="30"/>
-            <Setter Property="ColumnWidth" Value="100" />
-            <Setter Property="IsReadOnly" Value="True" />
-        </Style>
     </Window.Resources>
+
 </Window>

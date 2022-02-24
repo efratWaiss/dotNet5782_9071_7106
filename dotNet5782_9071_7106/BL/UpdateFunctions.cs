@@ -74,7 +74,7 @@ namespace BlApi
                     var p = dal.GetListParcel().ToList();
                     List<Parcel> parcels = new List<Parcel>();
                     List<Parcel> tempParcels = new List<Parcel>();
-
+                    bool flag = false;//שומר האם יש חבילה שהרחפן עדיין יכול להגיע אליה
                     var drone1 = DronesList.FirstOrDefault(x => x.Id == idDrone);
                     if (drone1 != default)
                     {
@@ -102,6 +102,7 @@ namespace BlApi
                                 //tempLocation שומר את כל הדרך שעל הרחפן לעבור, כדי להעביר חבילה מלקוח למקבל ולהגיע לתחנה הקרובה לטעינה (כדי לבדוק אם יש לו מספיק בטריה
                                 if (tempLocation <= drone1.Battery + ChargingRate * DroneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
                                 {
+                                    flag = true;
                                     if ((drone1.MaxWeight == WeightCategories.Intermediate && (WeightCategories)p[i].Weight != WeightCategories.Liver) || (drone1.MaxWeight == WeightCategories.Easy && (WeightCategories)p[i].Weight == WeightCategories.Easy))
                                     {
                                         if ((Priorities)p[i].priority == Priorities.Regular)
@@ -181,10 +182,16 @@ namespace BlApi
                     {
                         throw new NotExistException("this Drone's id not exist in the system");//TODO:exception
                     }
+                    if (flag == false)
+                    {
+                        SendDroneToStation(idDrone);
+                    }
+
 
                 }
             }
             catch (DO.IdException ex) { throw new BO.IdException(ex.Message); }
+
         }//חבילה, יהיה יותר יפה בהמשך לשנות את השדות שהוא מראה
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void CollectionAParcelByDroen(int idDrone)//איסוף חבילה ע"י רחפן 
@@ -365,6 +372,7 @@ namespace BlApi
                             dal.removeFromDroneCharges(idDrone, station.Id);
                         }
 
+
                         else
                         {
                             throw new BO.NotExistException("the drone not found in station");
@@ -382,7 +390,6 @@ namespace BlApi
                     throw new BO.NotExistException("this id drone not exist in the system");
                 }
             }
-
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id)
