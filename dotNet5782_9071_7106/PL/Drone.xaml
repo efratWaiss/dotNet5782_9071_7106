@@ -9,7 +9,7 @@
 
     <Grid>
 
-        <Grid x:Name="GridUpdate" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="GridUpdate" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -41,7 +41,7 @@
                 <Button x:Name="DeliveryParcel" IsEnabled="False" Content="Delivery Parcel" Click="DeliveryParcel_Click"/>
                 <Button x:Name="DronesParcle" Visibility="Visible" Content="Drones Parcel" Click="GetParcleDroen_Click"/>
                 <Button x:Name="Simulator" Visibility="Visible" Content="Simulator" Click="Simulator_Click"/>
-                <Button x:Name="cancellation" Visibility="Collapsed" Content="cancellation" Click="StopSimulator"/>
+                <Button x:Name="cancellation" Visibility="Visible" Content="cancellation" Click="cancellation_Click_1"  />
 
             </WrapPanel>
             <Label Content="id"  Grid.Row="3" Grid.Column="1"/>
@@ -93,7 +93,7 @@
 
 
         </Grid>
-        <Grid x:Name="GetDroneinParcel" Visibility="Visible">
+        <Grid x:Name="GetDroneinParcel" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="auto" />

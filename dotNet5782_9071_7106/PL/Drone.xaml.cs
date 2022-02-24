@@ -256,27 +256,33 @@ namespace PL
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.WorkerReportsProgress = true;
-            
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            bLTemp.Simulator(d.Id, () => { }, () => e.Cancel);
+            bLTemp.Simulator(d.Id, () => worker.ReportProgress(0), () => e.Cancel);
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            var drones = bLTemp.GetListDrone(); 
+            //תבקשו מחדש את הנתונים מהBL
+            //כמו שעשיתן אחרי כל שינוי.
+        }
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Simulator.Visibility = Visibility.Visible;
+            // לעדכן את החזרה למצב רגיל: איפשור של כפתורים, טקסטים וכו.
         }
 
-        void StopSimulator(object sender, RoutedEventArgs e)
+        private void cancellation_Click_1(object sender, RoutedEventArgs e)
         {
             if (worker.WorkerSupportsCancellation == true)
                 worker.CancelAsync();
-            
+
             this.Close();
         }
-
-        
     }
 }
