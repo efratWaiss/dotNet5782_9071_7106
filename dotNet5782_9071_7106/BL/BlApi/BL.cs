@@ -46,8 +46,8 @@ namespace BlApi
             Initialize();
 
         }
-        //[MethodImpl(MethodImplOptions.Synchronized)]
-    
+        [MethodImpl(MethodImplOptions.Synchronized)]
+
         private void Initialize()
         {
             DroneToList d;
@@ -204,10 +204,10 @@ namespace BlApi
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        //public void Simulator(int idDrone, Action update, Func<bool> shouldStop)
-        //{
-        //    var simulator = new Simulator(this, idDrone, update, shouldStop);
-        //}
+        public void Simulator(int idDrone, Action update, Func<bool> shouldStop)
+        {
+            var simulator = new Simulator(this, idDrone, update, shouldStop);
+        }
 
 
     }

@@ -7,7 +7,7 @@
         Title="Parcel" Height="640" Width="800">
     <Grid>
         <Grid x:Name="GridParcel" Visibility="Visible">
-            <Grid.RowDefinitions>
+         <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition />
                 <RowDefinition />

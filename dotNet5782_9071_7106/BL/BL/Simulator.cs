@@ -16,7 +16,7 @@ namespace BL
         private Func<bool> stop;
 
 
-
+        //סימולטור אפרת וייס & אילת ויץ
         public Simulator(IBL bl, int idDrone, Action a, Func<bool> stop)
         {
             //double battery;
@@ -70,24 +70,14 @@ namespace BL
                             {
                                 bl.CollectionAParcelByDroen(idDrone);
                             }
-
-
                             break;
                         default:
                             break;
                     }
                 }
                 Thread.Sleep(DELAY);
-
-
-
-
             }
-
-
         }
-
-
     }
 }
 

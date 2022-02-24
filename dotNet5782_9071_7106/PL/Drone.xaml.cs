@@ -251,22 +251,22 @@ namespace PL
         {
             this.Close();
         }
-        //public void Simulator_Click(object sender, RoutedEventArgs e)
-        //{
-        //    cancellation.Visibility = Visibility.Visible;
-        //    Simulator.Visibility = Visibility.Collapsed;
-        //    worker = new BackgroundWorker();
-        //    worker.DoWork += Worker_DoWork;
-        //    worker.ProgressChanged += Worker_ProgressChanged;
-        //    worker.WorkerReportsProgress = true;
-        //    worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-        //    worker.RunWorkerAsync();
-        //}
-        //private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        //{
+        public void Simulator_Click(object sender, RoutedEventArgs e)
+        {
+            cancellation.Visibility = Visibility.Visible;
+            Simulator.Visibility = Visibility.Collapsed;
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.WorkerReportsProgress = true;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
 
-        //    bLTemp.Simulator(d.Id, () => worker.ReportProgress(0), () => e.Cancel);
-        //}
+            bLTemp.Simulator(d.Id, () => worker.ReportProgress(0), () => e.Cancel);
+        }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -284,34 +284,34 @@ namespace PL
             // לעדכן את החזרה למצב רגיל: איפשור של כפתורים, טקסטים וכו.
         }
 
-        //private void cancellation_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    if (worker.WorkerSupportsCancellation == true)
-        //        worker.CancelAsync();
-        //    //מבצע נחיתה רכה. כאן הוא מבטל
-        //    this.Close();
-        //}
+        private void cancellation_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (worker.WorkerSupportsCancellation == true)
+                worker.CancelAsync();
+            //מבצע נחיתה רכה. כאן הוא מבטל
+            this.Close();
+        }
 
-        //private void UpdateParcelToDroen_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        bLTemp.UpdateParcelToDrone(d.Id);
-        //        MessageBox.Show("The parcel was successfully updated");
-        //    }
-        //    catch (BO.IdException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    catch (BO.NotExistException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    catch (BO.NotImplementedException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+        private void UpdateParcelToDroen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bLTemp.UpdateParcelToDrone(d.Id);
+                MessageBox.Show("The parcel was successfully updated");
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotImplementedException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-        //}
+        }
     }
 }
