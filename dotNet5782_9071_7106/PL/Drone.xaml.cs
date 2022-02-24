@@ -224,7 +224,7 @@ namespace PL
                 bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
                 MessageBox.Show("The delivery the parcel");
             }
-            catch (Exception ex)
+            catch (BO.NotImplementedException ex)
             {
                 MessageBox.Show(ex.Message);
             }
