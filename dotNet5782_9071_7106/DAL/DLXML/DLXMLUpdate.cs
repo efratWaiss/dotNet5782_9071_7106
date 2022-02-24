@@ -94,7 +94,7 @@ namespace DL
                 par.Element("SenderId").Value = p.TargetId.ToString();
                 par.Element("TargetId").Value = p.TargetId.ToString();
                 par.Element("Weight").Value = p.Weight.ToString();
-                par.Element("priority").Value = p.priority.ToString();
+                par.Element("Priorities").Value = p.priority.ToString();
                 par.Element("Requested").Value = p.Requested.ToString();
                 par.Element("scheduled").Value = p.scheduled.ToString();
                 par.Element("DroneId").Value = p.DroneId.ToString();

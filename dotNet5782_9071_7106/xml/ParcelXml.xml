@@ -1,15 +1,147 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xmlParcelXml.xml>
   <Parcel>
+    <Id>1</Id>
+    <SenderId>325036551</SenderId>
+    <TargetId>325036551</TargetId>
+    <Weight>Liver</Weight>
+    <Priorities>Regular</Priorities>
+    <Requested>24/02/2022 10:24:35</Requested>
+    <DroneId>1</DroneId>
+    <scheduled>24/02/2022 10:24:35</scheduled>
+    <PickedUp></PickedUp>
+    <Delivered></Delivered>
+  </Parcel>
+  <Parcel>
     <Id>2</Id>
-    <SenderId>212</SenderId>
-    <TargetId>213</TargetId>
-    <Weight>Intermediate</Weight>
-    <Priorities>Emergency</Priorities>
+    <SenderId>325036559</SenderId>
+    <TargetId>325036552</TargetId>
+    <Weight>Easy</Weight>
+    <Priorities>Regular</Priorities>
     <Requested>2022-02-24T02:31:23.0381026+02:00</Requested>
-    <DroneId>0</DroneId>
+    <DroneId>1</DroneId>
+    <scheduled></scheduled>
+    <PickedUp></PickedUp>
+    <Delivered></Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>3</Id>
+    <SenderId>325036557</SenderId>
+    <TargetId>325036558</TargetId>
+    <Weight>Intermediate</Weight>
+    <Priorities>Fast</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>5</DroneId>
     <scheduled />
     <PickedUp />
     <Delivered />
+  </Parcel>
+  <Parcel>
+    <Id>4</Id>
+    <SenderId>325036556</SenderId>
+    <TargetId>325036555</TargetId>
+    <Weight>Liver</Weight>
+    <Priorities>Fast</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>5</DroneId>
+    <scheduled />
+    <PickedUp />
+    <Delivered />
+  </Parcel>
+  <Parcel>
+    <Id>5</Id>
+    <SenderId>325036553</SenderId>
+    <TargetId>325036550</TargetId>
+    <Weight>Easy</Weight>
+    <Priorities>Emergency</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>1</DroneId>
+    <scheduled />
+    <PickedUp />
+    <Delivered />
+  </Parcel>
+  <Parcel>
+    <Id>6</Id>
+    <SenderId>325036552</SenderId>
+    <TargetId>325036559</TargetId>
+    <Weight>Intermediate</Weight>
+    <Priorities>Emergency</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>4</DroneId>
+    <scheduled>2022-02-24T10:24:35.6482917+02:00</scheduled>
+    <PickedUp>2022-02-24T10:24:35.6482917+02:00</PickedUp>
+    <Delivered>2022-02-24T10:24:35.6482917+02:00</Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>7</Id>
+    <SenderId>325036554</SenderId>
+    <TargetId>325036557</TargetId>
+    <Weight>Liver</Weight>
+    <Priorities>Regular</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>3</DroneId>
+    <scheduled>2022-02-24T10:24:35.6482917+02:00</scheduled>
+    <PickedUp></PickedUp>
+    <Delivered></Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>8</Id>
+    <SenderId>325036555</SenderId>
+    <TargetId>325036551</TargetId>
+    <Weight>Liver</Weight>
+    <Priorities>Regular</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>5</DroneId>
+    <scheduled>2022-02-24T10:24:35.6482917+02:00</scheduled>
+    <PickedUp>2022-02-24T10:24:35.6482917+02:00</PickedUp>
+    <Delivered>2022-02-24T10:24:35.6482917+02:00</Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>9</Id>
+    <SenderId>325036553</SenderId>
+    <TargetId>325036550</TargetId>
+    <Weight>Easy</Weight>
+    <Priorities>Emergency</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>1</DroneId>
+    <scheduled>2022-02-24T10:24:35.6482917+02:00</scheduled>
+    <PickedUp>2022-02-24T10:24:35.6482917+02:00</PickedUp>
+    <Delivered></Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>10</Id>
+    <SenderId>325036559</SenderId>
+    <TargetId>325036554</TargetId>
+    <Weight>Easy</Weight>
+    <Priorities>Emergency</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>1</DroneId>
+    <scheduled>2022-02-24T10:24:35.6482917+02:00</scheduled>
+    <PickedUp>2022-02-24T10:24:35.6482917+02:00</PickedUp>
+    <Delivered></Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>11</Id>
+    <SenderId>325036552</SenderId>
+    <TargetId>325036551</TargetId>
+    <Weight>Liver</Weight>
+    <Priorities>Fast</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>3</DroneId>
+    <scheduled></scheduled>
+    <PickedUp></PickedUp>
+    <Delivered></Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>12</Id>
+    <SenderId>325036556</SenderId>
+    <TargetId>325036552</TargetId>
+    <Weight>Intermediate</Weight>
+    <Priorities>Fast</Priorities>
+    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <DroneId>2</DroneId>
+    <scheduled></scheduled>
+    <PickedUp></PickedUp>
+    <Delivered></Delivered>
   </Parcel>
 </xmlParcelXml.xml>

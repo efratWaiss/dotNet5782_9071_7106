@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
-  <ParcelId>2</ParcelId>
+  <ParcelId>3</ParcelId>
   <available>0.1</available>
   <lightWeight>0.2</lightWeight>
   <MediumWeight>0.3</MediumWeight>
   <heavyWeight>0.4</heavyWeight>
-  <ChargingRate>3</ChargingRate>
+  <ChargingRate>0.2</ChargingRate>
 </Config>
