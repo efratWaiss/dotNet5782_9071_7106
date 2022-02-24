@@ -62,7 +62,7 @@ namespace PL
             else if ((BO.DroneStatuses)d.Status == DroneStatuses.Maintenance)
             {
                 FreeDrone.IsEnabled = true;
-               
+
             }
 
             else
@@ -250,24 +250,33 @@ namespace PL
         }
         public void Simulator_Click(object sender, RoutedEventArgs e)
         {
+            cancellation.Visibility = Visibility.Visible;
+            Simulator.Visibility = Visibility.Collapsed;
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.WorkerReportsProgress = true;
-            worker.RunWorkerAsync();
-            //bLTemp.Simulator();
+            
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            bLTemp.Simulator(d.Id,() => { },() => e.Cancel);
+
+            bLTemp.Simulator(d.Id, () => { }, () => e.Cancel);
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+
         }
-        void StopSimulator()
+
+        void StopSimulator(object sender, RoutedEventArgs e)
         {
-            worker.CancelAsync();
+            if (worker.WorkerSupportsCancellation == true)
+                worker.CancelAsync();
+            
+            this.Close();
         }
+
+        
     }
 }

@@ -346,43 +346,43 @@ namespace BlApi
                         drone.Battery += timeInCharging * ChargingRate * DroneWeight(drone.Id);
                         drone.Status = DroneStatuses.Vacant;
 
-                    foreach (var sta in dal.GetListStation())
-                    {//מחפש את התחנה שבה ממוקם הרחפן
-                        if (sta.Latitude == drone.LocationNow.Latitude && sta.Longitude == drone.LocationNow.Longitude)
-                        {
-                            station = sta;
+                        foreach (var sta in dal.GetListStation())
+                        {//מחפש את התחנה שבה ממוקם הרחפן
+                            if (sta.Latitude == drone.LocationNow.Latitude && sta.Longitude == drone.LocationNow.Longitude)
+                            {
+                                station = sta;
+
+                            }
 
                         }
 
-                    }
+                        if (!station.Equals(default))
+                        {//מוסיף עמדה פנויה לתחנה  ןמעדכן
+                         //ובנוסף מסיר DroneCharge 
+                            int ChargeSlots = station.ChargeSlots + 1;
+                            UpdateStationDetails(station.Id, station.Name, ChargeSlots);
+                            dal.removeFromDroneCharges(idDrone, station.Id);
+                        }
 
-                    if (!station.Equals(default))
-                    {//מוסיף עמדה פנויה לתחנה  ןמעדכן
-                     //ובנוסף מסיר DroneCharge 
-                        int ChargeSlots = station.ChargeSlots + 1;
-                        UpdateStationDetails(station.Id, station.Name, ChargeSlots);
-                        dal.removeFromDroneCharges(idDrone, station.Id);
-                    }
 
+                        else
+                        {
+                            throw new BO.NotExistException("the drone not found in station");
+                        }
+                    }
 
                     else
                     {
-                        throw new BO.NotExistException("the drone not found in station");
+                        throw new BO.NotImplementedException("the drone's status is not Maintenance");
                     }
                 }
 
                 else
                 {
-                    throw new BO.NotImplementedException("the drone's status is not Maintenance");
+                    throw new BO.NotExistException("this id drone not exist in the system");
                 }
             }
-
-            else
-            {
-                throw new BO.NotExistException("this id drone not exist in the system");
-            }
         }
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id)
         {

@@ -19,7 +19,7 @@ namespace BL
 
         public Simulator(IBL bl, int idDrone, Action a, Func<bool> stop)
         {
-            double battery;
+            //double battery;
             while (!stop())
             {
                 lock (bl)
@@ -48,12 +48,11 @@ namespace BL
                             break;
                         default:
                             break;
-                    }
+                    }}
                     Thread.Sleep(DELAY);
-                    //הוספת שאר הפונקציות
-                    //אם אין בטריה
-                    /* bl.SendDroneToStation(idDrone);*///שליחת רחפן לטעינה
-                }
+                    
+                    bl.SendDroneToStation(idDrone);///שליחת רחפן לטעינה
+                
 
             }
 

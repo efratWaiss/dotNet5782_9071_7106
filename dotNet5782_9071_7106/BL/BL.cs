@@ -34,7 +34,7 @@ namespace BlApi
         public BL()
         {
 
-            dal = DalFactory.GetDAL("DalXml");
+            dal = DalFactory.GetDAL("DalObject");
             double[] arr;
             arr = dal.powerConsumpitionByDrone();
             available = arr[0];
@@ -207,8 +207,6 @@ namespace BlApi
         public void Simulator(int idDrone, Action update, Func<bool> shouldStop)
         {
             var simulator = new Simulator(this, idDrone, update, shouldStop);
-            //simulator.ActivateSimulator(); הפעלת פונקציה
-
         }
 
 
