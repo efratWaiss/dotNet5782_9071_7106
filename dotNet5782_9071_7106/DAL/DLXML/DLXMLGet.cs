@@ -35,13 +35,13 @@ namespace DL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone GetDrone(int id)
         {
-            XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
+            XElement personsRootElem = XMLTools.LoadListFromXMLElement(DronePath);
 
             Drone d = (from der in personsRootElem.Elements()
-                       where int.Parse(der.Element("ID").Value) == id
+                       where int.Parse(der.Element("Id").Value) == id
                        select new Drone()
                        {
-                           Id = Int32.Parse(der.Element("ID").Value),
+                           Id = Int32.Parse(der.Element("Id").Value),
                            Model = der.Element("Model").Value,
                            MaxWeight = (WeightCategories)Enum.Parse(typeof(WeightCategories), der.Element("MaxWeight").Value)
                        }
@@ -65,12 +65,13 @@ namespace DL
                             SenderId = Int32.Parse(per.Element("SenderId").Value),
                             TargetId = Int32.Parse(per.Element("TargetId").Value),
                             Weight = (WeightCategories)Enum.Parse(typeof(WeightCategories), per.Element("Weight").Value),
-                            priority = (Priorities)Enum.Parse(typeof(Priorities), per.Element("priority").Value),
-                            Requested = DateTime.Parse(per.Element("Requested").Value),
+                            priority = (Priorities)Enum.Parse(typeof(Priorities), per.Element("Priorities").Value),
+                            
+                            Requested = string.IsNullOrEmpty(per.Element("Requested").Value) ? (DateTime?)null : DateTime.Parse(per.Element("Requested").Value),
                             DroneId = Int32.Parse(per.Element("DroneId").Value),
-                            scheduled = DateTime.Parse(per.Element("scheduled").Value),
-                            PickedUp = DateTime.Parse(per.Element("PickedUp").Value),
-                            Delivered = DateTime.Parse(per.Element("Delivered").Value)
+                            scheduled = string.IsNullOrEmpty(per.Element("scheduled").Value) ? (DateTime?)null : DateTime.Parse(per.Element("scheduled").Value),
+                            PickedUp = string.IsNullOrEmpty(per.Element("PickedUp").Value) ? (DateTime?)null : DateTime.Parse(per.Element("PickedUp").Value),
+                            Delivered = string.IsNullOrEmpty(per.Element("Delivered").Value) ? (DateTime?)null : DateTime.Parse(per.Element("Delivered").Value)
 
                         }
                         ).FirstOrDefault();

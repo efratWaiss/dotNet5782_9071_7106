@@ -31,8 +31,18 @@ namespace BlApi
                 }
                 return s;
             }
-
-        
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<DroneInCharging> GetListDroneInChargingByStation(int stationId)
+        {
+            var DroneCharge = dal.GetListDroneCharges();
+            List<DroneInCharging> d = new List<DroneInCharging>();
+            foreach (var charge in DroneCharge)
+            {
+                if (charge.Stationld == stationId)
+                    d.Add(new DroneInCharging(charge.Droneld, GetDrone(charge.Droneld).Battery));
+            }
+            return d;
+        }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DroneToList> GetListDrone()
         {

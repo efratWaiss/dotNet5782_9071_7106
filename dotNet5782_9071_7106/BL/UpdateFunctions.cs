@@ -198,7 +198,7 @@ namespace BlApi
                     var pacelsL = dal.GetListParcel().ToList();
                     var drone = dal.GetDrone(idDrone);//למצוא ברשימת הרחפנים את הרחפן שהזיהוי שלו שווה לזיהוי הרחפן שקיבלנו
                     DroneToList GetListDrone = DronesList.FirstOrDefault(x => x.Id == idDrone);
-                    var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);//מציאת החבילות שנאספו ע"י רחפנים
+                    var itemParcel = dal.GetParcel(GetListDrone.ParcelDelivered);//מציאת החבילות שנאס   פו ע"י רחפנים
                     for (int i = 0; i < dal.GetListParcel().Count() && flag == false; i++)
                     {//עבור על רשימת החבילות כל עוד לא נמצאה חבילה ששויכה לרחפן שנשלח 
                      //ועוד לא נאספה על ידו

@@ -39,8 +39,9 @@ namespace PL
             GridUpdate2.Visibility = Visibility.Visible;
             GridAdd.Visibility = Visibility.Collapsed;
             drones.Visibility = Visibility.Collapsed;
-         /*   drones.ItemsSource = blTemp.GetStation(s.Id).DronesInCharging;*///TODO: ????
-            
+          
+
+
 
         }
         private void SaveAndAdd(object sender, RoutedEventArgs e)
@@ -86,11 +87,11 @@ namespace PL
             }
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_ClickDroneInParcel(object sender, RoutedEventArgs e)
         {
 
             drones.Visibility = Visibility.Visible;
-
+            drones.ItemsSource = blTemp.GetListDroneInChargingByStation(s.Id);
 
         }
         private void MouseDoubleClick_DroneInParcel(object sender, MouseButtonEventArgs e)

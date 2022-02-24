@@ -9,20 +9,8 @@
     <Requested>24/02/2022 10:24:35</Requested>
     <DroneId>1</DroneId>
     <scheduled>24/02/2022 10:24:35</scheduled>
-    <PickedUp></PickedUp>
-    <Delivered></Delivered>
-  </Parcel>
-  <Parcel>
-    <Id>2</Id>
-    <SenderId>325036559</SenderId>
-    <TargetId>325036552</TargetId>
-    <Weight>Easy</Weight>
-    <Priorities>Regular</Priorities>
-    <Requested>2022-02-24T02:31:23.0381026+02:00</Requested>
-    <DroneId>1</DroneId>
-    <scheduled></scheduled>
-    <PickedUp></PickedUp>
-    <Delivered></Delivered>
+    <PickedUp>24/02/2022 11:39:47</PickedUp>
+    <Delivered>24/02/2022 11:40:42</Delivered>
   </Parcel>
   <Parcel>
     <Id>3</Id>
@@ -50,15 +38,15 @@
   </Parcel>
   <Parcel>
     <Id>5</Id>
-    <SenderId>325036553</SenderId>
+    <SenderId>325036550</SenderId>
     <TargetId>325036550</TargetId>
-    <Weight>Easy</Weight>
-    <Priorities>Emergency</Priorities>
-    <Requested>2022-02-24T10:24:35.6482917+02:00</Requested>
+    <Weight>Intermediate</Weight>
+    <Priorities>Fast</Priorities>
+    <Requested>24/02/2022 10:24:35</Requested>
     <DroneId>1</DroneId>
-    <scheduled />
-    <PickedUp />
-    <Delivered />
+    <scheduled></scheduled>
+    <PickedUp></PickedUp>
+    <Delivered></Delivered>
   </Parcel>
   <Parcel>
     <Id>6</Id>

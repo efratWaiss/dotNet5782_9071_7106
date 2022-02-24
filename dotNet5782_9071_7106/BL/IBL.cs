@@ -76,6 +76,8 @@ namespace BlApi
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(int id);
         [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<DroneInCharging> GetListDroneInChargingByStation(int stationId);
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void Simulator(int idDrone, Action a, Func<bool> f);
     }
 }

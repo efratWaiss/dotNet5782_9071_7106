@@ -2,16 +2,16 @@
 <xmlStationXml.xml>
   <Station>
     <Id>52</Id>
-    <Name>jkjkjkj</Name>
+    <Name>ddddddddddd</Name>
     <Longitude>3.2</Longitude>
     <Latitude>2.6</Latitude>
-    <ChargeSlots>4</ChargeSlots>
+    <ChargeSlots>0</ChargeSlots>
   </Station>
-<Station>
+  <Station>
     <Id>54</Id>
     <Name>ggg</Name>
     <Longitude>12.6</Longitude>
     <Latitude>4.6</Latitude>
-    <ChargeSlots>8</ChargeSlots>
+    <ChargeSlots>7</ChargeSlots>
   </Station>
 </xmlStationXml.xml>

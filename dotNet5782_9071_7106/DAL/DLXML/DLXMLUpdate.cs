@@ -176,7 +176,7 @@ namespace DL
             XElement personsRootElem = XMLTools.LoadListFromXMLElement(ParcelPath);
 
             XElement par = (from p in personsRootElem.Elements()
-                            where int.Parse(p.Element("ID").Value) == id
+                            where int.Parse(p.Element("Id").Value) == id
                             select p).FirstOrDefault();
 
             if (par != null)
@@ -220,29 +220,23 @@ namespace DL
         public double[] powerConsumpitionByDrone()
         {
             double[] arr = new double[5];
-            //XElement config = XMLTools.LoadListFromXMLElement(ConfigPath);
-            //XElement availableElement = config.Element("available");
-            //XElement lightWeightElement = config.Element("lightWeight");
-            //XElement MediumWeightElement = config.Element("MediumWeight");
-            //XElement heavyWeightElement = config.Element("heavyWeight");
-            //XElement ChargingRateElement = config.Element("ChargingRate");
-            //double available = double.Parse(availableElement.Value);
-            //double lightWeight = double.Parse(lightWeightElement.Value);
-            //double MediumWeight = double.Parse(MediumWeightElement.Value);
-            //double heavyWeight = double.Parse(heavyWeightElement.Value);
-            //double ChargingRate = double.Parse(ChargingRateElement.Value);
-            //double[] arr = new double[5];
-            //arr[0] =available;
-            //arr[1] = lightWeight;
-            //arr[2] = MediumWeight;
-            //arr[3] = heavyWeight;
-            //arr[4] = ChargingRate;
-            //availableElement.Value = 0.1.ToString();
-            //lightWeightElement.Value = lightWeight.ToString();
-            //MediumWeightElement.Value = MediumWeight.ToString();
-            //heavyWeightElement.Value = heavyWeight.ToString();
-            //ChargingRateElement.Value = ChargingRate.ToString();
-            //XMLTools.SaveListToXMLElement(config, ConfigPath);
+            XElement config = XMLTools.LoadListFromXMLElement(ConfigPath);
+            XElement availableElement = config.Element("available");
+            XElement lightWeightElement = config.Element("lightWeight");
+            XElement MediumWeightElement = config.Element("MediumWeight");
+            XElement heavyWeightElement = config.Element("heavyWeight");
+            XElement ChargingRateElement = config.Element("ChargingRate");
+            double available = double.Parse(availableElement.Value);
+            double lightWeight = double.Parse(lightWeightElement.Value);
+            double MediumWeight = double.Parse(MediumWeightElement.Value);
+            double heavyWeight = double.Parse(heavyWeightElement.Value);
+            double ChargingRate = double.Parse(ChargingRateElement.Value);
+            arr[0] = available;
+            arr[1] = lightWeight;
+            arr[2] = MediumWeight;
+            arr[3] = heavyWeight;
+            arr[4] = ChargingRate;
+           
             return arr;
 
 
