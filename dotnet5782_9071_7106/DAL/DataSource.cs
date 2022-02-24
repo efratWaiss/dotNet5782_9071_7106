@@ -64,7 +64,7 @@ namespace DO
             parcels.Add(new Parcel(325036554, 325036557, WeightCategories.Liver, Priorities.Regular, new DateTime(2022, 8, 5, 9, 23, 12), 3, new DateTime(2022, 5, 5, 9, 23, 12), null, null));
             parcels.Add(new Parcel(325036555, 325036551, WeightCategories.Liver, Priorities.Regular, new DateTime(2022, 4, 5, 9, 13, 12), 5, new DateTime(2022, 5, 9, 9, 23, 12), null, null));
             parcels.Add(new Parcel(325036553, 325036550, WeightCategories.Easy, Priorities.Emergency, new DateTime(2022, 5, 5, 9, 23, 12), 1, new DateTime(2022, 5, 5, 9, 23, 12), null, null));
-            parcels.Add(new Parcel(325036559, 325036554, WeightCategories.Easy, Priorities.Emergency, DateTime.Now, 1, new DateTime(2022, 4, 5, 9, 23, 12), new DateTime(2022, 4, 8, 9, 23, 12), null));
+            parcels.Add(new Parcel(325036559, 325036554, WeightCategories.Easy, Priorities.Emergency, DateTime.Now, 1, new DateTime(2022, 4, 5, 9, 23, 12), null, null));
             parcels.Add(new Parcel(325036552, 325036551, WeightCategories.Liver, Priorities.Fast, DateTime.Now, 3, null, null, null));
             parcels.Add(new Parcel(325036556, 325036552, WeightCategories.Intermediate, Priorities.Fast, DateTime.Now, 2, null, null, null));
          
