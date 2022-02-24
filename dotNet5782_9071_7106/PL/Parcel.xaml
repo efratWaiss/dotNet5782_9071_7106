@@ -61,7 +61,6 @@
             <WrapPanel Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="5" Grid.Column="0">
                 <Button Content="close"  Click="Button_Click_1"/>
                 <Button Name="DeleateParcel" Content="Deleate Parcel"  Click="Button_ClickDeleateParcel" IsEnabled="False"/>
-                <Button Name="UpdateParcelToDrone" Content="Update Parcel To Drone" Grid.Column="4" HorizontalAlignment="Left" Click="Button_Click_UpdateParcelToDrone" IsEnabled="True"/>
                 <Button Name="GetSender" Content="Sender" Grid.Column="4" HorizontalAlignment="Left" Click="Button_Click_Sender" />
                 <Button Name="GetTarget" Content="Target" Grid.Column="4" HorizontalAlignment="Left"  Click="Button_Click_Target" />
                 <Button Name="GetDrone" IsEnabled="False" Content="Drone"  Click="Button_Click_Drone" />

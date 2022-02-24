@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <WrapPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="4">
+            <WrapPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5">
                 <Button Content="Update Drones Model" Name="UpdateDronesModel" Click="UpdateDronesModel_Click"/>
                 <Button Content="Close" Click="Button_Click_close1"/>
                 <Button x:Name="SendDroneToCharging"  IsEnabled="False" Content="Send drone to charging" Click="SendDroneToCharging_Click"/>
@@ -39,7 +39,8 @@
                 <Button x:Name="SendDroneToShipping" IsEnabled="False" Content="Send Drone To Shipping" Click="SendDroneToShipping_Click"/>
                 <Button x:Name="CollectionParcelByDrone"  IsEnabled="False" Content="Collection parcel by drone" Click="CollectionParcelByDrone_Click"/>
                 <Button x:Name="DeliveryParcel" IsEnabled="False" Content="Delivery Parcel" Click="DeliveryParcel_Click"/>
-                <Button x:Name="DronesParcle" Visibility="Visible" Content="Drones Parcel" Click="GetParcleDroen_Click"/>
+                <Button x:Name="DronesParcle" Visibility="Visible" Content="Drones Parcel" Click="GetParcleDroen_Click"  IsEnabled="False"/>
+                <Button x:Name="UpdateParcelToDroen" Visibility="Visible" Content="Update Parcel To Droen"  IsEnabled="False" Click="UpdateParcelToDroen_Click"/>
                 <Button x:Name="Simulator" Visibility="Visible" Content="Simulator" Click="Simulator_Click"/>
                 <Button x:Name="cancellation" Visibility="Visible" Content="cancellation" Click="cancellation_Click_1"  />
 
@@ -100,6 +101,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -112,10 +114,12 @@
             </WrapPanel>
             <Label Content="id"  Grid.Row="2" Grid.Column="1"/>
             <Label Content="battery" Grid.Row="3" Grid.Column="1"/>
-            <Label Content="location now" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="Longitude" Grid.Row="4" Grid.Column="1"/>
+            <Label Content="Latitude" Grid.Row="5" Grid.Column="1"/>
             <TextBox x:Name="IdG" Text="{Binding Path=Id}" IsEnabled="False" MaxLength="9" Grid.Column="2" Grid.Row="2"  TextWrapping="Wrap"/>
             <TextBox x:Name="batteryG" Text="{Binding Path=Battery}" IsEnabled="False" Grid.Column="2" Grid.Row="3" />
-            <TextBox x:Name="locationG" Text="{Binding Path=LocationNow}" IsEnabled="False" Grid.Column="2"  Grid.Row="4"  />
+            <TextBox x:Name="locationG" Text="{Binding Path=LocationNow.Longitude}" IsEnabled="False" Grid.Column="2"  Grid.Row="4"  />
+            <TextBox x:Name="locationG1" Text="{Binding Path=LocationNow.Latitude}" IsEnabled="False" Grid.Column="2"  Grid.Row="5"  />
 
         </Grid>
         <Grid x:Name="GetDroneinCharging" Visibility="Collapsed">

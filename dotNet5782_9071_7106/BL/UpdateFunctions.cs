@@ -80,8 +80,8 @@ namespace BlApi
                     {
                         if (drone1.Status == DroneStatuses.Vacant)//האם הרחפן פנוי
                         {
-
-                            for (int i = 0; i < dal.GetListParcel().Count(); i++)
+                            
+                            for (int i = 0; i < p.Count(); i++)
                             {//ממיין את הרשימה מעדיפות גבוהה לנמוכה
                                 double min = double.MaxValue;
                                 foreach (var station in dal.GetListStation())//תחנה קרובה למקבל
@@ -103,7 +103,7 @@ namespace BlApi
                                 if (tempLocation <= drone1.Battery + ChargingRate * DroneWeight(drone1.Id))//בודק האם קיימת מספיק בטריה להמשך הדרך
                                 {
                                     flag = true;
-                                    if ((drone1.MaxWeight == WeightCategories.Intermediate && (WeightCategories)p[i].Weight != WeightCategories.Liver) || (drone1.MaxWeight == WeightCategories.Easy && (WeightCategories)p[i].Weight == WeightCategories.Easy))
+                                    if ((drone1.MaxWeight == BO.WeightCategories.Intermediate && (BO.WeightCategories)p[i].Weight != WeightCategories.Liver) || (drone1.MaxWeight == WeightCategories.Easy && (WeightCategories)p[i].Weight == WeightCategories.Easy))
                                     {
                                         if ((Priorities)p[i].priority == Priorities.Regular)
                                         {
@@ -165,11 +165,15 @@ namespace BlApi
                                     parcelChoise = p[i];
                                 }
                             }
-                            if (parcelChoise.Equals(default))
+                            if (!parcelChoise.Equals(default))
                             {
                                 drone1.Status = DroneStatuses.Shipping;
+                                drone1.Battery = drone1.Battery - tempLocation * ChargingRate * DroneWeight(drone1.Id);
+                                drone1.ParcelDelivered = parcelChoise.Id;
                                 parcelChoise.DroneId = drone1.Id;
                                 parcelChoise.Delivered = DateTime.Now;
+                                dal.UpdateParcel(parcelChoise);
+                                
                             }
                         }
                         else
@@ -184,7 +188,7 @@ namespace BlApi
                     }
                     if (flag == false)
                     {
-                        SendDroneToStation(idDrone);
+                        throw new BO.NotImplementedException("the drone has no enough battery");
                     }
 
 

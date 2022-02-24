@@ -55,7 +55,7 @@ namespace PL
             {
                 SendDroneToCharging.IsEnabled = true;
                 SendDroneToShipping.IsEnabled = true;
-
+                UpdateParcelToDroen.IsEnabled = true;
 
 
             }
@@ -237,11 +237,11 @@ namespace PL
 
         private void GetParcleDroen_Click(object sender, RoutedEventArgs e)
         {
-
-            Parcel Parcel = new Parcel(bLTemp, d.ParcelDelivered);
-            MessageBox.Show("show the drone");
-            Parcel.Show();
-
+            
+                Parcel Parcel = new Parcel(bLTemp, d.ParcelDelivered);
+                MessageBox.Show("show the drone");
+                Parcel.Show();
+            
         }
 
         private void Button_Click_Close3(object sender, RoutedEventArgs e)
@@ -257,7 +257,7 @@ namespace PL
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.WorkerReportsProgress = true;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-
+            worker.RunWorkerAsync();
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -267,7 +267,7 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            var drones = bLTemp.GetListDrone(); 
+            var drones = bLTemp.GetListDrone();
             //תבקשו מחדש את הנתונים מהBL
             //כמו שעשיתן אחרי כל שינוי.
         }
@@ -283,6 +283,28 @@ namespace PL
                 worker.CancelAsync();
 
             this.Close();
+        }
+
+        private void UpdateParcelToDroen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bLTemp.UpdateParcelToDrone(d.Id);
+                MessageBox.Show("The parcel was successfully updated");
+            }
+            catch (BO.IdException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (BO.NotImplementedException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

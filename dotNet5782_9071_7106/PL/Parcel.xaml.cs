@@ -89,26 +89,26 @@ namespace PL
             }
         }
 
-        private void Button_Click_UpdateParcelToDrone(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                bl.UpdateParcelToDrone(bl.GetParcel(parcelId).DroneId);
-                MessageBox.Show("The parcel was successfully updated");
-            }
-            catch (BO.IdException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (BO.NotExistException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (BO.NotImplementedException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //private void Button_Click_UpdateParcelToDrone(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        bl.UpdateParcelToDrone(bl.GetParcel(parcelId).DroneId);
+        //        MessageBox.Show("The parcel was successfully updated");
+        //    }
+        //    catch (BO.IdException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    catch (BO.NotExistException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    catch (BO.NotImplementedException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         private void Button_Click_Target(object sender, RoutedEventArgs e)
         {

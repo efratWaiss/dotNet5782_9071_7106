@@ -33,6 +33,11 @@ namespace BL
                                 {
                                     bl.UpdateParcelToDrone(idDrone);
                                 }
+                                
+                                catch(BO.NotImplementedException)
+                                {
+                                    bl.SendDroneToStation(idDrone);///שליחת רחפן לטעינה
+                                }
                                 catch
                                 {
                                     throw new SimulatorException("No suitable package was found or the glider does not have a sufficient battery");
@@ -51,7 +56,7 @@ namespace BL
                     }}
                     Thread.Sleep(DELAY);
                     
-                    bl.SendDroneToStation(idDrone);///שליחת רחפן לטעינה
+                   
                 
 
             }
