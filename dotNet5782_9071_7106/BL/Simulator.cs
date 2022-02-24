@@ -9,7 +9,7 @@ namespace BL
     class Simulator
     {
         //static System.Windows.Timer myTimer = new System.Windows.Timer();
-        const int DELAY = 5000;// השהיה לחצי שניה
+        const int DELAY = 500;// השהיה לחצי שניה
         public double speed;//מהירות
         private int idDrone;
         private Action a;
@@ -36,20 +36,42 @@ namespace BL
 
                                 catch (BO.NotImplementedException)
                                 {
+                                   
                                     bl.SendDroneToStation(idDrone);///שליחת רחפן לטעינה
+
                                 }
                                 catch
                                 {
                                     throw new SimulatorException("No suitable package was found or the glider does not have a sufficient battery");
                                 }
                             }
-                            bl.CollectionAParcelByDroen(idDrone);//אוסף חבילה
+                            try
+                            {
+                                bl.CollectionAParcelByDroen(idDrone);//אוסף חבילה
+                            }
+                            catch (BO.NotImplementedException)
+                           
+                            {
+                                bl.UpdateParcelToDrone(idDrone);
+                            }
+
                             break;
                         case DroneStatuses.Maintenance:
-                            a();
+                            Random rn = new Random();
+                            bl.FreeDrone(idDrone, rn.Next(1, 35));
+                            //a();
                             break;
                         case DroneStatuses.Shipping:
-                            bl.DeliveryOfAParcelByDrone(idDrone);//מבצע משלוח
+                            try
+                            {
+                                bl.DeliveryOfAParcelByDrone(idDrone);//מבצע משלוח
+                            }
+                            catch (BO.NotImplementedException)
+                            {
+                                bl.CollectionAParcelByDroen(idDrone);
+                            }
+
+
                             break;
                         default:
                             break;

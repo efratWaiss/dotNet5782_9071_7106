@@ -165,6 +165,10 @@ namespace BlApi
                                     parcelChoise = p[i];
                                 }
                             }
+                            if (flag == false)
+                            {
+                                throw new BO.NotImplementedException("the drone has no enough battery");
+                            }
                             if (!parcelChoise.Equals(default))
                             {
                                 drone1.Status = DroneStatuses.Shipping;
@@ -186,10 +190,7 @@ namespace BlApi
                     {
                         throw new NotExistException("this Drone's id not exist in the system");//TODO:exception
                     }
-                    if (flag == false)
-                    {
-                        throw new BO.NotImplementedException("the drone has no enough battery");
-                    }
+                   
 
 
                 }

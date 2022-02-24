@@ -171,7 +171,8 @@ namespace PL
         {
             try
             {
-                bLTemp.FreeDrone(Convert.ToInt32(Id.Text), 0);
+                Random rn = new Random();
+                bLTemp.FreeDrone(Convert.ToInt32(Id.Text),rn.Next(1,35));
                 MessageBox.Show("The drone רelease from the charging station");
             }
             catch (BO.IdException ex)
@@ -220,7 +221,7 @@ namespace PL
         private void DeliveryParcel_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
+            { 
                 bLTemp.DeliveryOfAParcelByDrone(Convert.ToInt32(Id.Text));
                 MessageBox.Show("The delivery the parcel");
             }
@@ -267,17 +268,21 @@ namespace PL
         //    bLTemp.Simulator(d.Id, () => worker.ReportProgress(0), () => e.Cancel);
         //}
 
-        //private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    var drones = bLTemp.GetListDrone();
-        //    //תבקשו מחדש את הנתונים מהBL
-        //    //כמו שעשיתן אחרי כל שינוי.
-        //}
-        //private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    Simulator.Visibility = Visibility.Visible;
-        //    // לעדכן את החזרה למצב רגיל: איפשור של כפתורים, טקסטים וכו.
-        //}
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+            //תבקשו מחדש את הנתונים מהBL
+            GetDroneinParcel.DataContext = null;
+            var drones = bLTemp.GetListDrone();
+            GetDroneinParcel.DataContext = bLTemp.GetDrone(d.Id);
+            //כמו שעשיתן אחרי כל שינוי.
+        }
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Simulator.Visibility = Visibility.Visible;
+           
+            // לעדכן את החזרה למצב רגיל: איפשור של כפתורים, טקסטים וכו.
+        }
 
         //private void cancellation_Click_1(object sender, RoutedEventArgs e)
         //{
