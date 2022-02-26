@@ -273,7 +273,7 @@ namespace PL
             
             //תבקשו מחדש את הנתונים מהBL
             GetDroneinParcel.DataContext = null;
-            var drones = bLTemp.GetListDrone();
+            //var drones = bLTemp.GetListDrone();
             GetDroneinParcel.DataContext = bLTemp.GetDrone(d.Id);
             //כמו שעשיתן אחרי כל שינוי.
         }
