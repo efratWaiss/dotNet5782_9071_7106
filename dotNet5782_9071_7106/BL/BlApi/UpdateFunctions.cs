@@ -367,7 +367,7 @@ namespace BlApi
                         }
 
                         if (!station.Equals(default))
-                        {//מוסיף עמדה פנויה לתחנה  ןמעדכן
+                        {//מוסיף עמדה פנויה לתחנה  ומעדכן
                          //ובנוסף מסיר DroneCharge 
                             int ChargeSlots = station.ChargeSlots + 1;
                             UpdateStationDetails(station.Id, station.Name, ChargeSlots);
